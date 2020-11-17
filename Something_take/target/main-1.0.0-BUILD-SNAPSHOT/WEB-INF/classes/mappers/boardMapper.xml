@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.company.mapper.BoardMapper">
+
+	<!-- 				< 게시판 관련 Mapper > 						-->
+
+	<!-- 게시판 글 등록 -->
+	<insert id="insert">
+	INSERT INTO notice_board(title, content, writer, reg_date)
+	VALUES (#{title}, #{content}, #{writer}, now())
+	</insert>
+	<!-- 게시판 글 등록 -->
+
+
+	<!-- 전체 글 조회 -->
+	<select id="listAll" resultType="com.company.domain.BoardVO">
+	<![CDATA[
+	SELECT *
+	FROM notice_board
+	WHERE bno > 0
+	ORDER BY bno desc, reg_date desc
+	]]>
+	</select>
+	<!-- 전체 글 조회 -->
+
+
+	<!-- 글 한개 조회 -->
+	<select id="read" resultType="com.company.domain.BoardVO">
+	<![CDATA[
+	SELECT *
+	FROM notice_board
+	WHERE bno = #{bno}
+	]]> 
+	</select>
+	<!-- 글 한개 조회 -->
+
+	
+	<!-- 조회수 -->
+	<update id="readCNT">
+	<![CDATA[
+	UPDATE notice_board
+	SET viewcount = viewcount+1
+	WHERE bno = #{bno}
+	]]>
+	</update>
+	<!-- 조회수 -->
+	
+	
+	<!-- 글 내용 수정 -->
+	<update id="modify">
+	<![CDATA[
+	UPDATE notice_board
+	SET title = #{title}, content = #{content}
+	WHERE bno = #{bno}
+	AND writer = #{writer}
+	]]>
+	</update>
+	<!-- 글 내용 수정 -->
+
+	
+	<!-- 글 삭제 -->
+	<delete id="delete">
+	DELETE FROM notice_board
+	WHERE bno = #{bno}
+	</delete>
+	<!-- 글 삭제 -->
+
+</mapper>
