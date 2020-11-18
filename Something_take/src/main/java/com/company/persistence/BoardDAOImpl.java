@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.company.domain.BoardVO;
+import com.company.domain.Criteria;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -90,6 +91,33 @@ public class BoardDAOImpl implements BoardDAO{
 		sqlSession.update(namespace+".readCNT", bno);
 		System.out.println("-- DAOImpl : readCNT() 실행 완료");
 	} // readCNT()
+
+	///////////////////////////////////////////////////////////////////////
+
+	/* 페이징 처리  */
+	// 1) 글 목록 10개씩 조회
+	@Override
+	public List<BoardVO> listPage(int page) throws Exception {
+
+		System.out.println("-- DAOImpl : listPage(int page) 실행");
+		
+		if(page <= 0) {
+			page = 1;
+		} // if
+		
+		page = (page - 1) * 10;
+		
+		return sqlSession.selectList(namespace+".listPage", page);
+	} // listPage(int page)
+
+	// 2) 객체 사용 
+	@Override
+	public List<BoardVO> listPage(Criteria cri) throws Exception {
+
+		System.out.println("-- DAOImpl : listPage(Criteria cri) 실행");
+
+		return sqlSession.selectList(namespace+".listCri", cri);
+	} // listPage(Criteria cri)
 	
 	///////////////////////////////////////////////////////////////////////
 

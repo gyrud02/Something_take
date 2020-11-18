@@ -3,6 +3,7 @@ package com.company.service;
 import java.util.List;
 
 import com.company.domain.BoardVO;
+import com.company.domain.Criteria;
 import com.company.domain.ReplyVO;
 
 public interface BoardService {
@@ -21,5 +22,7 @@ public interface BoardService {
 	public void delete(int bno) throws Exception; // 글 삭제 메서드
 	
 	public void readCNT(int bno) throws Exception; // 조회 수 수정 메서드
+	
+	public List<BoardVO> listCri(Criteria cri) throws Exception; // 페이징 전환 메서드
 	
 }

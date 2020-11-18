@@ -3,6 +3,7 @@ package com.company.persistence;
 import java.util.List;
 
 import com.company.domain.BoardVO;
+import com.company.domain.Criteria;
 
 public interface BoardDAO {
 
@@ -20,4 +21,7 @@ public interface BoardDAO {
 	
 	public void readCNT(int bno) throws Exception; // 조회수 수정 메서드
 	
+	public List<BoardVO> listPage(int page) throws Exception; // 페이징처리 (글 목록 10개씩 조회)
+	
+	public List<BoardVO> listPage(Criteria cri) throws Exception; // 페이징처리 (객체 사용)
 }

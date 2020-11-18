@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.ServletRequest;
@@ -23,6 +24,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.company.domain.BoardVO;
+import com.company.domain.Criteria;
 import com.company.domain.ReplyVO;
 import com.company.service.BoardService;
 import com.company.service.ReplyService;
@@ -156,12 +158,20 @@ public class BoardController {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println(check);
-//		out.println("<script>");
-//		out.println("alert('댓글이 등록되었습니다.');");
-//		out.println("</script>");
 		return "redirect:../Content.bd?bno="+revo.getBno();
 	} // insertAJAX()
 	
 	/////////////////////////////////////////////////////////
 
+	/* 페이징 처리 메서드 */
+	@RequestMapping(value = "listCri.bd", method = RequestMethod.GET)
+	public void listCri(Model model, Criteria cri) throws Exception{
+		logger.info("-- 페이징 처리 메서드 listCri() 실행");
+		List<BoardVO> boardList = bservice.listCri(cri);
+		model.addAttribute("bdList", boardList);
+		logger.info("-- 페이징 처리 메서드 listCri() 실행 완료");
+	} // listCri()
+	
+	/////////////////////////////////////////////////////////
+	
 }

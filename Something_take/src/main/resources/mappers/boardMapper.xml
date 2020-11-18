@@ -19,7 +19,7 @@
 	SELECT *
 	FROM notice_board
 	WHERE bno > 0
-	ORDER BY bno desc, reg_date desc
+	ORDER BY bno DESC, reg_date DESC
 	]]>
 	</select>
 	<!-- 전체 글 조회 -->
@@ -65,5 +65,29 @@
 	WHERE bno = #{bno}
 	</delete>
 	<!-- 글 삭제 -->
+
+
+	<!-- 페이징 처리 -->
+	<!-- 1) 글 목록 10개 조회 -->
+	<select id="listPage" resultType="com.company.domain.BoardVO">
+	<![CDATA[
+	SELECT *
+	FROM notice_board
+	ORDER BY bno DESC, reg_date DESC
+	]]>
+	</select>
+	<!-- 1) 글 목록 10개 조회 -->
+
+	<!-- 2) Criteria 객체 사용 -->
+	<select id="listCri" resultType="com.company.domain.BoardVO">
+	<![CDATA[
+	SELECT *
+	FROM notice_board
+	ORDER BY bno DESC, reg_date DESC
+	LIMIT #{pageStart}, #{pageSize}
+	]]>
+	</select>
+	<!-- 2) Criteria 객체 사용 -->
+	<!-- 페이징 처리 -->
 
 </mapper>
