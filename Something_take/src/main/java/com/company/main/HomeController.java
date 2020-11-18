@@ -74,6 +74,7 @@ public class HomeController {
 		
 		return "member/sign_up.tiles";
 	} // Sign_Up()
+	
 	/////////////////////////////////////////////////////////
 	
 	/* 가입 시 회원 약관 페이지 새 창 띄우는 메소드 */
@@ -286,5 +287,4 @@ public class HomeController {
 	} // mng_Messages()
 	
 	/////////////////////////////////////////////////////////
-	
 }

@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.company.domain.BoardVO;
+import com.company.domain.Criteria;
 import com.company.persistence.BoardDAO;
 
 @Service
@@ -29,6 +30,8 @@ public class BoardServiceImpl implements BoardService{
 
 	}
 	
+	///////////////////////////////////////////////////////////////////////
+
 	/* 글 전체 조회 메서드 */
 	@Override
 	public List<BoardVO> getBoard() throws Exception {
@@ -39,6 +42,8 @@ public class BoardServiceImpl implements BoardService{
 		
 		return boardList;
 	} // getBoard()
+
+	///////////////////////////////////////////////////////////////////////
 
 	/* 글 하나 조회 메서드 */
 	@Override
@@ -84,6 +89,16 @@ public class BoardServiceImpl implements BoardService{
 		bdao.readCNT(bno);
 		System.out.println("-- ServiceImpl : readCNT() 실행 완료");
 	} // readCNT()
+
+	///////////////////////////////////////////////////////////////////////
+
+	/* 페이징 전환 메서드 */
+	@Override
+	public List<BoardVO> listCri(Criteria cri) throws Exception {
+
+		System.out.println("-- ServiceImpl : listCri() 실행");
+		return bdao.listPage(cri);
+	} // listCri()
 
 	///////////////////////////////////////////////////////////////////////
 	
