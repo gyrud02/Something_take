@@ -25,4 +25,6 @@ public interface BoardService {
 	
 	public List<BoardVO> listCri(Criteria cri) throws Exception; // 페이징 전환 메서드
 	
+	public int getCount() throws Exception; // 글 전체 갯수 조회
+	
 }

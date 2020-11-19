@@ -22,6 +22,11 @@
 	ORDER BY bno DESC, reg_date DESC
 	]]>
 	</select>
+	
+	<select id="getCount" resultType="int">
+	SELECT count(*)
+	FROM notice_board
+	</select>
 	<!-- 전체 글 조회 -->
 
 
@@ -89,5 +94,5 @@
 	</select>
 	<!-- 2) Criteria 객체 사용 -->
 	<!-- 페이징 처리 -->
-
+	
 </mapper>

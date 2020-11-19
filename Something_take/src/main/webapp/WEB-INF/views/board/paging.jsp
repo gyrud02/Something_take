@@ -11,6 +11,7 @@
 	#writer{width: 230px;}
 
 </style>
+
 <body data-spy="scroll" data-target=".navbar-collapse">
 
 	<br><br><br><br>
@@ -64,34 +65,50 @@
 	 				       </div>
 						</c:if>
 						<!-- 로그인 유무에 따른 버튼 숨김 -->
-						
-<%---------------------------------- 페이징 처리 ----------------------------------%>				
 					
+<%---------------------------------- 페이징 처리 ----------------------------------%>				
+
 					<div class="col-12 text-center">
 						<c:set value="${requestScope.count}" var="total"/>
 <%
 	int total = Integer.parseInt(pageContext.getAttribute("total").toString());
-	int currentPage = 1; // 현재 페이지
-	int pageSize = 9; // 페이지 블록 크기
+	final int pageSize = 9; // 페이지 블록 크기
+	final int startPage = 1; // 시작 페이지
+	int currentPage = Integer.parseInt(request.getParameter("page")); // 현재 페이지
+	int prevPage = currentPage - 1; // 이전 페이지
 	double pageBlock = (double)total / (double)pageSize; // 블록 갯수
+	int totalBlock = Integer.parseInt(String.valueOf(Math.round(Math.ceil(pageBlock)))); // 총 블록 수
+	int nextPage = currentPage + 10; // 다음 페이지
+	int endPage = totalBlock; // 페이지 끝
+	
+	if(prevPage <= 0){ prevPage = 1; } // if
 %>
-						<a href="listCri.bd?page=<%=currentPage%>"><%=currentPage%></a>
-<%	
+						<a href="listCri.bd?page=<%=startPage%>">[처음]</a>
+						<a href="listCri.bd?page=<%=prevPage%>">[이전]</a>
+<%
+	int pages = currentPage - startPage;
+
+	for(int i=currentPage; startPage<i; i--){
+%>			
+						<a href=""><%=i%></a>
+<%			
+	} // for
+
 	if(pageBlock / 2 != 0){
 		
-		int totalBlock = Integer.parseInt(String.valueOf(Math.round(Math.ceil(pageBlock))));
+		totalBlock = Integer.parseInt(String.valueOf(Math.round(Math.ceil(pageBlock))));
 
 			for(int i=1; i<totalBlock; i++){
-%>			
+%>	
 						<a href="listCri.bd?page=<%=totalBlock%>"><%=totalBlock%></a>
 <% 						
 			} // for
+			
+			if(nextPage > totalBlock){ nextPage = endPage; } // if
 	} // if
-
-	currentPage = 1;
-	int nextPage = currentPage + 10;
 %>		
-						<a href="listCri.bd?page=<%=nextPage%>">다음</a>
+						<a href="listCri.bd?page=<%=nextPage%>">[다음]</a>
+						<a href="listCri.bd?page=<%=endPage%>">[끝]</a>
 					</div>
 
 <%---------------------------------- 페이징 처리 ----------------------------------%>				

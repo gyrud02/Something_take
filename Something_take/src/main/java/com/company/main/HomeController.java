@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.company.domain.BoardVO;
+import com.company.domain.Criteria;
 import com.company.domain.MemberVO;
 import com.company.domain.MessageVO;
 import com.company.domain.ReplyVO;
@@ -113,16 +114,40 @@ public class HomeController {
 	/* 게시판 페이지로 이동 */
 	@RequestMapping(value = "Board.bd", method = RequestMethod.GET)
 	public String getBoard(HttpServletRequest request,
-						   HttpSession session) throws Exception {
+						   HttpSession session, Model model,
+						   Criteria cri) throws Exception {
 		
 		logger.info("-- 게시판 페이지로 이동");
-
+		int count = 0;
+		count = bservice.getCount();
+		model.addAttribute("count", count);
+//		logger.info("@@ count : "+ count);
 		List<BoardVO> boardList = bservice.getBoard();
 		session.setAttribute("boardList", boardList);
-		
 		return "board/board.tiles";
 	} // getBoard()
 	
+	/////////////////////////////////////////////////////////
+	
+	/* 페이징 처리 페이지로 이동 */
+	@RequestMapping(value = "listCri.bd", method = RequestMethod.GET)
+	public String listCri(Model model, Criteria cri) throws Exception{
+		int count = 0;
+		logger.info("-- 페이징 처리 메서드 listCri() 실행");
+		List<BoardVO> boardList = bservice.listCri(cri);
+		count = bservice.getCount();
+		model.addAttribute("boardList", boardList);
+		model.addAttribute("criteria", cri);
+		model.addAttribute("count", count);
+		logger.info("@@@ boardList : " + boardList);
+		logger.info("@@@ count : " + count);
+//		logger.info("@@@ criteria : " + cri);
+		logger.info("-- 페이징 처리 메서드 listCri() 실행 완료");
+		return "board/paging.tiles";
+	} // listCri()
+	
+	/////////////////////////////////////////////////////////
+
 	/* 글쓰기 페이지로 이동 */
 	@RequestMapping(value = "Write.bd", method = RequestMethod.GET)
 	public String write(HttpSession session) {
@@ -131,6 +156,8 @@ public class HomeController {
 		
 		return "board/write.tiles";
 	} // write()
+
+	/////////////////////////////////////////////////////////
 	
 	/* 글 내용 보기 페이지로 이동  */
 	@RequestMapping(value = "Content.bd", method = RequestMethod.GET)
@@ -147,6 +174,8 @@ public class HomeController {
 		return "board/content.tiles";
 	} // getContent()
 	
+	/////////////////////////////////////////////////////////
+
 	/* 글 수정 페이지로 이동 */
 	@RequestMapping(value = "Modify.bd", method = RequestMethod.GET)
 	public String modify(@RequestParam("bno") int bno, Model model) throws Exception{
@@ -287,4 +316,5 @@ public class HomeController {
 	} // mng_Messages()
 	
 	/////////////////////////////////////////////////////////
+	
 }
