@@ -28,7 +28,7 @@ public class BoardServiceImpl implements BoardService{
 		System.out.println("-- bvo : " + bvo);
 		System.out.println("-- ServiceImpl : insert() 실행 완료");
 
-	}
+	} // insert()
 	
 	///////////////////////////////////////////////////////////////////////
 
@@ -58,6 +58,18 @@ public class BoardServiceImpl implements BoardService{
 
 	///////////////////////////////////////////////////////////////////////
 
+	/* 글 전체 갯수 조회 */
+	@Override
+	public int getCount() throws Exception{
+		int count = 0;
+		System.out.println("-- ServiceImpl : getCount() 실행");
+		count = bdao.getCount();
+		System.out.println("-- ServiceImpl : getCount() 실행 완료");
+		return count;
+	} // getCount()
+	
+	///////////////////////////////////////////////////////////////////////
+	
 	/* 글 수정 메서드 */
 	@Override
 	public void modify(BoardVO bvo) throws Exception {

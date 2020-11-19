@@ -24,4 +24,6 @@ public interface BoardDAO {
 	public List<BoardVO> listPage(int page) throws Exception; // 페이징처리 (글 목록 10개씩 조회)
 	
 	public List<BoardVO> listPage(Criteria cri) throws Exception; // 페이징처리 (객체 사용)
+	
+	public int getCount() throws Exception; // 글 전체 갯수 조회
 }

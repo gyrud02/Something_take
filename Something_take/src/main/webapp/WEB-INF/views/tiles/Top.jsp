@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
@@ -237,7 +238,9 @@
 	
 	<!----------- [ck에디터 관련 링크 ] ----------->
 	<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
+<!--
 	<script src="${pageContext.request.contextPath}/resources/ckfinder/ckfinder.js"></script>
+-->
 	<!----------- [ck에디터 관련 링크 ] ----------->
 
 <!------------------------------- script [스크립트 영역] --------------------------->

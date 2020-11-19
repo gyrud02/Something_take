@@ -163,15 +163,4 @@ public class BoardController {
 	
 	/////////////////////////////////////////////////////////
 
-	/* 페이징 처리 메서드 */
-	@RequestMapping(value = "listCri.bd", method = RequestMethod.GET)
-	public void listCri(Model model, Criteria cri) throws Exception{
-		logger.info("-- 페이징 처리 메서드 listCri() 실행");
-		List<BoardVO> boardList = bservice.listCri(cri);
-		model.addAttribute("bdList", boardList);
-		logger.info("-- 페이징 처리 메서드 listCri() 실행 완료");
-	} // listCri()
-	
-	/////////////////////////////////////////////////////////
-	
 }

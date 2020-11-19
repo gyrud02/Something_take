@@ -46,6 +46,20 @@ public class BoardDAOImpl implements BoardDAO{
 
 	///////////////////////////////////////////////////////////////////////
 
+	/* 글 전체 갯수 조회 */
+	@Override
+	public int getCount() throws Exception{
+		
+		int count = 0;
+		System.out.println("-- DAOImpl : getCount() 실행");
+		count = sqlSession.selectOne(namespace+".getCount");
+		System.out.println("@@@ count : " + count);
+		System.out.println("-- DAOImpl : getCount() 실행 완료");
+		return count;
+	} // getCount()
+	
+	///////////////////////////////////////////////////////////////////////
+
 	/* 글 한 개 조회 메서드 */
 	@Override
 	public BoardVO getRead(int bno) throws Exception {
