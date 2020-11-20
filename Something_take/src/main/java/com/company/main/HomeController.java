@@ -62,7 +62,7 @@ public class HomeController {
 		
 		logger.info("-- About 페이지로 이동");
 		
-		return "/contact/About.tiles";
+		return "/contact/about.tiles";
 	} // aboutUs()
 	
 	/////////////////////////////////////////////////////////
@@ -231,18 +231,18 @@ public class HomeController {
 		
 		logger.info("-- 메뉴 페이지로 이동");
 		
-		return "payment/Menu.tiles";
+		return "payment/order.tiles";
 	} // menu()
 	
 	/////////////////////////////////////////////////////////
 
 	/* 결제 페이지로 이동하는 메소드 */
 	@RequestMapping(value = "MemberShip.pm", method = RequestMethod.GET)
-	public String payment() throws Exception{
+	public String membership() throws Exception{
 		
 		logger.info("-- 결제 페이지로 이동");
 		
-		return "payment/payment.tiles";
+		return "payment/membership.tiles";
 	} // payment()
 	
 	/////////////////////////////////////////////////////////
