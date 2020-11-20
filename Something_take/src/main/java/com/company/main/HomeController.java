@@ -113,36 +113,32 @@ public class HomeController {
 
 	/* 게시판 페이지로 이동 */
 	@RequestMapping(value = "Board.bd", method = RequestMethod.GET)
-	public String getBoard(HttpServletRequest request,
-						   HttpSession session, Model model,
-						   Criteria cri) throws Exception {
+	public String getBoard(Model model, Criteria cri) throws Exception {
 		
-		logger.info("-- 게시판 페이지로 이동");
 		int count = 0;
+		logger.info("-- 게시판 페이지로 이동");
+		List<BoardVO> boardList = bservice.listCri(cri);
 		count = bservice.getCount();
+		model.addAttribute("boardList", boardList);
 		model.addAttribute("count", count);
-//		logger.info("@@ count : "+ count);
-		List<BoardVO> boardList = bservice.getBoard();
-		session.setAttribute("boardList", boardList);
 		return "board/board.tiles";
 	} // getBoard()
 	
 	/////////////////////////////////////////////////////////
 	
 	/* 페이징 처리 페이지로 이동 */
-	@RequestMapping(value = "listCri.bd", method = RequestMethod.GET)
+	@RequestMapping(value = "Board", method = RequestMethod.GET)
 	public String listCri(Model model, Criteria cri) throws Exception{
+		
 		int count = 0;
-		logger.info("-- 페이징 처리 메서드 listCri() 실행");
+		logger.info("-- 페이징 처리 페이지로 이동");
 		List<BoardVO> boardList = bservice.listCri(cri);
 		count = bservice.getCount();
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("criteria", cri);
 		model.addAttribute("count", count);
-		logger.info("@@@ boardList : " + boardList);
-		logger.info("@@@ count : " + count);
-//		logger.info("@@@ criteria : " + cri);
-		logger.info("-- 페이징 처리 메서드 listCri() 실행 완료");
+//		logger.info("@@@ boardList : " + boardList);
+//		logger.info("@@@ count : " + count);
 		return "board/paging.tiles";
 	} // listCri()
 	
