@@ -11,7 +11,7 @@
 	#writer{width: 230px;}
 
 </style>
-<body data-spy="scroll" data-target=".navbar-collapse">
+<body>
 
 	<br><br><br><br>
 
@@ -67,32 +67,38 @@
 						
 <%---------------------------------- 페이징 처리 ----------------------------------%>				
 					
-					<div class="col-12 text-center">
-						<c:set value="${requestScope.count}" var="total"/>
+						<div class="col-12 text-center">
+							<c:set value="${requestScope.count}" var="total"/>
 <%
 	int total = Integer.parseInt(pageContext.getAttribute("total").toString());
-	int currentPage = 1; // 현재 페이지
-	int pageSize = 9; // 페이지 블록 크기
+	final int pageSize = 9; // 페이지 블록 크기
+	final int currentPage = 1; // 현재 페이지
+	final int startPage = 1; // 현재 페이지
+	int prevPage = currentPage - 1; // 이전 페이지
+	int nextPage = currentPage + 5; // 다음 페이지
 	double pageBlock = (double)total / (double)pageSize; // 블록 갯수
+	int totalBlock = Integer.parseInt(String.valueOf(Math.round(Math.ceil(pageBlock)))); // 총 블록 수
+	int endPage = totalBlock; // 페이지 끝
+	
+	if(prevPage <= 0){ prevPage = 1; } // if
+
+	for(int i=startPage; i<currentPage; i++){
 %>
-						<a href="listCri.bd?page=<%=currentPage%>"><%=currentPage%></a>
-<%	
-	if(pageBlock / 2 != 0){
-		
-		int totalBlock = Integer.parseInt(String.valueOf(Math.round(Math.ceil(pageBlock))));
+						<a href="Board?page=<%=i%>"><%=i%></a>
+<%			
+	} // while
+	
+	for(int i=currentPage; i<=10; i++){
+%>
+						<a href="Board?page=<%=i%>"><%=i%></a>
+<%		
+	} // for
 
-			for(int i=1; i<totalBlock; i++){
-%>			
-						<a href="listCri.bd?page=<%=totalBlock%>"><%=totalBlock%></a>
-<% 						
-			} // for
-	} // if
-
-	currentPage = 1;
-	int nextPage = currentPage + 10;
-%>		
-						<a href="listCri.bd?page=<%=nextPage%>">다음</a>
-					</div>
+	if(nextPage > totalBlock){ nextPage = endPage; } // if
+%>				
+							<a href="Board?page=<%=nextPage%>">[다음]</a>
+							<a href="Board?page=<%=endPage%>">[끝]</a>
+						</div>
 
 <%---------------------------------- 페이징 처리 ----------------------------------%>				
 					
