@@ -15,6 +15,43 @@
 		
 		$(".btn-primary").click(function() {
 				
+/* 			
+ 			// 이메일
+			if($("#email").val() == ""){
+				alert("이메일을 입력하세요.");
+				$("#email").focus();
+				return false;
+			}
+
+			// 이메일 유효성 검사
+		    if ( !(regMail.test( $("#email").val() )) ){
+				alert("이메일을 올바르게 입력하세요.");
+		    	$("#email").focus();
+		    	$("#email").val("");
+		    	return false;
+		    }
+ */			
+			// 비밀번호
+			if($("#pwd").val() == ""){
+				alert("비밀번호를 입력하세요.");
+				$("#pwd").focus();
+				return false;
+			}
+/*		
+			// 비밀번호 유효성 체크
+			if( !(regPwd.test( $("#pwd").val() )) ){
+				alert("8~20자 영문 대소문자, 숫자를 입력해 주세요.");
+				$("#pwd").focus();
+				return false;
+			}
+*/			
+			// 전화번호
+			if($("#phone").val() == ""){
+				alert("전화번호를 입력하세요.");
+				$("#phone").focus();
+				return false;
+			}
+
 			// 이름
 			if($("#name").val() == ""){
 				alert("이름을 입력하세요.");
@@ -30,52 +67,86 @@
 		    	return false;
 		    }
 			
-			// 이메일
-			if($("#email").val() == ""){
-				alert("이메일을 입력하세요.");
-				$("#email").focus();
-				return false;
-			}
-			
-			// 비밀번호
-			if($("#pwd").val() == ""){
-				alert("비밀번호를 입력하세요.");
-				$("#pwd").focus();
-				return false;
-			}
-/*		
-			// 비밀번호 유효성 체크
-			if( !(regPwd.test( $("#pwd").val() )) ){
-				alert("8~20자 영문 대소문자, 숫자를 입력해 주세요.");
-				$("#pwd").focus();
-				return false;
-			}
-*/			
 			// 이용약관 체크박스
 			if(!($("#yackuan-check").is(":checked")) ){
 				alert("이용 약관에 동의해주세요.")
 				$("#yackuan-check").focus();
 				return false;
 			}
-/*			
-			// 인증 버튼 클릭여부 확인
-			if(flag != true) {
-		        alert("이메일 인증을 해주세요.");
-				return false;
-			}
-			
-			// 정확한 인증번호 입력여부 확인
-			if( $("#fromIframe").val() != "success" ){
-				alert("인증번호를 정확히 입력 후 인증버튼을 눌러주세요.");
-				console.log($("#fromIframe").val());
-				return false;
-			}
-*/	
 		}); // click()	
 	}); // si_up_chk()
 
+	/* span 태그 제거 */
+	function removeTags(){
+		$(".spanT").Attr("style", "display:none;");
+		$(".spanF").Attr("style", "display:none;");
+		$(".spanEmpty").Attr("style", "display:none;");
+	} // removeTags() 
+
+	/* 이메일 중복 검사 */
+	function sign_upAJAX(event){
+
+		var regMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/) // 이메일
+		
+		$.ajax({
+	
+			type: "GET",
+			dataType: "text",
+			data: { email:$("#email").val(), },
+			url: "member/emailDupl",
+			success:function(check, textStatus){
+
+					//	alert(check + textStatus);
+
+						// 이메일 유효성 검사
+						if( !(regMail.test( $("#email").val() ))){
+							$(".spanEmpty").removeAttr("style", "display:none")
+							$(".spanEmpty").val("이메일 형식에 맞게 입력하세요.").css("color", "#ff4084");
+						    return false;
+
+						    if($("#email").val().length == 0){
+					    	 	$(".spanT").Attr("style", "display:none;");
+								$(".spanF").Attr("style", "display:none;");
+								$(".spanEmpty").Attr("style", "display:none;");
+								return false;
+						    }
+						      
+						}else if( regMail.test( $("#email").val() )){
+
+							if(check == 0){
+
+								if($("#email").val().length == 0){
+									$(".spanT").Attr("style", "display:none;");
+									$(".spanF").Attr("style", "display:none;");
+									$(".spanEmpty").Attr("style", "display:none;");
+									return false;
+								}else if($("#email").val().length != 0){
+									$(".spanT").removeAttr("style", "display:none")
+									$(".spanT").val("사용 가능한 이메일입니다.").css("color", "#ff4084");
+								}
+									
+							}else if(check == 1){
+
+								if($("#email").val().length == 0){
+									removeTags();
+
+								}else if($("#email").val().length != 0){
+									$(".spanF").removeAttr("style", "display:none;")
+									$(".spanF").val("이미 사용 중인 이메일입니다.").css("color", "#ff4084");
+								}	
+							}
+
+						}		
+			}, // success
+			error:function(check, textStatus){
+					alert("회원 가입 중 오류가 발생하였습니다.");
+			} // error
+	
+		}); // ajax
+	} // sign_upAJAX()
+	
 </script>
-<body data-spy="scroll" data-target=".navbar-collapse">
+<body>
 
 	<br><br><br><br>
 
@@ -125,46 +196,51 @@
       			
       
       <!-------------------------------------------- [이름, 이메일, 비밀번호 입력창] -------------------------------------------->
-					      <!-- 이름 -->
-					      <div class="form-group">
-					        <label class="form-label" for="name">이름</label>
-					        <input type="text" class="form-control" name="name" id="name" 
-					        		placeholder="이름을 입력하세요." aria-label="Email address" required>
-					      </div>
-					      
 					      <!-- 이메일 -->
 					      <div class="js-form-message form-group">
 					        <label class="form-label" for="email">이메일 </label>
 					        <input type="email" class="form-control" name="email" id="email" 
-					        		placeholder="가입 시 사용할 이메일을 입력하세요." onkeyup="duplCheck(event)" required>
-					        
-					        <br>	
-					        	
-					        	 <div class="row align-items-center mb-5" style="float:right;">
-						        	<div class="col-5 text-right">
-						        		<button type="button" class="btn btn-primary" 
-						        		onclick="emailCheck()">전송</button>
-						        	</div>
-								</div>
+					        		placeholder="가입 시 사용할 이메일을 입력하세요." onkeyup="sign_upAJAX(event)" required>
 					      </div>
-					               
-					      <br><br>       
-					               
-					      <!-- 비밀번호 입력 & 비밀번호 확인 -->
+					      
 					      <div class="js-form-message form-group">
-					        <label class="form-label" for="pwd">비밀번호
+					      	<span class="spanEmpty" style="display: none;">&nbsp;이메일 형식에 맞게 입력하세요.</span>
+					      </div>
+					      <div class="js-form-message form-group">
+					      	<span class="spanT" style="display: none;">&nbsp;사용 가능한 이메일입니다.</span>
+					      </div>
+
+					      <div class="js-form-message form-group">
+					      	<span class="spanF" style="display: none;">&nbsp;이미 사용 중인 이메일입니다.</span>
+					      </div>
+					      					      
+					      <!-- 비밀번호 입력 & 비밀번호 확인 -->
+					      <div class="form-group">
+					        <label class="form-label" for="pwd">비밀번호</label>
 					      	<input type="password" class="form-control" name="pwd" id="pwd" 
-					      	placeholder="****************" size="18" required></label>
+					      		   placeholder="****************" required>
 					      </div> 
 					      
-					               
-					      <div class="js-form-message form-group">
-					        <label class="form-label" for="pwd_chk">
-					          <span class="d-flex justify-content-between align-items-center">비밀번호 확인</span>
-					        </label>
+					      <div class="form-group">
+					        <label class="form-label" for="pwd_chk">비밀번호 확인</label>
 					        <input type="password" class="form-control" name="pwd_chk" id="pwd_chk" 
 					        	   placeholder="****************" required>
 					      </div>
+					      
+					      <!-- 이름 -->
+					      <div class="form-group">
+					        <label class="form-label" for="name">이름</label>
+					        <input type="text" class="form-control" name="name" id="name" 
+					        		placeholder="이름을 입력하세요." required>
+					      </div>
+					      
+					      <!-- 전화번호 -->
+					      <div class="form-group">
+					        <label class="form-label" for="phone">전화번호</label>
+					        <input type="text" class="form-control" name="phone" id="phone" 
+					        		placeholder=" '-'없이 입력하세요." required>
+					      </div>
+					               
 					        
 					      <div class="row align-items-center">
 					        <div class="text-center">
