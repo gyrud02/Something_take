@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.company.domain.MemberVO;
 import com.company.service.MemberService;
@@ -141,5 +142,23 @@ public class MemberController {
 	
 	/////////////////////////////////////////////////////////
 
-	
+	/* 이메일 가입 중복 확인 메서드 */
+	@RequestMapping(value = "emailDupl", method = RequestMethod.GET)
+	public String duplicate(@RequestParam("email") String email,
+							HttpServletResponse response) throws Exception{
+		
+		int check = 0;
+		logger.info("-- 이메일 중복 메서드 실행");
+		check = service.duplicate(email);
+		logger.info("@@ check : " + check);
+		logger.info("-- 이메일 중복 메서드 실행 완료");
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println(check);
+		return null;
+	} // duplicate()
+ 	
+	/////////////////////////////////////////////////////////
+
 }

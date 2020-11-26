@@ -145,6 +145,20 @@ public class MemberServiceImpl implements MemberService{
 		System.out.println("-- ServiceImpl : getMembers() 실행 완료");
 		return memberList;
 	} // getMembers()
+
+	///////////////////////////////////////////////////////////////////////
+
+	/* 이메일 중복 확인 메서드 */
+	@Override
+	public int duplicate(String email) throws Exception {
+		
+		int check = 0;
+		System.out.println("-- ServiceImpl : dupl() 실행");
+		check = mdao.duplicate(email);
+		System.out.println("@@ check : " + check);
+		System.out.println("-- ServiceImpl : dupl() 실행");
+		return check;
+	} // dupl()
 	
 	///////////////////////////////////////////////////////////////////////
 

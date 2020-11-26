@@ -6,8 +6,6 @@ import com.company.domain.MemberVO;
 
 public interface MemberDAO {
 
-//	public String getTime(); // 추상메서드 
-
 	public void signUp(MemberVO vo) throws Exception; // 회원가입 메서드
 	
 	public MemberVO signIn(String email, String pwd) throws Exception; // 로그인 메서드
@@ -21,5 +19,7 @@ public interface MemberDAO {
 	public MemberVO getMembership(String email) throws Exception; // 멤버십 정보를 가져오는 메서드
 	
 	public List<MemberVO> getMembers() throws Exception; // 전체 회원 조회 메서드
+	
+	public int duplicate(String email) throws Exception; // 이메일 중복 확인 메서드
 	
 }

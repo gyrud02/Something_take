@@ -20,4 +20,6 @@ public interface MemberService {
 
 	public List<MemberVO> getMembers() throws Exception; // 회원 정보 전체 조회
 	
+	public int duplicate(String email) throws Exception; // 이메일 중복 확인 메서드
+	
 }

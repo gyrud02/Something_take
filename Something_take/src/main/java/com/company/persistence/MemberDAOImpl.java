@@ -147,6 +147,20 @@ public class MemberDAOImpl implements MemberDAO{
 		System.out.println("-- DAOImpl : getMembers() 실행 완료");
 		return memberList;
 	} // getMembers()
+
+	/////////////////////////////////////////////////////////////////////
+
+	/* 이메일 중복 확인 메서드 */
+	@Override
+	public int duplicate(String email) throws Exception {
+		int check = 0;
+		System.out.println("@@ email : " + email);
+		System.out.println("-- DAOImpl : duplicate() 실행");
+		check = sqlSession.selectOne(namespace+".duplicate", email);
+		System.out.println("@@ check : " + check);
+		System.out.println("-- DAOImpl : duplicate() 실행 완료");
+		return check;
+	} // duplicate()
 	
 	/////////////////////////////////////////////////////////////////////
 
