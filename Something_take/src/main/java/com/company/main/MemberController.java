@@ -142,11 +142,10 @@ public class MemberController {
 	
 	/////////////////////////////////////////////////////////
 
-	/* 이메일 가입 중복 확인 메서드 */
+	/* 이메일 중복 확인 메서드 */
 	@RequestMapping(value = "emailDupl", method = RequestMethod.GET)
 	public String duplicate(@RequestParam("email") String email,
 							HttpServletResponse response) throws Exception{
-		
 		int check = 0;
 		logger.info("-- 이메일 중복 메서드 실행");
 		check = service.duplicate(email);

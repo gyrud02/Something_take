@@ -7,143 +7,166 @@
 </head>
 <script type="text/javascript">
 
+	/* 회원가입 유효성 체크 */
 	$(function si_up_chk() {
-	
 		var regMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/) // 이메일
-//		var regPwd = RegExp(/^[a-zA-Z0-9]{8,20}$/); // 비밀번호
+		var regPwd = RegExp(/^[a-zA-Z0-9]{8,20}$/); // 비밀번호
 		var regName = RegExp(/^[가-힣A-Za-z]{2,20}$/); // 이름
-		
-		$(".btn-primary").click(function() {
-				
-/* 			
- 			// 이메일
-			if($("#email").val() == ""){
-				alert("이메일을 입력하세요.");
-				$("#email").focus();
-				return false;
-			}
 
-			// 이메일 유효성 검사
-		    if ( !(regMail.test( $("#email").val() )) ){
-				alert("이메일을 올바르게 입력하세요.");
-		    	$("#email").focus();
-		    	$("#email").val("");
-		    	return false;
-		    }
- */			
-			// 비밀번호
-			if($("#pwd").val() == ""){
-				alert("비밀번호를 입력하세요.");
-				$("#pwd").focus();
-				return false;
-			}
-/*		
-			// 비밀번호 유효성 체크
-			if( !(regPwd.test( $("#pwd").val() )) ){
-				alert("8~20자 영문 대소문자, 숫자를 입력해 주세요.");
-				$("#pwd").focus();
-				return false;
-			}
-*/			
+		$(".btn-primary").click(function() {
+ 			// 이메일
+			if($("#email").val() == "" || !(regMail.test( $("#email").val() )) ){
+				alert("이메일을 올바르게 입력하세요."); $("#email").val(""); $("#email").focus();
+				return false;}
+ 			// 비밀번호
+			if($("#pwd").val() == "" || !(regPwd.test( $("#pwd").val() )) ){
+				alert("8~20자 영문 대소문자, 숫자를 입력해 주세요."); $("#pwd").val(""); $("#pwd").focus();
+				return false;}
+			// 이름
+			if($("#name").val() == "" || !(regName.test( $("#name").val() )) ){
+				alert("이름을 올바르게 입력하세요."); $("#name").val(""); $("#name").focus();
+				return false;}
 			// 전화번호
 			if($("#phone").val() == ""){
-				alert("전화번호를 입력하세요.");
-				$("#phone").focus();
-				return false;
-			}
-
-			// 이름
-			if($("#name").val() == ""){
-				alert("이름을 입력하세요.");
-				$("#name").focus();
-				return false;
-			}
-			
-			// 이름 유효성 검사
-		    if ( !(regName.test( $("#name").val() )) ){
-				alert("이름을 올바르게 입력하세요.");
-		    	$("#name").focus();
-		    	$("#name").val("");
-		    	return false;
-		    }
-			
+				alert("전화번호를 입력하세요."); $("#phone").focus();
+				return false;}
 			// 이용약관 체크박스
 			if(!($("#yackuan-check").is(":checked")) ){
-				alert("이용 약관에 동의해주세요.")
-				$("#yackuan-check").focus();
-				return false;
-			}
+				alert("이용 약관에 동의해주세요."); $("#yackuan-check").focus();
+				return false;}
 		}); // click()	
 	}); // si_up_chk()
 
 	/* span 태그 제거 */
-	function removeTags(){
-		$(".spanT").Attr("style", "display:none;");
-		$(".spanF").Attr("style", "display:none;");
-		$(".spanEmpty").Attr("style", "display:none;");
-	} // removeTags() 
-
-	/* 이메일 중복 검사 */
-	function sign_upAJAX(event){
-
-		var regMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/) // 이메일
-		
-		$.ajax({
+	$(function removeTags(){
+		$(".spanT").hide(); $(".spanF").hide(); $(".spanEmpty").hide();
+		$(".spanPwdT").hide(); $(".spanPwdF").hide(); $(".spanPwd_ckT").hide(); $(".spanPwd_ckF").hide();
+	}); // removeTags()
 	
+	/* 이메일 중복 체크 */
+	function emailCheck(event){
+		var regMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/) // 이메일
+
+		$.ajax({
 			type: "GET",
 			dataType: "text",
-			data: { email:$("#email").val(), },
+			data: { email:$("#email").val() },
 			url: "member/emailDupl",
 			success:function(check, textStatus){
+					if( !(regMail.test( $("#email").val() ))){
+						$(".spanT").hide();
+						$(".spanF").hide();
+						$(".spanEmpty").val("이메일 형식에 맞게 입력하세요.").css("style", "display:none;");
+						$(".spanEmpty").css("color", "#ff4084");
+						$(".spanEmpty").show();
 
-					//	alert(check + textStatus);
+						if(email.value.length == 0){
+							$(".spanT").hide(); $(".spanF").hide(); $(".spanEmpty").hide();
+							return false;}
+						return false;
+					}else{
+						if(check == 0){
+							$(".spanEmpty").hide();
+							$(".spanF").hide();
+							$(".spanT").val("사용 가능한 이메일입니다.").css("style", "display:none;");
+							$(".spanT").css("color", "#ff4084");
+							$(".spanT").show();
 
-						// 이메일 유효성 검사
-						if( !(regMail.test( $("#email").val() ))){
-							$(".spanEmpty").removeAttr("style", "display:none")
-							$(".spanEmpty").val("이메일 형식에 맞게 입력하세요.").css("color", "#ff4084");
-						    return false;
+							if(email.value.length == 0){
+								$(".spanT").hide(); $(".spanF").hide(); $(".spanEmpty").hide();
+								return false;}
+						}else{
+							$(".spanEmpty").hide();
+							$(".spanT").hide();
+							$(".spanF").val("이미 사용 중인 이메일입니다.").css("style", "display:none;");
+							$(".spanF").css("color", "#ff4084");
+							$(".spanF").show();
 
-						    if($("#email").val().length == 0){
-					    	 	$(".spanT").Attr("style", "display:none;");
-								$(".spanF").Attr("style", "display:none;");
-								$(".spanEmpty").Attr("style", "display:none;");
-								return false;
-						    }
-						      
-						}else if( regMail.test( $("#email").val() )){
-
-							if(check == 0){
-
-								if($("#email").val().length == 0){
-									$(".spanT").Attr("style", "display:none;");
-									$(".spanF").Attr("style", "display:none;");
-									$(".spanEmpty").Attr("style", "display:none;");
-									return false;
-								}else if($("#email").val().length != 0){
-									$(".spanT").removeAttr("style", "display:none")
-									$(".spanT").val("사용 가능한 이메일입니다.").css("color", "#ff4084");
-								}
-									
-							}else if(check == 1){
-
-								if($("#email").val().length == 0){
-									removeTags();
-
-								}else if($("#email").val().length != 0){
-									$(".spanF").removeAttr("style", "display:none;")
-									$(".spanF").val("이미 사용 중인 이메일입니다.").css("color", "#ff4084");
-								}	
-							}
-
-						}		
+							if(email.value.length == 0){
+								$(".spanT").hide(); $(".spanF").hide(); $(".spanEmpty").hide();
+								return false;}
+							return false;}
+					} // 이메일
 			}, // success
-			error:function(check, textStatus){
+			error:function(textStatus){
 					alert("회원 가입 중 오류가 발생하였습니다.");
 			} // error
-	
 		}); // ajax
-	} // sign_upAJAX()
+	} // emailCheck()
+	
+	/* 비밀번호 체크 */
+	function pwdCheck(event){
+		var regPwd = RegExp(/^[a-zA-Z0-9]{8,20}$/);
+
+		$.ajax({
+			type: "GET",
+			dataType: "text",
+			data: { pwd:$("#pwd").val() },
+			success:function(check, textStatus){
+					if( !(regPwd.test( $("#pwd").val() ))){
+						$(".spanPwdT").hide();
+						$(".spanPwdF").val("8~20자 영문 대소문자, 숫자를 입력해 주세요.").css("style", "display:none;");
+						$(".spanPwdF").css("color", "#ff4084");
+						$(".spanPwdF").show();
+	
+						if(pwd.value.length == 0){
+							$(".spanPwdT").hide();
+							$(".spanPwdF").hide();
+							return false;}
+						return false;
+					}else{
+						if(check == 0){
+							$(".spanPwdT").hide();
+							$(".spanPwdF").val("8~20자 영문 대소문자, 숫자를 입력해 주세요.").css("style", "display:none;");
+							$(".spanPwdF").css("color", "#ff4084");
+							$(".spanPwdF").show();
+							return false;
+						}else{
+							$(".spanPwdF").hide();
+							$(".spanPwdT").val("사용 가능합니다.").css("style", "display:none;");
+							$(".spanPwdT").css("color", "#ff4084");
+							$(".spanPwdT").show();
+						}
+					}
+			}, // success
+			error:function(textStatus){
+					alert("회원 가입 중 오류가 발생하였습니다.");
+			} // error
+		}); // ajax
+	} // pwdCheck()
+	
+	/* 비밀번호 동일 체크 */
+	function pwd_chk(event){
+		$.ajax({
+			type: "GET",
+			dataType: "text",
+			data: { pwd:$("#pwd").val(),
+					pwd_chk:$("#pwd_chk").val() },
+			success:function(check, textStatus){
+					if(pwd.value == pwd_chk.value){
+						$(".spanPwd_ckF").hide();
+						$(".spanPwd_ckT").val("비밀번호가 일치합니다.").css("style", "display:none;");
+						$(".spanPwd_ckT").css("color", "#ff4084");
+						$(".spanPwd_ckT").show();
+
+						if(pwd_chk.value.length == 0 || pwd.value.length == 0){
+							$(".spanPwd_ckF").hide(); $(".spanPwd_ckT").hide(); return false;}
+					}else{
+						$(".spanPwd_ckT").hide();
+						$(".spanPwd_ckF").val("비밀번호가 틀립니다.").css("style", "display:none;");
+						$(".spanPwd_ckF").css("color", "#ff4084");
+						$(".spanPwd_ckF").show();
+
+						if(pwd_chk.value.length == 0 || pwd.value.length == 0){
+							$(".spanPwd_ckF").hide(); $(".spanPwd_ckT").hide(); return false;}
+						return false;
+					}
+			}, // success
+			error:function(textStatus){
+					alert("회원 가입 중 오류가 발생하였습니다.");
+			} // error
+		}); // ajax
+	} // pwd_chk()
 	
 </script>
 <body>
@@ -200,31 +223,43 @@
 					      <div class="js-form-message form-group">
 					        <label class="form-label" for="email">이메일 </label>
 					        <input type="email" class="form-control" name="email" id="email" 
-					        		placeholder="가입 시 사용할 이메일을 입력하세요." onkeyup="sign_upAJAX(event)" required>
-					      </div>
-					      
-					      <div class="js-form-message form-group">
-					      	<span class="spanEmpty" style="display: none;">&nbsp;이메일 형식에 맞게 입력하세요.</span>
+					        		placeholder="가입 시 사용할 이메일을 입력하세요." onkeyup="emailCheck(event)" required>
 					      </div>
 					      <div class="js-form-message form-group">
-					      	<span class="spanT" style="display: none;">&nbsp;사용 가능한 이메일입니다.</span>
+					      		<span class="spanEmpty">&nbsp;이메일 형식에 맞게 입력하세요.</span>
 					      </div>
-
 					      <div class="js-form-message form-group">
-					      	<span class="spanF" style="display: none;">&nbsp;이미 사용 중인 이메일입니다.</span>
+					      		<span class="spanT">&nbsp;사용 가능한 이메일입니다.</span>
+					      </div>
+					      <div class="js-form-message form-group">
+					      		<span class="spanF">&nbsp;이미 사용 중인 이메일입니다.</span>
 					      </div>
 					      					      
 					      <!-- 비밀번호 입력 & 비밀번호 확인 -->
 					      <div class="form-group">
 					        <label class="form-label" for="pwd">비밀번호</label>
-					      	<input type="password" class="form-control" name="pwd" id="pwd" 
+					      	<input type="password" class="form-control" name="pwd" id="pwd" onkeyup="pwdCheck(event)"
 					      		   placeholder="****************" required>
-					      </div> 
+					      </div>
+
+					      <div class="js-form-message form-group">
+					      		<span class="spanPwdT">&nbsp;사용 가능합니다.</span>
+					      </div>
+					      <div class="js-form-message form-group">
+					      		<span class="spanPwdF">&nbsp;8~20자 영문 대소문자, 숫자를 입력해 주세요.</span>
+					      </div>
 					      
 					      <div class="form-group">
 					        <label class="form-label" for="pwd_chk">비밀번호 확인</label>
-					        <input type="password" class="form-control" name="pwd_chk" id="pwd_chk" 
+					        <input type="password" class="form-control" name="pwd_chk" id="pwd_chk" onkeyup="pwd_chk(event)"
 					        	   placeholder="****************" required>
+					      </div>
+					      
+					      <div class="js-form-message form-group">
+					      		<span class="spanPwd_ckT">&nbsp;비밀번호가 일치합니다.</span>
+					      </div>
+					      <div class="js-form-message form-group">
+					      		<span class="spanPwd_ckF">&nbsp;비밀번호가 틀립니다.</span>
 					      </div>
 					      
 					      <!-- 이름 -->
