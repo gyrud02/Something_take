@@ -14,26 +14,14 @@
 		var regName = RegExp(/^[가-힣A-Za-z]{2,20}$/); // 이름
 
 		$(".btn-primary").click(function() {
- 			// 이메일
 			if($("#email").val() == "" || !(regMail.test( $("#email").val() )) ){
-				alert("이메일을 올바르게 입력하세요."); $("#email").val(""); $("#email").focus();
-				return false;}
- 			// 비밀번호
-			if($("#pwd").val() == "" || !(regPwd.test( $("#pwd").val() )) ){
-				alert("8~20자 영문 대소문자, 숫자를 입력해 주세요."); $("#pwd").val(""); $("#pwd").focus();
-				return false;}
-			// 이름
+				alert("이메일을 올바르게 입력하세요."); $("#email").val(""); $("#email").focus(); return false; } // 이메일
+			if($("#pwd").val() == "" || !(regPwd.test( $("#pwd").val() )) ){ 
+				alert("8~20자 영문 대소문자, 숫자를 입력해 주세요."); $("#pwd").val(""); $("#pwd").focus(); return false; } // 비밀번호
 			if($("#name").val() == "" || !(regName.test( $("#name").val() )) ){
-				alert("이름을 올바르게 입력하세요."); $("#name").val(""); $("#name").focus();
-				return false;}
-			// 전화번호
-			if($("#phone").val() == ""){
-				alert("전화번호를 입력하세요."); $("#phone").focus();
-				return false;}
-			// 이용약관 체크박스
-			if(!($("#yackuan-check").is(":checked")) ){
-				alert("이용 약관에 동의해주세요."); $("#yackuan-check").focus();
-				return false;}
+				alert("이름을 올바르게 입력하세요."); $("#name").val(""); $("#name").focus(); return false; } // 이름
+			if($("#phone").val() == ""){ alert("전화번호를 입력하세요."); $("#phone").focus(); return false; } // 전화번호
+			if(!($("#yackuan-check").is(":checked")) ){ alert("이용 약관에 동의해주세요."); $("#yackuan-check").focus(); return false; } // 이용약관 체크박스
 		}); // click()	
 	}); // si_up_chk()
 
@@ -136,7 +124,7 @@
 	} // pwdCheck()
 	
 	/* 비밀번호 동일 체크 */
-	function pwd_chk(event){
+	function pwdchk(event){
 		$.ajax({
 			type: "GET",
 			dataType: "text",
@@ -149,7 +137,7 @@
 						$(".spanPwd_ckT").css("color", "#ff4084");
 						$(".spanPwd_ckT").show();
 
-						if(pwd_chk.value.length == 0 || pwd.value.length == 0){
+						if(pwd.value.length == 0 || pwd_chk.value.length == 0){
 							$(".spanPwd_ckF").hide(); $(".spanPwd_ckT").hide(); return false;}
 					}else{
 						$(".spanPwd_ckT").hide();
@@ -157,7 +145,7 @@
 						$(".spanPwd_ckF").css("color", "#ff4084");
 						$(".spanPwd_ckF").show();
 
-						if(pwd_chk.value.length == 0 || pwd.value.length == 0){
+						if(pwd.value.length == 0 || pwd_chk.value.length == 0){
 							$(".spanPwd_ckF").hide(); $(".spanPwd_ckT").hide(); return false;}
 						return false;
 					}
@@ -243,7 +231,7 @@
 					      </div>
 
 					      <div class="js-form-message form-group">
-					      		<span class="spanPwdT">&nbsp;사용 가능합니다.</span>
+					      		<span class="spanPwdT">&nbsp;사용 가능한 비밀번호입니다.</span>
 					      </div>
 					      <div class="js-form-message form-group">
 					      		<span class="spanPwdF">&nbsp;8~20자 영문 대소문자, 숫자를 입력해 주세요.</span>
@@ -251,7 +239,7 @@
 					      
 					      <div class="form-group">
 					        <label class="form-label" for="pwd_chk">비밀번호 확인</label>
-					        <input type="password" class="form-control" name="pwd_chk" id="pwd_chk" onkeyup="pwd_chk(event)"
+					        <input type="password" class="form-control" name="pwd_chk" id="pwd_chk" onkeyup="pwdchk(event)"
 					        	   placeholder="****************" required>
 					      </div>
 					      
@@ -277,29 +265,21 @@
 					      </div>
 					               
 					        
-					      <div class="row align-items-center">
-					        <div class="text-center">
-					          <div class="custom-control custom-checkbox d-flex align-items-mb-5 text-muted">
-					            <input type="checkbox" class="" id="yackuan-check" name="termsCheckbox" onclick="checkBox(event)">
+					        <div class="js-form-message form-group text-center">
+					            <input type="checkbox" class="custom-checkbox" id="yackuan-check" name="termsCheckbox" onclick="checkBox(event)">
 					            <label class="font-subhead custom-control-label" for="termsCheckbox">
-					            
 					              <p>
 					                <a class="yackuan" href="javascript:void(window.open('Agree.me', '회원가입 약관','width=700, height=700'))">&nbsp;이용약관</a> 및
 					                <a class="gaein" href="javascript:void(window.open('Agree.me', '회원가입 약관','width=700, height=700'))">개인정보취급방침</a>에 동의합니다.
 								  </p>
-																  				              
 					            </label>
-					          </div>
 					        </div>
 
-							<div class="row align-items-center" style="float:right;">
-						        <p class="text-center">&nbsp;&nbsp;본 약관에는 광고성 정보 수신 동의가 포함되어있습니다.</p> <br>
+							<div class="js-form-message form-group">
+						        <p class="text-center">* 본 약관에는 광고성 정보 수신 동의가 <br>포함되어있습니다.</p>
 							</div>
-
-					      </div>
 					
 					      <div class="row align-items-center mb-5">
-					        
 					        <div class="col-7">
 					          <span class="font-subhead text-muted mb-2">이미 계정이 있다면
 					          	<a href="Sign-in.me">로그인</a>

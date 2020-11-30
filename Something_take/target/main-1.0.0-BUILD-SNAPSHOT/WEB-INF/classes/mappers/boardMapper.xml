@@ -7,7 +7,7 @@
 
 	<!-- 게시판 글 등록 -->
 	<insert id="insert">
-	INSERT INTO notice_board(title, content, writer, reg_date)
+	INSERT INTO board(title, content, writer, reg_date)
 	VALUES (#{title}, #{content}, #{writer}, now())
 	</insert>
 	<!-- 게시판 글 등록 -->
@@ -17,10 +17,15 @@
 	<select id="listAll" resultType="com.company.domain.BoardVO">
 	<![CDATA[
 	SELECT *
-	FROM notice_board
+	FROM board
 	WHERE bno > 0
-	ORDER BY bno desc, reg_date desc
+	ORDER BY bno DESC, reg_date DESC
 	]]>
+	</select>
+	
+	<select id="getCount" resultType="int">
+	SELECT count(*)
+	FROM board
 	</select>
 	<!-- 전체 글 조회 -->
 
@@ -29,7 +34,7 @@
 	<select id="read" resultType="com.company.domain.BoardVO">
 	<![CDATA[
 	SELECT *
-	FROM notice_board
+	FROM board
 	WHERE bno = #{bno}
 	]]> 
 	</select>
@@ -39,7 +44,7 @@
 	<!-- 조회수 -->
 	<update id="readCNT">
 	<![CDATA[
-	UPDATE notice_board
+	UPDATE board
 	SET viewcount = viewcount+1
 	WHERE bno = #{bno}
 	]]>
@@ -50,7 +55,7 @@
 	<!-- 글 내용 수정 -->
 	<update id="modify">
 	<![CDATA[
-	UPDATE notice_board
+	UPDATE board
 	SET title = #{title}, content = #{content}
 	WHERE bno = #{bno}
 	AND writer = #{writer}
@@ -61,9 +66,33 @@
 	
 	<!-- 글 삭제 -->
 	<delete id="delete">
-	DELETE FROM notice_board
+	DELETE FROM board
 	WHERE bno = #{bno}
 	</delete>
 	<!-- 글 삭제 -->
 
+
+	<!-- 페이징 처리 -->
+	<!-- 1) 글 목록 10개 조회 -->
+	<select id="listPage" resultType="com.company.domain.BoardVO">
+	<![CDATA[
+	SELECT *
+	FROM board
+	ORDER BY bno DESC, reg_date DESC
+	]]>
+	</select>
+	<!-- 1) 글 목록 10개 조회 -->
+
+	<!-- 2) Criteria 객체 사용 -->
+	<select id="listCri" resultType="com.company.domain.BoardVO">
+	<![CDATA[
+	SELECT *
+	FROM board
+	ORDER BY bno DESC, reg_date DESC
+	LIMIT #{pageStart}, #{pageSize}
+	]]>
+	</select>
+	<!-- 2) Criteria 객체 사용 -->
+	<!-- 페이징 처리 -->
+	
 </mapper>

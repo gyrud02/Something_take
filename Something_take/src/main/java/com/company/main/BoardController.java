@@ -137,28 +137,23 @@ public class BoardController {
 	/////////////////////////////////////////////////////////
 	
 	/* 댓글 등록 메서드 */
-	@RequestMapping(value = "reply.post", 
-					method = RequestMethod.POST)
+	@RequestMapping(value = "reply.get", method = RequestMethod.GET)
 	public String replyAJAX(Model model, ReplyVO revo,
-							HttpServletResponse response,
-							HttpServletRequest request) throws Exception{
+							HttpServletResponse response, HttpServletRequest request) throws Exception{
 		
 		logger.info("-- 댓글 등록 버튼 실행");
-//		request.getParameter("bno");
-//		logger.info("@@ request : " + request);
 		model.addAttribute("bno", revo.getBno());
 		model.addAttribute("content", revo.getContent());
 		model.addAttribute("writer", revo.getWriter());
-//		logger.info("@@@ model : " + model);
 		
 		int check = reservice.reply(revo);
 		logger.info("@@@ check : " + check);
-		logger.info("-- 댓글 등록 버튼 실행 완료");
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println(check);
-		return "redirect:../Content.bd?bno="+revo.getBno();
+//		return "redirect:../Content.bd?bno="+revo.getBno();
+		return null;
 	} // insertAJAX()
 	
 	/////////////////////////////////////////////////////////

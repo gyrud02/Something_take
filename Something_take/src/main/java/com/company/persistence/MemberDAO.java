@@ -22,4 +22,6 @@ public interface MemberDAO {
 	
 	public int duplicate(String email) throws Exception; // 이메일 중복 확인 메서드
 	
+	public void payment(MemberVO vo) throws Exception; // 멤버십 결제 메서드
+	
 }

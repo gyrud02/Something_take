@@ -3,7 +3,6 @@ package com.company.main;
 import java.io.PrintWriter;
 
 import javax.inject.Inject;
-import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -37,7 +36,6 @@ public class MemberController {
 		logger.info("-- 회원가입 버튼 작동 / vo : "+vo);
 		service.insertMem(vo);
 		logger.info("-- 회원가입 완료 ");
-		
 		return "redirect:../index.do";
 	} // signUpPOST()
 	
@@ -158,6 +156,21 @@ public class MemberController {
 		return null;
 	} // duplicate()
  	
+	/////////////////////////////////////////////////////////
+
+	/* 멤버십 결제 메서드 */
+	@RequestMapping(value = "membership.post", method = RequestMethod.POST)
+	public String membershipPay(@RequestParam("email") String email) throws Exception{
+		logger.info("-- 멤버십 결제 실행");
+//		model.addAttribute("email", vo.getEmail());
+//		model.addAttribute("membership_type", vo.getMembership_type());
+//		model.addAttribute("membership_pay", vo.getMembership_pay());
+//		logger.info("@@ vo : " + vo);
+//		service.payment();
+		logger.info("-- 멤버십 결제 실행 완료");
+		return null;
+	} // membershipPay()
+
 	/////////////////////////////////////////////////////////
 
 }

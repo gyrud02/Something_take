@@ -52,11 +52,11 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 	<!-- => SqlSessionFactoryBean sqlSessionFactory = new  SqlSessionFactoryBean();과 같은 문법 -->
 	
-		<property name="dataSource" ref="dataSource" />
+		<property name="dataSource" ref="dataSource"></property>
 		<!-- => 2번 드라이버 연결 객체 정보를 주입하는 것이다. -->
 		
 		<!--  5. MyBatis 설정값을 추가한다. -->
-		<property name="configLocation" value="classpath:/mybatis-config.xml" />
+		<property name="configLocation" value="classpath:mybatis-config.xml"></property>
 		
 		<!--  6. src/main/resources/mybatis-config.xml파일 생성하여 configuration 태그 작업 후 5번 입력 -->
 		

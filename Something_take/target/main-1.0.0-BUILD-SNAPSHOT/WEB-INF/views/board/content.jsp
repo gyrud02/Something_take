@@ -159,28 +159,27 @@
 		}) // del click()
 	} // btnClick()
 
-
+	/* 댓글 등록 메서드 */
 	function replyAdd(){
 		$.ajax({
-				type: "POST",
+				type: "GET",
 				dataType: "text",
 				data: {
 						bno:$("#re_bno").val(),
 						writer:$("#re_writer").val(),
 						content:$("#re_content").val()
 					  },
-				url: "board/reply.post",
-				success:function(check){
-						$("#re_content").removeAttr();
+				url: "board/reply.get",
+				success:function(check, textStatus){
+						if(check == 1){
+							$("#re_content").val("");
+							alert("댓글이 등록되었습니다.");
+						}
 				}, // success
-				error:function(check){
-							if(check != 1){
-								alert("댓글 등록 중 오류가 발생하였습니다.");
-							}
+				error:function(check, textStatus){
+						alert("댓글 등록 중 오류가 발생하였습니다.");
 				} // error
-	
 			}); // ajax
-	
 	} // replyAdd()	
 
 </script>

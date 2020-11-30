@@ -123,15 +123,18 @@
 					      </div>
 					
 					
-					      <div class="row align-items-center mb-3">
-					        <div class="col-7 text-left">
+					      <div class="row align-items-center mb-5">
+					        <div class="col-7">
 					          <span class="font-subhead text-muted mb-2">계정이 없으시다면</span>
 					          	<a href="Sign-up.me">회원가입</a>
 					        </div>
+							
+							<div class="row align-items-center" style="float:right;">
+						        <div class="col-12 text-right">
+						          <button type="submit" class="btn btn-primary">로그인</button>
+						        </div>
+							</div>
 
-					        <div class="col-5 text-right">
-					          <button type="submit" class="btn btn-primary">로그인</button>
-					        </div>
 						 </div>
 					      
 			      </form>

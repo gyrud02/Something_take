@@ -23,9 +23,7 @@ public class MemberServiceImpl implements MemberService{
 	public void insertMem(MemberVO vo) throws Exception {
 
 		System.out.println("-- ServiceImpl : insertMem() 실행 ");
-		
 		mdao.signUp(vo);
-		
 		System.out.println("-- ServiceImpl : insertMem() 실행 완료 ");
 
 	} // insertMem
@@ -37,19 +35,16 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO loginMem(MemberVO vo) throws Exception {
 
 		System.out.println("-- ServiceImpl : loginMem() 실행 ");
-		System.out.println("@@@@ Service : " + vo);
+//		System.out.println("@@@@ Service : " + vo);
 
 		// 로그인 체크 기능이 있는 DAO 객체로 이동
 		MemberVO DBvo = mdao.signIn(vo.getEmail(), vo.getPwd());
 		
-		System.out.println("@@@@ Service : " + DBvo);
-		
+//		System.out.println("@@@@ Service : " + DBvo);
 		System.out.println("-- ServiceImpl : loginMem() 실행 완료 ");
-
 		return DBvo;
 		
 	} // loginMem()
-
 
 	///////////////////////////////////////////////////////////////////////
 
@@ -58,9 +53,9 @@ public class MemberServiceImpl implements MemberService{
 	public int deleteMem(MemberVO vo) throws Exception {
 		
 		System.out.println("-- ServiceImpl : deleteMem() 실행 ");
-		System.out.println("-- serviceImpl : vo -> " + vo);
+//		System.out.println("-- serviceImpl : vo -> " + vo);
 		int check = mdao.dropOut(vo);
-		System.out.println("@@@ num : " + check);
+//		System.out.println("@@@ num : " + check);
 		
 		// 정상처리일때와 비정상처리일때
 		if(check == 1) {
@@ -82,11 +77,9 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO updateMem(MemberVO vo) throws Exception {
 
 		System.out.println("-- ServiceImpl : updateMem() 실행 ");
-		System.out.println("-- serviceImpl : vo -> " + vo);
-
+//		System.out.println("-- serviceImpl : vo -> " + vo);
 		int num = mdao.modify(vo);
-		
-		System.out.println("@@@ num : " + num);
+//		System.out.println("@@@ num : " + num);
 		
 		// 정상처리일때와 비정상처리일때
 		if(num == 1) {
@@ -98,7 +91,6 @@ public class MemberServiceImpl implements MemberService{
 		} // if문 끝
 		
 		System.out.println("-- ServiceImpl : deleteMem() 실행 완료 ");
-		
 		return vo;
 	} // updateMem()
 
@@ -109,10 +101,8 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO getMem(String email) throws Exception {
 
 		System.out.println("-- ServiceImpl : getMem() 실행 ");
-		System.out.println("-- serviceImpl : email -> " + email);
-		
+//		System.out.println("-- serviceImpl : email -> " + email);
 		MemberVO DBvo = mdao.getMem(email);
-		
 		System.out.println("-- ServiceImpl : getMem() 실행 완료 ");
 	
 		return DBvo;
@@ -125,10 +115,8 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO getMembership(String email) throws Exception {
 
 		System.out.println("-- ServiceImpl : getMembership() 실행 ");
-		System.out.println("-- serviceImpl : email -> " + email);
-		
+//		System.out.println("-- serviceImpl : email -> " + email);
 		MemberVO vo = mdao.getMembership(email);
-		
 		System.out.println("-- ServiceImpl : getMembership() 실행 완료 ");
 		return vo;
 	} // membership()
@@ -155,13 +143,26 @@ public class MemberServiceImpl implements MemberService{
 		int check = 0;
 		System.out.println("-- ServiceImpl : dupl() 실행");
 		check = mdao.duplicate(email);
-		System.out.println("@@ check : " + check);
+//		System.out.println("@@ check : " + check);
 		System.out.println("-- ServiceImpl : dupl() 실행");
 		return check;
 	} // dupl()
-	
+
 	///////////////////////////////////////////////////////////////////////
 
+	/* 멤버십 결제 메서드 */
+	@Override
+	public void payment(MemberVO vo) throws Exception {
+		
+		System.out.println("-- ServiceImpl : payment() 실행");
+		mdao.payment(vo);
+		System.out.println("@@ vo : " + vo);
+		System.out.println("-- ServiceImpl : payment() 실행 완료");
+		
+	} // buyMembership
+	
+	///////////////////////////////////////////////////////////////////////
+	
 	
 	
 }
