@@ -238,10 +238,12 @@
 	
 	<!----------- [ck에디터 관련 링크 ] ----------->
 	<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
-<!--
-	<script src="${pageContext.request.contextPath}/resources/ckfinder/ckfinder.js"></script>
--->
 	<!----------- [ck에디터 관련 링크 ] ----------->
+	
+	<!----------- [지도 관련 링크 ] ----------->
+	<script src="http://maps.google.com/maps/api/js?key=AIzaSyD_tAQD36pKp9v4at5AnpGbvBUsLCOSJx8"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/js/gmaps.min.js"></script>
+	<!----------- [지도 관련 링크 ] ----------->
 
 <!------------------------------- script [스크립트 영역] --------------------------->
 

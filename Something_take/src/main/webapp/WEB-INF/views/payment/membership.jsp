@@ -16,6 +16,9 @@
 							<div class="head_title_1 text-center">
 								<h2>Membership</h2>
 								<div class="separator_auto"></div>
+								<div hidden>
+									<input type="text" readonly="readonly" id="session" value="${sessionScope.email}">
+								</div>
 							</div>
 						</div>
 					</div>
@@ -24,8 +27,6 @@
 				<br><br>
 				
 				<div class="row">
-
-
 					<div class="col-md-4 col-sm-12">
 						<div class="pricing_item">
 							<div class="pricing_top_border"></div>
@@ -56,7 +57,7 @@
 									
 									<c:choose>
 										<c:when test="${sessionScope.email != null}">
-											<a href="javascript:void();" onclick="inicis_St()"
+											<a href="javascript:void();" onclick="inicis_St(event)"
 											   class="btn btn-primary">결제하기</a>
 										</c:when>
 										
@@ -79,6 +80,7 @@
 							
 							var name = document.getElementById('name_St').value;
 							var amount = document.getElementById('amount_St').value;
+							var email = document.getElementById('session').value;
 
 							$(".btn-primary").click(function(){
 								
@@ -87,36 +89,58 @@
 								IMP.request_pay({
 								    pg : 'inicis', // version 1.1.0부터 지원.
 								    pay_method : 'card',
-								    merchant_uid : 'merchant_' + new Date().getTime(),
+								    merchant_uid : 'merchant_' + new Date().getTime(), // 영수증번호
 								    name : '멤버십 : '+ name,
 								    amount : amount, // 판매 가격
-								    buyer_email : 'iamport@siot.do',
-								    buyer_name : '구매자이름',
-								    buyer_tel : '010-1234-5678',
-								    buyer_addr : '서울특별시 강남구 삼성동',
-								    buyer_postcode : '123-456'
+								    buyer_email : email,
+								    buyer_name : '',
+								    buyer_tel : '',
+								    buyer_addr : '',
+								    buyer_postcode : ''
 								}, function(rsp) {
 								    if ( rsp.success ) {
-								        var msg = '결제가 완료되었습니다.';
-								        msg += '고유ID : ' + rsp.imp_uid;
-								        msg += '상점 거래ID : ' + rsp.merchant_uid;
-								        msg += '결제 금액 : ' + rsp.paid_amount;
-								        msg += '카드 승인번호 : ' + rsp.apply_num;
+								    	pay_STARTER(event);
+								    //	var msg = '결제가 완료되었습니다.';
+								     	// msg += '고유ID : ' + rsp.imp_uid;
+									    // msg += '상점 거래ID : ' + rsp.merchant_uid;
+									    // msg += '결제 금액 : ' + rsp.paid_amount;
+									    // msg += '카드 승인번호 : ' + rsp.apply_num;
 								    } else {
 								        var msg = '결제에 실패하였습니다.';
-								   	 // location.href="./Payment.pm";
 								    }
 								    alert(msg);
-								});
+								}); // request_pay
 					
 							}); // click()
 						}; // inicis()
+
+						/* 결제내역 DB에 송신 */
+						function pay_STARTER(){
+							var name = document.getElementById('name_St').value;
+							var amount = document.getElementById('amount_St').value;
+							
+							$.ajax({
+									type: "POST",
+									url: "member/membership.post",
+									dataType:"text",
+									data:{ email: $("#email").val(),
+										   membership_type: name.value,
+										   membership_pay: amount.value },
+									success:function(textStatus){
+										alert(email + membership_type + membership_pay);
+										alert("결제가 완료되었습니다.");
+										location.href="membership.me";
+									}, // success
+									error:function(textStatus){
+										alert(email + membership_type + membership_pay);
+										alert("결제 진행 중 오류가 발생하였습니다.");
+									} // error
+							}); // ajax
+						} // pay_STARTER
 					
 					</script>
 	<!------------------------------ [ 결제 api ] ------------------------------->
 					
-					
-
 
 					<div class="col-md-4 col-sm-12">
 						<div class="pricing_item sm-m-top-30">
@@ -147,7 +171,7 @@
 								
 									<c:choose>
 										<c:when test="${sessionScope.email != null}">
-											<a href="javascript:void();" onclick="inicis_Pre()"
+											<a href="javascript:void();" onclick="inicis_Pre(event)"
 											   class="btn btn-primary">결제하기</a>
 										</c:when>
 										
@@ -166,6 +190,7 @@
 								
 								var name = document.getElementById('name_Pre').value;
 								var amount = document.getElementById('amount_Pre').value;
+								var email = document.getElementById('session').value;
 							
 								$(".btn-primary").click(function(){
 									
@@ -177,21 +202,20 @@
 									    merchant_uid : 'merchant_' + new Date().getTime(),
 									    name : '멤버십 : '+ name,
 									    amount : amount, // 판매 가격
-									    buyer_email : 'iamport@siot.do',
-									    buyer_name : '구매자이름',
-									    buyer_tel : '010-1234-5678',
-									    buyer_addr : '서울특별시 강남구 삼성동',
-									    buyer_postcode : '123-456'
+									    buyer_email : email,
+									    buyer_name : '',
+									    buyer_tel : '',
+									    buyer_addr : '',
+									    buyer_postcode : ''
 									}, function(rsp) {
 									    if ( rsp.success ) {
 									        var msg = '결제가 완료되었습니다.';
-									        msg += '고유ID : ' + rsp.imp_uid;
-									        msg += '상점 거래ID : ' + rsp.merchant_uid;
-									        msg += '결제 금액 : ' + rsp.paid_amount;
-									        msg += '카드 승인번호 : ' + rsp.apply_num;
+									     // msg += '고유ID : ' + rsp.imp_uid;
+										 // msg += '상점 거래ID : ' + rsp.merchant_uid;
+										 // msg += '결제 금액 : ' + rsp.paid_amount;
+								     	 // msg += '카드 승인번호 : ' + rsp.apply_num;
 									    } else {
 									        var msg = '결제에 실패하였습니다.';
-									     // location.href="./Payment.pm";
 									    }
 									    alert(msg);
 									});
@@ -237,7 +261,7 @@
 									
 									<c:choose>
 										<c:when test="${sessionScope.email != null}">
-											<a href="javascript:void();" onclick="inicis_Bus()"
+											<a href="javascript:void();" onclick="inicis_Bus(event)"
 											   class="btn btn-primary">결제하기</a>
 										</c:when>
 										
@@ -259,6 +283,7 @@
 								
 								var name = document.getElementById('name_Bus').value;
 								var amount = document.getElementById('amount_Bus').value;
+								var email = document.getElementById('session').value;
 							
 								$(".btn-primary").click(function(){
 									
@@ -270,21 +295,20 @@
 									    merchant_uid : 'merchant_' + new Date().getTime(),
 									    name : '멤버십:'+ name,
 									    amount : amount, // 판매 가격
-									    buyer_email : 'iamport@siot.do',
-									    buyer_name : '구매자이름',
-									    buyer_tel : '010-1234-5678',
-									    buyer_addr : '서울특별시 강남구 삼성동',
-									    buyer_postcode : '123-456'
+									    buyer_email : email,
+									    buyer_name : '',
+									    buyer_tel : '',
+									    buyer_addr : '',
+									    buyer_postcode : ''
 									}, function(rsp) {
 									    if ( rsp.success ) {
 									        var msg = '결제가 완료되었습니다.';
-									        msg += '고유ID : ' + rsp.imp_uid;
-									        msg += '상점 거래ID : ' + rsp.merchant_uid;
-									        msg += '결제 금액 : ' + rsp.paid_amount;
-									        msg += '카드 승인번호 : ' + rsp.apply_num;
+									     // msg += '고유ID : ' + rsp.imp_uid;
+									     // msg += '상점 거래ID : ' + rsp.merchant_uid;
+									     // msg += '결제 금액 : ' + rsp.paid_amount;
+									     // msg += '카드 승인번호 : ' + rsp.apply_num;
 									    } else {
 									        var msg = '결제에 실패하였습니다.';
-									     // location.href="./Payment.pm";
 									    }
 									    alert(msg);
 									});

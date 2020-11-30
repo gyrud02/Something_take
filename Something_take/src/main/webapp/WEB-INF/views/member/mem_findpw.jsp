@@ -6,34 +6,20 @@
 <head>
 </head>
 <script type="text/javascript">
-
  $(function pw_chk(){
-
 	var regMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/) // 이메일
 	 
 	$(".btn-primary").click(function(){
-
-		// 이메일
-		if($("#email").val() == ""){
-			alert("이메일을 입력하세요.");
-			$("#email").focus();
-			return false;
-		}
-
-		// 이메일 유효성 검사
-		if( !(regMail.test( $("#email").val() )) ){
-			alert("이메일 형식에 맞게 입력하세요.");
-			$("#email").focus();
-			return false;
-		}
+		
+		if($("#email").val() == "" || !(regMail.test( $("#email").val() )) ){ 
+			alert("이메일을 올바르게 입력하세요."); $("#email").focus(); return false; } // 이메일
 		
 	}); // click()
  }); // pw_chk()
-
 </script>
-<body data-spy="scroll" data-target=".navbar-collapse">
+<body>
 
-	<br><br><br><br><br>
+	<br><br><br><br>
 	
 		<div class="container">
 			<div class="row">
@@ -50,7 +36,7 @@
 					        <b>[ <a href="Sign-up.me">회원가입</a> 페이지로 이동하기 ]</b></p>
 						</div>	
 
-					      <form class="sign_upClass" action="" method="post" onsubmit="pw_chk()">
+					      <form class="sign_upClass" method="post" onsubmit="pw_chk()">
 							
 					      <div class="js-form-message form-group text-left">
 					        <label class="form-label" for="email">이메일</label>
@@ -69,8 +55,8 @@
 					        <div class="col-5 text-right">
 					          <button type="submit" class="btn btn-primary">전송</button>
 					        </div>
-					
 					      </div>
+					      
 					      </form>
 					    </div>
 

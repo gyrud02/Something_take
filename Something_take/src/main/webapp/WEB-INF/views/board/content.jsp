@@ -6,38 +6,16 @@
 <html>
 <head>
 </head>
-<script type="text/javascript">
-
-	/* 댓글 등록 버튼 클릭 시 작동 */
-	$(function reply_chk(){
-
-		$("#replyBtn").click(function(){
-	
-			if($("#re_content").val() == ""){
-				alert("댓글 내용을 입력하세요.");
-				$("#re_content").focus();
-				return false;
-
-			}else{
-				replyAdd();
-			}
-				
-		}); // click()
-	}); // reply_chk()
-	
-</script>
 <style>
-
 	#reply_email {font-weight: bold;}
-
 </style>
-<body data-spy="scroll" data-target=".navbar-collapse" class="lightbg">
+<body class="lightbg">
 
 <!------------------------------------ [게시판 영역] ------------------------------------------->
 
 	<br><br><br><br>
 
-	<section id="notice">
+	<section>
  	  <div class="container">
 		<div class="row">
 			<div class="col-md-8 mr-md-auto ml-md-auto">
@@ -73,7 +51,7 @@
 						
 						<c:choose>
 							<c:when test="${sessionScope.email ==  readList.writer}">						
-								<div class="box-footer">
+								<div class="box-footer text-right">
 									<button type="button" class="btn btn-primary" id="revBtn" onclick="location.href='Modify.bd?bno=${readList.bno}'">수정</button>
 									<button type="button" class="btn btn-primary" id="delBtn" onclick="btnClick()">삭제</button>
 									<button type="button" class="btn btn-primary" onclick="location.href='Board.bd'">목록</button>
@@ -148,41 +126,54 @@
 
 <script type="text/javascript">
 
+	/* 댓글 등록 버튼 클릭 시 작동 */
+	$(function reply_chk(){
+		$("#replyBtn").click(function(){
+			if($("#re_content").val() == ""){
+				alert("댓글 내용을 입력하세요.");
+				$("#re_content").focus();
+				return false;
+			}else{
+				replyAdd();
+			} // if
+		}); // click()
+	}); // reply_chk()
+
 	/* 삭제 버튼 클릭 시 작동  */
 	function btnClick(){
+		var del = confirm("해당 글을 삭제하시겠습니까?");
 		$("#delBtn").click(function(){
-			var del = confirm("해당 글을 삭제하시겠습니까?");
 			if(del == true){
 				location.href="./board/delete.post?bno=${readList.bno}";
-			}
-			
-		}) // del click()
+			} // if
+		}) // click()
 	} // btnClick()
 
-
+	/* 댓글 등록 메서드 */
 	function replyAdd(){
 		$.ajax({
-				type: "POST",
+				type: "GET",
 				dataType: "text",
-				data: {
-						bno:$("#re_bno").val(),
+				data: { bno:$("#re_bno").val(),
 						writer:$("#re_writer").val(),
-						content:$("#re_content").val()
-					  },
-				url: "board/reply.post",
-				success:function(check){
-						$("#re_content").removeAttr();
+						content:$("#re_content").val() },
+				url: "board/reply.get",
+				success:function(check, textStatus){
+						if(check == 1){
+							$("#re_content").val("");
+							alert("댓글이 등록되었습니다.");
+							location.reload();
+						}else{
+							alert("댓글 등록 중 오류가 발생하였습니다.");
+							$("#re_content").val("");
+							location.reload();
+						} // if
 				}, // success
-				error:function(check){
-							if(check != 1){
-								alert("댓글 등록 중 오류가 발생하였습니다.");
-							}
+				error:function(check, textStatus){
+						alert("댓글 등록 중 오류가 발생하였습니다.");
 				} // error
-	
-			}); // ajax
-	
+		}); // ajax
 	} // replyAdd()	
-
 </script>
 </body>
 </html>

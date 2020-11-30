@@ -11,7 +11,8 @@
 	#writer{width: 230px;}
 
 </style>
-<body>
+
+<body data-spy="scroll" data-target=".navbar-collapse">
 
 	<br><br><br><br>
 
@@ -64,41 +65,52 @@
 	 				       </div>
 						</c:if>
 						<!-- 로그인 유무에 따른 버튼 숨김 -->
-						
-<%---------------------------------- 페이징 처리 ----------------------------------%>				
 					
-						<div class="col-12 text-center">
-							<c:set value="${requestScope.count}" var="total"/>
+<%---------------------------------- 페이징 처리 ----------------------------------%>				
+
+					<div class="col-12 text-center">
+						<c:set value="${requestScope.count}" var="total"/>
 <%
 	int total = Integer.parseInt(pageContext.getAttribute("total").toString());
 	final int pageSize = 9; // 페이지 블록 크기
-	final int currentPage = 1; // 현재 페이지
-	final int startPage = 1; // 현재 페이지
+	final int startPage = 1; // 시작 페이지
+	int currentPage = Integer.parseInt(request.getParameter("page")); // 현재 페이지
 	int prevPage = currentPage - 1; // 이전 페이지
-	int nextPage = currentPage + 5; // 다음 페이지
 	double pageBlock = (double)total / (double)pageSize; // 블록 갯수
 	int totalBlock = Integer.parseInt(String.valueOf(Math.round(Math.ceil(pageBlock)))); // 총 블록 수
+	int nextPage = currentPage + 5; // 다음 페이지
 	int endPage = totalBlock; // 페이지 끝
-	
+	int frontPage = currentPage - 5;
+	int backPage = currentPage + 5;
 	if(prevPage <= 0){ prevPage = 1; } // if
-
-	for(int i=startPage; i<currentPage; i++){
+%>
+					<c:if test="<%=currentPage != startPage%>">
+						<a href="Board?page=<%=startPage%>">[처음]</a>
+						<a href="Board?page=<%=prevPage%>">[이전]</a>
+					</c:if>
+<%
+	for(int i=frontPage; i<currentPage; i++){
+		if(i <= 0) i = 1; 
 %>
 						<a href="Board?page=<%=i%>"><%=i%></a>
 <%			
 	} // while
 	
-	for(int i=currentPage; i<=10; i++){
+	for(int i=currentPage; i<backPage; i++){
 %>
 						<a href="Board?page=<%=i%>"><%=i%></a>
 <%		
+		if(i == endPage) break;
 	} // for
 
 	if(nextPage > totalBlock){ nextPage = endPage; } // if
-%>				
-							<a href="Board?page=<%=nextPage%>">[다음]</a>
-							<a href="Board?page=<%=endPage%>">[끝]</a>
-						</div>
+%>		
+					<c:if test="<%=currentPage != endPage || currentPage != totalBlock%>">
+						<a href="Board?page=<%=nextPage%>">[다음]</a>
+						<a href="Board?page=<%=endPage%>">[끝]</a>
+					</c:if>
+				
+					</div>
 
 <%---------------------------------- 페이징 처리 ----------------------------------%>				
 					

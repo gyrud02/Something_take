@@ -45,16 +45,15 @@ public class MemberDAOImpl implements MemberDAO{
 	public MemberVO getMem(String email) {
 		
 		System.out.println("-- DAOImpl : TEST 파일에서 getMem() 호출 !");
-		System.out.println("-- DAOImpl : MyBatis 사용 memberMapper로 이동 !");
+//		System.out.println("-- DAOImpl : MyBatis 사용 memberMapper로 이동 !");
 		
 		// com.itwillbs.mepper.MemberMapper.getMember
 		MemberVO vo = sqlSession.selectOne(namespace + ".getMem", email); 
 		// .selectOne() : 가지고 올 정보가 한 개일 경우 사용한다.
    	    // (String id)값을 갖고 넘겨야 조회 메소드가 실행되기 때문에
 		
-		System.out.println("-- DAOImpl : Mapper에서  SQL 구문 실행 완료 !");
-		System.out.println("-- DAOImpl : 결과를 저장해서 TEST 페이지로 이동한다.");
-		
+//		System.out.println("-- DAOImpl : Mapper에서  SQL 구문 실행 완료 !");
+//		System.out.println("-- DAOImpl : 결과를 저장해서 TEST 페이지로 이동한다.");
 		return vo; // TEST에서 vo받아서 출력한다.
 	} // getMem()
 	
@@ -65,9 +64,9 @@ public class MemberDAOImpl implements MemberDAO{
 	public MemberVO signIn(String email, String pwd) {
 		
 		System.out.println("-- DAOImpl : signIn() 실행 ");
-		System.out.println("-- DAOImpl : DB 연결 준비 ! (의존 주입을 통해 이미 완료)");
-		System.out.println("-- DAOImpl : MyBatis 사용 Mapper로 이동하여 SQL을 호출 ! ");
-		System.out.println("-- DAOImpl : 파라미터 값 2개를 전달하기 위해 Map 객체를 생성 !");
+//		System.out.println("-- DAOImpl : DB 연결 준비 ! (의존 주입을 통해 이미 완료)");
+//		System.out.println("-- DAOImpl : MyBatis 사용 Mapper로 이동하여 SQL을 호출 ! ");
+//		System.out.println("-- DAOImpl : 파라미터 값 2개를 전달하기 위해 Map 객체를 생성 !");
 		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		
@@ -78,8 +77,8 @@ public class MemberDAOImpl implements MemberDAO{
 		MemberVO vo = sqlSession.selectOne(namespace+".signIn", paramMap); 
 		// selectOne()은 인자값이 1개여야하지만 위 문법은 2개이기 때문에 Map을 사용하여 데이터를 담아서 넘긴다.
 		
-		System.out.println("-- DAOImpl : Mapper에서 SQL구문 실행 완료 후 돌아온다.");
-		System.out.println("-- DAOImpl : 결과를 저장하고 다시 TEST 페이지로 이동한다.");
+//		System.out.println("-- DAOImpl : Mapper에서 SQL구문 실행 완료 후 돌아온다.");
+//		System.out.println("-- DAOImpl : 결과를 저장하고 다시 TEST 페이지로 이동한다.");
 		System.out.println("-- DAOImpl : signIn() 실행 완료 ");
 
 		return vo;
@@ -93,7 +92,7 @@ public class MemberDAOImpl implements MemberDAO{
 		
 		int check = 0;
 		System.out.println("-- DAOImpl : dropOut() 실행 ");
-		System.out.println("@@@ check : " + check);
+//		System.out.println("@@@ check : " + check);
 		check = sqlSession.delete(namespace+".dropOut", vo);
 		System.out.println("-- DAOImpl : dropOut() 실행 완료 ");
 		return check;
@@ -106,14 +105,12 @@ public class MemberDAOImpl implements MemberDAO{
 	public int modify(MemberVO vo) {
 		
 		System.out.println("-- DAOImpl : modify() 실행 ");
-		
 		int check = 0; 
 		check = sqlSession.delete(namespace+".modify", vo);
-		System.out.println("@@@ check : " + check);
+//		System.out.println("@@@ check : " + check);
 		
 		if(check == 1) {
 			System.out.println("-- 회원 정보 수정 완료 ");
-		
 		}else {
 			System.out.println("-- 회원 정보 수정 실패 (modify()에서 오류 발생)");
 		}
@@ -130,7 +127,7 @@ public class MemberDAOImpl implements MemberDAO{
 
 		System.out.println("-- DAOImpl : getMembership() 실행 ");
 		MemberVO vo = sqlSession.selectOne(namespace+".getMembership", email);
-		System.out.println("@@@ vo : " + vo);
+//		System.out.println("@@@ vo : " + vo);
 		System.out.println("-- DAOImpl : getMembership() 실행 완료 ");
 		return vo;
 	} // getMembership
@@ -143,7 +140,7 @@ public class MemberDAOImpl implements MemberDAO{
 
 		System.out.println("-- DAOImpl : getMembers() 실행 ");
 		List memberList = sqlSession.selectList(namespace+".getMembers");
-		System.out.println("@@ memberList : "+ memberList);
+//		System.out.println("@@ memberList : "+ memberList);
 		System.out.println("-- DAOImpl : getMembers() 실행 완료");
 		return memberList;
 	} // getMembers()
@@ -154,17 +151,26 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public int duplicate(String email) throws Exception {
 		int check = 0;
-		System.out.println("@@ email : " + email);
+//		System.out.println("@@ email : " + email);
 		System.out.println("-- DAOImpl : duplicate() 실행");
 		check = sqlSession.selectOne(namespace+".duplicate", email);
-		System.out.println("@@ check : " + check);
+//		System.out.println("@@ check : " + check);
 		System.out.println("-- DAOImpl : duplicate() 실행 완료");
 		return check;
 	} // duplicate()
-	
+
 	/////////////////////////////////////////////////////////////////////
 
+	/* 멤버십 결제 메서드 */
+	@Override
+	public void payment(MemberVO vo) throws Exception {
+		
+		System.out.println("-- DAOImpl : payment() 실행");
+		sqlSession.insert(namespace+".payment", vo);
+		System.out.println("-- DAOImpl : payment() 실행 완료");
+		
+	} // payment
 	
-	
+	/////////////////////////////////////////////////////////////////////
 	
 }
