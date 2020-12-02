@@ -3,6 +3,7 @@ package com.company.main;
 import java.io.PrintWriter;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -160,14 +161,22 @@ public class MemberController {
 
 	/* 멤버십 결제 메서드 */
 	@RequestMapping(value = "membership.post", method = RequestMethod.POST)
-	public String membershipPay(@RequestParam("email") String email) throws Exception{
+	public String membershipPay(@RequestParam("session") String session, 
+								MemberVO vo, Model model,
+								HttpServletResponse response) throws Exception{
 		logger.info("-- 멤버십 결제 실행");
-//		model.addAttribute("email", vo.getEmail());
-//		model.addAttribute("membership_type", vo.getMembership_type());
-//		model.addAttribute("membership_pay", vo.getMembership_pay());
-//		logger.info("@@ vo : " + vo);
-//		service.payment();
-		logger.info("-- 멤버십 결제 실행 완료");
+		vo.setEmail(session);
+		model.addAttribute("email", vo.getEmail());
+		model.addAttribute("membership_type", vo.getMembership_type());
+		model.addAttribute("membership_pay", vo.getMembership_pay());
+		logger.info("@@ vo : " + vo);
+		service.payment(vo);
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('결제가 완료되었습니다.');");
+		out.println("</script>");
 		return null;
 	} // membershipPay()
 

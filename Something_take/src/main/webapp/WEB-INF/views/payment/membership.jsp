@@ -17,7 +17,7 @@
 								<h2>Membership</h2>
 								<div class="separator_auto"></div>
 								<div hidden>
-									<input type="text" readonly="readonly" id="session" value="${sessionScope.email}">
+									<input type="text" readonly="readonly" id="session" name="session" value="${sessionScope.email}">
 								</div>
 							</div>
 						</div>
@@ -57,7 +57,7 @@
 									
 									<c:choose>
 										<c:when test="${sessionScope.email != null}">
-											<a href="javascript:void();" onclick="inicis_St(event)"
+											<a href="javascript:void(event)" onclick="inicis_St(event)"
 											   class="btn btn-primary">결제하기</a>
 										</c:when>
 										
@@ -77,11 +77,10 @@
 					<script type="text/javascript">
 
 						function inicis_St(){
-							
 							var name = document.getElementById('name_St').value;
 							var amount = document.getElementById('amount_St').value;
 							var email = document.getElementById('session').value;
-
+							
 							$(".btn-primary").click(function(){
 								
 								IMP.init('imp30100127');
@@ -118,12 +117,13 @@
 						function pay_STARTER(){
 							var name = document.getElementById('name_St').value;
 							var amount = document.getElementById('amount_St').value;
+							var email = document.getElementById('session').value;
 							
 							$.ajax({
 									type: "POST",
 									url: "member/membership.post",
 									dataType:"text",
-									data:{ email: $("#email").val(),
+									data:{ email: email.value,
 										   membership_type: name.value,
 										   membership_pay: amount.value },
 									success:function(textStatus){
@@ -171,7 +171,7 @@
 								
 									<c:choose>
 										<c:when test="${sessionScope.email != null}">
-											<a href="javascript:void();" onclick="inicis_Pre(event)"
+											<a href="javascript:void(event);" onclick="inicis_Pre(event)"
 											   class="btn btn-primary">결제하기</a>
 										</c:when>
 										
@@ -261,7 +261,7 @@
 									
 									<c:choose>
 										<c:when test="${sessionScope.email != null}">
-											<a href="javascript:void();" onclick="inicis_Bus(event)"
+											<a href="javascript:void(event);" onclick="inicis_Bus(event)"
 											   class="btn btn-primary">결제하기</a>
 										</c:when>
 										
