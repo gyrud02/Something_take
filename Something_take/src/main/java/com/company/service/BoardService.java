@@ -8,8 +8,7 @@ import com.company.domain.ReplyVO;
 
 public interface BoardService {
 
-
-	/* ------------------------- [ 게시판 ] ------------------------- */
+	/* ------------------------- [ 게시판  ] ------------------------- */
 	
 	public void insert(BoardVO bvo) throws Exception; // 글 등록 메서드
 
