@@ -44,7 +44,7 @@
 								<c:forEach items="${boardList}" var="boardList">
 								<tr>
 									<td id="bdList">${boardList.bno}</td>
-									<td><a href="Content.bd?bno=${boardList.bno}">${boardList.title}</a></td>
+									<td id="bdList"><a href="Content.bd?bno=${boardList.bno}">${boardList.title}</a></td>
 									<td>${boardList.writer}</td>
 									<td id="bdList">${boardList.reg_date}</td>
 									<td id="bdList">${boardList.viewcount}</td>
@@ -81,23 +81,15 @@
 	int endPage = totalBlock; // 페이지 끝
 	
 	if(prevPage <= 0){ prevPage = 1; } // if
-
-	for(int i=startPage; i<currentPage; i++){
-%>
-						<a href="Board?page=<%=i%>"><%=i%></a>
-<%			
-	} // while
-	
 	for(int i=currentPage; i<=10; i++){
 %>
-						<a href="Board?page=<%=i%>"><%=i%></a>
+						<a class="btn btn-warning" href="Board?page=<%=i%>"><%=i%></a>
 <%		
 	} // for
-
 	if(nextPage > totalBlock){ nextPage = endPage; } // if
 %>				
-							<a href="Board?page=<%=nextPage%>">[다음]</a>
-							<a href="Board?page=<%=endPage%>">[끝]</a>
+							<a class="btn btn-warning" href="Board?page=<%=nextPage%>">[다음]</a>
+							<a class="btn btn-warning" href="Board?page=<%=endPage%>">[끝]</a>
 						</div>
 
 <%---------------------------------- 페이징 처리 ----------------------------------%>				

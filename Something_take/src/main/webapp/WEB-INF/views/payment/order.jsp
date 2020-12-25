@@ -8,13 +8,37 @@
 				      height: 280px;
 				      border-radius: 70%;
 					  overflow: hidden;
-					  object-fit: cover;
-					}
-	.col-md-4{
-				padding-left: 60px;	
-			  }
+					  object-fit: cover; }
+	.col-md-4{ padding-left: 60px; }
 </style>
-<body data-spy="scroll" data-target=".navbar-collapse">
+<script type="text/javascript">
+
+	function orderAJAX(){
+
+		$(".btn-primary").click(function(){
+
+			var menu = document.getElementById.value;
+			alert(menu);
+				
+			$.ajax({
+					type: "GET",
+					dataType: "json",
+					data: {menu : menu},
+					url: "order/addCart"
+					success:function(result, textStatus){
+						alert("@@ result : " + result);
+					}, // success
+					error:function(result, textStatus){
+						alert("오류가 발생하였습니다.");
+					} // error
+				
+			}); // ajax
+
+		}); // click()
+	} // orderAJAX()
+
+</script>
+<body>
 
 <!------------------------------------ [갤러리 영역] ------------------------------------------->
 
@@ -43,6 +67,8 @@
 														<a href="${pageContext.request.contextPath}/resources/images/Me-americano.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
 														<a href="${pageContext.request.contextPath}/resources/images/Me-americano.jpg"></a>
 													</div>
+													<br>
+													<button class="btn btn-default" id="americano">카트에 담기</button>
 												</div>
 											</div>
 										</div>
@@ -57,6 +83,8 @@
 														<a href="${pageContext.request.contextPath}/resources/images/espresso.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
 														<a href="${pageContext.request.contextPath}/resources/images/espresso.jpg"></a>
 													</div>
+													<br>
+													<button class="btn btn-default">카트에 담기</button>
 												</div>
 											</div>
 										</div>
@@ -71,6 +99,8 @@
 														<a href="${pageContext.request.contextPath}/resources/images/caffelatte.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
 														<a href="${pageContext.request.contextPath}/resources/images/caffelatte.jpg"></a>
 													</div>
+													<br>
+													<button class="btn btn-default">카트에 담기</button>
 												</div>
 											</div>
 										</div>
@@ -85,6 +115,8 @@
 														<a href="${pageContext.request.contextPath}/resources/images/cappuccino.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
 														<a href="${pageContext.request.contextPath}/resources/images/cappuccino.jpg"></a>
 													</div>
+													<br>
+													<button class="btn btn-default">카트에 담기</button>
 												</div>
 											</div>
 										</div>
@@ -99,6 +131,8 @@
 														<a href="${pageContext.request.contextPath}/resources/images/greentea_latte.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
 														<a href="${pageContext.request.contextPath}/resources/images/greentea_latte.jpg"></a>
 													</div>
+													<br>
+													<button class="btn btn-default">카트에 담기</button>
 												</div>
 											</div>
 										</div>	
@@ -113,6 +147,8 @@
 														<a href="${pageContext.request.contextPath}/resources/images/lemonade.jpg" class="popup-img"><i class="fa fa-expand"></i></a>
 														<a href="${pageContext.request.contextPath}/resources/images/lemonade.jpg"></a>
 													</div>
+													<br>
+													<button class="btn btn-default">카트에 담기</button>
 												</div>
 											</div>
 										</div>

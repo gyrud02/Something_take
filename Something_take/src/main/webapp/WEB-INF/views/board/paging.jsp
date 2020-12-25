@@ -85,20 +85,22 @@
 	if(prevPage <= 0){ prevPage = 1; } // if
 %>
 					<c:if test="<%=currentPage != startPage%>">
-						<a href="Board?page=<%=startPage%>">[처음]</a>
-						<a href="Board?page=<%=prevPage%>">[이전]</a>
+						<a class="btn btn-warning" href="Board?page=<%=startPage%>">[처음]</a>
+						<a class="btn btn-warning" href="Board?page=<%=prevPage%>">[이전]</a>
 					</c:if>
 <%
 	for(int i=frontPage; i<currentPage; i++){
-		if(i <= 0) i = 1; 
+		if(i <= 0) i = 1;
 %>
-						<a href="Board?page=<%=i%>"><%=i%></a>
+					<c:if test="<%=currentPage != 1%>">
+						<a class="btn btn-warning" href="Board?page=<%=i%>"><%=i%></a>
+					</c:if>	
 <%			
 	} // while
 	
 	for(int i=currentPage; i<backPage; i++){
 %>
-						<a href="Board?page=<%=i%>"><%=i%></a>
+						<a class="btn btn-warning" href="Board?page=<%=i%>"><%=i%></a>
 <%		
 		if(i == endPage) break;
 	} // for
@@ -106,8 +108,8 @@
 	if(nextPage > totalBlock){ nextPage = endPage; } // if
 %>		
 					<c:if test="<%=currentPage != endPage || currentPage != totalBlock%>">
-						<a href="Board?page=<%=nextPage%>">[다음]</a>
-						<a href="Board?page=<%=endPage%>">[끝]</a>
+						<a class="btn btn-warning" href="Board?page=<%=nextPage%>">[다음]</a>
+						<a class="btn btn-warning" href="Board?page=<%=endPage%>">[끝]</a>
 					</c:if>
 				
 					</div>

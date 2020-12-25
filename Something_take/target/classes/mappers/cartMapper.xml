@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.company.mapper.CartMapper">
+
+	<!-- 				< 카트 관련 Mapper > 						-->
+
+	<!-- 카트 생성 -->	
+	<insert id="addCart">
+	INSERT INTO addCart(email, addDate)
+	VALUES (#{email}, now())
+	</insert>
+	<!-- 카트 생성 -->
+	
+	<!-- 카트 번호 조회 -->
+	<select id="getCartNum">
+	SELECT cartNum
+	FROM addCart
+	WHERE email = #{email}
+	</select>
+	<!-- 카트 번호 조회 -->
+	
+	<!-- 카트 삭제 -->
+	<delete id="delCart">
+	DELETE FROM addCart
+	WHERE email = #{email}
+	</delete>
+	<!-- 카트 삭제 -->
+	
+	<!-- 아메리카노 갯수 조절 -->
+	<update id="AMERICANO">
+	UPDATE addCart
+	SET cartStock1 + 1
+	WHERE cartNum = #{cartNum}, email = #{email}
+	</update>
+	<!-- 아메리카노 갯수 조절 -->
+	
+	<!-- 에스프레소 갯수 조절 -->
+	<update id="ESPRESSO">
+	UPDATE addCart
+	SET cartStock2 + 1
+	WHERE cartNum = #{cartNum}, email = #{email}
+	</update>
+	<!-- 에스프레소 갯수 조절 -->
+	
+	<!-- 카페라떼 갯수 조절 -->
+	<update id="CAFFELATTE">
+	UPDATE addCart
+	SET cartStock3 + 1
+	WHERE cartNum = #{cartNum}, email = #{email}
+	</update>	
+	<!-- 카페라떼 갯수 조절 -->
+	
+	<!-- 카푸치노 갯수 조절 -->
+	<update id="CAPPUCCINO">
+	UPDATE addCart
+	SET cartStock4 + 1
+	WHERE cartNum = #{cartNum}, email = #{email}
+	</update>	
+	<!-- 카푸치노 갯수 조절 -->
+	
+	<!-- 녹차라떼 갯수 조절 -->
+	<update id="GREENTEA_LATTE">
+	UPDATE addCart
+	SET cartStock5 + 1
+	WHERE cartNum = #{cartNum}, email = #{email}
+	</update>
+	<!-- 녹차라떼 갯수 조절 -->
+
+	<!-- 레모네이드 갯수 조절 -->
+	<update id="LEMONADE">
+	UPDATE addCart
+	SET cartStock6 + 1
+	WHERE cartNum = #{cartNum}, email = #{email}
+	</update>	
+	<!-- 레모네이드 갯수 조절 -->
+	
+</mapper>

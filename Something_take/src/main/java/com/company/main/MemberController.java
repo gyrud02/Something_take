@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.company.domain.CartVO;
 import com.company.domain.MemberVO;
+import com.company.service.CartService;
 import com.company.service.MemberService;
 
 @Controller
@@ -27,6 +29,9 @@ public class MemberController {
 	
 	@Inject 
 	private MemberService service;
+	
+	@Inject
+	private CartService cservice; // 카트 관련 서비스
 	
 	/////////////////////////////////////////////////////////
 	
@@ -54,6 +59,7 @@ public class MemberController {
 			return "redirect:../Sign-in.me";
 		}else if(DBvo != null) { // 로그인 성공 시
 			session.setAttribute("email", DBvo.getEmail());
+			cservice.addCart(vo);
 		}
 		logger.info("-- 로그인 버튼 완료");
 		return "redirect:../index.do";
@@ -63,9 +69,14 @@ public class MemberController {
 
 	/* 로그 아웃 메소드 */
 	@RequestMapping(value = "/sign-out.post", method = RequestMethod.GET)
-	public String logOut(HttpServletResponse response, HttpSession session) throws Exception {
+	public String logOut(HttpServletResponse response,
+						 HttpSession session, CartVO cvo) throws Exception {
 		
 		logger.info("-- 로그아웃 메소드 실행");
+		String email = (String)session.getAttribute("email");
+		cvo.setEmail(email);
+		logger.info("@@@ session : " + email);
+		cservice.delCart(cvo);
 		session.invalidate();
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
