@@ -14,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.company.domain.BoardVO;
+import com.company.domain.CartVO;
 import com.company.domain.Criteria;
 import com.company.domain.MemberVO;
 import com.company.domain.MessageVO;
@@ -42,6 +44,9 @@ public class HomeController {
 	
 	@Inject
 	private ReplyService reservice; // 댓글 관련 서비스
+	
+	@Inject
+	private CartService cservice; // 카트 관련 서비스
 	
 	/////////////////////////////////////////////////////////
 	
@@ -314,4 +319,18 @@ public class HomeController {
 	
 	/////////////////////////////////////////////////////////
 	
+	/* 카트 조회하기 */
+	@RequestMapping(value = "myCart", method = RequestMethod.GET)
+	public String getCart(Model model, HttpSession session) throws Exception{
+		logger.info("-- 카트 조회 실행");
+		String email = (String)session.getAttribute("email");
+		List<CartVO> cartList = cservice.getCart(email);
+		int total = cservice.totalNum(email);
+		model.addAttribute("cartList", cartList);
+		model.addAttribute("total", total);
+		logger.info("@@ cartList : " + cartList + "/ total : " + total);
+		return "payment/order.tiles";
+	} // getCart()
+	
+	/////////////////////////////////////////////////////////
 }

@@ -12,31 +12,141 @@
 	.col-md-4{ padding-left: 60px; }
 </style>
 <script type="text/javascript">
-
-	function orderAJAX(){
-
-		$(".btn-primary").click(function(){
-
-			var menu = document.getElementById.value;
-			alert(menu);
-				
+	function orderAJAX(event){
+		$("#americano").click(function(){
+			var menu = "americano";
 			$.ajax({
 					type: "GET",
-					dataType: "json",
+					dataType: "text",
 					data: {menu : menu},
-					url: "order/addCart"
-					success:function(result, textStatus){
-						alert("@@ result : " + result);
+					url: "member/addMenu",
+					success:function(check, textStatus){
+						alert("카트에 담겼습니다.");
+						location.href = "myCart";
 					}, // success
-					error:function(result, textStatus){
+					error:function(textStatus){
 						alert("오류가 발생하였습니다.");
 					} // error
-				
-			}); // ajax
-
+			}); // ajax */
 		}); // click()
-	} // orderAJAX()
 
+		//////////////////////////////////////////////////
+		
+		$("#espresso").click(function(){
+			var menu = "espresso";
+			$.ajax({
+					type: "GET",
+					dataType: "text",
+					data: {menu : menu},
+					url: "member/addMenu",
+					success:function(check, textStatus){
+						alert("카트에 담겼습니다.");
+						location.href = "myCart";
+					}, // success
+					error:function(textStatus){
+						alert("오류가 발생하였습니다.");
+					} // error
+			}); // ajax */
+		}); // click()
+
+		//////////////////////////////////////////////////
+
+		$("#caffelatte").click(function(){
+			var menu = "caffelatte";
+			$.ajax({
+					type: "GET",
+					dataType: "text",
+					data: {menu : menu},
+					url: "member/addMenu",
+					success:function(check, textStatus){
+						alert("카트에 담겼습니다.");
+						location.href = "myCart";
+					}, // success
+					error:function(textStatus){
+						alert("오류가 발생하였습니다.");
+					} // error
+			}); // ajax */
+		}); // click()
+
+		//////////////////////////////////////////////////
+
+		$("#cappuccino").click(function(){
+			var menu = "cappuccino";
+			$.ajax({
+					type: "GET",
+					dataType: "text",
+					data: {menu : menu},
+					url: "member/addMenu",
+					success:function(check, textStatus){
+						alert("카트에 담겼습니다.");
+						location.href = "myCart";
+					}, // success
+					error:function(textStatus){
+						alert("오류가 발생하였습니다.");
+					} // error
+			}); // ajax */
+		}); // click()
+
+		//////////////////////////////////////////////////
+
+		$("#cappuccino").click(function(){
+			var menu = "cappuccino";
+			$.ajax({
+					type: "GET",
+					dataType: "text",
+					data: {menu : menu},
+					url: "member/addMenu",
+					success:function(check, textStatus){
+						alert("카트에 담겼습니다.");
+						location.href = "myCart";
+					}, // success
+					error:function(textStatus){
+						alert("오류가 발생하였습니다.");
+					} // error
+			}); // ajax */
+		}); // click()
+
+		//////////////////////////////////////////////////
+
+		$("#greentealatte").click(function(){
+			var menu = "greentealatte";
+			$.ajax({
+					type: "GET",
+					dataType: "text",
+					data: {menu : menu},
+					url: "member/addMenu",
+					success:function(check, textStatus){
+						alert("카트에 담겼습니다.");
+						location.href = "myCart";
+					}, // success
+					error:function(textStatus){
+						alert("오류가 발생하였습니다.");
+					} // error
+			}); // ajax */
+		}); // click()
+
+		//////////////////////////////////////////////////
+
+		$("#lemonade").click(function(){
+			var menu = "lemonade";
+			$.ajax({
+					type: "GET",
+					dataType: "text",
+					data: {menu : menu},
+					url: "member/addMenu",
+					success:function(check, textStatus){
+						alert("카트에 담겼습니다.");
+						location.href = "myCart";
+					}, // success
+					error:function(textStatus){
+						alert("오류가 발생하였습니다.");
+					} // error
+			}); // ajax */
+		}); // click()
+
+		//////////////////////////////////////////////////
+		
+	} // orderAJAX()
 </script>
 <body>
 
@@ -68,7 +178,7 @@
 														<a href="${pageContext.request.contextPath}/resources/images/Me-americano.jpg"></a>
 													</div>
 													<br>
-													<button class="btn btn-default" id="americano">카트에 담기</button>
+													<button class="btn btn-default" id="americano" onclick="orderAJAX(event)">카트에 담기</button>
 												</div>
 											</div>
 										</div>
@@ -84,7 +194,7 @@
 														<a href="${pageContext.request.contextPath}/resources/images/espresso.jpg"></a>
 													</div>
 													<br>
-													<button class="btn btn-default">카트에 담기</button>
+													<button class="btn btn-default" id="espresso" onclick="orderAJAX(event)">카트에 담기</button>
 												</div>
 											</div>
 										</div>
@@ -100,7 +210,7 @@
 														<a href="${pageContext.request.contextPath}/resources/images/caffelatte.jpg"></a>
 													</div>
 													<br>
-													<button class="btn btn-default">카트에 담기</button>
+													<button class="btn btn-default" id="caffelatte" onclick="orderAJAX(event)">카트에 담기</button>
 												</div>
 											</div>
 										</div>
@@ -116,7 +226,7 @@
 														<a href="${pageContext.request.contextPath}/resources/images/cappuccino.jpg"></a>
 													</div>
 													<br>
-													<button class="btn btn-default">카트에 담기</button>
+													<button class="btn btn-default" id="cappuccino" onclick="orderAJAX(event)">카트에 담기</button>
 												</div>
 											</div>
 										</div>
@@ -132,7 +242,7 @@
 														<a href="${pageContext.request.contextPath}/resources/images/greentea_latte.jpg"></a>
 													</div>
 													<br>
-													<button class="btn btn-default">카트에 담기</button>
+													<button class="btn btn-default" id="greentealatte" onclick="orderAJAX(event)">카트에 담기</button>
 												</div>
 											</div>
 										</div>	
@@ -148,7 +258,7 @@
 														<a href="${pageContext.request.contextPath}/resources/images/lemonade.jpg"></a>
 													</div>
 													<br>
-													<button class="btn btn-default">카트에 담기</button>
+													<button class="btn btn-default" id="lemonade" onclick="orderAJAX(event)">카트에 담기</button>
 												</div>
 											</div>
 										</div>

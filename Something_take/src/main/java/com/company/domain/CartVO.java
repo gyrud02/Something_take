@@ -27,6 +27,8 @@ public class CartVO {
 	private String lemonade; // 레모네이드
 	private int cartStock6; // 레모네이드 수량
 	
+	private int total; // 총합
+	
 	// getter
 	public int getCartNum() {return cartNum;}
 	public String getEmail() {return email;}
@@ -60,7 +62,7 @@ public class CartVO {
 	public void setCartStock5(int cartStock5) {this.cartStock5 = cartStock5;}
 	public void setLemonade(String lemonade) {this.lemonade = lemonade;}
 	public void setCartStock6(int cartStock6) {this.cartStock6 = cartStock6;}
-	
+
 	// toString
 	@Override
 	public String toString() {

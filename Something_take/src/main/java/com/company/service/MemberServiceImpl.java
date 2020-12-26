@@ -53,19 +53,12 @@ public class MemberServiceImpl implements MemberService{
 	public int deleteMem(MemberVO vo) throws Exception {
 		
 		System.out.println("-- ServiceImpl : deleteMem() 실행 ");
-//		System.out.println("-- serviceImpl : vo -> " + vo);
 		int check = mdao.dropOut(vo);
-//		System.out.println("@@@ num : " + check);
-		
-		// 정상처리일때와 비정상처리일때
-		if(check == 1) {
-			// 정상처리일때
+		if(check == 1) { // 정상처리일때
 			System.out.println("-- serviceImpl : 정상적으로 처리가 완료되었습니다.");
-		}else {
-			// 비정상처리일때 (ex- 비밀번호 오류)
+		}else { // 비정상처리일때 (ex- 비밀번호 오류)
 			System.out.println("-- serviceImpl : 오류가 발생했습니다.");
-		} // if문 끝
-		
+		} // if
 		System.out.println("-- ServiceImpl : deleteMem() 실행 완료");
 		return check;
 	} // deleteMem()
@@ -75,21 +68,13 @@ public class MemberServiceImpl implements MemberService{
 	/* 회원 정보 수정 메소드 */
 	@Override
 	public MemberVO updateMem(MemberVO vo) throws Exception {
-
 		System.out.println("-- ServiceImpl : updateMem() 실행 ");
-//		System.out.println("-- serviceImpl : vo -> " + vo);
 		int num = mdao.modify(vo);
-//		System.out.println("@@@ num : " + num);
-		
-		// 정상처리일때와 비정상처리일때
-		if(num == 1) {
-			// 정상처리일때
+		if(num == 1) { // 정상일 때
 			System.out.println("-- serviceImpl : 정상적으로 처리가 완료되었습니다.");
-		}else{
-			// 비정상처리일때 (ex- 비밀번호 오류)
+		}else{ // 비정상일 때 (ex- 비밀번호 오류)
 			System.out.println("-- serviceImpl : 오류가 발생했습니다.");
-		} // if문 끝
-		
+		} // if
 		System.out.println("-- ServiceImpl : deleteMem() 실행 완료 ");
 		return vo;
 	} // updateMem()
@@ -99,12 +84,9 @@ public class MemberServiceImpl implements MemberService{
 	/* 본인 정보를 가져오는 메서드 */
 	@Override
 	public MemberVO getMem(String email) throws Exception {
-
 		System.out.println("-- ServiceImpl : getMem() 실행 ");
-//		System.out.println("-- serviceImpl : email -> " + email);
 		MemberVO DBvo = mdao.getMem(email);
 		System.out.println("-- ServiceImpl : getMem() 실행 완료 ");
-	
 		return DBvo;
 	} // getMem() 
 
@@ -113,9 +95,7 @@ public class MemberServiceImpl implements MemberService{
 	/* 멤버십 정보를 가져오는 메서드 */
 	@Override
 	public MemberVO getMembership(String email) throws Exception {
-
 		System.out.println("-- ServiceImpl : getMembership() 실행 ");
-//		System.out.println("-- serviceImpl : email -> " + email);
 		MemberVO vo = mdao.getMembership(email);
 		System.out.println("-- ServiceImpl : getMembership() 실행 완료 ");
 		return vo;
@@ -126,7 +106,6 @@ public class MemberServiceImpl implements MemberService{
 	/* 회원 정보 전체 조회  */
 	@Override
 	public List<MemberVO> getMembers() throws Exception {
-
 		System.out.println("-- ServiceImpl : getMembers() 실행");
 		List memberList = mdao.getMembers();
 		System.out.println("@@ memberList : " + memberList);
@@ -139,11 +118,9 @@ public class MemberServiceImpl implements MemberService{
 	/* 이메일 중복 확인 메서드 */
 	@Override
 	public int duplicate(String email) throws Exception {
-		
 		int check = 0;
 		System.out.println("-- ServiceImpl : dupl() 실행");
 		check = mdao.duplicate(email);
-//		System.out.println("@@ check : " + check);
 		System.out.println("-- ServiceImpl : dupl() 실행");
 		return check;
 	} // dupl()
@@ -153,12 +130,10 @@ public class MemberServiceImpl implements MemberService{
 	/* 멤버십 결제 메서드 */
 	@Override
 	public void payment(MemberVO vo) throws Exception {
-		
 		System.out.println("-- ServiceImpl : payment() 실행");
 		mdao.payment(vo);
 		System.out.println("@@ vo : " + vo);
 		System.out.println("-- ServiceImpl : payment() 실행 완료");
-		
 	} // buyMembership
 	
 	///////////////////////////////////////////////////////////////////////
