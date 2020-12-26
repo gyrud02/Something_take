@@ -24,4 +24,5 @@ public interface MemberService {
 	
 	public void payment(MemberVO vo) throws Exception; // 멤버십 결제 메서드
 	
+	
 }

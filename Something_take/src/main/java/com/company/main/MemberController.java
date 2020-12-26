@@ -193,4 +193,16 @@ public class MemberController {
 
 	/////////////////////////////////////////////////////////
 
+	/* 카트 담기 메서드 */
+	@RequestMapping(value = "addMenu", method = RequestMethod.GET)
+	public String addMenu(String menu, HttpServletResponse response,
+						  HttpSession session) throws Exception{
+		logger.info("-- 카트에 메뉴 담기");
+		String email = (String)session.getAttribute("email");
+		logger.info("@@@ menu : " + menu);
+		int check = cservice.addMenu(email, menu);
+		return null;
+	} // addMenu()
+	
+	/////////////////////////////////////////////////////////
 }

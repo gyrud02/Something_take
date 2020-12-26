@@ -63,12 +63,10 @@ public class BoardDAOImpl implements BoardDAO{
 	/* 글 한 개 조회 메서드 */
 	@Override
 	public BoardVO getRead(int bno) throws Exception {
-		
 		System.out.println("-- DAOImpl : getRead() 실행");
 		BoardVO bvo = sqlSession.selectOne(namespace+".read", bno);
 		System.out.println("@@@ bvo : " + bvo);
 		System.out.println("-- DAOImpl : getRead() 실행 완료");
-		
 		return bvo;
 	} // getRead()
 
@@ -88,11 +86,9 @@ public class BoardDAOImpl implements BoardDAO{
 	/* 글 삭제 메서드 */
 	@Override
 	public void getDel(int bno) throws Exception {
-		
 		System.out.println("-- DAOImpl : getDel() 실행 ");
 		sqlSession.delete(namespace+".delete", bno);
 		System.out.println("-- DAOImpl : getDel() 실행 완료");
-		
 	} // getDel()
 
 	///////////////////////////////////////////////////////////////////////
@@ -100,7 +96,6 @@ public class BoardDAOImpl implements BoardDAO{
 	/* 조회수 수정 메서드 */
 	@Override
 	public void readCNT(int bno) throws Exception {
-		
 		System.out.println("-- DAOImpl : readCNT() 실행");
 		sqlSession.update(namespace+".readCNT", bno);
 		System.out.println("-- DAOImpl : readCNT() 실행 완료");
@@ -112,7 +107,6 @@ public class BoardDAOImpl implements BoardDAO{
 	// 1) 글 목록 10개씩 조회
 	@Override
 	public List<BoardVO> listPage(int page) throws Exception {
-
 		System.out.println("-- DAOImpl : listPage(int page) 실행");
 		
 		if(page <= 0) {
@@ -127,9 +121,7 @@ public class BoardDAOImpl implements BoardDAO{
 	// 2) 객체 사용 
 	@Override
 	public List<BoardVO> listPage(Criteria cri) throws Exception {
-
 		System.out.println("-- DAOImpl : listPage(Criteria cri) 실행");
-
 		return sqlSession.selectList(namespace+".listCri", cri);
 	} // listPage(Criteria cri)
 	

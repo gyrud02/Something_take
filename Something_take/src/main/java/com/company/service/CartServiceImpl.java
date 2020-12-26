@@ -1,5 +1,7 @@
 package com.company.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -47,7 +49,39 @@ public class CartServiceImpl implements CartService{
 
 	///////////////////////////////////////////////////////////////////////
 	
+	/* 메뉴 추가 메서드 */
+	@Override
+	public int addMenu(String email, String menu) throws Exception {
+		System.out.println("-- ServiceImpl : addMenu() 실행");
+		int check = cdao.addMenu(email, menu);
+		System.out.println("-- ServiceImpl : addMenu() 실행 완료");
+		return check;
+	} // addMenu()
 
+	///////////////////////////////////////////////////////////////////////
+
+	/* 카트 조회 메서드 */
+	@Override
+	public List<CartVO> getCart(String email) throws Exception {
+		System.out.println("-- ServiceImpl : getCart() 실행");
+		List<CartVO> cartList = cdao.getCart(email);
+		System.out.println("-- ServiceImpl : getCart() 실행 완료");
+		return cartList;
+	} // getCart()
+
+	///////////////////////////////////////////////////////////////////////
+
+	/* 총 갯수 조회 메서드 */
+	@Override
+	public int totalNum(String email) throws Exception {
+		System.out.println("-- ServiceImpl : totalNum() 실행");
+		int total = 0;
+		total = cdao.totalNum(email);
+		System.out.println("-- ServiceImpl : totalNum() 실행 완료");
+		return total;
+	} // totalNum()
+
+	///////////////////////////////////////////////////////////////////////
 	
 	
 	

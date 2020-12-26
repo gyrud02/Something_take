@@ -1,5 +1,9 @@
 package com.company.persistence;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -47,6 +51,59 @@ public class CartDAOImpl implements CartDAO{
 		sqlSession.delete(namespace+".delCart", cvo);
 		System.out.println("-- DAOImpl : delCart() 실행 완료");
 	} // delCart()
+
+	///////////////////////////////////////////////////////////////////////
+
+	/* 메뉴 추가 메서드 */
+	@Override
+	public int addMenu(String email, String menu) throws Exception {
+		System.out.println("-- DAOImpl : addMemu() 실행");
+		int check = 0;
+		System.out.println("@@@ menu : " + menu);
+		switch (menu) {
+			case "americano":
+				check = sqlSession.update(namespace+".AMERICANO", email);
+				return check;
+			case "espresso":
+				check = sqlSession.update(namespace+".ESPRESSO", email);
+				return check;
+			case "caffelatte":
+				check = sqlSession.update(namespace+".CAFFELATTE", email);
+				return check;
+			case "cappuccino":
+				check = sqlSession.update(namespace+".CAPPUCCINO", email);
+				return check;
+			case "greentealatte":
+				check = sqlSession.update(namespace+".GREENTEA_LATTE", email);
+				return check;
+			default:
+				check = sqlSession.update(namespace+".LEMONADE", email);
+				return check;
+		} // switch
+	} // addMenu()
+
+	///////////////////////////////////////////////////////////////////////
+
+	/* 카트 조회 메서드 */
+	@Override
+	public List<CartVO> getCart(String email) throws Exception {
+		System.out.println("-- DAOImpl : getCart() 실행");
+		List<CartVO> cartList = sqlSession.selectList(namespace+".getCart", email);
+		System.out.println("-- DAOImpl : getCart() 실행 완료");
+		return cartList;
+	} // getCart()
+
+	///////////////////////////////////////////////////////////////////////
+
+	/* 총 갯수 조회 메서드 */
+	@Override
+	public int totalNum(String email) throws Exception {
+		int total = 0;
+		System.out.println("-- DAOImpl : totalNum() 실행");
+		total = sqlSession.selectOne(namespace+".totalNum", email);
+		System.out.println("-- DAOImpl : totalNum() 실행 완료");
+		return total;
+	} // totalNum()
 
 	///////////////////////////////////////////////////////////////////////
 

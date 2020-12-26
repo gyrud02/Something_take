@@ -83,38 +83,58 @@
 			<div class="container">
 				<!-- Start Atribute Navigation -->
 				<div class="attr-nav">
+                     
 					<ul>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-shopping-bag"></i>
-                                    <span class="badge">3</span>
-                                </a>
+                                    <span class="badge">${total}</span>
+                           	</a>
+                            
+	                    	<c:forEach items="${cartList}" var="cartList">
 							<ul class="dropdown-menu cart-list">
-								<li>
-									<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/assets/images/thumb01.jpg" class="cart-thumb" alt="" /></a>
-									<h6><a href="#">Delica omtantur </a></h6>
-									<p class="m-top-10">2x - <span class="price">$99.99</span></p>
-								</li>
-								<li>
-									<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/assets/images/thumb01.jpg" class="cart-thumb" alt="" /></a>
-									<h6><a href="#">Delica omtantur </a></h6>
-									<p class="m-top-10">2x - <span class="price">$99.99</span></p>
-								</li>
-								<li>
-									<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/assets/images/thumb01.jpg" class="cart-thumb" alt="" /></a>
-									<h6><a href="#">Delica omtantur </a></h6>
-									<p class="m-top-10">2x - <span class="price">$99.99</span></p>
-								</li>
-								<!---- More List ---->
+									<li>
+										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/Me-americano.jpg" class="cart-thumb" alt="" /></a>
+										<h6><a href="#">${cartList.americano}</a></h6>
+										<p class="m-top-10"><b>갯수 :  </b><span class="price">${cartList.cartStock1}</span></p>
+									</li>
+									<li>
+										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/espresso.jpg" class="cart-thumb" alt="" /></a>
+										<h6><a href="#">${cartList.espresso}</a></h6>
+										<p class="m-top-10"><b>갯수 :  </b><span class="price">${cartList.cartStock2}</span></p>
+									</li>
+									<li>
+										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/caffelatte.jpg" class="cart-thumb" alt="" /></a>
+										<h6><a href="#">${cartList.caffelatte}</a></h6>
+										<p class="m-top-10"><b>갯수 :  </b><span class="price">${cartList.cartStock3}</span></p>
+									</li>
+									<li>
+										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/cappuccino.jpg" class="cart-thumb" alt="" /></a>
+										<h6><a href="#">${cartList.cappuccino}</a></h6>
+										<p class="m-top-10"><b>갯수 :  </b><span class="price">${cartList.cartStock4}</span></p>
+									</li>
+									<li>
+										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/greentea_latte.jpg" class="cart-thumb" alt="" /></a>
+										<h6><a href="#">${cartList.greentea_latte}</a></h6>
+										<p class="m-top-10"><b>갯수 :  </b><span class="price">${cartList.cartStock5}</span></p>
+									</li>
+									<li>
+										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/lemonade.jpg" class="cart-thumb" alt="" /></a>
+										<h6><a href="#">${cartList.lemonade}</a></h6>
+										<p class="m-top-10"><b>갯수 :  </b><span class="price">${cartList.cartStock6}</span></p>
+									</li>
+							
 								<li class="total">
 									<span class="pull-right"><strong>Total</strong>: $0.00</span>
 									<a href="#" class="btn btn-cart">주문</a>
 								</li>
 							</ul>
-						</li>
+							</c:forEach>
+								
 						<li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
 						<li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
 					</ul>
+					
 				</div>
 				<!-- End Atribute Navigation -->
 
