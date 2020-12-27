@@ -97,7 +97,7 @@
 	 <c:when test="${sessionScope.email == null}" >
 	   <script type="text/javascript">
 		 alert("로그인 시 사용 가능한 페이지입니다.");
-		 location.href="Sign-in.me";
+		 location.href="sign-in.me";
 	  </script>
 	 </c:when>
 	 
@@ -111,7 +111,7 @@
 					</div>	
 					<div class="head_title_1 text-left">
 
-	      <!-------------------------------------------- [form태그 시작] -------------------------------------------------------->
+<!-------------------------------------------- [form태그 시작] -------------------------------------------------------->
 				      <form class="member_reFr" action="member/modify.post" method="post" id="modify" onsubmit="modify_chk()">
 	
 						      <div class="js-form-message form-group">
@@ -191,7 +191,7 @@
 						      </div>
 						      
 				      </form>
-	      <!-------------------------------------------- [form태그 끝] -------------------------------------------------------->
+<!-------------------------------------------- [form태그 끝] -------------------------------------------------------->
 					</div>
 	
 					</div> <!-- class="col" -->

@@ -63,8 +63,8 @@
 						</div>
 
 						<div class="home_btns m-top-40">
-							<a href="Menu.pm" class="btn btn-primary m-top-20">주문하러가기</a>
-							<a href="Sign-up.me" class="btn btn-default m-top-20">회원가입</a>
+							<a href="menu" class="btn btn-primary m-top-20">주문하러가기</a>
+							<a href="sign-up.me" class="btn btn-default m-top-20">회원가입</a>
 						</div>
 					</div>
 				</div>

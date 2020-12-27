@@ -95,38 +95,44 @@
 							<ul class="dropdown-menu cart-list">
 									<li>
 										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/Me-americano.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="#">${cartList.americano}</a></h6>
-										<p class="m-top-10"><b>갯수 :  </b><span class="price">${cartList.cartStock1}</span></p>
+										<h6><a href="#">아메리카노</a></h6>
+										<p class="m-top-10"><span class="price">${cartList.cartStock1}<b>개</b></span></p>
 									</li>
 									<li>
 										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/espresso.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="#">${cartList.espresso}</a></h6>
-										<p class="m-top-10"><b>갯수 :  </b><span class="price">${cartList.cartStock2}</span></p>
+										<h6><a href="#">에스프레소</a></h6>
+										<p class="m-top-10"><span class="price">${cartList.cartStock2}<b>개</b></span></p>
 									</li>
 									<li>
 										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/caffelatte.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="#">${cartList.caffelatte}</a></h6>
-										<p class="m-top-10"><b>갯수 :  </b><span class="price">${cartList.cartStock3}</span></p>
+										<h6><a href="#">카페라떼</a></h6>
+										<p class="m-top-10"><span class="price">${cartList.cartStock3}<b>개</b></span></p>
 									</li>
 									<li>
 										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/cappuccino.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="#">${cartList.cappuccino}</a></h6>
-										<p class="m-top-10"><b>갯수 :  </b><span class="price">${cartList.cartStock4}</span></p>
+										<h6><a href="#">카푸치노</a></h6>
+										<p class="m-top-10"><span class="price">${cartList.cartStock4}<b>개</b></span></p>
 									</li>
 									<li>
 										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/greentea_latte.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="#">${cartList.greentea_latte}</a></h6>
-										<p class="m-top-10"><b>갯수 :  </b><span class="price">${cartList.cartStock5}</span></p>
+										<h6><a href="#">녹차라떼</a></h6>
+										<p class="m-top-10"><span class="price">${cartList.cartStock5}<b>개</b></span></p>
 									</li>
 									<li>
 										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/lemonade.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="#">${cartList.lemonade}</a></h6>
-										<p class="m-top-10"><b>갯수 :  </b><span class="price">${cartList.cartStock6}</span></p>
+										<h6><a href="#">레모네이드</a></h6>
+										<p class="m-top-10"><span class="price">${cartList.cartStock6}<b>개</b></span></p>
 									</li>
 							
 								<li class="total">
-									<span class="pull-right"><strong>Total</strong>: $0.00</span>
-									<a href="#" class="btn btn-cart">주문</a>
+									<span class="pull-right"><strong>Total</strong>: ${total}<b>개</b></span>
+								
+								<c:choose>
+									<c:when test="${sessionScope.email != null}">
+										<a href="myCart" class="btn btn-cart">주문</a>
+									</c:when>
+								</c:choose>	
+								
 								</li>
 							</ul>
 							</c:forEach>
@@ -162,11 +168,11 @@
 						<c:when test="${sessionScope.email != null}">
 							<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 								<li><a href="index.do#contact">Contact</a></li>
-								<li><a href="About.do">About</a></li>
-								<li><a href="Sign-up.me">Sign-up</a></li>
-								<li><a href="Board.bd">Foundation</a></li>
-								<li><a href="Interior.bd">Interior</a></li>
-								<li><a href="MemberShip.pm">MemberShip</a></li>
+								<li><a href="about.do">About</a></li>
+								<li><a href="sign-up.me">Sign-up</a></li>
+								<li><a href="board.bd">Foundation</a></li>
+								<li><a href="interior.bd">Interior</a></li>
+								<li><a href="memberShip.pm">MemberShip</a></li>
 							</ul>
 						</c:when>
 					
@@ -174,12 +180,12 @@
 						<c:otherwise>
 							<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 								<li><a href="index.do#contact">Contact</a></li>
-								<li><a href="About.do">About</a></li>
-								<li><a href="Sign-up.me">Sign-up</a></li>
-								<li><a href="Sign-in.me">Sign-in</a></li>
-								<li><a href="Board.bd">Foundation</a></li>
-								<li><a href="Interior.bd">Interior</a></li>
-								<li><a href="MemberShip.pm">MemberShip</a></li>
+								<li><a href="about.do">About</a></li>
+								<li><a href="sign-up.me">Sign-up</a></li>
+								<li><a href="sign-in.me">Sign-in</a></li>
+								<li><a href="board.bd">Foundation</a></li>
+								<li><a href="interior.bd">Interior</a></li>
+								<li><a href="memberShip.pm">MemberShip</a></li>
 							</ul>
 						</c:otherwise>
 					</c:choose>
@@ -198,7 +204,7 @@
 					<%-- 로그인 X --%>
 					<c:when test="${sessionScope.email == null}">
 						<div class="widget">
-							<h6 class="title"><a href="Sign-in.me">로그인</a> 후 사용 가능합니다.</h6>
+							<h6 class="title"><a href="sign-in.me">로그인</a> 후 사용 가능합니다.</h6>
 							<ul class="link">
 							</ul>
 						</div>					
@@ -209,11 +215,11 @@
 						<div class="widget">
 							<h6 class="title">고객 페이지</h6>
 							<ul class="link">
-								<li><a href="Profile.me">회원정보</a></li>
+								<li><a href="profile.me">회원정보</a></li>
 								<li><a href="#">주문 내역</a></li>
 								<li><a href="membership.me">멤버십 내역</a></li>
 								<li><a href="member/sign-out.post">로그아웃</a></li>
-								<li><a href="Drop-out.me">회원탈퇴</a></li>
+								<li><a href="drop-out.me">회원탈퇴</a></li>
 							</ul>
 						</div> <!-- .widget -->
 		

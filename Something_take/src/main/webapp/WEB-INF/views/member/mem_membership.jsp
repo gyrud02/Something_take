@@ -13,7 +13,7 @@
 		<c:when test="${sessionScope.email == null }">
 			<script type="text/javascript">
 				alert("로그인 시 사용 가능한 페이지입니다.");
-				location.href="Sign-in.me";
+				location.href="sign-in.me";
 			</script>
 		</c:when>
 		
