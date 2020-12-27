@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -22,7 +23,7 @@
 					url: "member/addMenu",
 					success:function(check, textStatus){
 						alert("카트에 담겼습니다.");
-						location.href = "myCart";
+						location.href = "newCart";
 					}, // success
 					error:function(textStatus){
 						alert("오류가 발생하였습니다.");
@@ -41,7 +42,7 @@
 					url: "member/addMenu",
 					success:function(check, textStatus){
 						alert("카트에 담겼습니다.");
-						location.href = "myCart";
+						location.href = "newCart";
 					}, // success
 					error:function(textStatus){
 						alert("오류가 발생하였습니다.");
@@ -60,7 +61,7 @@
 					url: "member/addMenu",
 					success:function(check, textStatus){
 						alert("카트에 담겼습니다.");
-						location.href = "myCart";
+						location.href = "newCart";
 					}, // success
 					error:function(textStatus){
 						alert("오류가 발생하였습니다.");
@@ -79,7 +80,7 @@
 					url: "member/addMenu",
 					success:function(check, textStatus){
 						alert("카트에 담겼습니다.");
-						location.href = "myCart";
+						location.href = "newCart";
 					}, // success
 					error:function(textStatus){
 						alert("오류가 발생하였습니다.");
@@ -98,7 +99,7 @@
 					url: "member/addMenu",
 					success:function(check, textStatus){
 						alert("카트에 담겼습니다.");
-						location.href = "myCart";
+						location.href = "newCart";
 					}, // success
 					error:function(textStatus){
 						alert("오류가 발생하였습니다.");
@@ -117,7 +118,7 @@
 					url: "member/addMenu",
 					success:function(check, textStatus){
 						alert("카트에 담겼습니다.");
-						location.href = "myCart";
+						location.href = "newCart";
 					}, // success
 					error:function(textStatus){
 						alert("오류가 발생하였습니다.");
@@ -136,7 +137,7 @@
 					url: "member/addMenu",
 					success:function(check, textStatus){
 						alert("카트에 담겼습니다.");
-						location.href = "myCart";
+						location.href = "newCart";
 					}, // success
 					error:function(textStatus){
 						alert("오류가 발생하였습니다.");
@@ -150,6 +151,19 @@
 </script>
 <body>
 
+ <br><br><br><br>
+
+ <c:choose>
+ 
+	 <c:when test="${sessionScope.email == null}" >
+	   <script type="text/javascript">
+		 alert("로그인 시 사용 가능한 페이지입니다.");
+		 location.href="sign-in.me";
+	  </script>
+	 </c:when>
+	 
+	 <c:otherwise>
+	 
 <!------------------------------------ [갤러리 영역] ------------------------------------------->
 
 		<section id="portfolio">
@@ -271,6 +285,9 @@
 			</div> <!--End off container -->
 		</section>
 <!------------------------------------ [갤러리 영역] ------------------------------------------->
+
+	 </c:otherwise>
+ </c:choose>
 
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.company.main;
 
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -205,4 +206,5 @@ public class MemberController {
 	} // addMenu()
 	
 	/////////////////////////////////////////////////////////
+	
 }
