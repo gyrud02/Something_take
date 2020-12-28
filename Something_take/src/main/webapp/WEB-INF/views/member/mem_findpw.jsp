@@ -6,16 +6,32 @@
 <head>
 </head>
 <script type="text/javascript">
- $(function pw_chk(){
-	var regMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/) // 이메일
-	 
-	$(".btn-primary").click(function(){
-		
-		if($("#email").val() == "" || !(regMail.test( $("#email").val() )) ){ 
-			alert("이메일을 올바르게 입력하세요."); $("#email").focus(); return false; } // 이메일
-		
-	}); // click()
- }); // pw_chk()
+
+	/* 유효성 검사 */
+	$(function pw_chk(){
+		var regMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/) // 이메일
+		$(".btn-primary").click(function(){
+			if($("#email").val() == "" || !(regMail.test( $("#email").val() )) ){ 
+				alert("이메일을 올바르게 입력하세요."); $("#email").focus(); return false; } // 이메일
+		}); // click()
+	}); // pw_chk()
+
+	/* 인증 메일 발송  */
+	$(function findMail(){
+		$.ajax({
+				type:"GET",
+				dataType:"text",
+				data:{ email: $("#email").val() },
+				url: "member/findEmail",
+				success:function(textStatus){
+					alert("메일을 발송했습니다.");
+				}, // success
+				error:function(textStatus){
+					alert("메일 발송 중 오류가 발생했습니다.");
+				} // error
+		}); // ajax
+	}); // findMail()
+ 
 </script>
 <body>
 
@@ -36,7 +52,7 @@
 					        <b>[ <a href="Sign-up.me">회원가입</a> 페이지로 이동하기 ]</b></p>
 						</div>	
 
-					      <form class="sign_upClass" method="post" onsubmit="pw_chk()">
+					      <form class="sign_upClass" onsubmit="pw_chk()">
 							
 					      <div class="js-form-message form-group text-left">
 					        <label class="form-label" for="email">이메일</label>
@@ -53,7 +69,7 @@
 					          	<a href="Sign-in.me">로그인</a>
 					        </div> 
 					        <div class="col-5 text-right">
-					          <button type="submit" class="btn btn-primary">전송</button>
+					          <input type="button" class="btn btn-primary" onclick="findMail()">전송</button>
 					        </div>
 					      </div>
 					      
