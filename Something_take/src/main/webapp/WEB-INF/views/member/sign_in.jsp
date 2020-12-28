@@ -4,40 +4,52 @@
 <html>
 <head>
 </head>
+
+<!----------- [jquery Cookie 관련 링크 ] ----------->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
+<!----------- [jquery Cookie 관련 링크 ] ----------->
+
 <script type="text/javascript">
 
+	/* 쿠키 (아이디 가져오기) */
+	$(document).ready(function(){
+		var emailCK = $.cookie("emailck");
+		if(emailCK != null){
+			$("#email").val(emailCK);
+			$("#rememberCk").prop("checked", true);
+		}else{
+			$("#rememberCk").prop("checked", false);
+		}
+	}); // ready()
+
+	/* 유효성 체크 */
 	$(function login_chk(){
-		
 		$(".btn-primary").click(function (){
-
 			var regMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/) // 이메일
-
+	
 			// 이메일
 			if($("#email").val() == ""){
-				alert("이메일을 입력하세요.");
-				$("#email").focus();
-				return false;
-			}
-
+				alert("이메일을 입력하세요."); $("#email").focus(); return false; }
+	
 			// 이메일 유효성 검사
 			if( !(regMail.test( $("#email").val() )) ){
-				alert("이메일 형식에 맞게 입력하세요.");
-				$("#email").focus();
-				return false;
-			}
+				alert("이메일 형식에 맞게 입력하세요."); $("#email").focus(); return false; }
 			
 			// 비밀번호
 			if($("#pwd").val() == ""){
-				alert("비밀번호를 입력하세요.");
-				$("#pwd").focus();
-				return false;
-			}
-
-		}); // click()
-	}); // modify_chk()
+				alert("비밀번호를 입력하세요."); $("#pwd").focus(); return false; }
 	
+			/* 쿠키 (아이디 설정)  */
+			if($("#rememberCk").is(":checked") == true){
+				var email = $("#email").val();
+				$.cookie('emailck', email, {expires: 7, path: 'http://localhost:8081/main/sign-in.me'}); // 7일 동안 기억하기
+			}else{ $.removeCookie("emailck"); }
+					
+		}); // click()
+	}); // login_chk()
+
 </script>
-<body data-spy="scroll" data-target=".navbar-collapse">
+<body>
 
 	<br><br><br><br>
 
@@ -116,7 +128,7 @@
 					
 				    	  <div class="row align-items-center mb-4">
 					          <div class="custom-control custom-checkbox d-flex align-items-mb-5 text-muted">
-					            <input type="checkbox" class="" id="rememberCheck" name="rememberCheck">
+					            <input type="checkbox" class="" id="rememberCk" name="rememberCk">
 					            <label class="font-subhead custom-control-label" for="termsCheckbox" id="">
 					            &nbsp;이메일 기억하기</label>
 					          </div>

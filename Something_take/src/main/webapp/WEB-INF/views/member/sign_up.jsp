@@ -60,6 +60,9 @@
 							$(".spanT").css("color", "#ff4084");
 							$(".spanT").show();
 
+							$("#sendBtn").click(function(){
+								sendMail(); });
+
 							if(email.value.length == 0){
 								$(".spanT").hide(); $(".spanF").hide(); $(".spanEmpty").hide();
 								return false;}
@@ -156,6 +159,22 @@
 		}); // ajax
 	} // pwd_chk()
 	
+	/* 인증 메일 발송  */
+	function sendMail(){
+		$.ajax({
+				type:"GET",
+				dataType:"text",
+				data:{ email: $("#email").val() },
+				url: "member/sendEmail",
+				success:function(textStatus){
+					alert("메일을 발송했습니다.");
+				}, // success
+				error:function(textStatus){
+					alert("메일 발송 중 오류가 발생했습니다.");
+				} // error
+		}); // ajax
+	} // sendMail()
+	
 </script>
 <body>
 
@@ -168,7 +187,7 @@
 					<div class="head_title_1 text-center">
 						<h2>Sign-up</h2>
 							<div class="separator_auto"></div>
-							<p>아래 입력란에 데이터를 모두 입력해주세요.</p>
+							<p>아래 입력란을 모두 입력해주세요.</p>
 					</div>
 					
 					<br>
@@ -212,6 +231,7 @@
 					        <label class="form-label" for="email">이메일 </label>
 					        <input type="email" class="form-control" name="email" id="email" 
 					        		placeholder="가입 시 사용할 이메일을 입력하세요." onkeyup="emailCheck(event)" required>
+					        <input type="button" class="btn btn-primary" value="전송" id="sendBtn">
 					      </div>
 					      <div class="js-form-message form-group">
 					      		<span class="spanEmpty">&nbsp;이메일 형식에 맞게 입력하세요.</span>

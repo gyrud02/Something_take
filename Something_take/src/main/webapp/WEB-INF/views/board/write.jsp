@@ -8,27 +8,22 @@
 <body data-spy="scroll" data-target=".navbar-collapse" class="lightbg">
 <script type="text/javascript">
 
+	/* 유효성 검사 */
 	$(function write_chk(){
 		$("#reg_btn").click(function(){
 
 			// 제목
 			if($("#title").val() == ""){
-				alert("제목을 입력하세요.");
-				$("#title").focus();
-				return false;
-			}
-
+				alert("제목을 입력하세요."); $("#title").focus(); return false; }
+			
 		}); // click()
 	}); // write_chk()
 
-	// 글 작성 중 목록 버튼 눌렀을 때
+	/* 작성 중 목록 버튼 */
 	function writing(){
-
 		var ing = confirm("게시판 목록으로 돌아가시겠습니까? (작성중인 글은 저장되지않습니다.)");
-
 		$("#list_btn").click(function(){
 			if(false){
-
 			}else if(true){
 				location.href="Board.bd";
 				alert("글 작성이 취소되었습니다.");
