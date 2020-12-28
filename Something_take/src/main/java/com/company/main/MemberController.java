@@ -1,15 +1,17 @@
 package com.company.main;
 
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,13 +23,21 @@ import com.company.domain.MemberVO;
 import com.company.service.CartService;
 import com.company.service.MemberService;
 
+
 @Controller
 @RequestMapping(value = "/member/*")
 public class MemberController {
 
+	@Autowired
+	private JavaMailSender mailSender; // 메일 전송을 위한 객체 DI
+
+	/////////////////////////////////////////////////////////
+
 	private static final Logger logger =
 			LoggerFactory.getLogger(MemberController.class);
 	
+	/////////////////////////////////////////////////////////
+
 	@Inject 
 	private MemberService service;
 	
@@ -48,6 +58,25 @@ public class MemberController {
 	
 	/////////////////////////////////////////////////////////
 
+	/* 가입 시 이메일 전송 메소드 */
+	@RequestMapping(value = "/sendEmail", method = RequestMethod.GET)
+	public String sendEmail(String email, HttpServletResponse response) throws Exception {
+		logger.info("-- 회원가입 인증 메일 발송");
+		MimeMessage message = mailSender.createMimeMessage();
+	    MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+	    messageHelper.setFrom("gyrud6744@gmail.com"); // 보내는 사람 생략 시 작동 X
+	    messageHelper.setTo(email); // 받는 사람
+	    messageHelper.setSubject("Something_take(썸띵테이크) 회원 가입 인증메일입니다."); // 메일 제목 (생략 가능)
+	    messageHelper.setText("Something_take(썸띵테이크) 회원 가입 인증메일입니다."); // 메일 내용
+	    mailSender.send(message);
+	    
+	    response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+	    return null;
+	} // sendEmail()
+	
+	/////////////////////////////////////////////////////////
+
 	/* 로그인 동작 메소드 */
 	@RequestMapping(value = "/signIn.post", method = RequestMethod.POST)
 	public String signInPOST(MemberVO vo, HttpSession session) throws Exception{
@@ -57,7 +86,7 @@ public class MemberController {
 		logger.info("@@@ DBvo : " + DBvo);
 		
 		if(DBvo == null) { // 로그인 실패 시
-			return "redirect:../Sign-in.me";
+			return "redirect:../sign-in.me";
 		}else if(DBvo != null) { // 로그인 성공 시
 			session.setAttribute("email", DBvo.getEmail());
 			cservice.addCart(vo);
@@ -108,7 +137,7 @@ public class MemberController {
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
 		out.println("alert('비밀번호가 수정되었습니다. 다시 로그인 해주세요.');");
-		out.println("location.href='../Sign-in.me'");
+		out.println("location.href='../sign-in.me'");
 		out.println("</script>");
 		out.flush();
 		return null;
@@ -116,7 +145,7 @@ public class MemberController {
 	
 	/////////////////////////////////////////////////////////
 	
-	/* 회원탈퇴 동작 메소드 */
+	/* 회원 탈퇴 동작 메소드 */
 	@RequestMapping(value = "/dropOut.post", method = RequestMethod.POST)
 	public String dropOutPOST(MemberVO vo,
 							  HttpServletResponse response, 
@@ -144,7 +173,7 @@ public class MemberController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('비밀번호가 틀립니다. 비밀번호를 확인해주세요.');");
-			out.println("location.href='../Drop-out.me'");
+			out.println("location.href='../drop-out.me'");
 			out.println("</script>");
 			out.flush();
 		}
@@ -153,6 +182,25 @@ public class MemberController {
 	
 	/////////////////////////////////////////////////////////
 
+	/* 비밀번호 찾기 이메일 전송 메소드 */
+	@RequestMapping(value = "/findEmail", method = RequestMethod.GET)
+	public String findpwEmail(String email, HttpServletResponse response) throws Exception {
+		logger.info("-- 회원가입 인증 메일 발송");
+		MimeMessage message = mailSender.createMimeMessage();
+	    MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+	    messageHelper.setFrom("gyrud6744@gmail.com"); // 보내는 사람 생략 시 작동 X
+	    messageHelper.setTo(email); // 받는 사람
+	    messageHelper.setSubject("Something_take(썸띵테이크) 메일입니다."); // 메일 제목 (생략 가능)
+	    messageHelper.setText("Something_take(썸띵테이크) 메일입니다."); // 메일 내용
+	    mailSender.send(message);
+	    
+	    response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+	    return null;
+	} // sendEmail()
+	
+	/////////////////////////////////////////////////////////
+	
 	/* 이메일 중복 확인 메서드 */
 	@RequestMapping(value = "emailDupl", method = RequestMethod.GET)
 	public String duplicate(@RequestParam("email") String email,
