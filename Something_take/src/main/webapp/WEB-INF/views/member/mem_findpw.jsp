@@ -23,8 +23,12 @@
 				dataType:"text",
 				data:{ email: $("#email").val() },
 				url: "member/findEmail",
-				success:function(textStatus){
-					alert("메일을 발송했습니다.");
+				success:function(result, textStatus){
+					if(result == true){
+						alert("메일을 발송했습니다.");
+					}else{
+						alert("가입한 회원이 없습니다.");
+					}
 				}, // success
 				error:function(textStatus){
 					alert("메일 발송 중 오류가 발생했습니다.");
@@ -69,7 +73,7 @@
 					          	<a href="Sign-in.me">로그인</a>
 					        </div> 
 					        <div class="col-5 text-right">
-					          <input type="button" class="btn btn-primary" onclick="findMail()">전송</button>
+					          <input type="button" class="btn btn-primary" onclick="findMail()" value="전송">
 					        </div>
 					      </div>
 					      

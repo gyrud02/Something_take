@@ -30,7 +30,7 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	/* 회원가입 메서드 */
 	@Override
-	public void signUp(MemberVO vo) {
+	public void signUp(MemberVO vo) throws Exception{
 		System.out.println("-- DAOImpl : signUp() 실행 ");
 		sqlSession.selectOne(namespace+".signUp", vo);
 		System.out.println("-- DAOImpl : signUp() 실행 완료 ");
@@ -40,7 +40,7 @@ public class MemberDAOImpl implements MemberDAO{
 
 	/* ID에 맞는 회원 정보를 가져오는 메서드 */
 	@Override
-	public MemberVO getMem(String email) {
+	public MemberVO getMem(String email) throws Exception{
 		System.out.println("-- DAOImpl : TEST 파일에서 getMem() 호출 !");
 		MemberVO vo = sqlSession.selectOne(namespace + ".getMem", email); 
 		return vo;
@@ -50,9 +50,8 @@ public class MemberDAOImpl implements MemberDAO{
 	
 	/* 로그인 메서드 */
 	@Override
-	public MemberVO signIn(String email, String pwd) {
+	public MemberVO signIn(String email, String pwd) throws Exception{
 		System.out.println("-- DAOImpl : signIn() 실행 ");
-		
 		Map<String, Object> paramMap = new HashMap<String, Object>();
 		
 		// 저장할 때 key값을 테이블의 컬럼명으로 저장한다. -> Mapper에서 바로 전달될 수 있도록 처리한다.
@@ -71,7 +70,6 @@ public class MemberDAOImpl implements MemberDAO{
 	/* 회원탈퇴 메서드 */
 	@Override
 	public int dropOut(MemberVO vo) throws Exception {
-		
 		int check = 0;
 		System.out.println("-- DAOImpl : dropOut() 실행 ");
 //		System.out.println("@@@ check : " + check);
@@ -84,12 +82,10 @@ public class MemberDAOImpl implements MemberDAO{
 
 	/* 회원 정보 수정 메소드 */
 	@Override
-	public int modify(MemberVO vo) {
-		
+	public int modify(MemberVO vo) throws Exception {
 		System.out.println("-- DAOImpl : modify() 실행 ");
 		int check = 0; 
 		check = sqlSession.delete(namespace+".modify", vo);
-//		System.out.println("@@@ check : " + check);
 		
 		if(check == 1) {
 			System.out.println("-- 회원 정보 수정 완료 ");
@@ -106,10 +102,8 @@ public class MemberDAOImpl implements MemberDAO{
 	/* 멤버십 정보를 가져오는 메서드 */
 	@Override
 	public MemberVO getMembership(String email) throws Exception {
-
 		System.out.println("-- DAOImpl : getMembership() 실행 ");
 		MemberVO vo = sqlSession.selectOne(namespace+".getMembership", email);
-//		System.out.println("@@@ vo : " + vo);
 		System.out.println("-- DAOImpl : getMembership() 실행 완료 ");
 		return vo;
 	} // getMembership
@@ -119,10 +113,8 @@ public class MemberDAOImpl implements MemberDAO{
 	/* 전체 회원 조회 메서드 */
 	@Override
 	public List<MemberVO> getMembers() throws Exception {
-
 		System.out.println("-- DAOImpl : getMembers() 실행 ");
 		List memberList = sqlSession.selectList(namespace+".getMembers");
-//		System.out.println("@@ memberList : "+ memberList);
 		System.out.println("-- DAOImpl : getMembers() 실행 완료");
 		return memberList;
 	} // getMembers()
@@ -133,10 +125,8 @@ public class MemberDAOImpl implements MemberDAO{
 	@Override
 	public int duplicate(String email) throws Exception {
 		int check = 0;
-//		System.out.println("@@ email : " + email);
 		System.out.println("-- DAOImpl : duplicate() 실행");
 		check = sqlSession.selectOne(namespace+".duplicate", email);
-//		System.out.println("@@ check : " + check);
 		System.out.println("-- DAOImpl : duplicate() 실행 완료");
 		return check;
 	} // duplicate()
@@ -146,13 +136,22 @@ public class MemberDAOImpl implements MemberDAO{
 	/* 멤버십 결제 메서드 */
 	@Override
 	public void payment(MemberVO vo) throws Exception {
-		
 		System.out.println("-- DAOImpl : payment() 실행");
 		sqlSession.insert(namespace+".payment", vo);
 		System.out.println("-- DAOImpl : payment() 실행 완료");
-		
 	} // payment
+
+	/////////////////////////////////////////////////////////////////////
+
+	/* 비밀번호 찾기 메서드 */
+	@Override
+	public String getPassword(String email) throws Exception {
+		System.out.println("-- DAOImpl : getPassword() 실행");
+		String pw = sqlSession.selectOne(namespace+".getPassword", email);
+		System.out.println("-- DAOImpl : getPassword() 실행 완료");
+		return pw;
+	} // getPassword()
 	
 	/////////////////////////////////////////////////////////////////////
-	
+
 }

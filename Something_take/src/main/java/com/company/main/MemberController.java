@@ -62,16 +62,32 @@ public class MemberController {
 	@RequestMapping(value = "/sendEmail", method = RequestMethod.GET)
 	public String sendEmail(String email, HttpServletResponse response) throws Exception {
 		logger.info("-- 회원가입 인증 메일 발송");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		// --------------------- 메일 발송 --------------------- //
 		MimeMessage message = mailSender.createMimeMessage();
 	    MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
 	    messageHelper.setFrom("gyrud6744@gmail.com"); // 보내는 사람 생략 시 작동 X
 	    messageHelper.setTo(email); // 받는 사람
 	    messageHelper.setSubject("Something_take(썸띵테이크) 회원 가입 인증메일입니다."); // 메일 제목 (생략 가능)
-	    messageHelper.setText("Something_take(썸띵테이크) 회원 가입 인증메일입니다."); // 메일 내용
-	    mailSender.send(message);
 	    
-	    response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
+	    // --------------------- 인증 번호 --------------------- //
+	    int num1 = 0; int num2 = 0; int num3 = 0; int num4 = 0;
+	    for(int i=0; i<=9; i++) {
+	    	num1 = (int)Math.random();
+	    	num2 = (int)Math.random();
+	    	num3 = (int)Math.random();
+	    	num4 = (int)Math.random();
+	    }
+	    // --------------------- 인증 번호 --------------------- //
+
+	    String content = "< 가입 인증 번호는 " + num1 + num2 + num3 + num4 + " 입니다. >";
+	    messageHelper.setText(content); // 메일 내용
+	    mailSender.send(message);
+	    // --------------------- 메일 발송 --------------------- //
+	    int result = num1 + num2 + num3 + num4;
+	    out.println(result);
 	    return null;
 	} // sendEmail()
 	
@@ -186,16 +202,29 @@ public class MemberController {
 	@RequestMapping(value = "/findEmail", method = RequestMethod.GET)
 	public String findpwEmail(String email, HttpServletResponse response) throws Exception {
 		logger.info("-- 회원가입 인증 메일 발송");
-		MimeMessage message = mailSender.createMimeMessage();
-	    MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
-	    messageHelper.setFrom("gyrud6744@gmail.com"); // 보내는 사람 생략 시 작동 X
-	    messageHelper.setTo(email); // 받는 사람
-	    messageHelper.setSubject("Something_take(썸띵테이크) 메일입니다."); // 메일 제목 (생략 가능)
-	    messageHelper.setText("Something_take(썸띵테이크) 메일입니다."); // 메일 내용
-	    mailSender.send(message);
-	    
-	    response.setContentType("text/html; charset=UTF-8");
+		String pw = service.getFindPw(email);
+		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
+		
+		if(pw != null) {
+			boolean result = true;
+			out.println(result);
+			
+			// --------------------- 메일 발송 --------------------- //
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+			messageHelper.setFrom("gyrud6744@gmail.com"); // 보내는 사람 생략 시 작동 X
+			messageHelper.setTo(email); // 받는 사람
+			messageHelper.setSubject("Something_take(썸띵테이크) 메일입니다."); // 메일 제목 (생략 가능)
+			String content = "< 고객님의 비밀번호는 [ " + pw + " ] 입니다. >";
+			messageHelper.setText(content); // 메일 내용
+			mailSender.send(message);
+			// --------------------- 메일 발송 --------------------- //
+			
+		}else{
+			boolean result = false;
+			out.println(result);
+		} // if
 	    return null;
 	} // sendEmail()
 	

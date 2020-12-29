@@ -166,8 +166,12 @@
 				dataType:"text",
 				data:{ email: $("#email").val() },
 				url: "member/sendEmail",
-				success:function(textStatus){
+				success:function(result, textStatus){
 					alert("메일을 발송했습니다.");
+
+				//	if(result == ){
+				//	} 
+					
 				}, // success
 				error:function(textStatus){
 					alert("메일 발송 중 오류가 발생했습니다.");

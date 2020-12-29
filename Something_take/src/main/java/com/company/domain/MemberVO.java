@@ -12,8 +12,6 @@ public class MemberVO {
 	private String phone;// 전화번호
 	private Timestamp reg_date; // 가입일자
 	private Timestamp rev_date; // 정보 수정일자
-	private String storedFileName; // 프로필 사진 저장 경로
-	private String originalFileName; // 프로필 사진 기본 저장 경로
 
 	// 결제 관련
 	private String membership_type; // 멤버십명
@@ -33,8 +31,6 @@ public class MemberVO {
 	public Timestamp getMembership_reg_date() {return membership_reg_date;}
 	public Timestamp getMembership_end_date() {return membership_end_date;}
 	public String getMembership_pay() {return membership_pay;}
-	public String getStoredFileName() {return storedFileName;}
-	public String getOriginalFileName() {return originalFileName;}
 
 	// setter
 	public void setIdx(int idx) {this.idx = idx;}
@@ -48,15 +44,13 @@ public class MemberVO {
 	public void setMembership_reg_date(Timestamp membership_reg_date) {this.membership_reg_date = membership_reg_date;}
 	public void setMembership_end_date(Timestamp membership_end_date) {this.membership_end_date = membership_end_date;}
 	public void setMembership_pay(String membership_pay) {this.membership_pay = membership_pay;}
-	public void setStoredFileName(String storedFileName) {this.storedFileName = storedFileName;}
-	public void setOriginalFileName(String originalFileName) {this.originalFileName = originalFileName;}
 	
 	// toString
 	@Override
 	public String toString() {
 		return "MemberVO [idx=" + idx + ", email=" + email + ", pwd=" + pwd + ", name=" + name + ", phone=" + phone
-				+ ", reg_date=" + reg_date + ", rev_date=" + rev_date + ", storedFileName=" + storedFileName
-				+ ", originalFileName=" + originalFileName + ", membership_type=" + membership_type
+				+ ", reg_date=" + reg_date + ", rev_date=" + rev_date + ", storedFileName="
+				+ ", originalFileName=" + ", membership_type=" + membership_type
 				+ ", membership_reg_date=" + membership_reg_date + ", membership_end_date=" + membership_end_date
 				+ ", membership_pay=" + membership_pay + "]";
 	}

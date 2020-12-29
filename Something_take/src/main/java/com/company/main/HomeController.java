@@ -70,7 +70,7 @@ public class HomeController {
 
 	/* 회원가입 페이지로 이동하는 메소드 */
 	@RequestMapping(value = "sign-up.me", method = RequestMethod.GET)
-	public String signUp() {
+	public String sign_Up() {
 		logger.info("-- 회원가입 페이지로 이동");
 		return "member/sign_up.tiles";
 	} // Sign_Up()
@@ -79,7 +79,7 @@ public class HomeController {
 	
 	/* 가입 시 회원 약관 페이지 새 창 띄우는 메소드 */
 	@RequestMapping(value = "agree.me", method = RequestMethod.GET)
-	public String yackwan() {
+	public String agreement() {
 		logger.info("-- 회원 약관 동의 페이지로 이동");
 		return "member/terms_of_mem";
 	} // yackwan()
@@ -88,7 +88,7 @@ public class HomeController {
 
 	/* 로그인 페이지로 이동하는 메소드 */
 	@RequestMapping(value = "sign-in.me", method = RequestMethod.GET)
-	public String signIn() {
+	public String sign_In() {
 		logger.info("-- 로그인 페이지로 이동");
 		return "member/sign_in.tiles";
 	} // signIn()
@@ -97,7 +97,7 @@ public class HomeController {
 	
 	/* 비밀번호 찾기 페이지로 이동하는 메소드 */
 	@RequestMapping(value = "findPw.me", method = RequestMethod.GET)
-	public String findPw() {
+	public String find_Pw() {
 		logger.info("-- 비밀번호 찾기 페이지로 이동");
 		return "member/mem_findpw.tiles";
 	} // findPw()
@@ -106,7 +106,7 @@ public class HomeController {
 
 	/* 게시판 페이지로 이동 */
 	@RequestMapping(value = "board.bd", method = RequestMethod.GET)
-	public String getBoard(Model model, Criteria cri) throws Exception {
+	public String board(Model model, Criteria cri) throws Exception {
 		int count = 0;
 		logger.info("-- 게시판 페이지로 이동");
 		List<BoardVO> boardList = bservice.listCri(cri);
@@ -146,7 +146,7 @@ public class HomeController {
 	
 	/* 글 내용 보기 페이지로 이동  */
 	@RequestMapping(value = "content.bd", method = RequestMethod.GET)
-	public String getContent(@RequestParam("bno") int bno, 
+	public String content(@RequestParam("bno") int bno, 
 							Model model) throws Exception{
 		logger.info("-- 게시판 글 내용 보기 페이지로 이동");
 		BoardVO bvo = bservice.read(bno);
@@ -174,7 +174,7 @@ public class HomeController {
 
 	/* 갤러리 게시판 페이지로 이동 */
 	@RequestMapping(value = "interior.bd", method = RequestMethod.GET)
-	public String gallaryBoard() {
+	public String interior() {
 		logger.info("-- 인테리어 게시판 페이지로 이동");
 		return "gallary/interior.tiles";
 	} // gallaryBoard()
@@ -183,7 +183,7 @@ public class HomeController {
 
 	/* 회원정보 페이지로 이동하는 메소드 */
 	@RequestMapping(value = "/profile.me", method = RequestMethod.GET)
-	public String profile(HttpServletRequest request, HttpSession session) throws Exception {
+	public String mem_Profile(HttpServletRequest request, HttpSession session) throws Exception {
 		logger.info("-- 회원정보 페이지로 이동");
 		session = request.getSession();
 		String email = (String)session.getAttribute("email");
@@ -196,7 +196,7 @@ public class HomeController {
 	
 	/* 회원 탈퇴 페이지로 이동하는 메소드 */
 	@RequestMapping(value = "/drop-out.me", method = RequestMethod.GET)
-	public String dropOut() {
+	public String drop_Out() {
 		logger.info("-- 회원탈퇴 페이지로 이동");
 		return "member/mem_delete.tiles";
 	} // dropOut()
@@ -214,7 +214,7 @@ public class HomeController {
 
 	/* 결제 페이지로 이동하는 메소드 */
 	@RequestMapping(value = "memberShip.pm", method = RequestMethod.GET)
-	public String membership() throws Exception{
+	public String memberShip() throws Exception{
 		logger.info("-- 결제 페이지로 이동");
 		return "payment/membership.tiles";
 	} // payment()
