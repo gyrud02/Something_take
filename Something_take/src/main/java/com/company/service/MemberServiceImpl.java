@@ -21,7 +21,6 @@ public class MemberServiceImpl implements MemberService{
 	/* 회원가입 동작 메서드 */
 	@Override
 	public void insertMem(MemberVO vo) throws Exception {
-
 		System.out.println("-- ServiceImpl : insertMem() 실행 ");
 		mdao.signUp(vo);
 		System.out.println("-- ServiceImpl : insertMem() 실행 완료 ");
@@ -33,17 +32,10 @@ public class MemberServiceImpl implements MemberService{
 	/* 로그인 메서드 */
 	@Override
 	public MemberVO loginMem(MemberVO vo) throws Exception {
-
 		System.out.println("-- ServiceImpl : loginMem() 실행 ");
-//		System.out.println("@@@@ Service : " + vo);
-
-		// 로그인 체크 기능이 있는 DAO 객체로 이동
 		MemberVO DBvo = mdao.signIn(vo.getEmail(), vo.getPwd());
-		
-//		System.out.println("@@@@ Service : " + DBvo);
 		System.out.println("-- ServiceImpl : loginMem() 실행 완료 ");
 		return DBvo;
-		
 	} // loginMem()
 
 	///////////////////////////////////////////////////////////////////////
@@ -51,7 +43,6 @@ public class MemberServiceImpl implements MemberService{
 	/* 회원 탈퇴 메서드 */
 	@Override
 	public int deleteMem(MemberVO vo) throws Exception {
-		
 		System.out.println("-- ServiceImpl : deleteMem() 실행 ");
 		int check = mdao.dropOut(vo);
 		if(check == 1) { // 정상처리일때
@@ -135,6 +126,17 @@ public class MemberServiceImpl implements MemberService{
 		System.out.println("@@ vo : " + vo);
 		System.out.println("-- ServiceImpl : payment() 실행 완료");
 	} // buyMembership
+
+	///////////////////////////////////////////////////////////////////////
+
+	/* 비밀번호 찾기 메서드 */
+	@Override
+	public String getFindPw(String email) throws Exception {
+		System.out.println("-- ServiceImpl : getPassword() 실행");
+		String pw = mdao.getPassword(email);
+		System.out.println("-- ServiceImpl : getPassword() 실행 완료");
+		return pw;
+	} // getPassword()
 	
 	///////////////////////////////////////////////////////////////////////
 	

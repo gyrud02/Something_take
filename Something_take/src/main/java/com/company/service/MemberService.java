@@ -24,5 +24,6 @@ public interface MemberService {
 	
 	public void payment(MemberVO vo) throws Exception; // 멤버십 결제 메서드
 	
+	public String getFindPw(String email) throws Exception; // 비밀번호 찾기 메서드
 	
 }
