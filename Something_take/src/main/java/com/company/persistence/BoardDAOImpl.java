@@ -24,7 +24,6 @@ public class BoardDAOImpl implements BoardDAO{
 	/* 공지사항 글 등록 메서드 */
 	@Override
 	public void getInsert(BoardVO bvo) throws Exception {
-
 		System.out.println("-- DAOImpl : getInsert() 실행 ");
 		sqlSession.selectOne(namespace+".insert", bvo);
 		System.out.println("-- DAOImpl : getInsert() 실행 완료");
@@ -49,7 +48,6 @@ public class BoardDAOImpl implements BoardDAO{
 	/* 글 전체 갯수 조회 */
 	@Override
 	public int getCount() throws Exception{
-		
 		int count = 0;
 		System.out.println("-- DAOImpl : getCount() 실행");
 		count = sqlSession.selectOne(namespace+".getCount");
@@ -75,7 +73,6 @@ public class BoardDAOImpl implements BoardDAO{
 	/* 글 수정 메서드 */
 	@Override
 	public void getModi(BoardVO bvo) throws Exception {
-
 		System.out.println("-- DAOImpl : getModi() 실행 ");
 		sqlSession.update(namespace+".modify", bvo);
 		System.out.println("-- DAOImpl : getModi() 실행 완료");

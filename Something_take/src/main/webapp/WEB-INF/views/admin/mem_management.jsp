@@ -7,10 +7,8 @@
 <head>
 </head>
 <style>
-
 	#ManageList>th, #memList{text-align: center;}
 	#idx{width: 50px;}
-
 </style>
 
 <!------------------------------------ [회원 목록 영역] ------------------------------------------->
@@ -28,7 +26,7 @@
 				<div class="row">
 					<div class="col-md-12 mr-md-auto ml-md-auto">
 						<div class="head_title_1 text-center">
-							<h2>전체 회원</h2>
+							<h2>Members</h2>
 								<div class="separator_auto"></div>
 						</div>
 						
