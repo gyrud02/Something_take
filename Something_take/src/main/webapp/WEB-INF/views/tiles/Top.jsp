@@ -35,15 +35,15 @@
 	<!----------- [CSS 관련 링크 ] ----------->
 
 	<!--For Plugins external css-->
-	<!--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/plugins.css" />-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/plugins.css"/>
+	<!--For Plugins external css-->
 
 	<!--Theme custom css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
-	<!--<link rel="stylesheet" href="assets/css/colors/maron.css">-->
 	<!--Theme custom css -->
 
 	<!--Theme Responsive css-->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css"/>
 	<!--Theme Responsive css-->
 
 	<script src="${pageContext.request.contextPath}/resources/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
@@ -61,6 +61,40 @@
 </head>
 <!-------------------------------------- HEAD [헤드 영역] ------------------------------------------>
 
+<style type="text/css">
+	
+	/* 알람 (pc 화면) */
+	@media (min-width: 768px) {
+	    #alarm-button {
+		width: 4em;
+		height: 3.4em;
+		background-color: lightgray;
+	    position: fixed;
+	    z-index: 999;
+	    right: 60px; /* 화면 오른쪽으로부터의 거리 */
+	    bottom: 50px; /* 화면 아래쪽으로부터의 거리 */
+	    }
+	}
+	
+	/* 알람 (모바일 화면) */
+	@media (max-width:767px) {
+	    #alarm-button {
+		background-color: lightgray;	    
+	    position: fixed;
+	    z-index: 999;
+	    right: 15px; /* 화면 오른쪽으로부터의 거리 */
+	    bottom: 30px; /* 화면 아래쪽으로부터의 거리 */
+	    }
+	}
+	
+	/* 알람 (문의 내역 창) */
+	@media (max-width: 766px) {
+	 	#alarm-button {
+	    display: none;
+	    }
+	}
+	
+</style>
 
 <!-------------------------------------- BODY [본문 영역] ------------------------------------------>
 <body data-spy="scroll" data-target=".navbar-collapse" class="lightbg">
@@ -234,6 +268,12 @@
 									<li><a href="msg_manage.mng">문의 관리</a></li>
 								</ul>
 								</div> <!-- .widget -->
+							
+								<div id="alarm-button">
+									<a>
+										<img class="btn" src="${pageContext.request.contextPath}/resources/images/alarm.png">
+									</a>
+								</div>
 							</c:if>
 					</c:when>
 				</c:choose>

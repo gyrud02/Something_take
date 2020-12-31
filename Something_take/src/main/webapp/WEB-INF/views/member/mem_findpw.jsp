@@ -17,7 +17,7 @@
 	}); // pw_chk()
 
 	/* 인증 메일 발송  */
-	$(function findMail(){
+	function findMail(){
 		$.ajax({
 				type:"GET",
 				dataType:"text",
@@ -28,34 +28,37 @@
 						alert("메일을 발송했습니다.");
 					}else{
 						alert("가입한 회원이 없습니다.");
+						$("#email").val("");
 					}
 				}, // success
 				error:function(textStatus){
 					alert("메일 발송 중 오류가 발생했습니다.");
 				} // error
 		}); // ajax
-	}); // findMail()
+	} // findMail()
  
 </script>
 <body>
 
-	<br><br><br><br>
+	<br><br><br><br><br>
 	
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4 mr-md-auto ml-md-auto">
+				<div class="col-md-5 mr-md-auto ml-md-auto">
 					<div class="section_title_container text-center">
 						<div class="head_title_1 text-center">
 						<h2>Find-password</h2>
-							<div class="separator_auto"></div>
-							<p><b>비밀번호를 잊어버리셨나요?</b><br><br>
-							가입 시 입력하신 이메일 주소로 <br>
-							비밀번호 재설정 메일이 발송됩니다. <br>
-					                메일을 입력 후 전송 버튼을 클릭하시고 <br>
-					                가입 시 입력했던 메일을 확인해주세요. <br><br><br>
-					        <b>[ <a href="Sign-up.me">회원가입</a> 페이지로 이동하기 ]</b></p>
+							<div class="separator_auto"></div> <br>
+							<p>
+								<b>비밀번호를 잊어버리셨나요?</b> 
+								<br><br><br>
+								가입 시 입력하신 이메일 주소로 메일이 발송됩니다. 
+								<br> 메일을 입력 후 전송 버튼을 클릭하시고 
+								<br> 가입 시 입력했던 메일을 확인해주세요. 
+								<br><br><br>
+							</p>
 						</div>	
-
+	
 					      <form class="sign_upClass" onsubmit="pw_chk()">
 							
 					      <div class="js-form-message form-group text-left">
