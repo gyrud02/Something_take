@@ -5,7 +5,7 @@
 <html>
 <head>
 </head>
-<body data-spy="scroll" data-target=".navbar-collapse" class="lightbg">
+<body class="lightbg">
 <script type="text/javascript">
 
 	/* 유효성 검사 */
