@@ -11,7 +11,7 @@
 	#writer{width: 230px;}
 
 </style>
-<body>
+<body class="lightbg">
 
 	<br><br><br><br>
 
@@ -83,13 +83,13 @@
 	if(prevPage <= 0){ prevPage = 1; } // if
 	for(int i=currentPage; i<=10; i++){
 %>
-						<a class="btn btn-warning" href="Board?page=<%=i%>"><%=i%></a>
+						<a class="btn btn-default" href="Board?page=<%=i%>"><%=i%></a>
 <%		
 	} // for
 	if(nextPage > totalBlock){ nextPage = endPage; } // if
 %>				
-							<a class="btn btn-warning" href="Board?page=<%=nextPage%>">[다음]</a>
-							<a class="btn btn-warning" href="Board?page=<%=endPage%>">[끝]</a>
+							<a class="btn btn-default" href="Board?page=<%=nextPage%>">[다음]</a>
+							<a class="btn btn-default" href="Board?page=<%=endPage%>">[끝]</a>
 						</div>
 
 <%---------------------------------- 페이징 처리 ----------------------------------%>				

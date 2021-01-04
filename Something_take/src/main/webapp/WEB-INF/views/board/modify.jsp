@@ -5,7 +5,7 @@
 <html>
 <head>
 </head>
-<body>
+<body class="lightbg">
 
 	<br><br><br><br>
 

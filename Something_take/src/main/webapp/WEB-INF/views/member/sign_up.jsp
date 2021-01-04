@@ -29,6 +29,7 @@
 	$(function removeTags(){
 		$(".spanT").hide(); $(".spanF").hide(); $(".spanEmpty").hide();
 		$(".spanPwdT").hide(); $(".spanPwdF").hide(); $(".spanPwd_ckT").hide(); $(".spanPwd_ckF").hide();
+		$("#quoteF").hide(); $("#quoteT").hide();
 	}); // removeTags()
 	
 	/* 이메일 중복 체크 */
@@ -160,23 +161,28 @@
 	} // pwd_chk()
 	
 	/* 인증 메일 발송  */
-	function sendMail(){
-		$.ajax({
-				type:"GET",
-				dataType:"text",
-				data:{ email: $("#email").val() },
-				url: "member/sendEmail",
-				success:function(result, textStatus){
-					alert("메일을 발송했습니다.");
+	function sendMail(){	
+		if($("#email").val == null){
+			alert("이메일을 입력하세요.");
+		}else{
+			$.ajax({
+					type:"GET",
+					dataType:"text",
+					data:{ email: $("#email").val() },
+					url: "member/sendEmail",
+					success:function(result, textStatus){
+						alert("메일을 발송했습니다.");
 
-				//	if(result == ){
-				//	} 
-					
-				}, // success
-				error:function(textStatus){
-					alert("메일 발송 중 오류가 발생했습니다.");
-				} // error
-		}); // ajax
+						if(){
+						}
+						
+						
+					}, // success
+					error:function(textStatus){
+						alert("메일 발송 중 오류가 발생했습니다.");
+					} // error
+			}); // ajax
+		} // if	
 	} // sendMail()
 	
 </script>
@@ -247,6 +253,20 @@
 					      		<span class="spanF">&nbsp;이미 사용 중인 이메일입니다.</span>
 					      </div>
 					      					      
+					      <!-- 인증번호 확인 -->
+					      <div class="form-group">
+					        <label class="form-label" for="quote">인증번호</label>
+					      	<input type="text" class="form-control" name="quote" id="quote" onclick=""
+					      		   required>
+					      </div>
+					      <div class="js-form-message form-group">
+					      		<span class="quoteF">&nbsp;인증번호가 틀립니다.</span>
+					      </div>
+				      		<div class="js-form-message form-group">
+					      		<span class="quoteT">&nbsp;인증되었습니다.</span>
+					      </div>
+					      		
+					      
 					      <!-- 비밀번호 입력 & 비밀번호 확인 -->
 					      <div class="form-group">
 					        <label class="form-label" for="pwd">비밀번호</label>
