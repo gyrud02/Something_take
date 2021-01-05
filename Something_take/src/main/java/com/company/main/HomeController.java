@@ -236,6 +236,15 @@ public class HomeController {
 	/////////////////////////////////////////////////////////
 
 	/* 관리자 메뉴 - 회원 관리 페이지 */
+	@RequestMapping(value = "admin", method = RequestMethod.GET)
+	public String admin_Main(Model model) throws Exception{
+		logger.info("-- 회원 관리 페이지로 이동");
+		return "admin/adm_main.tiles";
+	} // manage_Membership()
+	
+	/////////////////////////////////////////////////////////
+	
+	/* 관리자 메뉴 - 회원 관리 페이지 */
 	@RequestMapping(value = "mem_manage.mng", method = RequestMethod.GET)
 	public String mng_Members(Model model) throws Exception{
 		logger.info("-- 회원 관리 페이지로 이동");
