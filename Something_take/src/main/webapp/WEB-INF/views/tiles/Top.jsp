@@ -9,7 +9,11 @@
 	<meta charset="utf-8">
 	<title>Something take</title>
 	<meta name="description" content="">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+<!--  
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+-->
 	<!----------- [meta] ----------->
 
 	<!----------- [페이지 타이틀 로고] ----------->
@@ -260,13 +264,7 @@
 							<%-- 관리자 페이지 --%>
 							<c:if test="${sessionScope.email == 'admin@Something-take.com'}">
 								<div class="widget">
-								<h6 class="title">관리자 페이지</h6>
-								<ul class="link">
-									<li><a href="mem_manage.mng">회원 관리</a></li>
-									<li><a href="pay_manage.mng">매출 관리</a></li>
-									<li><a href="ord_manage.mng">주문 관리</a></li>
-									<li><a href="msg_manage.mng">문의 관리</a></li>
-								</ul>
+								<h6 class="title"><a href="admin">관리자 페이지</a></h6>
 								</div> <!-- .widget -->
 							
 								<div id="alarm-button">
@@ -294,16 +292,42 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/js/vendor/popper.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/vendor/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery.magnific-popup.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.1.3.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/slick.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery.collapse.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/bootsnav.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/plugins.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
+	<!--  
+    <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.1.3.js"></script>
+	-->
+	
+	<!--   Core JS Files   -->
+    <script src="${pageContext.request.contextPath}/resources/admin/js/core/jquery.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/admin/js/core/popper.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/admin/js/core/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/admin/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+    <!--   Core JS Files   -->
+    
+    <!-- Chart JS -->
+    <script src="${pageContext.request.contextPath}/resources/admin/js/plugins/chartjs.min.js"></script>
+    <!-- Chart JS -->
+	
+	<!--  Notifications Plugin    -->
+    <script src="${pageContext.request.contextPath}/resources/admin/js/plugins/bootstrap-notify.js"></script>
+    <!--  Notifications Plugin    -->
+   
+    <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="${pageContext.request.contextPath}/resources/admin/js/black-dashboard.min.js?v=1.0.0" type="text/javascript"></script>
+    <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
 	
 	<!----------- [ck에디터 관련 링크 ] ----------->
 	<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
 	<!----------- [ck에디터 관련 링크 ] ----------->
+	
+	<!--  Google Maps Plugin    
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+      Google Maps Plugin    -->
+	
 	
 	<!----------- [지도 관련 링크 ] ----------->
 	<script src="http://maps.google.com/maps/api/js?key=AIzaSyD_tAQD36pKp9v4at5AnpGbvBUsLCOSJx8"></script>
