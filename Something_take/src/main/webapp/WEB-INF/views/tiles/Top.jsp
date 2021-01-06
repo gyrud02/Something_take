@@ -9,7 +9,7 @@
 	<meta charset="utf-8">
 	<title>Something take</title>
 	<meta name="description" content="">
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 <!--  
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -259,19 +259,15 @@
 								<li><a href="member/sign-out.post">로그아웃</a></li>
 								<li><a href="drop-out.me">회원탈퇴</a></li>
 							</ul>
-						</div> <!-- .widget -->
+						</div> 
+						<!-- .widget -->
 		
 							<%-- 관리자 페이지 --%>
 							<c:if test="${sessionScope.email == 'admin@Something-take.com'}">
 								<div class="widget">
 								<h6 class="title"><a href="admin">관리자 페이지</a></h6>
-								</div> <!-- .widget -->
-							
-								<div id="alarm-button">
-									<a>
-										<img class="btn" src="${pageContext.request.contextPath}/resources/images/alarm.png">
-									</a>
-								</div>
+								</div> 
+								<!-- .widget -->
 							</c:if>
 					</c:when>
 				</c:choose>
@@ -297,36 +293,13 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/js/bootsnav.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/plugins.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
-	<!--  
+<!--    
     <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.1.3.js"></script>
-	-->
-	
-	<!--   Core JS Files   -->
-    <script src="${pageContext.request.contextPath}/resources/admin/js/core/jquery.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/admin/js/core/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/admin/js/core/bootstrap.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/admin/js/plugins/perfect-scrollbar.jquery.min.js"></script>
-    <!--   Core JS Files   -->
-    
-    <!-- Chart JS -->
-    <script src="${pageContext.request.contextPath}/resources/admin/js/plugins/chartjs.min.js"></script>
-    <!-- Chart JS -->
-	
-	<!--  Notifications Plugin    -->
-    <script src="${pageContext.request.contextPath}/resources/admin/js/plugins/bootstrap-notify.js"></script>
-    <!--  Notifications Plugin    -->
-   
-    <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="${pageContext.request.contextPath}/resources/admin/js/black-dashboard.min.js?v=1.0.0" type="text/javascript"></script>
-    <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
+-->
 	
 	<!----------- [ck에디터 관련 링크 ] ----------->
 	<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
 	<!----------- [ck에디터 관련 링크 ] ----------->
-	
-	<!--  Google Maps Plugin    
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
-      Google Maps Plugin    -->
 	
 	
 	<!----------- [지도 관련 링크 ] ----------->

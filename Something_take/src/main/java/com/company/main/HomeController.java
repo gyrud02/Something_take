@@ -238,53 +238,53 @@ public class HomeController {
 	/* 관리자 메뉴 - 회원 관리 페이지 */
 	@RequestMapping(value = "admin", method = RequestMethod.GET)
 	public String admin_Main(Model model) throws Exception{
-		logger.info("-- 회원 관리 페이지로 이동");
+		logger.info("-- [관리자] 페이지로 이동");
 		return "admin/adm_main.tiles";
-	} // manage_Membership()
+	} // admin_Main()
 	
 	/////////////////////////////////////////////////////////
 	
 	/* 관리자 메뉴 - 회원 관리 페이지 */
-	@RequestMapping(value = "mem_manage.mng", method = RequestMethod.GET)
-	public String mng_Members(Model model) throws Exception{
-		logger.info("-- 회원 관리 페이지로 이동");
+	@RequestMapping(value = "ad_mem", method = RequestMethod.GET)
+	public String admin_Members(Model model) throws Exception{
+		logger.info("-- [관리자] 회원 관리 페이지로 이동");
 		List<MemberVO> memberList = service.getMembers();
 		model.addAttribute("memberList", memberList);
-		return "admin/mem_management.tiles";
-	} // manage_Membership()
+		return "admin/adm_members.tiles";
+	} // admin_Members()
 	
 	/////////////////////////////////////////////////////////
 	
 	/* 관리자 메뉴 - 매출 관리 페이지 */
-	@RequestMapping(value = "pay_manage.mng", method = RequestMethod.GET)
-	public String mng_Payments(Model model) throws Exception{
-		logger.info("-- 매출 관리 페이지로 이동");
+	@RequestMapping(value = "ad_pay", method = RequestMethod.GET)
+	public String admin_Payments(Model model) throws Exception{
+		logger.info("-- [관리자] 매출 관리 페이지로 이동");
 //		List<MessageVO> msgList = mservice.getMSGs();
 //		model.addAttribute("msgList", msgList);
-		return "admin/pay_management.tiles";
-	} // mng_Messages()
+		return "admin/adm_payments.tiles";
+	} // admin_Payments()
 	
 	/////////////////////////////////////////////////////////
 	
 	/* 관리자 메뉴 - 매출 관리 페이지 */
-	@RequestMapping(value = "ord_manage.mng", method = RequestMethod.GET)
-	public String mng_Ordered(Model model) throws Exception{
-		logger.info("-- 주문 관리 페이지로 이동");
+	@RequestMapping(value = "ad_order", method = RequestMethod.GET)
+	public String admin_Ordered(Model model) throws Exception{
+		logger.info("-- [관리자] 주문 관리 페이지로 이동");
 //		List<MessageVO> msgList = mservice.getMSGs();
 //		model.addAttribute("msgList", msgList);
-		return "admin/order_management.tiles";
-	} // mng_Messages()
+		return "admin/adm_ordered.tiles";
+	} // admin_Ordered()
 	
 	/////////////////////////////////////////////////////////
 
 	/* 관리자 메뉴 - 문의 관리 페이지 */
-	@RequestMapping(value = "msg_manage.mng", method = RequestMethod.GET)
-	public String mng_Messages(Model model) throws Exception{
-		logger.info("-- 문의 관리 페이지로 이동");
+	@RequestMapping(value = "ad_msg", method = RequestMethod.GET)
+	public String admin_Messages(Model model) throws Exception{
+		logger.info("-- [관리자] 문의 관리 페이지로 이동");
 		List<MessageVO> msgList = mservice.getMSGs();
 		model.addAttribute("msgList", msgList);
-		return "admin/msg_management.tiles";
-	} // mng_Messages()
+		return "admin/adm_messages.tiles";
+	} // admin_Messages()
 	
 	/////////////////////////////////////////////////////////
 	

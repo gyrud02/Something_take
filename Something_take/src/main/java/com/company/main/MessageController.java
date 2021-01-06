@@ -31,7 +31,7 @@ public class MessageController {
 
 	/* 메세지 등록 메서드 */
 	@RequestMapping(value = "message.me", method = RequestMethod.POST)
-	public String sendmsgPOST(MessageVO vo, Model model,
+	public String sendPOST(MessageVO vo, Model model,
 							  HttpServletResponse response) throws Exception{
 		
 		logger.info("-- 메세지 전송 버튼 작동 ");
@@ -51,7 +51,7 @@ public class MessageController {
 		
 		logger.info("-- 메세지 전송 버튼 작동 완료");
 		return null;
-	} // sendmsgPOST()
+	} // sendPOST()
 	
 	/////////////////////////////////////////////////////////
 	
@@ -70,7 +70,7 @@ public class MessageController {
 	/////////////////////////////////////////////////////////
 
 	/* 답변 상태 변경 메서드 */
-	@RequestMapping(value = "answer.post", method = RequestMethod.POST)
+	@RequestMapping(value = "answer", method = RequestMethod.POST)
 	public String answerPOST(@RequestParam("msg_no") int msg_no,
 							 Model model, HttpServletResponse response) 
 							throws Exception{
@@ -88,9 +88,8 @@ public class MessageController {
 		
 		logger.info("-- 답변 완료 클릭 실행 완료");
 		return null;
-	} // answerMSG()
+	} // answerPOST()
 	
 	/////////////////////////////////////////////////////////
-	
 	
 }
