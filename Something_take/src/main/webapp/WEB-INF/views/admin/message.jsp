@@ -22,11 +22,38 @@
   <link href="${pageContext.request.contextPath}/resources/admin/demo/demo.css" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
 </head>
-<style>
+<style type="text/css">
+	@media(min-width:1032px;){
+		input[type='text']{ width: 115px;}
+	}
+		input[type='text']{ color:white; font: bold;}
 </style>
+<script type="text/javascript">
+
+	/* 답변 상태 변경 */
+	function answerBtn(){
+		var msg_no = document.getElementById('msg_no').value;
+		$("input[type='button']").click(function(){
+			$.ajax({
+					type:"GET",
+					dataType:"text",
+					data: { msg_no: msg_no,
+							msg_answerContent: $("#msg_answerContent").val() },
+					url: "answer",
+					success:function(textStatus){
+						alert("답변이 완료되었습니다.");
+					}, // success
+					error:function(textStatus){
+						alert("작업 중 오류가 발생했습니다.");
+					} // error
+			}); // ajax
+		}); // click()
+	} // answerBtn()
+
+</script>
 
 <body class=" ">
-
+  
   <div class="wrapper ">
     <div class="main-panel">
       
@@ -39,12 +66,19 @@
                 <h5 class="title">Messages</h5>
               </div>
               <div class="card-body">
-                <form method="post" action="msg/answer">
+                <form>
+                  
                   <div class="row">
-                    <div class="col-md-5 pr-md-1">
+                    <div class="col-md-3 px-md-1">
                       <div class="form-group">
                         <label>접수번호</label>
-                        <input type="text" class="form-control" value="${vo.msg_no}" readonly="readonly">
+                        <input type="text" class="form-control" value="${vo.msg_no}" readonly="readonly" id="msg_no">
+                      </div>
+                    </div>
+                    <div class="col-md-3 px-md-1">
+                      <div class="form-group">
+                        <label>수신일자</label>
+                        <input type="text" class="form-control" value="${vo.msg_send_date}" readonly="readonly">
                       </div>
                     </div>
                     <div class="col-md-3 px-md-1">
@@ -53,18 +87,10 @@
                         <input type="text" class="form-control" value="${vo.msg_name}" readonly="readonly">
                       </div>
                     </div>
-                    <div class="col-md-4 pl-md-1">
+                    <div class="col-md-3 px-md-1">
                       <div class="form-group">
                         <label>연락처</label>
                         <input type="text" class="form-control" value="${vo.msg_phone}" readonly="readonly">
-                      </div>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-md-6 pl-md-1">
-                      <div class="form-group">
-                        <label>수신일자</label>
-                        <input type="text" class="form-control" value="${vo.msg_send_date}" readonly="readonly">
                       </div>
                     </div>
                   </div>
@@ -100,9 +126,26 @@
                       </div>
                     </div>
                   </div>
-                  
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="form-group">
+                        <label>답변 내용</label>
+                        <textarea rows="4" cols="80" class="form-control" id="msg_answerContent">
+                        	${vo.msg_answerContent}
+                        </textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-3 px-md-1">
+                      <div class="form-group">
+                        <label>답변일자</label>
+                        <input type="text" class="form-control" value="${vo.msg_answer_date}" readonly="readonly">
+                      </div>
+                    </div>
+                  </div>
 	              <div class="row card-footer col-md-4 pr-md-1">
-	                <button type="submit" class="btn btn-fill btn-primary">답변</button>
+	                <input type="button" class="btn btn-fill btn-primary" onclick="answerBtn(event)" value="답변 확인">
 	              </div>
 	              
                 </form>
@@ -121,21 +164,9 @@
     <script src="${pageContext.request.contextPath}/resources/admin/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <!--   Core JS Files   -->
     
-    <!-- Chart JS -->
-    <script src="${pageContext.request.contextPath}/resources/admin//js/plugins/chartjs.min.js"></script>
-    <!-- Chart JS -->
-    
-    <!--  Notifications Plugin    -->
-    <script src="${pageContext.request.contextPath}/resources/admin/js/plugins/bootstrap-notify.js"></script>
-    <!--  Notifications Plugin    -->
-
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
     <script src="${pageContext.request.contextPath}/resources/admin/js/black-dashboard.min.js?v=1.0.0" type="text/javascript"></script>
     <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
 
-    <!-- Black Dashboard DEMO methods, don't include it in your project! -->
-    <script src="${pageContext.request.contextPath}/resources/admin/demo/demo.js"></script>
-    <!-- Black Dashboard DEMO methods, don't include it in your project! -->
-    
 </body>
 </html>

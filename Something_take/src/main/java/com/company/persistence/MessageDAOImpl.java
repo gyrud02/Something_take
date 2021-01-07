@@ -1,6 +1,8 @@
 package com.company.persistence;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -27,18 +29,15 @@ public class MessageDAOImpl implements MessageDAO{
 		System.out.println("-- DAOImpl : insert() 실행");
 		sqlSession.insert(namespace+".Insert", msgvo);
 		System.out.println("-- DAOImpl : insert() 실행 완료");
-	} // insert()
-
+	}
 	/////////////////////////////////////////////////////////////////////
 
 	/* 전체 문의 조회 메서드 */
 	@Override
 	public List<MessageVO> getMSGs() throws Exception {
-		
 		System.out.println("-- DAOImpl : getMSGs() 실행");
 		List<MessageVO> msgList = sqlSession.selectList(namespace+".MSGList");
-		System.out.println("@@ : msgList : " + msgList);
-
+//		System.out.println("@@ : msgList : " + msgList);
 		System.out.println("-- DAOImpl : getMSGs() 실행 완료");
 		return msgList;
 	}
@@ -48,11 +47,9 @@ public class MessageDAOImpl implements MessageDAO{
 	/* 문의 내용 조회 메서드 */
 	@Override
 	public MessageVO readMSG(int msg_no) throws Exception {
-		
 		System.out.println("-- DAOImpl : readMSG() 실행");
 		MessageVO vo = sqlSession.selectOne(namespace+".readMSG", msg_no);
-		System.out.println("@@ vo : " + vo);
-		
+//		System.out.println("@@ vo : " + vo);
 		System.out.println("-- DAOImpl : readMSG() 실행 완료");
 		return vo;
 	} // readMSG()
@@ -61,23 +58,15 @@ public class MessageDAOImpl implements MessageDAO{
 	
 	/* 답변 상태 변경 메서드 */
 	@Override
-	public void modiMSG(int msg_no) throws Exception {
-		
+	public void update(int msg_no, String msg_answerContent) throws Exception {
 		System.out.println("-- DAOImpl : modiMSG() 실행");
-		sqlSession.update(namespace+".modiMSG", msg_no);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("msg_no", msg_no);
+		map.put("msg_answerContent", msg_answerContent);
+		sqlSession.update(namespace+".update", map);
 		System.out.println("-- DAOImpl : modiMSG() 실행 완료");
-	} // modiMSG()
+	} // update()
 	
 	/////////////////////////////////////////////////////////////////////
 
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
 }

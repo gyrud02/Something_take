@@ -40,7 +40,7 @@ public class MessageController {
 		model.addAttribute("msg_phone", vo.getMsg_phone());
 		model.addAttribute("msg_textarea", vo.getMsg_textarea());
 		model.addAttribute("msg_answer", vo.getMsg_answer());
-		service.insertMSG(vo);
+		service.registerMSG(vo);
 
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -70,23 +70,16 @@ public class MessageController {
 	/////////////////////////////////////////////////////////
 
 	/* 답변 상태 변경 메서드 */
-	@RequestMapping(value = "answer", method = RequestMethod.POST)
-	public String answerPOST(@RequestParam("msg_no") int msg_no,
+	@RequestMapping(value = "answer", method = RequestMethod.GET)
+	public String answerAJAX(@RequestParam("msg_no") int msg_no,
+							 @RequestParam("msg_answerContent") String msg_answerContent,
 							 Model model, HttpServletResponse response) 
 							throws Exception{
 		
 		logger.info("-- 답변 완료 클릭 실행");
 		model.addAttribute("msg_no", msg_no);
-		service.modiMSG(msg_no);
-
-		response.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = response.getWriter();
-		out.println("<script>");
-		out.println("alert('답변이 완료되었습니다.');");
-		out.println("window.close();");
-		out.println("</script>");
-		
-		logger.info("-- 답변 완료 클릭 실행 완료");
+		model.addAttribute("msg_answerContent", msg_answerContent);
+		service.modifyMSG(msg_no, msg_answerContent);
 		return null;
 	} // answerPOST()
 	
