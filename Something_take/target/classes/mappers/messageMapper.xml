@@ -35,10 +35,10 @@
 	
 	
 	<!-- 메세지 답변 상태 수정 -->
-	<update id="modiMSG">
+	<update id="update">
 	<![CDATA[
 	UPDATE message
-	SET msg_answer = 'O'
+	SET msg_answer = 'O', msg_answerContent = #{msg_answerContent}, msg_answer_date = now()
 	WHERE msg_no = #{msg_no}
 	]]>
 	</update>

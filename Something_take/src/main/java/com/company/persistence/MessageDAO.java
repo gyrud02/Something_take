@@ -12,6 +12,6 @@ public interface MessageDAO {
 	
 	public MessageVO readMSG(int msg_no) throws Exception; // 문의 내용 조회 메서드
 	
-	public void modiMSG(int msg_no) throws Exception; // 답변 상태 변경 메서드
+	public void update(int msg_no, String msg_answerContent) throws Exception; // 답변 상태 변경 메서드
 	
 }

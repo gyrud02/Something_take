@@ -4,8 +4,10 @@
 <head>
 	<jsp:include page="../tiles/Top.jsp" />
 </head>
-
-<body data-spy="scroll" data-target=".navbar-collapse">
+<style>
+	textarea {width: 500px; height: 200px;}
+</style>
+<body class=" ">
 
 	<br><br><br>
 
@@ -13,7 +15,7 @@
 	  <div class="row">
 		<div class="col-md-4 mr-md-auto ml-md-auto">		
 			
-			<section id="fregister_term">
+			<section class="form-control" id="fregister_term">
 				<div class="head_title_1 text-left">
 				<h4>회원 약관</h4>
 				
@@ -111,7 +113,7 @@
 				</div>	
 			</section>
 		
-			<section id = "fregister_term">
+			<section class="form-control" id="fregister_term">
 				<div class="head_title_1 text-left">
 					<h4>개인정보처리방침안내</h4>
 					
@@ -247,7 +249,7 @@
 				</section>
 				
 				
-				<section id="fregister_term">
+				<section class="form-control" id="fregister_term">
 					<div class="head_title_1 text-left">
 					<h4>마케팅, 홍보의 수집 및 이용 동의</h4>
 						
@@ -264,7 +266,7 @@
 				</section>
 				
 				<div class="buttons">
-					<input type = "button" value = "창 닫기" onclick="window.close();" class="btn btn-primary">
+					<input type="button" value="창 닫기" onclick="window.close();" class="btn btn-primary">
 				</div>
 
   	    </div>
@@ -276,10 +278,5 @@
 	<footer>	
 		<jsp:include page="../tiles/bottom.jsp" />
 	</footer>
-	
-<style>
-	textarea {width: 500px; height: 200px;}
-</style>
-	
 </body>
 </html>
