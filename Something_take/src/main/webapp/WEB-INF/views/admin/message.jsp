@@ -23,10 +23,8 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
 </head>
 <style type="text/css">
-	@media(min-width:1032px;){
-		input[type='text']{ width: 115px;}
-	}
-		input[type='text']{ color:white; font: bold;}
+	@media(min-width:1032px;){ input[type='text']{ width: 115px;} }
+	input[type='text']{ color:white; font: bold;}
 </style>
 <script type="text/javascript">
 

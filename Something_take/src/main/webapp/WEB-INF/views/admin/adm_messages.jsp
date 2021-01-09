@@ -26,6 +26,7 @@
 <style>
 	#email{width: 135px;} #idx{width: 45px;} #name{width: 60px;} #reg_date{width: 100px;} #phone{width: 100px;}
 	#membership_type{width: 80px;} #membership_reg_date{width: 100px;} #membership_end_date{width: 100px;}
+	#msg_no{width: 135px;}
 </style>
 
 <!------------------------------------ [메세지 목록 영역] ------------------------------------------->
@@ -194,11 +195,11 @@
 				<c:forEach items="${msgList}" var="msgList">	
                     <tbody>
                       <tr class="text-center">
-                        <td style="width:80px;">
+                        <td style="width:80px;" id="msg_no">
                           ${msgList.msg_no}
                         </td>
                         <td class="text-left">
-                        	<a href="msg/message?msg_no=${msgList.msg_no}">${msgList.msg_textarea}</a>
+                        	<a href="msg/message?msg_no=${msgList.msg_no}" id="Message" target="_blank">${msgList.msg_textarea}</a>
                         </td>
                       </tr>
                     </tbody>
