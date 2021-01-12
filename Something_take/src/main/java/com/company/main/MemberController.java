@@ -1,6 +1,7 @@
 package com.company.main;
 
 import java.io.PrintWriter;
+import java.util.Random;
 
 import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
@@ -73,21 +74,19 @@ public class MemberController {
 	    messageHelper.setSubject("Something_take(썸띵테이크) 회원 가입 인증메일입니다."); // 메일 제목 (생략 가능)
 	    
 	    // --------------------- 인증 번호 --------------------- //
-	    int num1 = 0; int num2 = 0; int num3 = 0; int num4 = 0;
-	    for(int i=0; i<=9; i++) {
-	    	num1 = (int)Math.random();
-	    	num2 = (int)Math.random();
-	    	num3 = (int)Math.random();
-	    	num4 = (int)Math.random();
+	    Random random = new Random();
+	    String rand = "";
+	    for(int i=0; i<=4; i++) {
+	    	rand = Integer.toString(random.nextInt(10)); // 0부터 9까지 난수 생성
 	    }
+	    logger.info("@@ 인증번호 : " + rand);
 	    // --------------------- 인증 번호 --------------------- //
 
-	    String content = "< 가입 인증 번호는 " + num1 + num2 + num3 + num4 + " 입니다. >";
+	    String content = "< 가입 인증 번호는 [" + rand + "] 입니다. >";
 	    messageHelper.setText(content); // 메일 내용
 	    mailSender.send(message);
 	    // --------------------- 메일 발송 --------------------- //
-	    int result = num1 + num2 + num3 + num4;
-	    out.println(result);
+	    out.println(rand);
 	    return null;
 	} // sendEmail()
 	
