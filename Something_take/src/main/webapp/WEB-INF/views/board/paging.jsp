@@ -5,11 +5,9 @@
 <head>
 </head>
 <style>
-
 	#BoardList>th, #bdList{text-align: center;}
 	#idx, #cnt{width: 50px;}
 	#writer{width: 230px;}
-
 </style>
 <body class="lightbg">
 
@@ -64,11 +62,14 @@
 	 				       </div>
 						</c:if>
 						<!-- 로그인 유무에 따른 버튼 숨김 -->
+						
+						<br>
 					
 <%---------------------------------- 페이징 처리 ----------------------------------%>				
 
-					<div class="col-12 text-center">
-						<c:set value="${requestScope.count}" var="total"/>
+					<div class="row align-items-center">
+						<div class="col-12 text-center">
+							<c:set value="${requestScope.count}" var="total"/>
 <%
 	int total = Integer.parseInt(pageContext.getAttribute("total").toString());
 	final int pageSize = 9; // 페이지 블록 크기
@@ -83,35 +84,36 @@
 	int backPage = currentPage + 5;
 	if(prevPage <= 0){ prevPage = 1; } // if
 %>
-					<c:if test="<%=currentPage != startPage%>">
-						<a class="btn btn-default" href="Board?page=<%=startPage%>">[처음]</a>
-						<a class="btn btn-default" href="Board?page=<%=prevPage%>">[이전]</a>
-					</c:if>
+						<c:if test="<%=currentPage != startPage%>">
+							<a class="btn" href="board?page=<%=startPage%>">[처음]</a>
+							<a class="btn" href="board?page=<%=prevPage%>">[이전]</a>
+						</c:if>
 <%
 	for(int i=frontPage; i<currentPage; i++){
 		if(i <= 0) i = 1;
 %>
-					<c:if test="<%=currentPage != 1%>">
-						<a class="btn btn-default" href="Board?page=<%=i%>"><%=i%></a>
-					</c:if>	
+						<c:if test="<%=currentPage != 1%>">
+							<a class="btn" href="board?page=<%=i%>"><%=i%></a>
+						</c:if>	
 <%			
 	} // while
 	
 	for(int i=currentPage; i<backPage; i++){
 %>
-						<a class="btn btn-default" href="Board?page=<%=i%>"><%=i%></a>
+							<a class="btn" href="board?page=<%=i%>"><%=i%></a>
 <%		
 		if(i == endPage) break;
 	} // for
 
 	if(nextPage > totalBlock){ nextPage = endPage; } // if
 %>		
-					<c:if test="<%=currentPage != endPage || currentPage != totalBlock%>">
-						<a class="btn btn-default" href="Board?page=<%=nextPage%>">[다음]</a>
-						<a class="btn btn-default" href="Board?page=<%=endPage%>">[끝]</a>
-					</c:if>
-				
-					</div>
+						<c:if test="<%=currentPage != endPage || currentPage != totalBlock%>">
+							<a class="btn" href="board?page=<%=nextPage%>">[다음]</a>
+							<a class="btn" href="board?page=<%=endPage%>">[끝]</a>
+						</c:if>
+					
+						</div>
+					</div>	
 
 <%---------------------------------- 페이징 처리 ----------------------------------%>				
 					

@@ -42,14 +42,13 @@
 	/* 이메일 중복 체크 */
 	function emailCheck(event){
 		var regMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/) // 이메일
-
 		$.ajax({
 			type: "GET",
 			dataType: "text",
 			data: { email:$("#email").val() },
 			url: "member/emailDupl",
 			success:function(check, textStatus){
-					if( !(regMail.test( $("#email").val() ))){
+					if( !(regMail.test( $("#email").val() )) ){
 						$(".spanT").hide();
 						$(".spanF").hide();
 						$(".spanEmpty").val("이메일 형식에 맞게 입력하세요.").css("style", "display:none;");
@@ -58,7 +57,8 @@
 
 						if(email.value.length == 0){
 							$(".spanT").hide(); $(".spanF").hide(); $(".spanEmpty").hide();
-							return false;}
+							return false;
+						} // if
 						return false;
 					}else{
 						if(check == 0){
@@ -68,24 +68,26 @@
 							$(".spanT").css("color", "#ff4084");
 							$(".spanT").show();
 
-							$("#sendBtn").click(function(){
-								sendMail(); });
+							$("#sendBtn").click(function(){ sendMail(); }); // click
 
 							if(email.value.length == 0){
 								$(".spanT").hide(); $(".spanF").hide(); $(".spanEmpty").hide();
-								return false;}
+								return false;
+							} // if
 						}else{
 							$(".spanEmpty").hide();
 							$(".spanT").hide();
 							$(".spanF").val("이미 사용 중인 이메일입니다.").css("style", "display:none;");
 							$(".spanF").css("color", "#ff4084");
 							$(".spanF").show();
-
+							
 							if(email.value.length == 0){
 								$(".spanT").hide(); $(".spanF").hide(); $(".spanEmpty").hide();
-								return false;}
-							return false;}
-					} // 이메일
+								return false;
+							} // if
+							return false;
+						} // if
+					} // if
 			}, // success
 			error:function(textStatus){
 					alert("회원 가입 중 오류가 발생하였습니다.");
@@ -96,7 +98,6 @@
 	/* 비밀번호 체크 */
 	function pwdCheck(event){
 		var regPwd = RegExp(/^[a-zA-Z0-9]{8,20}$/);
-
 		$.ajax({
 			type: "GET",
 			dataType: "text",
@@ -169,23 +170,18 @@
 	
 	/* 인증 메일 발송 시 입력창 생성  */
 	function sendMail(){	
-		if($("#email").val == null){
+		if($("#email").val == ""){
 			$(".quote").hide();
-			alert("이메일을 입력하세요.");
+			return false;
 		}else{
-			$(".quote").show();
+			alert("메일을 발송했습니다.\n잠시만 기다리시면 인증번호 입력창이 열립니다.");
 			$.ajax({
 					type:"GET",
 					dataType:"text",
 					data:{ email: $("#email").val() },
 					url: "member/sendEmail",
-					success:function(rand, textStatus){
-						alert("메일을 발송했습니다.");
-						$("#quoteBtn").click(function(){
-							if(rand == $("#quote").val()){
-								alert("인증되었습니다.");
-							} // if
-						}); // click()
+					success:function(textStatus){
+						$(".quote").show();						
 					}, // success
 					error:function(textStatus){
 						alert("메일 발송 중 오류가 발생했습니다.");
@@ -193,6 +189,30 @@
 			}); // ajax
 		} // if	
 	} // sendMail()
+	
+	/* 인증번호 일치 확인 */
+	function quoteCheck(){
+		$("#quoteBtn").on('click', function(){
+			$.ajax({
+					type:"GET",
+					dataType:"text",
+					data:{ quote: $("#quote").val() },
+					url:"member/mailCheck",
+					success:function(result, textStatus){
+						if(true){
+							alert("인증되었습니다.");
+							$("#email").attr("disabled", true);
+							$("#quote").attr("disabled", true);
+						}else{
+							alert("인증번호가 틀립니다.");
+						} // if
+					}, //success
+					error:function(textStatus){
+						alert("오류가 발생하였습니다.");
+					} // error
+			}); // ajax
+		}); // on()
+	} // quoteCheck()
 	
 	/* 약관동의 체크박스 새 창 */
 	function yackuan(){
@@ -222,7 +242,7 @@
 						
       <!-------------------------------------------- [form태그 시작] -------------------------------------------------------->
 					
-					<form action="member/signUp.post" class="sign_upClass" method="post" id="join" onsubmit="si_up_chk()">
+					<form action="member/signUp.post" class="sign_upClass" method="post" id="join" onsubmit="return si_up_chk()">
 
 	  
 	  <!-------------------------------------------- 네이버 아이디로 로그인 버튼 노출 영역  --------------------------------------------------------> 
@@ -283,7 +303,7 @@
 					      		
 				      		<div class="row align-items-center" style="float:right;">
 				        		<div class="col-12 text-right">
-					      			<input type="button" class="btn btn-primary" id="quoteBtn" value="인증" onclick="quoteNum(event)">  
+					      			<input type="button" class="btn btn-primary" id="quoteBtn" value="인증" onclick="quoteCheck()">  
 					      		</div>
 					      	</div>
 					      	
