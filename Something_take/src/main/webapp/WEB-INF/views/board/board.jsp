@@ -5,11 +5,9 @@
 <head>
 </head>
 <style>
-
 	#BoardList>th, #bdList{text-align: center;}
 	#idx, #cnt{width: 50px;}
 	#writer{width: 230px;}
-
 </style>
 <body class="lightbg">
 
@@ -65,10 +63,13 @@
 						</c:if>
 						<!-- 로그인 유무에 따른 버튼 숨김 -->
 						
-<%---------------------------------- 페이징 처리 ----------------------------------%>				
-					
-						<div class="col-12 text-center">
-							<c:set value="${requestScope.count}" var="total"/>
+						<br>
+						
+<%---------------------------------- 페이징 처리 ----------------------------------%>
+			
+						<div class="row align-items-center">
+							<div class="col-12 text-center">
+								<c:set value="${requestScope.count}" var="total"/>
 <%
 	int total = Integer.parseInt(pageContext.getAttribute("total").toString());
 	final int pageSize = 9; // 페이지 블록 크기
@@ -83,14 +84,15 @@
 	if(prevPage <= 0){ prevPage = 1; } // if
 	for(int i=currentPage; i<=10; i++){
 %>
-						<a class="btn btn-default" href="Board?page=<%=i%>"><%=i%></a>
+								<a class="btn" href="board?page=<%=i%>"><%=i%></a>
 <%		
 	} // for
 	if(nextPage > totalBlock){ nextPage = endPage; } // if
 %>				
-							<a class="btn btn-default" href="Board?page=<%=nextPage%>">[다음]</a>
-							<a class="btn btn-default" href="Board?page=<%=endPage%>">[끝]</a>
-						</div>
+								<a class="btn" href="board?page=<%=nextPage%>">[다음]</a>
+								<a class="btn" href="board?page=<%=endPage%>">[끝]</a>
+							</div>
+						</div>	
 
 <%---------------------------------- 페이징 처리 ----------------------------------%>				
 					

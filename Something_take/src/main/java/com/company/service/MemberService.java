@@ -26,4 +26,6 @@ public interface MemberService {
 	
 	public String getFindPw(String email) throws Exception; // 비밀번호 찾기 메서드
 	
+	public String mailNumber() throws Exception; // 인증번호 생성 메서드 
+	
 }

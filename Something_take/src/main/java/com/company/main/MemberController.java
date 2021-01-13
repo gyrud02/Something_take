@@ -5,6 +5,7 @@ import java.util.Random;
 
 import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -15,6 +16,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -61,7 +63,8 @@ public class MemberController {
 
 	/* 가입 시 이메일 전송 메소드 */
 	@RequestMapping(value = "/sendEmail", method = RequestMethod.GET)
-	public String sendEmail(String email, HttpServletResponse response) throws Exception {
+	public String sendEmail(String email, HttpServletResponse response,
+							HttpSession session) throws Exception {
 		logger.info("-- 회원가입 인증 메일 발송");
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -74,28 +77,46 @@ public class MemberController {
 	    messageHelper.setSubject("Something_take(썸띵테이크) 회원 가입 인증메일입니다."); // 메일 제목 (생략 가능)
 	    
 	    // --------------------- 인증 번호 --------------------- //
-	    Random random = new Random();
-	    String rand = "";
-	    for(int i=0; i<=4; i++) {
-	    	rand = Integer.toString(random.nextInt(10)); // 0부터 9까지 난수 생성
-	    }
-	    logger.info("@@ 인증번호 : " + rand);
+	    String data = "비밀번호";
+	    data = service.mailNumber();
+	    session.setAttribute("data", data);
+	    logger.info("@@ session.setAttribute(\"data\", data); : " + data);
 	    // --------------------- 인증 번호 --------------------- //
 
-	    String content = "< 가입 인증 번호는 [" + rand + "] 입니다. >";
+	    String content = "< 가입 인증 번호는 [" + data + "] 입니다. >";
 	    messageHelper.setText(content); // 메일 내용
 	    mailSender.send(message);
 	    // --------------------- 메일 발송 --------------------- //
-	    out.println(rand);
 	    return null;
 	} // sendEmail()
 	
 	/////////////////////////////////////////////////////////
 
+	/* 인증번호 확인 */
+	@RequestMapping(value = "mailCheck", method = RequestMethod.GET)
+	public String mainCheck(@RequestParam("quote") String quote,
+							HttpServletResponse response,
+							HttpSession session) throws Exception{
+		boolean result = false;
+		logger.info("-- 인증번호 일치 확인");
+		
+		String data = (String)session.getAttribute("data");
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		if(quote == data) {
+			result = true;
+			out.println(result);
+		}
+		logger.info(""+ quote.toString() + data.toString());
+//		out.println(result);
+		return null;
+	}
+
+	/////////////////////////////////////////////////////////
+
 	/* 로그인 동작 메소드 */
 	@RequestMapping(value = "/signIn.post", method = RequestMethod.POST)
 	public String signInPOST(MemberVO vo, HttpSession session) throws Exception{
-
 		logger.info("-- 로그인 버튼 작동 ");
 		MemberVO DBvo = service.loginMem(vo);
 		logger.info("@@@ DBvo : " + DBvo);
@@ -123,6 +144,7 @@ public class MemberController {
 		logger.info("@@@ session : " + email);
 		cservice.delCart(cvo);
 		session.invalidate();
+		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
@@ -144,10 +166,11 @@ public class MemberController {
 		logger.info("-- 회원정보 수정 버튼 작동");
 		model.addAttribute("email", vo.getEmail());
 		model.addAttribute("pwd", vo.getPwd());
-		logger.info("@@@ model : " + model);
+//		logger.info("@@@ model : " + model);
 		service.updateMem(vo);
 		session.invalidate();
 		logger.info("-- 회원정보 수정 버튼 작동 완료");
+		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
