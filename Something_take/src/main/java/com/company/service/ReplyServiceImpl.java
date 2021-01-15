@@ -6,6 +6,8 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.company.domain.BoardVO;
+import com.company.domain.MemberVO;
 import com.company.domain.ReplyVO;
 import com.company.persistence.ReplyDAO;
 
@@ -44,13 +46,4 @@ public class ReplyServiceImpl implements ReplyService{
 	
 	///////////////////////////////////////////////////////////////////////
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

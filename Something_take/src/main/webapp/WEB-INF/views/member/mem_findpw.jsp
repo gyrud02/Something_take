@@ -12,19 +12,21 @@
 		var regMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/) // 이메일
 		$(".btn-primary").click(function(){
 			if($("#email").val() == "" || !(regMail.test( $("#email").val() )) ){ 
-				alert("이메일을 올바르게 입력하세요."); $("#email").focus(); return false; } // 이메일
+//				alert("이메일을 올바르게 입력하세요."); 
+				$("#email").focus(); return false; } // 이메일
 		}); // click()
 	}); // pw_chk()
 
 	/* 인증 메일 발송  */
 	function findMail(){
+		alert("가입한 이메일이 있는지 확인 중입니다. 잠시만 기다려 주세요.");
 		$.ajax({
 				type:"GET",
 				dataType:"text",
 				data:{ email: $("#email").val() },
 				url: "member/findEmail",
 				success:function(result, textStatus){
-					if(result == true){
+					if(result == 1){
 						alert("메일을 발송했습니다.");
 					}else{
 						alert("가입한 회원이 없습니다.");
@@ -73,7 +75,7 @@
 					      <div class="row align-items-center mb-5">
 					        <div class="col-7 text-left">
 					          <span class="font-subhead text-muted mb-2">기억나셨나요?</span>
-					          	<a href="Sign-in.me">로그인</a>
+					          	<a href="sign-in.me">로그인</a>
 					        </div> 
 					        <div class="col-5 text-right">
 					          <input type="button" class="btn btn-primary" onclick="findMail()" value="전송">

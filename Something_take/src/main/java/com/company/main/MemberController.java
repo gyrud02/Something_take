@@ -21,10 +21,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.company.domain.BoardVO;
 import com.company.domain.CartVO;
 import com.company.domain.MemberVO;
+import com.company.domain.ReplyVO;
+import com.company.service.BoardService;
 import com.company.service.CartService;
 import com.company.service.MemberService;
+import com.company.service.ReplyService;
 
 
 @Controller
@@ -46,6 +50,12 @@ public class MemberController {
 	
 	@Inject
 	private CartService cservice; // 카트 관련 서비스
+	
+	@Inject
+	private BoardService bservice; // 게시판 관련 서비스
+	
+	@Inject
+	private ReplyService rservice; // 댓글 관련 서비스
 	
 	/////////////////////////////////////////////////////////
 	
@@ -188,12 +198,15 @@ public class MemberController {
 	public String dropOutPOST(MemberVO vo,
 							  HttpServletResponse response, 
 							  HttpSession session, 
-							  Model model) throws Exception{
+							  Model model, CartVO cvo, BoardVO bvo, ReplyVO rvo) throws Exception{
 		int check = 0;
 		logger.info("-- 회원탈퇴 버튼 동작 ");
 		logger.info("@@@ vo : " + vo);
 		model.addAttribute("email", vo.getEmail());
 		model.addAttribute("pwd", vo.getPwd());
+		model.addAttribute("email", cvo.getEmail());
+		model.addAttribute("writer", bvo.getWriter());
+		cservice.delCart(cvo);
 		check = service.deleteMem(vo);
 		
 		if(check == 1) {
@@ -224,12 +237,12 @@ public class MemberController {
 	@RequestMapping(value = "/findEmail", method = RequestMethod.GET)
 	public String findpwEmail(String email, HttpServletResponse response) throws Exception {
 		logger.info("-- 회원가입 인증 메일 발송");
-		String pw = service.getFindPw(email);
+		int result = service.duplicate(email);
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
-		if(pw != null) {
-			boolean result = true;
+		if(result == 1) {
+			String pw = service.getFindPw(email);
 			out.println(result);
 			
 			// --------------------- 메일 발송 --------------------- //
@@ -244,7 +257,6 @@ public class MemberController {
 			// --------------------- 메일 발송 --------------------- //
 			
 		}else{
-			boolean result = false;
 			out.println(result);
 		} // if
 	    return null;

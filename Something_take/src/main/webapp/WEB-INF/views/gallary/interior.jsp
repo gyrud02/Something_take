@@ -3,9 +3,12 @@
 <html>
 <head>
 </head>
+<style type="text/css">
+	
+	.portfolio_item>img{width:650px; height:430px;}
 
-<body data-spy="scroll" data-target=".navbar-collapse">
-
+</style>
+<body>
 <!------------------------------------ [갤러리 영역] ------------------------------------------->
 
 		<section id="portfolio" class="portfolio lightbg">
@@ -14,7 +17,7 @@
 					<div class="main_portfolio roomy-100">
 						<div class="col-md-8 mr-md-auto ml-md-auto">
 							<div class="head_title_1 text-center">
-								<h2>OUR PHOTO</h2>
+								<h2>Interior</h2>
 								<div class="separator_auto"></div>
 								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, 
 								   sed diam nonummy nibh euismod nostrud exerci tation ullamcorper 

@@ -2,6 +2,7 @@ package com.company.persistence;
 
 import java.util.List;
 
+import com.company.domain.BoardVO;
 import com.company.domain.ReplyVO;
 
 public interface ReplyDAO {

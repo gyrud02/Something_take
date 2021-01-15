@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.company.domain.BoardVO;
 import com.company.domain.Criteria;
+import com.company.domain.MemberVO;
 
 @Repository
 public class BoardDAOImpl implements BoardDAO{
@@ -121,11 +122,7 @@ public class BoardDAOImpl implements BoardDAO{
 		System.out.println("-- DAOImpl : listPage(Criteria cri) 실행");
 		return sqlSession.selectList(namespace+".listCri", cri);
 	} // listPage(Criteria cri)
-	
+
 	///////////////////////////////////////////////////////////////////////
 
-
-	
-	
-	
 }
