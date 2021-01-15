@@ -81,7 +81,7 @@ public class HomeController {
 	@RequestMapping(value = "agree.me", method = RequestMethod.GET)
 	public String agreement() {
 		logger.info("-- 회원 약관 동의 페이지로 이동");
-		return "member/terms_of_mem";
+		return "member/terms_of_mem.tiles";
 	} // yackwan()
 		
 	/////////////////////////////////////////////////////////

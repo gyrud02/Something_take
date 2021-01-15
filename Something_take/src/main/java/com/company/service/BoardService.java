@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.company.domain.BoardVO;
 import com.company.domain.Criteria;
+import com.company.domain.MemberVO;
 import com.company.domain.ReplyVO;
 
 public interface BoardService {

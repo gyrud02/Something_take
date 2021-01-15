@@ -8,6 +8,7 @@ import javax.xml.stream.events.Namespace;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.company.domain.BoardVO;
 import com.company.domain.ReplyVO;
 
 @Repository
@@ -45,11 +46,4 @@ public class ReplyDAOImpl implements ReplyDAO{
 	
 	///////////////////////////////////////////////////////////////////////
 
-	
-	
-	
-	
-	
-	
-	
 }

@@ -9,7 +9,7 @@
 	#idx, #cnt{width: 50px;}
 	#writer{width: 230px;}
 </style>
-<body class="lightbg">
+<body>
 
 	<br><br><br><br>
 
@@ -55,22 +55,19 @@
 						
 						<!-- 로그인 유무에 따른 버튼 숨김 -->
 						<c:if test="${sessionScope.email != null}">
-							<div class="row align-items-center mb-5" style="float:right;">
-								<div class="col-5 text-right">
-									<button type="button" class="btn btn-primary" onclick="location.href='Write.bd'">글쓰기</button>
-								</div>
-	 				       </div>
+							<div class="col-15 text-right">
+								<button type="button" class="btn btn-primary" onclick="location.href='Write.bd'">글쓰기</button>
+							</div>
 						</c:if>
 						<!-- 로그인 유무에 따른 버튼 숨김 -->
 						
-						<br>
 						
 <%---------------------------------- 페이징 처리 ----------------------------------%>
-			
+						
 						<div class="row align-items-center">
 							<div class="col-12 text-center">
-								<c:set value="${requestScope.count}" var="total"/>
-<%
+							<c:set value="${requestScope.count}" var="total"/>
+<%							
 	int total = Integer.parseInt(pageContext.getAttribute("total").toString());
 	final int pageSize = 9; // 페이지 블록 크기
 	final int currentPage = 1; // 현재 페이지
@@ -92,7 +89,7 @@
 								<a class="btn" href="board?page=<%=nextPage%>">[다음]</a>
 								<a class="btn" href="board?page=<%=endPage%>">[끝]</a>
 							</div>
-						</div>	
+						</div>
 
 <%---------------------------------- 페이징 처리 ----------------------------------%>				
 					

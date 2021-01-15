@@ -138,7 +138,7 @@
 					      <div class="row align-items-center mb-5">
 					        <div class="col-7">
 					          <span class="font-subhead text-muted mb-2">계정이 없으시다면</span>
-					          	<a href="Sign-up.me">회원가입</a>
+					          	<a href="sign-up.me">회원가입</a>
 					        </div>
 							
 							<div class="row align-items-center" style="float:right;">

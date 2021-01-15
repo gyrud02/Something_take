@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.company.domain.BoardVO;
 import com.company.domain.Criteria;
+import com.company.domain.MemberVO;
 
 public interface BoardDAO {
 
@@ -26,4 +27,5 @@ public interface BoardDAO {
 	public List<BoardVO> listPage(Criteria cri) throws Exception; // 페이징처리 (객체 사용)
 	
 	public int getCount() throws Exception; // 글 전체 갯수 조회
+	
 }

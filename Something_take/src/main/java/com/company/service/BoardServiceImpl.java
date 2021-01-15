@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.company.domain.BoardVO;
 import com.company.domain.Criteria;
+import com.company.domain.MemberVO;
 import com.company.persistence.BoardDAO;
 
 @Service
@@ -107,7 +108,6 @@ public class BoardServiceImpl implements BoardService{
 	/* 페이징 전환 메서드 */
 	@Override
 	public List<BoardVO> listCri(Criteria cri) throws Exception {
-
 		System.out.println("-- ServiceImpl : listCri() 실행");
 		return bdao.listPage(cri);
 	} // listCri()

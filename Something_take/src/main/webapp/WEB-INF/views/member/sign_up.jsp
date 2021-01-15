@@ -216,9 +216,9 @@
 	
 	/* 약관동의 체크박스 새 창 */
 	function yackuan(){
-		$("#yackuan-check").click(function(){
+		if( $("#yackuan-check").is(":checked") ){
 			window.open('agree.me', '회원가입 약관','width=700, height=700');
-		}); // click
+		} // if	
 	} // yackuan()
 	
 </script>
@@ -379,7 +379,7 @@
 					      <div class="row align-items-center mb-5">
 					        <div class="col-7">
 					          <span class="font-subhead text-muted mb-2">이미 계정이 있다면
-					          	<a href="Sign-in.me">로그인</a>
+					          	<a href="sign-in.me">로그인</a>
 					          </span>	
 					        </div>
 					        
