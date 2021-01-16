@@ -266,7 +266,7 @@ public class HomeController {
 	
 	/////////////////////////////////////////////////////////
 	
-	/* 관리자 메뉴 - 매출 관리 페이지 */
+	/* 관리자 메뉴 - 주문 관리 페이지 */
 	@RequestMapping(value = "ad_order", method = RequestMethod.GET)
 	public String admin_Ordered(Model model) throws Exception{
 		logger.info("-- [관리자] 주문 관리 페이지로 이동");
@@ -284,6 +284,26 @@ public class HomeController {
 		List<MessageVO> msgList = mservice.getMSGs();
 		model.addAttribute("msgList", msgList);
 		return "admin/adm_messages.tiles";
+	} // admin_Messages()
+	
+	/////////////////////////////////////////////////////////
+	
+	/* 관리자 메뉴 - 게시판 관리 페이지 */
+	@RequestMapping(value = "ad_board", method = RequestMethod.GET)
+	public String admin_Board(Model model) throws Exception{
+		logger.info("-- [관리자] 게시판 관리 페이지로 이동");
+//		List<MessageVO> msgList = mservice.getMSGs();
+//		model.addAttribute("msgList", msgList);
+		return "admin/adm_board.tiles";
+	} // admin_Messages()
+	
+	/////////////////////////////////////////////////////////
+
+	/* 관리자 메뉴 -  관리 페이지 */
+	@RequestMapping(value = "ad_icons", method = RequestMethod.GET)
+	public String admin_Icons(Model model) throws Exception{
+		logger.info("-- [관리자] 관리 페이지로 이동");
+		return "admin/adm_icons.tiles";
 	} // admin_Messages()
 	
 	/////////////////////////////////////////////////////////

@@ -23,11 +23,6 @@
   <link href="${pageContext.request.contextPath}/resources/admin/demo/demo.css" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
 </head>
-<style>
-	#email{width: 135px;} #idx{width: 45px;} #name{width: 60px;} #reg_date{width: 100px;} #phone{width: 100px;}
-	#membership_type{width: 80px;} #membership_reg_date{width: 100px;} #membership_end_date{width: 100px;}
-	#msg_no{width: 135px;}
-</style>
 
 <!------------------------------------ [메세지 목록 영역] ------------------------------------------->
 <body class=" ">
@@ -74,6 +69,12 @@
               <p>Payments</p>
             </a>
           </li>
+          <li>
+            <a href="ad_order">
+              <i class="tim-icons icon-align-center"></i>
+              <p>Ordered</p>
+            </a>
+          </li>
           <li class="active ">
             <a href="ad_msg">
               <i class="tim-icons icon-bell-55"></i>
@@ -87,15 +88,9 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="ad_board">
               <i class="tim-icons icon-puzzle-10"></i>
               <p>Board</p>
-            </a>
-          </li>
-          <li>
-            <a href="ad_order">
-              <i class="tim-icons icon-align-center"></i>
-              <p>Ordered</p>
             </a>
           </li>
           <li>
@@ -118,7 +113,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> 회원 테이블</h4>
+                <h4 class="card-title"> 문의 내역</h4>
               </div>
               <div class="card-body  ">
                 <div class="table-responsive">
@@ -176,7 +171,7 @@
           <div class="col-md-12">
             <div class="card  card-plain">
               <div class="card-header">
-                <h4 class="card-title"> 멤버십 테이블</h4>
+                <h4 class="card-title"> 메세지 내용</h4>
               </div>
               <div class="card-body  ">
                 <div class="table-responsive">
@@ -199,7 +194,8 @@
                           ${msgList.msg_no}
                         </td>
                         <td class="text-left">
-                        	<a href="msg/message?msg_no=${msgList.msg_no}" id="Message" target="_blank">${msgList.msg_textarea}</a>
+                        	<a href="" ></a>
+                        	<a id="Message" href="javascript:void(window.open('msg/message?msg_no=${msgList.msg_no}', '메세지창','width=500, height=700'))">${msgList.msg_textarea}</a>
                         </td>
                       </tr>
                     </tbody>
