@@ -5,7 +5,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-  <!--     Fonts and icons     -->
+  <!--     Fonts and icons    -->
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <!--     Fonts and icons     -->
@@ -22,16 +22,12 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="${pageContext.request.contextPath}/resources/admin/demo/demo.css" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
+  
 </head>
-<style>
-	#email{width: 135px;} #idx{width: 45px;} #name{width: 60px;} #reg_date{width: 100px;} #phone{width: 100px;}
-	#membership_type{width: 80px;} #membership_reg_date{width: 100px;} #membership_end_date{width: 100px;}
-</style>
 
-<!------------------------------------ [회원 목록 영역] ------------------------------------------->
 <body class=" ">
 
-	<br><br><br><br>
+  <br><br>
 
 	<c:choose>
 	
@@ -73,6 +69,12 @@
               <p>Payments</p>
             </a>
           </li>
+          <li class="active ">
+            <a href="ad_order">
+              <i class="tim-icons icon-align-center"></i>
+              <p>Ordered</p>
+            </a>
+          </li>
           <li>
             <a href="ad_msg">
               <i class="tim-icons icon-bell-55"></i>
@@ -86,15 +88,9 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="ad_board">
               <i class="tim-icons icon-puzzle-10"></i>
               <p>Board</p>
-            </a>
-          </li>
-          <li class="active ">
-            <a href="ad_order">
-              <i class="tim-icons icon-align-center"></i>
-              <p>Ordered</p>
             </a>
           </li>
           <li>
@@ -108,112 +104,140 @@
     </div>
 <!---------------------------- [사이드바] ---------------------------->	
    
-<!---------------------------- [윗 테이블] ---------------------------->	
     <div class="main-panel">
       
       <!-- End Navbar -->
-      <div class="content  ">
+      <div class="content">
         <div class="row">
-          <div class="col-md-12">
-            <div class="card ">
+          <div class="col-md-6">
+            <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> 회원 테이블</h4>
+                <h4 class="card-title">Notifications Style</h4>
               </div>
               <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table tablesorter " id="">
-                    <thead class=" text-primary">
-	                   <tr class="text-center">
-	                      <th id="idx">
-	                      	접수번호
-	                      </th>
-	                      <th id="name">
-	                      	고객명
-	                      </th>
-	                      <th id="phone">
-	                      	연락처
-	                      </th>
-	                      <th id="name">
-	                      	답변
-	                      </th>
-	                      <th id="reg_date">
-	                      	수신일자
-	                      </th>
-					  </tr> 
-                    </thead>
-                  
-                  <c:forEach items="${msgList}" var="msgList">
-                    <tbody>
-                      <tr class="text-center">
-                        <td id="idx">
-                          ${msgList.msg_no}
-                        </td>
-                        <td id="name">
-                          ${msgList.msg_name}
-                        </td>
-                        <td id="phone">
-                          ${msgList.msg_phone}
-                        </td>
-                        <td id="name">
-                          ${msgList.msg_answer}
-                        </td>
-                        <td id="reg_date">
-                       		<fmt:formatDate value="${msgList.msg_send_date}" pattern="YY-MM-dd hh:mm:ss"/>
-                        </td>
-                      </tr>
-                  	</tbody>
-                  </c:forEach>	
-                  
-                  </table>
+                <div class="alert alert-info">
+                  <span>This is a plain notification</span>
+                </div>
+                <div class="alert alert-info">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="tim-icons icon-simple-remove"></i>
+                  </button>
+                  <span>This is a notification with close button.</span>
+                </div>
+                <div class="alert alert-info alert-with-icon" data-notify="container">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="tim-icons icon-simple-remove"></i>
+                  </button>
+                  <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+                  <span data-notify="message">This is a notification with close button and icon.</span>
+                </div>
+                <div class="alert alert-info alert-with-icon" data-notify="container">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="tim-icons icon-simple-remove"></i>
+                  </button>
+                  <span data-notify="icon" class="tim-icons icon-bell-55"></span>
+                  <span data-notify="message">This is a notification with close button and icon and have many lines. You can see that the icon and the close button are always vertically aligned. This is a beautiful notification. So you don't have to worry about the style.</span>
                 </div>
               </div>
             </div>
           </div>
-<!---------------------------- [윗 테이블] ---------------------------->	
-
-<!---------------------------- [아래 테이블] ---------------------------->	
-          <div class="col-md-12">
-            <div class="card  card-plain">
+          <div class="col-md-6">
+            <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> 멤버십 테이블</h4>
+                <h4 class="card-title">Notification states</h4>
               </div>
               <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table tablesorter " id="">
-                    <thead class=" text-primary">
-						<tr class="text-center">
-	                      <th id="idx">
-	                      	접수번호
-	                      </th>
-	                      <th>
-	                      	내용
-	                      </th>
-						</tr>   
-                    </thead>
-
-				<c:forEach items="${msgList}" var="msgList">	
-                    <tbody>
-                      <tr class="text-center">
-                        <td style="width:80px;">
-                          ${msgList.msg_no}
-                        </td>
-                        <td class="text-left">
-                        	<a href="msg/message?msg_no=${msgList.msg_no}">${msgList.msg_textarea}</a>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </c:forEach> 
-                   
-                  </table>
+                <div class="alert alert-primary">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="tim-icons icon-simple-remove"></i>
+                  </button>
+                  <span>
+                    <b> Primary - </b> This is a regular notification made with ".alert-primary"</span>
+                </div>
+                <div class="alert alert-info">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="tim-icons icon-simple-remove"></i>
+                  </button>
+                  <span>
+                    <b> Info - </b> This is a regular notification made with ".alert-info"</span>
+                </div>
+                <div class="alert alert-success">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="tim-icons icon-simple-remove"></i>
+                  </button>
+                  <span>
+                    <b> Success - </b> This is a regular notification made with ".alert-success"</span>
+                </div>
+                <div class="alert alert-warning">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="tim-icons icon-simple-remove"></i>
+                  </button>
+                  <span>
+                    <b> Warning - </b> This is a regular notification made with ".alert-warning"</span>
+                </div>
+                <div class="alert alert-danger">
+                  <button type="button" aria-hidden="true" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="tim-icons icon-simple-remove"></i>
+                  </button>
+                  <span>
+                    <b> Danger - </b> This is a regular notification made with ".alert-danger"</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-body">
+                <div class="places-buttons">
+                  <div class="row">
+                    <div class="col-md-6 ml-auto mr-auto text-center">
+                      <h4 class="card-title">
+                        Notifications Places
+                        <p class="category">Click to view notifications</p>
+                      </h4>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8 ml-auto mr-auto">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','left')">Top Left</button>
+                        </div>
+                        <div class="col-md-4">
+                          <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','center')">Top Center</button>
+                        </div>
+                        <div class="col-md-4">
+                          <button class="btn btn-primary btn-block" onclick="demo.showNotification('top','right')">Top Right</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-8 ml-auto mr-auto">
+                      <div class="row">
+                        <div class="col-md-4">
+                          <button class="btn btn-primary btn-block" onclick="demo.showNotification('bottom','left')">Bottom Left</button>
+                        </div>
+                        <div class="col-md-4">
+                          <button class="btn btn-primary btn-block" onclick="demo.showNotification('bottom','center')">Bottom Center</button>
+                        </div>
+                        <div class="col-md-4">
+                          <button class="btn btn-primary btn-block" onclick="demo.showNotification('bottom','right')">Bottom Right</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-     </div>
     </div>
-<!---------------------------- [아래 테이블] ---------------------------->	
+
+    </div>
+
+<!---------------------------- [스크립트 영역] ---------------------------->	
     
     <div class="fixed-plugin"></div>
 
@@ -224,138 +248,16 @@
     <script src="${pageContext.request.contextPath}/resources/admin/js/plugins/perfect-scrollbar.jquery.min.js"></script>
     <!--   Core JS Files   -->
     
-    <!--  Google Maps Plugin    -->
-<%-- 
-	<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
---%>    
-    <!--  Google Maps Plugin    -->
-    
-    <!-- Chart JS -->
-    <script src="${pageContext.request.contextPath}/resources/admin//js/plugins/chartjs.min.js"></script>
-    <!-- Chart JS -->
-    
     <!--  Notifications Plugin    -->
     <script src="${pageContext.request.contextPath}/resources/admin/js/plugins/bootstrap-notify.js"></script>
     <!--  Notifications Plugin    -->
 
-    <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-    <script src="${pageContext.request.contextPath}/resources/admin/js/black-dashboard.min.js?v=1.0.0" type="text/javascript"></script>
-    <!-- Control Center for Black Dashboard: parallax effects, scripts for the example pages etc -->
-
-    <!-- Black Dashboard DEMO methods, don't include it in your project! -->
+	<!-- Black Dashboard DEMO methods, don't include it in your project! -->
     <script src="${pageContext.request.contextPath}/resources/admin/demo/demo.js"></script>
-    <!-- Black Dashboard DEMO methods, don't include it in your project! -->
-    <script>
-      $(document).ready(function() {
-        $().ready(function() {
-          $sidebar = $('.sidebar');
-          $navbar = $('.navbar');
+	<!-- Black Dashboard DEMO methods, don't include it in your project! -->
 
-          $full_page = $('.full-page');
+<!---------------------------- [스크립트 영역] ---------------------------->	
 
-          $sidebar_responsive = $('body > .navbar-collapse');
-          sidebar_mini_active = true;
-          white_color = false;
-
-          window_width = $(window).width();
-
-          fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
-
-
-
-          $('.fixed-plugin a').click(function(event) {
-            // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-            if ($(this).hasClass('switch-trigger')) {
-              if (event.stopPropagation) {
-                event.stopPropagation();
-              } else if (window.event) {
-                window.event.cancelBubble = true;
-              }
-            }
-          });
-
-          $('.fixed-plugin .background-color span').click(function() {
-            $(this).siblings().removeClass('active');
-            $(this).addClass('active');
-
-            var new_color = $(this).data('color');
-
-            if ($sidebar.length != 0) {
-              $sidebar.attr('data-color', new_color);
-            }
-
-            if ($navbar.length != 0) {
-              $navbar.attr('data-color', new_color);
-            }
-
-            if ($full_page.length != 0) {
-              $full_page.attr('filter-color', new_color);
-            }
-
-            if ($sidebar_responsive.length != 0) {
-              $sidebar_responsive.attr('data-color', new_color);
-            }
-          });
-
-          $('.switch-sidebar-mini input').on("switchChange.bootstrapSwitch", function() {
-            var $btn = $(this);
-
-            if (sidebar_mini_active == true) {
-              $('body').removeClass('sidebar-mini');
-              sidebar_mini_active = false;
-              blackDashboard.showSidebarMessage('Sidebar mini deactivated...');
-            } else {
-              $('body').addClass('sidebar-mini');
-              sidebar_mini_active = true;
-              blackDashboard.showSidebarMessage('Sidebar mini activated...');
-            }
-
-            // we simulate the window Resize so the charts will get updated in realtime.
-            var simulateWindowResize = setInterval(function() {
-              window.dispatchEvent(new Event('resize'));
-            }, 180);
-
-            // we stop the simulation of Window Resize after the animations are completed
-            setTimeout(function() {
-              clearInterval(simulateWindowResize);
-            }, 1000);
-          });
-
-          $('.switch-change-color input').on("switchChange.bootstrapSwitch", function() {
-            var $btn = $(this);
-
-            if (white_color == true) {
-
-              $('body').addClass('change-background');
-              setTimeout(function() {
-                $('body').removeClass('change-background');
-                $('body').removeClass('white-content');
-              }, 900);
-              white_color = false;
-            } else {
-
-              $('body').addClass('change-background');
-              setTimeout(function() {
-                $('body').removeClass('change-background');
-                $('body').addClass('white-content');
-              }, 900);
-
-              white_color = true;
-            }
-
-
-          });
-
-          $('.light-badge').click(function() {
-            $('body').addClass('white-content');
-          });
-
-          $('.dark-badge').click(function() {
-            $('body').removeClass('white-content');
-          });
-        });
-      });
-    </script>
 	</c:when>
 	
 	<c:otherwise>
@@ -366,7 +268,6 @@
 	</c:otherwise>
 
 </c:choose>	
-<!------------------------------------ [회원 목록 영역] ------------------------------------------->	
-	
-</body>
+<!------------------------------------ [주문 목록 영역] ------------------------------------------->	
+
 </html>
