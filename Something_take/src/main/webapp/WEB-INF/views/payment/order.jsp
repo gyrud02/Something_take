@@ -11,6 +11,10 @@
 					  overflow: hidden;
 					  object-fit: cover; }
 	.col-md-4{ padding-left: 60px; }
+
+	@media all and(max-width:700px;){
+		.col-md-4{ padding-left: 160px; }
+	}				  
 </style>
 <script type="text/javascript">
 	function orderAJAX(event){
@@ -150,8 +154,6 @@
 	} // orderAJAX()
 </script>
 <body>
-
- <br><br><br><br>
 
  <c:choose>
  
