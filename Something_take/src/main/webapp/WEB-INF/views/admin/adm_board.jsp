@@ -24,8 +24,7 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
 </head>
 <style>
-	#email{width: 135px;} #idx{width: 45px;} #name{width: 60px;} #reg_date{width: 100px;} #phone{width: 100px;}
-	#membership_type{width: 80px;} #membership_reg_date{width: 100px;} #membership_end_date{width: 100px;}
+	#email{width: 135px;} #idx{width: 45px;} #name{width: 60px;} #reg_date{width: 100px;}
 </style>
 
 <!------------------------------------ [회원 목록 영역] ------------------------------------------->
@@ -61,7 +60,7 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="active ">
+          <li>
             <a href="ad_mem">
               <i class="tim-icons icon-atom"></i>
               <p>Members</p>
@@ -91,7 +90,7 @@
               <p>User Profile</p>
             </a>
           </li>
-          <li>
+          <li class="active ">
             <a href="ad_board">
               <i class="tim-icons icon-puzzle-10"></i>
               <p>Board</p>
@@ -117,7 +116,7 @@
           <div class="col-md-12">
             <div class="card  ">
               <div class="card-header">
-                <h4 class="card-title"> 회원 테이블</h4>
+                <h4 class="card-title"> 게시판 내역</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -125,40 +124,34 @@
                     <thead class=" text-primary">
 	                   <tr class="text-center">
 	                      <th id="idx">
-	                      	회원번호
+	                      	글 번호
 	                      </th>
 	                      <th id="email">
-	                      	이메일
+	                      	제목
 	                      </th>
 	                      <th id="name">
-	                      	이름
-	                      </th>
-	                      <th id="phone">
-	                      	연락처
+	                      	작성자
 	                      </th>
 	                      <th id="reg_date">
-	                      	가입일자
+	                      	작성일자
 	                      </th>
 					  </tr> 
                     </thead>
                   
-                  <c:forEach items="${memberList}" var="memberList">
+                  <c:forEach items="${boardList}" var="boardList">
                     <tbody>
                       <tr class="text-center">
                         <td id="idx">
-                          ${memberList.idx}
+                          ${boardList.bno}
                         </td>
-                        <td class="text-left" id="email">
-                          ${memberList.email}
+                        <td class="text-center">
+                          <a href="content.bd?bno=${boardList.bno}">${boardList.title}</a>
                         </td>
                         <td id="name">
-                          ${memberList.name}
-                        </td>
-                        <td id="phone">
-                          ${memberList.phone}
+                          ${boardList.writer}
                         </td>
                         <td id="reg_date">
-                       		<fmt:formatDate value="${memberList.reg_date}" pattern="YY-MM-dd hh:mm:ss"/>
+                       		<fmt:formatDate value="${boardList.reg_date}" pattern="YY-MM-dd hh:mm:ss"/>
                         </td>
                       </tr>
                   	</tbody>
@@ -175,7 +168,7 @@
           <div class="col-md-12">
             <div class="card  card-plain  ">
               <div class="card-header">
-                <h4 class="card-title"> 멤버십 테이블</h4>
+                <h4 class="card-title"> 내용 보기</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -183,40 +176,28 @@
                     <thead class=" text-primary">
 						<tr class="text-center">
 	                      <th id="idx">
-	                      	회원번호
+	                      	글 번호
 	                      </th>
-	                      <th id="email">
-	                      	이메일
+	                      <th>
+	                      	제목
 	                      </th>
-	                      <th id="membership_type">
-	                      	멤버십명
+	                      <th>
+	                      	내용
 	                      </th>
-	                      <th id="membership_reg_date">
-	                      	결제일자
-	                      </th>
-	                      <th id="membership_end_date">
-	                      	종료일자
-	                      </th>
-						</tr>   
+						</tr> 
                     </thead>
 
-				<c:forEach items="${memberList}" var="memberList">	
-                    <tbody>
-                      <tr class="text-center">
+				<c:forEach items="${boardList}" var="boardList">	
+                    <tbody class="text-center">
+                      <tr>
                         <td id="idx">
-                          ${memberList.idx}
+                          ${boardList.bno}
                         </td>
-                        <td class="text-left" id="email">
-                          ${memberList.email}
+                        <td>
+                          <a href="content.bd?bno=${boardList.bno}">${boardList.title}</a>
                         </td>
-                        <td id="membership_type">
-                          ${memberList.membership_type}
-                        </td>
-                        <td id="membership_reg_date">
-                          <fmt:formatDate value="${memberList.membership_reg_date}" pattern="YY-MM-dd hh:mm:ss"/>
-                        </td>
-                        <td id="membership_end_date">
-                          <fmt:formatDate value="${memberList.membership_end_date}" pattern="YY-MM-dd hh:mm:ss"/>
+                        <td>
+                          ${boardList.content}
                         </td>
                       </tr>
                     </tbody>

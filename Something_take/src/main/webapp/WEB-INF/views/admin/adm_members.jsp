@@ -117,7 +117,7 @@
           <div class="col-md-12">
             <div class="card  ">
               <div class="card-header">
-                <h4 class="card-title"> 회원 테이블</h4>
+                <h4 class="card-title"> 회원 내역</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -175,7 +175,7 @@
           <div class="col-md-12">
             <div class="card  card-plain  ">
               <div class="card-header">
-                <h4 class="card-title"> 멤버십 테이블</h4>
+                <h4 class="card-title"> 멤버십 내역</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">

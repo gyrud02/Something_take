@@ -114,7 +114,7 @@ public class HomeController {
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("count", count);
 		return "board/board.tiles";
-	} // getBoard()
+	} // board()
 	
 	/////////////////////////////////////////////////////////
 	
@@ -292,8 +292,8 @@ public class HomeController {
 	@RequestMapping(value = "ad_board", method = RequestMethod.GET)
 	public String admin_Board(Model model) throws Exception{
 		logger.info("-- [관리자] 게시판 관리 페이지로 이동");
-//		List<MessageVO> msgList = mservice.getMSGs();
-//		model.addAttribute("msgList", msgList);
+		List<BoardVO> boardList = bservice.getBoard();
+		model.addAttribute("boardList", boardList);
 		return "admin/adm_board.tiles";
 	} // admin_Messages()
 	
