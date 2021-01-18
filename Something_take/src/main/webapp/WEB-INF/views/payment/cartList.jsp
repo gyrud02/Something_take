@@ -13,20 +13,6 @@
 	section img{width:60px; height: 60px;}
 	table td{height: 70px;}
 </style>
-<script type="text/javascript">
-
-	function cartCheck(){
-		var question = confirm("결제하시겠습니까?");
-		if(question == true){
-			alert("결제 페이지로 이동합니다.");
-			location.href="cartList";
-		}else{
-			alert("취소되었습니다.");
-			return false;
-		} // if
-	} // cartCheck()
-
-</script>
 <body>
 	
 	<br><br><br><br>
@@ -45,11 +31,12 @@
 					<div class="row">
 						<div class="col-md-12 mr-md-auto ml-md-auto">
 							<div class="head_title_1 text-center">
-								<h2>Cart</h2>
+								<h2>CartList</h2>
 								<div class="separator_auto"></div>
 							</div>
 		
 							<div class="head_title_1 text-left">
+							
 							
 <%-------------------------------------------- [form태그 시작] -------------------------------------------------------%>
 							
@@ -80,12 +67,11 @@
 												<td class="cart_quantity">
 													<div class="cart_quantity_button">
 														<a class="cart_quantity_up" href="#"><i class="tim-icons icon-simple-add"></i></a>
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock1}" autocomplete="off">
+														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock1}" autocomplete="off" readonly>
 														<a class="cart_quantity_down" href="#"><i class="tim-icons icon-simple-delete"></i></a>
 													</div>
 												</td>
 												<td class="cart_delete">
-													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-simple-remove" href="#"></i></a>
 												</td>
 											</tr>
 											<tr>
@@ -100,13 +86,10 @@
 												</td>
 												<td class="cart_quantity">
 													<div class="cart_quantity_button">
-														<a class="cart_quantity_up" href="#"><i class="tim-icons icon-simple-add"></i></a>
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock2}" autocomplete="off">
-														<a class="cart_quantity_down" href="#"><i class="tim-icons icon-simple-delete"></i></a>
+														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock2}" autocomplete="off" readonly>
 													</div>
 												</td>
 												<td class="cart_delete">
-													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-simple-remove" href="#"></i></a>
 												</td>
 											</tr>
 											<tr>
@@ -121,13 +104,10 @@
 												</td>
 												<td class="cart_quantity">
 													<div class="cart_quantity_button">
-														<a class="cart_quantity_up" href="#"><i class="tim-icons icon-simple-add"></i></a>
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock3}" autocomplete="off">
-														<a class="cart_quantity_down" href="#"><i class="tim-icons icon-simple-delete"></i></a>
+														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock3}" autocomplete="off" readonly>
 													</div>
 												</td>
 												<td class="cart_delete">
-													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-simple-remove" href="#"></i></a>
 												</td>
 											</tr>
 											<tr>
@@ -142,13 +122,10 @@
 												</td>
 												<td class="cart_quantity">
 													<div class="cart_quantity_button">
-														<a class="cart_quantity_up" href="#"><i class="tim-icons icon-simple-add"></i></a>
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock4}" autocomplete="off">
-														<a class="cart_quantity_down" href="#"><i class="tim-icons icon-simple-delete"></i></a>
+														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock4}" autocomplete="off" readonly>
 													</div>
 												</td>
 												<td class="cart_delete">
-													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-simple-remove" href="#"></i></a>
 												</td>
 											</tr>
 											<tr>
@@ -163,13 +140,10 @@
 												</td>
 												<td class="cart_quantity">
 													<div class="cart_quantity_button">
-														<a class="cart_quantity_up" href="#"><i class="tim-icons icon-simple-add"></i></a>
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock5}" autocomplete="off">
-														<a class="cart_quantity_down" href="#"><i class="tim-icons icon-simple-delete"></i></a>
+														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock5}" autocomplete="off" readonly>
 													</div>
 												</td>
 												<td class="cart_delete">
-													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-simple-remove" href="#"></i></a>
 												</td>
 											</tr>
 											<tr>
@@ -185,12 +159,11 @@
 												<td class="cart_quantity">
 													<div class="cart_quantity_button">
 														<a class="cart_quantity_up" href="#"><i class="tim-icons icon-simple-add"></i></a>
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock6}" autocomplete="off">
+														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock6}" autocomplete="off" readonly>
 														<a class="cart_quantity_down" href="#"><i class="tim-icons icon-simple-delete"></i></a>
 													</div>
 												</td>
 												<td class="cart_delete">
-													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-simple-remove" href="#"></i></a>
 												</td>
 											</tr>
 											</c:forEach>
@@ -203,6 +176,7 @@
 							</form>
 					
 <%-------------------------------------------- [form태그 끝] -------------------------------------------------------%>
+							
 							
 							</div>
 						</div> <!-- class="col" -->

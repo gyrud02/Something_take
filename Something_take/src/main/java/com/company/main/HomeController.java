@@ -63,7 +63,7 @@ public class HomeController {
 	@RequestMapping(value = "about.do", method = RequestMethod.GET)
 	public String about() {
 		logger.info("-- About 페이지로 이동");
-		return "/contact/about.tiles";
+		return "/business/about.tiles";
 	} // aboutUs()
 	
 	/////////////////////////////////////////////////////////
@@ -311,7 +311,7 @@ public class HomeController {
 	/* 카트 조회하기 */
 	@RequestMapping(value = "newCart", method = RequestMethod.GET)
 	public String getCart(Model model, HttpSession session) throws Exception{
-		logger.info("-- 카트 조회 실행");
+		logger.info("-- 장바구니 조회 실행");
 		String email = (String)session.getAttribute("email");
 		List<CartVO> cartList = cservice.getCart(email);
 		int total = cservice.totalNum(email);
@@ -326,7 +326,7 @@ public class HomeController {
 	/* 카트 페이지  */
 	@RequestMapping(value = "myCart", method = RequestMethod.GET)
 	public String cartPage(Model model, HttpSession session) throws Exception{
-		logger.info("-- 카트 페이지로 이동");
+		logger.info("-- 장바구니 페이지로 이동");
 		String email = (String)session.getAttribute("email");
 		List<CartVO> cartList = cservice.getCart(email);
 		int total = cservice.totalNum(email);
@@ -336,4 +336,19 @@ public class HomeController {
 	} // myCart()
 	
 	/////////////////////////////////////////////////////////
+	
+	/* 결제하기 페이지 */
+	@RequestMapping(value = "cartList", method = RequestMethod.GET)
+	public String cartList(Model model, HttpSession session) throws Exception{
+		logger.info("-- 장바구니 리스트 페이지로 이동");
+		String email = (String)session.getAttribute("email");
+		List<CartVO> cartList = cservice.getCart(email);
+		int total = cservice.totalNum(email);
+		model.addAttribute("cartList", cartList);
+		model.addAttribute("total", total);
+		return "payment/cartList.tiles";
+	} // cartList()
+	
+	/////////////////////////////////////////////////////////
+	
 }
