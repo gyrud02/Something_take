@@ -65,40 +65,6 @@
 </head>
 <!-------------------------------------- HEAD [헤드 영역] ------------------------------------------>
 
-<style type="text/css">
-	
-	/* 알람 (pc 화면) */
-	@media (min-width: 768px) {
-	    #alarm-button {
-		width: 4em;
-		height: 3.4em;
-		background-color: lightgray;
-	    position: fixed;
-	    z-index: 999;
-	    right: 60px; /* 화면 오른쪽으로부터의 거리 */
-	    bottom: 50px; /* 화면 아래쪽으로부터의 거리 */
-	    }
-	}
-	
-	/* 알람 (모바일 화면) */
-	@media (max-width:767px) {
-	    #alarm-button {
-		background-color: lightgray;	    
-	    position: fixed;
-	    z-index: 999;
-	    right: 15px; /* 화면 오른쪽으로부터의 거리 */
-	    bottom: 30px; /* 화면 아래쪽으로부터의 거리 */
-	    }
-	}
-	
-	/* 알람 (문의 내역 창) */
-	@media (max-width: 766px) {
-	 	#alarm-button {
-	    display: none;
-	    }
-	}
-	
-</style>
 
 <!-------------------------------------- BODY [본문 영역] ------------------------------------------>
 <body data-spy="scroll" data-target=".navbar-collapse" class="lightbg">
@@ -253,6 +219,7 @@
 						<div class="widget">
 							<h6 class="title">고객 페이지</h6>
 							<ul class="link">
+								<li><a href="myCart">장바구니</a></li>
 								<li><a href="profile.me">회원정보</a></li>
 								<li><a href="#">주문 내역</a></li>
 								<li><a href="membership.me">멤버십 내역</a></li>
