@@ -15,20 +15,20 @@
 
 		$(".btn-primary").click(function() {
 			if($("#email").val() == "" || !(regMail.test( $("#email").val() )) ){
-			//	alert("이메일을 올바르게 입력하세요."); $("#email").val(""); $("#email").focus(); 
 				return false; } // 이메일
+			if($("#quote").val() == ""){
+				return false; } // 인증번호
 			if($("#pwd").val() == "" || !(regPwd.test( $("#pwd").val() )) ){ 
-			//	alert("8~20자 영문 대소문자, 숫자를 입력해 주세요."); $("#pwd").val(""); $("#pwd").focus(); 
 				return false; } // 비밀번호
 			if($("#name").val() == "" || !(regName.test( $("#name").val() )) ){
-			//	alert("이름을 올바르게 입력하세요."); $("#name").val(""); $("#name").focus(); 
 				return false; } // 이름
 			if($("#phone").val() == ""){ 
-			//	alert("전화번호를 입력하세요."); $("#phone").focus(); 
 				return false; } // 전화번호
 			if(!($("#yackuan-check").is(":checked")) ){ 
-			//	alert("이용 약관에 동의해주세요."); $("#yackuan-check").focus(); 
 				return false; } // 이용약관 체크박스
+
+			$("#quote").attr("disabled", false)
+			
 		}); // click()	
 	}); // si_up_chk()
 
@@ -174,14 +174,15 @@
 			$(".quote").hide();
 			return false;
 		}else{
+			$("#email").attr("disabled", true);
 			alert("메일을 발송했습니다.\n잠시만 기다리시면 인증번호 입력창이 열립니다.");
 			$.ajax({
 					type:"GET",
 					dataType:"text",
 					data:{ email: $("#email").val() },
-					url: "member/sendEmail",
+					url: "member/sendMail",
 					success:function(textStatus){
-						$(".quote").show();						
+						$(".quote").show();			
 					}, // success
 					error:function(textStatus){
 						alert("메일 발송 중 오류가 발생했습니다.");
@@ -197,11 +198,10 @@
 					type:"GET",
 					dataType:"text",
 					data:{ quote: $("#quote").val() },
-					url:"member/mailCheck",
+					url:"member/authCheck",
 					success:function(result, textStatus){
-						if(true){
+						if(result == 1){
 							alert("인증되었습니다.");
-							$("#email").attr("disabled", true);
 							$("#quote").attr("disabled", true);
 						}else{
 							alert("인증번호가 틀립니다.");

@@ -17,13 +17,17 @@
 
 	function cartCheck(){
 		var question = confirm("결제하시겠습니까?");
-		if(question == true){
-			alert("결제 페이지로 이동합니다.");
-			location.href="cartList";
+	/*	if( $("#quantity").val() != 0 ){ */
+			if(question == true){
+				alert("결제 페이지로 이동합니다.");
+				location.href="cartList";
+			}else{
+				alert("취소되었습니다.");
+				return false;
+			} // if
 		}else{
-			alert("취소되었습니다.");
 			return false;
-		} // if
+	/*	} */
 	} // cartCheck()
 
 </script>
