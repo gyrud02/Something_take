@@ -20,7 +20,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.w3c.dom.events.Event;
 
+import com.company.domain.AuthKeyVO;
 import com.company.domain.BoardVO;
 import com.company.domain.CartVO;
 import com.company.domain.MemberVO;
@@ -62,7 +65,6 @@ public class MemberController {
 	/* 회원가입 처리 메소드 */
 	@RequestMapping(value = "/signUp.post", method = RequestMethod.POST)
 	public String signUpPOST(MemberVO vo) throws Exception {
-
 		logger.info("-- 회원가입 버튼 작동 / vo : "+vo);
 		service.insertMem(vo);
 		logger.info("-- 회원가입 완료 ");
@@ -72,7 +74,7 @@ public class MemberController {
 	/////////////////////////////////////////////////////////
 
 	/* 가입 시 이메일 전송 메소드 */
-	@RequestMapping(value = "/sendEmail", method = RequestMethod.GET)
+	@RequestMapping(value = "/sendMail", method = RequestMethod.GET)
 	public String sendEmail(String email, HttpServletResponse response,
 							HttpSession session) throws Exception {
 		logger.info("-- 회원가입 인증 메일 발송");
@@ -86,12 +88,14 @@ public class MemberController {
 	    messageHelper.setTo(email); // 받는 사람
 	    messageHelper.setSubject("Something_take(썸띵테이크) 회원 가입 인증메일입니다."); // 메일 제목 (생략 가능)
 	    
+	    
 	    // --------------------- 인증 번호 --------------------- //
-	    String data = "비밀번호";
-	    data = service.mailNumber();
+	    int data = 0;
+	    AuthKeyVO avo = new AuthKeyVO();
+	    data = avo.init();
 	    session.setAttribute("data", data);
-	    logger.info("@@ session.setAttribute(\"data\", data); : " + data);
 	    // --------------------- 인증 번호 --------------------- //
+
 
 	    String content = "< 가입 인증 번호는 [" + data + "] 입니다. >";
 	    messageHelper.setText(content); // 메일 내용
@@ -103,22 +107,27 @@ public class MemberController {
 	/////////////////////////////////////////////////////////
 
 	/* 인증번호 확인 */
-	@RequestMapping(value = "mailCheck", method = RequestMethod.GET)
+	@RequestMapping(value = "authCheck", method = RequestMethod.GET)
 	public String mainCheck(@RequestParam("quote") String quote,
 							HttpServletResponse response,
 							HttpSession session) throws Exception{
-		boolean result = false;
+		int result = 0;
+		String data = String.valueOf(session.getAttribute("data"));
 		logger.info("-- 인증번호 일치 확인");
-		
-		String data = (String)session.getAttribute("data");
+		logger.info("@@@ quote.equals(data) : " + quote.equals(data));		
+		logger.info("@@@ quote.equalsIgnoreCase(data) : " + quote.equalsIgnoreCase(data));
+		logger.info("@@@ quote/data : " + quote + data);
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		if(quote == data) {
-			result = true;
+		
+		if((quote.equals(data))) {
+			result = 1;
 			out.println(result);
+			return null;
+		}else {
+			result = 0;
 		}
-		logger.info(""+ quote.toString() + data.toString());
-//		out.println(result);
+		out.println(result);
 		return null;
 	}
 

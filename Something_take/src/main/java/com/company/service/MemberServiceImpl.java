@@ -141,17 +141,12 @@ public class MemberServiceImpl implements MemberService{
 
 	///////////////////////////////////////////////////////////////////////
 
-	/* 비밀번호 생성 메서드 */
+	/* 가입 인증번호 일치 확인 메서드 */
 	@Override
-	public String mailNumber() throws Exception {
-		System.out.println("-- ServiceImpl : mailNumber() 실행");
-		Random random = new Random();
-	    String data = "";
-	    for(int i=0; i<=4; i++) {
-	    	data = Integer.toString(random.nextInt(10000)); // 0부터 9까지 난수 생성
-	    } // for
-		return data;
-	} // mainNumber()
+	public String authKeyCheck() throws Exception {
+		System.out.println("-- ServiceImpl : authKeyCheck() 실행");
+		return "";
+	} // authKeyCheck()
 	
 	///////////////////////////////////////////////////////////////////////
 	
