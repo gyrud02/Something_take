@@ -56,7 +56,7 @@
 						<!-- 로그인 유무에 따른 버튼 숨김 -->
 						<c:if test="${sessionScope.email != null}">
 							<div class="col-15 text-right">
-								<button type="button" class="btn btn-primary" onclick="location.href='Write.bd'">글쓰기</button>
+								<button type="button" class="btn btn-primary" onclick="location.href='write'">글쓰기</button>
 							</div>
 						</c:if>
 						<!-- 로그인 유무에 따른 버튼 숨김 -->

@@ -7,7 +7,6 @@
 <script type="text/javascript">
 
 	$(function contact_chk(){
-
 		var regName = RegExp(/^[가-힣A-Za-z]{2,20}$/); // 이름
 		
 		$("#send_message").click(function(){
@@ -62,10 +61,21 @@
 							<h1 class="text-white">환영합니다! <br /> Something-take입니다.</h1>
 						</div>
 
+					<c:choose>
+						<c:when test="${sessionScope.email == null}">
 						<div class="home_btns m-top-40">
 							<a href="menu" class="btn btn-primary m-top-20">주문하러가기</a>
 							<a href="sign-up.me" class="btn btn-default m-top-20">회원가입</a>
 						</div>
+						</c:when>
+						
+						<c:otherwise>
+						<div class="home_btns m-top-40">
+							<a href="menu" class="btn btn-primary m-top-20">주문하러가기</a>
+						</div>
+						</c:otherwise>
+					</c:choose>
+					
 					</div>
 				</div>
 				<!--End off row-->

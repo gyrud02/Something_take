@@ -98,33 +98,33 @@
 	                    	<c:forEach items="${cartList}" var="cartList">
 							<ul class="dropdown-menu cart-list">
 									<li>
-										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/Me-americano.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="#">아메리카노</a></h6>
+										<a href="cart" class="photo"><img src="${pageContext.request.contextPath}/resources/images/Me-americano.jpg" class="cart-thumb" alt="" /></a>
+										<h6><a href="cart">아메리카노</a></h6>
 										<p class="m-top-10"><span class="price">${cartList.cartStock1}<b>개</b></span></p>
 									</li>
 									<li>
-										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/espresso.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="#">에스프레소</a></h6>
+										<a href="cart" class="photo"><img src="${pageContext.request.contextPath}/resources/images/espresso.jpg" class="cart-thumb" alt="" /></a>
+										<h6><a href="cart">에스프레소</a></h6>
 										<p class="m-top-10"><span class="price">${cartList.cartStock2}<b>개</b></span></p>
 									</li>
 									<li>
-										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/caffelatte.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="#">카페라떼</a></h6>
+										<a href="cart" class="photo"><img src="${pageContext.request.contextPath}/resources/images/caffelatte.jpg" class="cart-thumb" alt="" /></a>
+										<h6><a href="cart">카페라떼</a></h6>
 										<p class="m-top-10"><span class="price">${cartList.cartStock3}<b>개</b></span></p>
 									</li>
 									<li>
-										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/cappuccino.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="#">카푸치노</a></h6>
+										<a href="cart" class="photo"><img src="${pageContext.request.contextPath}/resources/images/cappuccino.jpg" class="cart-thumb" alt="" /></a>
+										<h6><a href="cart">카푸치노</a></h6>
 										<p class="m-top-10"><span class="price">${cartList.cartStock4}<b>개</b></span></p>
 									</li>
 									<li>
-										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/greentea_latte.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="#">녹차라떼</a></h6>
+										<a href="cart" class="photo"><img src="${pageContext.request.contextPath}/resources/images/greentea_latte.jpg" class="cart-thumb" alt="" /></a>
+										<h6><a href="cart">녹차라떼</a></h6>
 										<p class="m-top-10"><span class="price">${cartList.cartStock5}<b>개</b></span></p>
 									</li>
 									<li>
-										<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/images/lemonade.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="#">레모네이드</a></h6>
+										<a href="cart" class="photo"><img src="${pageContext.request.contextPath}/resources/images/lemonade.jpg" class="cart-thumb" alt="" /></a>
+										<h6><a href="cart">레모네이드</a></h6>
 										<p class="m-top-10"><span class="price">${cartList.cartStock6}<b>개</b></span></p>
 									</li>
 							
@@ -133,7 +133,7 @@
 								
 								<c:choose>
 									<c:when test="${sessionScope.email != null}">
-										<a href="myCart" class="btn btn-cart">주문</a>
+										<a href="cart" class="btn btn-cart">주문하기</a>
 									</c:when>
 								</c:choose>	
 								
@@ -173,7 +173,6 @@
 							<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 								<li><a href="index.do#contact">Contact</a></li>
 								<li><a href="about.do">About</a></li>
-								<li><a href="sign-up.me">Sign-up</a></li>
 								<li><a href="board.bd">Foundation</a></li>
 								<li><a href="interior.bd">Interior</a></li>
 								<li><a href="memberShip.pm">MemberShip</a></li>
@@ -219,7 +218,7 @@
 						<div class="widget">
 							<h6 class="title">고객 페이지</h6>
 							<ul class="link">
-								<li><a href="myCart">장바구니</a></li>
+								<li><a href="cart">장바구니</a></li>
 								<li><a href="profile.me">회원정보</a></li>
 								<li><a href="#">주문 내역</a></li>
 								<li><a href="membership.me">멤버십 내역</a></li>

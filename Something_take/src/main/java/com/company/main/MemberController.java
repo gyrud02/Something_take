@@ -114,12 +114,12 @@ public class MemberController {
 		int result = 0;
 		String data = String.valueOf(session.getAttribute("data"));
 		logger.info("-- 인증번호 일치 확인");
-		logger.info("@@@ quote.equals(data) : " + quote.equals(data));		
-		logger.info("@@@ quote.equalsIgnoreCase(data) : " + quote.equalsIgnoreCase(data));
-		logger.info("@@@ quote/data : " + quote + data);
+//		logger.info("@@@ quote.equals(data) : " + quote.equals(data));		
+//		logger.info("@@@ quote.equalsIgnoreCase(data) : " + quote.equalsIgnoreCase(data));
+//		logger.info("@@@ quote/data : " + quote + data);
+		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
-		
 		if((quote.equals(data))) {
 			result = 1;
 			out.println(result);
@@ -138,12 +138,14 @@ public class MemberController {
 	public String signInPOST(MemberVO vo, HttpSession session) throws Exception{
 		logger.info("-- 로그인 버튼 작동 ");
 		MemberVO DBvo = service.loginMem(vo);
-		logger.info("@@@ DBvo : " + DBvo);
+//		logger.info("@@@ DBvo : " + DBvo);
 		
 		if(DBvo == null) { // 로그인 실패 시
 			return "redirect:../sign-in.me";
 		}else if(DBvo != null) { // 로그인 성공 시
 			session.setAttribute("email", DBvo.getEmail());
+			String email = (String)session.getAttribute("email");
+			cservice.cartInit(email);
 			cservice.addCart(vo);
 		}
 		logger.info("-- 로그인 버튼 완료");
@@ -159,8 +161,8 @@ public class MemberController {
 		
 		logger.info("-- 로그아웃 메소드 실행");
 		String email = (String)session.getAttribute("email");
-		cvo.setEmail(email);
-		logger.info("@@@ session : " + email);
+		cvo.setCart_email(email);
+//		logger.info("@@@ session : " + email);
 		cservice.delCart(cvo);
 		session.invalidate();
 		
@@ -213,7 +215,7 @@ public class MemberController {
 		logger.info("@@@ vo : " + vo);
 		model.addAttribute("email", vo.getEmail());
 		model.addAttribute("pwd", vo.getPwd());
-		model.addAttribute("email", cvo.getEmail());
+		model.addAttribute("email", cvo.getCart_email());
 		model.addAttribute("writer", bvo.getWriter());
 		cservice.delCart(cvo);
 		check = service.deleteMem(vo);

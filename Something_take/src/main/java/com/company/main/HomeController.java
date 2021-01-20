@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.support.SessionStatus;
 
 import com.company.domain.BoardVO;
 import com.company.domain.CartVO;
@@ -136,7 +135,7 @@ public class HomeController {
 	/////////////////////////////////////////////////////////
 
 	/* 글쓰기 페이지로 이동 */
-	@RequestMapping(value = "write.bd", method = RequestMethod.GET)
+	@RequestMapping(value = "write", method = RequestMethod.GET)
 	public String write(HttpSession session) {
 		logger.info("-- 게시판 글쓰기 페이지로 이동");
 		return "board/write.tiles";
@@ -203,19 +202,10 @@ public class HomeController {
 
 	/////////////////////////////////////////////////////////
 
-	/* 메뉴 페이지로 이동하는 메소드 */
-	@RequestMapping(value = "menu", method = RequestMethod.GET)
-	public String menu(HttpSession session) throws Exception{
-		logger.info("-- 메뉴 페이지로 이동");
-		return "payment/order.tiles";
-	} // menu()
-	
-	/////////////////////////////////////////////////////////
-
 	/* 결제 페이지로 이동하는 메소드 */
 	@RequestMapping(value = "memberShip.pm", method = RequestMethod.GET)
 	public String memberShip() throws Exception{
-		logger.info("-- 결제 페이지로 이동");
+		logger.info("-- 멤버십 페이지로 이동");
 		return "payment/membership.tiles";
 	} // payment()
 	
@@ -318,13 +308,13 @@ public class HomeController {
 		model.addAttribute("cartList", cartList);
 		model.addAttribute("total", total);
 		logger.info("@@ cartList : " + cartList + "/ total : " + total);
-		return "payment/order.tiles";
+		return "payment/cart.tiles";
 	} // getCart()
 	
 	/////////////////////////////////////////////////////////
 
 	/* 카트 페이지  */
-	@RequestMapping(value = "myCart", method = RequestMethod.GET)
+	@RequestMapping(value = "cart", method = RequestMethod.GET)
 	public String cartPage(Model model, HttpSession session) throws Exception{
 		logger.info("-- 장바구니 페이지로 이동");
 		String email = (String)session.getAttribute("email");
