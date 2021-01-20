@@ -10,8 +10,8 @@ public class BoardVO {
 	private String writer; // 작성자
 	private Date reg_date; // 작성일시
 	private int viewcount; // 조회수
-	private String storedFileName; // 프로필 사진 저장 경로
-	private String originalFileName; // 프로필 사진 기본 이름
+	private String storedFileName; // 이미지 파일 저장명
+	private String originalFileName; // 이미지 파일명
 	
 	// setter
 	public void setBno(int bno) {this.bno = bno;}

@@ -107,6 +107,15 @@ public class CartDAOImpl implements CartDAO{
 
 	///////////////////////////////////////////////////////////////////////
 
+	/* 카트 초기화 메서드 */
+	@Override
+	public void initialize(String email) throws Exception {
+		System.out.println("-- DAOImpl : initialize() 실행");
+		sqlSession.delete(namespace+".initialize", email);
+	} // initialize()
+
+	///////////////////////////////////////////////////////////////////////
+
 	
 	
 	

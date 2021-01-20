@@ -18,4 +18,6 @@ public interface CartService {
 	public List<CartVO> getCart(String email) throws Exception; // 카트 조회 메서드 
 	
 	public int totalNum(String email) throws Exception; // 총 갯수 조회 메서드
+	
+	public void cartInit(String email) throws Exception; // 카트 초기화 메서드
 }

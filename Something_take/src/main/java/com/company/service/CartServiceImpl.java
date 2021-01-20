@@ -82,6 +82,16 @@ public class CartServiceImpl implements CartService{
 	} // totalNum()
 
 	///////////////////////////////////////////////////////////////////////
+
+	/* 카트 초기화 메서드 */
+	@Override
+	public void cartInit(String email) throws Exception {
+		System.out.println("-- ServiceImpl : cartInit() 실행");
+		cdao.initialize(email);
+	} // cartInit()
+
+	///////////////////////////////////////////////////////////////////////
+	
 	
 	
 	

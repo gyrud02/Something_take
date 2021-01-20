@@ -11,11 +11,8 @@
 	/* 유효성 검사 */
 	$(function write_chk(){
 		$("#reg_btn").click(function(){
-
-			// 제목
-			if($("#title").val() == ""){
+			if($("#title").val() == ""){ // 제목
 				alert("제목을 입력하세요."); $("#title").focus(); return false; }
-			
 		}); // click()
 	}); // write_chk()
 
@@ -54,7 +51,7 @@
 								<div class="separator_auto"></div>
 							</div>
 
-							<form action="board/write.post" method="post" enctype="multipart/form-data" onsubmit="write_chk()">
+							<form action="board/write.post" method="post" enctype="multipart/form-data" onsubmit="return write_chk()">
 				
 									<div class="form-group">
 										<label class="form-label" for="title">글제목</label> 
@@ -63,7 +60,6 @@
 									<div class="form-group">
 										<label class="form-label" for="content">글내용</label>
 										<textarea class="form-control" name="content" id="content" rows="4" required></textarea>
-					
 										
 <%------------------------------------ [ ck에디터 api ] ----------------------------------------%>									
 										<script type="text/javascript">
@@ -83,9 +79,9 @@
 
 										</script>
 <%------------------------------------ [ ck에디터 api ] ----------------------------------------%>									
-										
-										
+									
 									</div>
+									
 									<div class="form-group">
 										<label for="writer">작성자</label> 
 										<input type="text" name="writer" class="form-control" value="${sessionScope.email}" readonly="readonly">

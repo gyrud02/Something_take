@@ -3,33 +3,33 @@
 
 <mapper namespace="com.company.mapper.CartMapper">
 
-	<!-- 				< 카트 관련 Mapper > 						-->
+	<!-- 				 < 카트 관련 Mapper > 					-->
 
 	<!-- 카트 생성 -->	
 	<insert id="addCart">
-	INSERT INTO addCart(email, addDate)
+	INSERT INTO cart(email, addDate)
 	VALUES (#{email}, now())
 	</insert>
 	<!-- 카트 생성 -->
 	
 	<!-- 카트 번호 조회 -->
 	<select id="getCartNum">
-	SELECT cartNum
-	FROM addCart
+	SELECT cart_id
+	FROM cart
 	WHERE email = #{email}
 	</select>
 	<!-- 카트 번호 조회 -->
 	
 	<!-- 카트 삭제 -->
 	<delete id="delCart">
-	DELETE FROM addCart
+	DELETE FROM cart
 	WHERE email = #{email}
 	</delete>
 	<!-- 카트 삭제 -->
 	
 	<!-- 아메리카노 갯수 조절 -->
 	<update id="AMERICANO">
-	UPDATE addCart
+	UPDATE cart
 	SET cartStock1 = +1
 	WHERE email = #{email}
 	</update>
@@ -37,7 +37,7 @@
 	
 	<!-- 에스프레소 갯수 조절 -->
 	<update id="ESPRESSO">
-	UPDATE addCart
+	UPDATE cart
 	SET cartStock2 = +1
 	WHERE email = #{email}
 	</update>
@@ -45,7 +45,7 @@
 	
 	<!-- 카페라떼 갯수 조절 -->
 	<update id="CAFFELATTE">
-	UPDATE addCart
+	UPDATE cart
 	SET cartStock3 = +1
 	WHERE email = #{email}
 	</update>	
@@ -53,7 +53,7 @@
 	
 	<!-- 카푸치노 갯수 조절 -->
 	<update id="CAPPUCCINO">
-	UPDATE addCart
+	UPDATE cart
 	SET cartStock4 = +1
 	WHERE email = #{email}
 	</update>	
@@ -61,7 +61,7 @@
 	
 	<!-- 녹차라떼 갯수 조절 -->
 	<update id="GREENTEA_LATTE">
-	UPDATE addCart
+	UPDATE cart
 	SET cartStock5 = +1
 	WHERE email = #{email}
 	</update>
@@ -69,7 +69,7 @@
 
 	<!-- 레모네이드 갯수 조절 -->
 	<update id="LEMONADE">
-	UPDATE addCart
+	UPDATE cart
 	SET cartStock6 = +1
 	WHERE email = #{email}
 	</update>	
@@ -79,7 +79,7 @@
 	<select id="getCart" resultType="com.company.domain.CartVO">
 	<![CDATA[
 	SELECT *
-	FROM addCart
+	FROM cart
 	WHERE email = #{email}
 	]]>
 	</select>
@@ -89,10 +89,17 @@
 	<select id="totalNum" resultType="int">
 	<![CDATA[
 	SELECT SUM(cartStock1 + cartStock2 + cartStock3 + cartStock4 + cartStock5 + cartStock6)
-	FROM addCart
+	FROM cart
 	WHERE email = #{email}
 	]]>
 	</select>
 	<!-- 총 갯수 조회 -->
+	
+	<!-- 카트 초기화 -->
+	<delete id="initialize">
+	DELETE FROM cart
+	WHERE email = #{email}
+	</delete>
+	<!-- 카트 초기화 -->
 	
 </mapper>
