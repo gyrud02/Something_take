@@ -302,9 +302,9 @@ public class HomeController {
 	@RequestMapping(value = "newCart", method = RequestMethod.GET)
 	public String getCart(Model model, HttpSession session) throws Exception{
 		logger.info("-- 장바구니 조회 실행");
-		String email = (String)session.getAttribute("email");
-		List<CartVO> cartList = cservice.getCart(email);
-		int total = cservice.totalNum(email);
+		String cart_email = (String)session.getAttribute("email");
+		List<CartVO> cartList = cservice.getCart(cart_email);
+		int total = cservice.totalNum(cart_email);
 		model.addAttribute("cartList", cartList);
 		model.addAttribute("total", total);
 		logger.info("@@ cartList : " + cartList + "/ total : " + total);
@@ -317,9 +317,9 @@ public class HomeController {
 	@RequestMapping(value = "cart", method = RequestMethod.GET)
 	public String cartPage(Model model, HttpSession session) throws Exception{
 		logger.info("-- 장바구니 페이지로 이동");
-		String email = (String)session.getAttribute("email");
-		List<CartVO> cartList = cservice.getCart(email);
-		int total = cservice.totalNum(email);
+		String cart_email = (String)session.getAttribute("email");
+		List<CartVO> cartList = cservice.getCart(cart_email);
+		int total = cservice.totalNum(cart_email);
 		model.addAttribute("cartList", cartList);
 		model.addAttribute("total", total);
 		return "payment/cart.tiles";
@@ -331,9 +331,9 @@ public class HomeController {
 	@RequestMapping(value = "cartList", method = RequestMethod.GET)
 	public String cartList(Model model, HttpSession session) throws Exception{
 		logger.info("-- 장바구니 리스트 페이지로 이동");
-		String email = (String)session.getAttribute("email");
-		List<CartVO> cartList = cservice.getCart(email);
-		int total = cservice.totalNum(email);
+		String cart_email = (String)session.getAttribute("email");
+		List<CartVO> cartList = cservice.getCart(cart_email);
+		int total = cservice.totalNum(cart_email);
 		model.addAttribute("cartList", cartList);
 		model.addAttribute("total", total);
 		return "payment/cartList.tiles";
