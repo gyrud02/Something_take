@@ -15,7 +15,8 @@ public class CartVO {
 	private int product_id; // 메뉴 번호
 	private String product_name; // 상품명
 	private int price; // 메뉴 금액
-	private String picture_url; // 상품 이미지
+	private String picture_url; // 상품 이미지 파일명
+	private int product_amount; // 상품 갯수
 	
 	// getter
 	public int getCart_id() {return cart_id;}
@@ -27,7 +28,8 @@ public class CartVO {
 	public String getProduct_name() {return product_name;}
 	public int getPrice() {return price;}
 	public String getPicture_url() {return picture_url;}
-
+	public int getProduct_amount() {return product_amount;}
+	
 	// setter
 	public void setCart_id(int cart_id) {this.cart_id = cart_id;}
 	public void setCart_email(String cart_email) {this.cart_email = cart_email;}
@@ -38,6 +40,7 @@ public class CartVO {
 	public void setProduct_name(String product_name) {this.product_name = product_name;}
 	public void setPrice(int price) {this.price = price;}
 	public void setPicture_url(String picture_url) {this.picture_url = picture_url;}
+	public void setProduct_amount(int product_amount) {this.product_amount = product_amount;}
 
 	// toString
 	@Override

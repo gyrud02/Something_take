@@ -8,7 +8,6 @@
 
 	$(function contact_chk(){
 		var regName = RegExp(/^[가-힣A-Za-z]{2,20}$/); // 이름
-		
 		$("#send_message").click(function(){
 
 			// 고객명
@@ -71,7 +70,7 @@
 						
 						<c:otherwise>
 						<div class="home_btns m-top-40">
-							<a href="menu" class="btn btn-primary m-top-20">주문하러가기</a>
+							<a href="cart" class="btn btn-primary m-top-20">주문하러가기</a>
 						</div>
 						</c:otherwise>
 					</c:choose>

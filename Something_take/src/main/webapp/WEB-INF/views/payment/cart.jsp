@@ -63,7 +63,7 @@
 										<thead>
 											<tr class="cart_menu">
 												<td class="icons"></td>
-												<td class="image"><b>상품</b></td>
+												<td class="image" colspan="2"><b>상품</b></td>
 												<td class="price"><b>가격</b></td>
 												<td class="quantity"><b>갯수</b></td>
 												<td class="delete"></td>
@@ -72,129 +72,31 @@
 										<tbody>
 											<c:forEach items="${cartList}" var="cartList">
 											<tr>
+												<td class="cart_product_id">
+													${cartList.product_id}
+												</td>
 												<td class="cart_product">
-													<img src="${pageContext.request.contextPath}/resources/images/Me-americano.jpg">
+													<img src="${pageContext.request.contextPath}/resources/images/${cartList.picture_url}">
+													${cartList.product_name}
 												</td>
 												<td class="cart_description">
-													<b>${cartList.americano}</b>
+													<p> ￦ ${cartList.price}</p>
 												</td>
 												<td class="cart_price">
-													<p> ￦ 2,000</p>
-												</td>
-												<td class="cart_quantity">
-													<div class="cart_quantity_button">
-														<a class="cart_quantity_up" href="#"><i class="tim-icons icon-simple-add"></i></a>
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock1}" autocomplete="off">
-														<a class="cart_quantity_down" href="#"><i class="tim-icons icon-simple-delete"></i></a>
-													</div>
+													<b>${cartList.product_amount}</b>
 												</td>
 												<td class="cart_delete">
 													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-simple-remove" href="#"></i></a>
 												</td>
 											</tr>
-											<tr>
-												<td class="cart_product">
-													<img src="${pageContext.request.contextPath}/resources/images/espresso.jpg">
-												</td>
-												<td class="cart_description">
-													<b>${cartList.espresso}</b>
-												</td>
-												<td class="cart_price">
-													<p> ￦ 1,500</p>
-												</td>
-												<td class="cart_quantity">
-													<div class="cart_quantity_button">
-														<a class="cart_quantity_up" href="#"><i class="tim-icons icon-simple-add"></i></a>
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock2}" autocomplete="off">
-														<a class="cart_quantity_down" href="#"><i class="tim-icons icon-simple-delete"></i></a>
-													</div>
-												</td>
-												<td class="cart_delete">
-													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-simple-remove" href="#"></i></a>
+											<tr class="text-right">
+												<td colspan="5">
+													<p>총 : ${cartList.cart_amount}개</p>
 												</td>
 											</tr>
 											<tr>
-												<td class="cart_product">
-													<img src="${pageContext.request.contextPath}/resources/images/caffelatte.jpg">
-												</td>
-												<td class="cart_description">
-													<b>${cartList.caffelatte}</b>
-												</td>
-												<td class="cart_price">
-													<p> ￦ 3,500</p>
-												</td>
-												<td class="cart_quantity">
-													<div class="cart_quantity_button">
-														<a class="cart_quantity_up" href="#"><i class="tim-icons icon-simple-add"></i></a>
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock3}" autocomplete="off">
-														<a class="cart_quantity_down" href="#"><i class="tim-icons icon-simple-delete"></i></a>
-													</div>
-												</td>
-												<td class="cart_delete">
-													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-simple-remove" href="#"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td class="cart_product">
-													<img src="${pageContext.request.contextPath}/resources/images/cappuccino.jpg">
-												</td>
-												<td class="cart_description">
-													<b>${cartList.cappuccino}</b>
-												</td>
-												<td class="cart_price">
-													<p> ￦ 3,800</p>
-												</td>
-												<td class="cart_quantity">
-													<div class="cart_quantity_button">
-														<a class="cart_quantity_up" href="#"><i class="tim-icons icon-simple-add"></i></a>
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock4}" autocomplete="off">
-														<a class="cart_quantity_down" href="#"><i class="tim-icons icon-simple-delete"></i></a>
-													</div>
-												</td>
-												<td class="cart_delete">
-													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-simple-remove" href="#"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td class="cart_product">
-													<img src="${pageContext.request.contextPath}/resources/images/greentea_latte.jpg">
-												</td>
-												<td class="cart_description">
-													<b>${cartList.greentea_latte}</b>
-												</td>
-												<td class="cart_price">
-													<p> ￦ 3,000</p>
-												</td>
-												<td class="cart_quantity">
-													<div class="cart_quantity_button">
-														<a class="cart_quantity_up" href="#"><i class="tim-icons icon-simple-add"></i></a>
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock5}" autocomplete="off">
-														<a class="cart_quantity_down" href="#"><i class="tim-icons icon-simple-delete"></i></a>
-													</div>
-												</td>
-												<td class="cart_delete">
-													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-simple-remove" href="#"></i></a>
-												</td>
-											</tr>
-											<tr>
-												<td class="cart_product">
-													<img src="${pageContext.request.contextPath}/resources/images/lemonade.jpg">
-												</td>
-												<td class="cart_description">
-													<b>${cartList.lemonade}</b>
-												</td>
-												<td class="cart_price">
-													<p> ￦ 4,000</p>
-												</td>
-												<td class="cart_quantity">
-													<div class="cart_quantity_button">
-														<a class="cart_quantity_up" href="#"><i class="tim-icons icon-simple-add"></i></a>
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock6}" autocomplete="off">
-														<a class="cart_quantity_down" href="#"><i class="tim-icons icon-simple-delete"></i></a>
-													</div>
-												</td>
-												<td class="cart_delete">
-													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-simple-remove" href="#"></i></a>
+												<td colspan="5">
+													<p> ￦${cartList.cart_money}</p>
 												</td>
 											</tr>
 											</c:forEach>

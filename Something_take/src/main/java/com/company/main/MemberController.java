@@ -114,9 +114,6 @@ public class MemberController {
 		int result = 0;
 		String data = String.valueOf(session.getAttribute("data"));
 		logger.info("-- 인증번호 일치 확인");
-//		logger.info("@@@ quote.equals(data) : " + quote.equals(data));		
-//		logger.info("@@@ quote.equalsIgnoreCase(data) : " + quote.equalsIgnoreCase(data));
-//		logger.info("@@@ quote/data : " + quote + data);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -144,8 +141,8 @@ public class MemberController {
 			return "redirect:../sign-in.me";
 		}else if(DBvo != null) { // 로그인 성공 시
 			session.setAttribute("email", DBvo.getEmail());
-			String email = (String)session.getAttribute("email");
-			cservice.cartInit(email);
+			String cart_email = (String)session.getAttribute("email");
+			cservice.cartInit(cart_email);
 			cservice.addCart(vo);
 		}
 		logger.info("-- 로그인 버튼 완료");
@@ -316,17 +313,4 @@ public class MemberController {
 
 	/////////////////////////////////////////////////////////
 
-	/* 카트 담기 메서드 */
-	@RequestMapping(value = "addMenu", method = RequestMethod.GET)
-	public String addMenu(String menu, HttpServletResponse response,
-						  HttpSession session) throws Exception{
-		logger.info("-- 카트에 메뉴 담기");
-		String email = (String)session.getAttribute("email");
-		logger.info("@@@ menu : " + menu);
-		int check = cservice.addMenu(email, menu);
-		return null;
-	} // addMenu()
-	
-	/////////////////////////////////////////////////////////
-	
 }
