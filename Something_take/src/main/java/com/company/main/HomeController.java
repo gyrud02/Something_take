@@ -304,10 +304,10 @@ public class HomeController {
 		logger.info("-- 장바구니 조회 실행");
 		String cart_email = (String)session.getAttribute("email");
 		List<CartVO> cartList = cservice.getCart(cart_email);
-		int total = cservice.totalNum(cart_email);
+		List<CartVO> productList = cservice.getProducts();
 		model.addAttribute("cartList", cartList);
-		model.addAttribute("total", total);
-		logger.info("@@ cartList : " + cartList + "/ total : " + total);
+		model.addAttribute("productList", productList);
+		logger.info("@@ cartList : " + cartList + "/ productList : " + productList);
 		return "payment/cart.tiles";
 	} // getCart()
 	
@@ -319,9 +319,9 @@ public class HomeController {
 		logger.info("-- 장바구니 페이지로 이동");
 		String cart_email = (String)session.getAttribute("email");
 		List<CartVO> cartList = cservice.getCart(cart_email);
-		int total = cservice.totalNum(cart_email);
+		List<CartVO> productList = cservice.getProducts();
 		model.addAttribute("cartList", cartList);
-		model.addAttribute("total", total);
+		model.addAttribute("productList", productList);
 		return "payment/cart.tiles";
 	} // myCart()
 	
@@ -333,9 +333,9 @@ public class HomeController {
 		logger.info("-- 장바구니 리스트 페이지로 이동");
 		String cart_email = (String)session.getAttribute("email");
 		List<CartVO> cartList = cservice.getCart(cart_email);
-		int total = cservice.totalNum(cart_email);
+		List<CartVO> productList = cservice.getProducts();
 		model.addAttribute("cartList", cartList);
-		model.addAttribute("total", total);
+		model.addAttribute("productList", productList);
 		return "payment/cartList.tiles";
 	} // cartList()
 	

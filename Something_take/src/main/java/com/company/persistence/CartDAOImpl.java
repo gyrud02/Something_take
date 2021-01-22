@@ -23,32 +23,11 @@ public class CartDAOImpl implements CartDAO{
 	
 	/* 카트 생성 메서드 */
 	@Override
-	public void addCart(MemberVO mvo) throws Exception {
+	public void create(MemberVO mvo) throws Exception {
 		System.out.println("-- DAOImpl : addCart() 실행");
-		sqlSession.insert(namespace+".addCart", mvo);
+		sqlSession.insert(namespace+".create", mvo);
 		System.out.println("-- DAOImpl : addCart() 실행 완료");
 	} // addCart()
-
-	///////////////////////////////////////////////////////////////////////
-
-	/* 카트 번호 조회 메서드 */
-	@Override
-	public int getCartNum(CartVO cvo) throws Exception {
-		System.out.println("-- DAOImpl : getCartNum() 실행");
-		int num = sqlSession.selectOne(namespace+".getCartNum", cvo);
-		System.out.println("-- DAOImpl : getCartNum() 실행 완료");
-		return num;
-	} // getCartNum()
-	
-	///////////////////////////////////////////////////////////////////////
-
-	/* 카트 삭제 메서드 */
-	@Override
-	public void delCart(CartVO cvo) throws Exception {
-		System.out.println("-- DAOImpl : delCart() 실행");
-		sqlSession.delete(namespace+".delCart", cvo);
-		System.out.println("-- DAOImpl : delCart() 실행 완료");
-	} // delCart()
 
 	///////////////////////////////////////////////////////////////////////
 
@@ -63,24 +42,22 @@ public class CartDAOImpl implements CartDAO{
 
 	///////////////////////////////////////////////////////////////////////
 
-	/* 총 갯수 조회 메서드 */
+	/* 전체 상품 조회 메서드 */
 	@Override
-	public int totalNum(String cart_email) throws Exception {
-		int total = 0;
-		System.out.println("-- DAOImpl : totalNum() 실행");
-		total = sqlSession.selectOne(namespace+".totalNum", cart_email);
-		System.out.println("-- DAOImpl : totalNum() 실행 완료");
-		return total;
-	} // totalNum()
+	public List<CartVO> productList() throws Exception {
+		System.out.println("-- DAOImpl : productList() 실행");
+		List<CartVO> productList = sqlSession.selectList(namespace+".getProduct");
+		return productList;
+	} // productList()
 
 	///////////////////////////////////////////////////////////////////////
 
-	/* 카트 초기화 메서드 */
+	/* 회원 탈퇴 시 카트 삭제 메서드 */
 	@Override
-	public void initialize(String cart_email) throws Exception {
-		System.out.println("-- DAOImpl : initialize() 실행");
-		sqlSession.delete(namespace+".initialize", cart_email);
-	} // initialize()
+	public void delete(MemberVO mvo) throws Exception {
+		System.out.println("-- DAOImpl : delete() 실행");
+		sqlSession.delete(namespace+".deleteCart", mvo);
+	} // delete()
 
 	///////////////////////////////////////////////////////////////////////
 
