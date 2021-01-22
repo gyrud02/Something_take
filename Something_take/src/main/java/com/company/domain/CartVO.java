@@ -47,7 +47,7 @@ public class CartVO {
 	public String toString() {
 		return "CartVO [cart_id=" + cart_id + ", cart_email=" + cart_email + ", cart_addDate=" + cart_addDate
 				+ ", cart_amount=" + cart_amount + ", cart_money=" + cart_money + ", product_id=" + product_id
-				+ ", product_name=" + product_name + ", price=" + price + ", picture_url=" + picture_url + "]";
+				+ ", product_name=" + product_name + ", price=" + price + ", picture_url=" + picture_url
+				+ ", product_amount=" + product_amount + "]";
 	}
-	
 }

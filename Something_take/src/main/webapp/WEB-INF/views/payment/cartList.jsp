@@ -9,10 +9,70 @@
   <!-- Nucleo Icons -->
 </head>
 <style type="text/css">
-	#quantity{width:25px;}
-	section img{width:60px; height: 60px;}
-	table td{height: 70px;}
+	.amount{width:60px;} 
+	.cart_product_id, .cart_icons, .cart_delete{width:65px;}
+	.cart_price{width:120px;}
+	.cart_product_image, .cart_product_name{width:120px;}
+	section img{width:60px; height: 50px;} 
+	tbody td{height:80px;} thead{height:100px;}
 </style>
+<script type="text/javascript">
+
+	/* 주문하기 */
+	function orderCheck(){
+		var question = confirm("주문하시겠습니까?");
+		if(question == true){
+			var name = document.getElementById('').value;
+			var amount = document.getElementById('').value;
+			var email = document.getElementById('session').value;
+			
+			IMP.init('imp30100127');
+			IMP.request_pay({
+			    pg : 'inicis', // version 1.1.0부터 지원.
+			    pay_method : 'card',
+			    merchant_uid : 'merchant_' + new Date().getTime(), // 영수증번호
+			    name : '금액 : '+ total,
+			    amount : amount, // 판매 가격
+			    buyer_email : email,
+			    buyer_name : '',
+			    buyer_tel : '',
+			    buyer_addr : '',
+			    buyer_postcode : ''
+			}, function(rsp) {
+			    if ( rsp.success ) {
+			    	payment(event);
+			    } else {
+			        var msg = '결제에 실패하였습니다.';
+			        return false;
+			    }
+			    alert(msg);
+			}); // request_pay
+
+			function payment(){
+				$.ajax({
+						type: "POST",
+						url: "payment/",
+						dataType:"text",
+						data:{ email: email.value,
+							   membership_type: name.value,
+							   membership_pay: amount.value },
+						success:function(textStatus){
+							alert("결제가 완료되었습니다.");
+							location.href="membership.me";
+						}, // success
+						error:function(textStatus){
+							alert("결제 진행 중 오류가 발생하였습니다.");
+							return false;
+						} // error
+				}); // ajax
+			} // payment()
+		}else{
+			alert("주문이 취소되었습니다.");
+			return false;
+		}
+	} // orderCheck()
+
+</script>
 <body>
 	
 	<br><br><br><br>
@@ -37,133 +97,44 @@
 		
 							<div class="head_title_1 text-left">
 							
-							
 <%-------------------------------------------- [form태그 시작] -------------------------------------------------------%>
 							
-							<form onsubmit="return cartCheck();">
-								<div class="table-responsive cart_info text-center">
+							<form onsubmit="return orderCheck();">
+								<div class="table-responsive form-group text-center">
 									<table class="table table-condensed">
 										<thead>
 											<tr class="cart_menu">
 												<td class="icons"></td>
-												<td class="image"><b>상품</b></td>
+												<td class="numbers"></td>
+												<td class="menu" colspan="2"><b>메뉴</b></td>
 												<td class="price"><b>가격</b></td>
-												<td class="quantity"><b>갯수</b></td>
+												<td class="amount"><b>갯수</b></td>
 												<td class="delete"></td>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${cartList}" var="cartList">
-											<tr>
-												<td class="cart_product">
-													<img src="${pageContext.request.contextPath}/resources/images/Me-americano.jpg">
+											<c:forEach items="${productList}" var="productList">
+											<tr class="text-center">
+												<td class="cart_icons">
+													<a class="cart_quantity" href="#"><i class="tim-icons icon-pin"></i></a>
 												</td>
-												<td class="cart_description">
-													<b>${cartList.americano}</b>
+												<td class="cart_product_id">
+													${productList.product_id}
 												</td>
-												<td class="cart_price">
-													<p> ￦ 2,000</p>
+												<td class="cart_product_image">
+													<img src="${pageContext.request.contextPath}/resources/images/${productList.picture_url}">
 												</td>
-												<td class="cart_quantity">
-													<div class="cart_quantity_button">
-														<a class="cart_quantity_up" href="#"><i class="tim-icons icon-simple-add"></i></a>
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock1}" autocomplete="off" readonly>
-														<a class="cart_quantity_down" href="#"><i class="tim-icons icon-simple-delete"></i></a>
-													</div>
-												</td>
-												<td class="cart_delete">
-												</td>
-											</tr>
-											<tr>
-												<td class="cart_product">
-													<img src="${pageContext.request.contextPath}/resources/images/espresso.jpg">
-												</td>
-												<td class="cart_description">
-													<b>${cartList.espresso}</b>
+												<td class="cart_product_name text-left">
+													<b>${productList.product_name}</b>
 												</td>
 												<td class="cart_price">
-													<p> ￦ 1,500</p>
+													<p> ￦ ${productList.price}</p>
 												</td>
-												<td class="cart_quantity">
-													<div class="cart_quantity_button">
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock2}" autocomplete="off" readonly>
-													</div>
+												<td class="cart_amount amount">
+													<input type="text" value="${productList.product_amount}" class="form-control" readonly="readonly">
 												</td>
 												<td class="cart_delete">
-												</td>
-											</tr>
-											<tr>
-												<td class="cart_product">
-													<img src="${pageContext.request.contextPath}/resources/images/caffelatte.jpg">
-												</td>
-												<td class="cart_description">
-													<b>${cartList.caffelatte}</b>
-												</td>
-												<td class="cart_price">
-													<p> ￦ 3,500</p>
-												</td>
-												<td class="cart_quantity">
-													<div class="cart_quantity_button">
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock3}" autocomplete="off" readonly>
-													</div>
-												</td>
-												<td class="cart_delete">
-												</td>
-											</tr>
-											<tr>
-												<td class="cart_product">
-													<img src="${pageContext.request.contextPath}/resources/images/cappuccino.jpg">
-												</td>
-												<td class="cart_description">
-													<b>${cartList.cappuccino}</b>
-												</td>
-												<td class="cart_price">
-													<p> ￦ 3,800</p>
-												</td>
-												<td class="cart_quantity">
-													<div class="cart_quantity_button">
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock4}" autocomplete="off" readonly>
-													</div>
-												</td>
-												<td class="cart_delete">
-												</td>
-											</tr>
-											<tr>
-												<td class="cart_product">
-													<img src="${pageContext.request.contextPath}/resources/images/greentea_latte.jpg">
-												</td>
-												<td class="cart_description">
-													<b>${cartList.greentea_latte}</b>
-												</td>
-												<td class="cart_price">
-													<p> ￦ 3,000</p>
-												</td>
-												<td class="cart_quantity">
-													<div class="cart_quantity_button">
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock5}" autocomplete="off" readonly>
-													</div>
-												</td>
-												<td class="cart_delete">
-												</td>
-											</tr>
-											<tr>
-												<td class="cart_product">
-													<img src="${pageContext.request.contextPath}/resources/images/lemonade.jpg">
-												</td>
-												<td class="cart_description">
-													<b>${cartList.lemonade}</b>
-												</td>
-												<td class="cart_price">
-													<p> ￦ 4,000</p>
-												</td>
-												<td class="cart_quantity">
-													<div class="cart_quantity_button">
-														<a class="cart_quantity_up" href="#"><i class="tim-icons icon-simple-add"></i></a>
-														<input type="text" name="quantity" id="quantity" value="${cartList.cartStock6}" autocomplete="off" readonly>
-														<a class="cart_quantity_down" href="#"><i class="tim-icons icon-simple-delete"></i></a>
-													</div>
-												</td>
-												<td class="cart_delete">
+													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-refresh-01"></i></a>
 												</td>
 											</tr>
 											</c:forEach>
@@ -176,7 +147,6 @@
 							</form>
 					
 <%-------------------------------------------- [form태그 끝] -------------------------------------------------------%>
-							
 							
 							</div>
 						</div> <!-- class="col" -->

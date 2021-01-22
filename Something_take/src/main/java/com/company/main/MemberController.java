@@ -1,11 +1,9 @@
 package com.company.main;
 
 import java.io.PrintWriter;
-import java.util.Random;
 
 import javax.inject.Inject;
 import javax.mail.internet.MimeMessage;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -16,12 +14,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.w3c.dom.events.Event;
 
 import com.company.domain.AuthKeyVO;
 import com.company.domain.BoardVO;
@@ -67,6 +62,7 @@ public class MemberController {
 	public String signUpPOST(MemberVO vo) throws Exception {
 		logger.info("-- 회원가입 버튼 작동 / vo : "+vo);
 		service.insertMem(vo);
+		cservice.addCart(vo);
 		logger.info("-- 회원가입 완료 ");
 		return "redirect:../index.do";
 	} // signUpPOST()
@@ -141,9 +137,6 @@ public class MemberController {
 			return "redirect:../sign-in.me";
 		}else if(DBvo != null) { // 로그인 성공 시
 			session.setAttribute("email", DBvo.getEmail());
-			String cart_email = (String)session.getAttribute("email");
-			cservice.cartInit(cart_email);
-			cservice.addCart(vo);
 		}
 		logger.info("-- 로그인 버튼 완료");
 		return "redirect:../index.do";
@@ -159,8 +152,6 @@ public class MemberController {
 		logger.info("-- 로그아웃 메소드 실행");
 		String email = (String)session.getAttribute("email");
 		cvo.setCart_email(email);
-//		logger.info("@@@ session : " + email);
-		cservice.delCart(cvo);
 		session.invalidate();
 		
 		response.setContentType("text/html; charset=UTF-8");
@@ -212,13 +203,10 @@ public class MemberController {
 		logger.info("@@@ vo : " + vo);
 		model.addAttribute("email", vo.getEmail());
 		model.addAttribute("pwd", vo.getPwd());
-		model.addAttribute("email", cvo.getCart_email());
-		model.addAttribute("writer", bvo.getWriter());
-		cservice.delCart(cvo);
+		cservice.deleteCart(vo);
 		check = service.deleteMem(vo);
 		
 		if(check == 1) {
-			logger.info("-- 회원탈퇴 버튼 동작 완료");
 			session.invalidate();
 			response.setContentType("text/html; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -279,8 +267,7 @@ public class MemberController {
 		int check = 0;
 		logger.info("-- 이메일 중복 메서드 실행");
 		check = service.duplicate(email);
-		logger.info("@@ check : " + check);
-		logger.info("-- 이메일 중복 메서드 실행 완료");
+//		logger.info("@@ check : " + check);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -300,7 +287,7 @@ public class MemberController {
 		model.addAttribute("email", vo.getEmail());
 		model.addAttribute("membership_type", vo.getMembership_type());
 		model.addAttribute("membership_pay", vo.getMembership_pay());
-		logger.info("@@ vo : " + vo);
+//		logger.info("@@ vo : " + vo);
 		service.payment(vo);
 		
 		response.setContentType("text/html; charset=UTF-8");

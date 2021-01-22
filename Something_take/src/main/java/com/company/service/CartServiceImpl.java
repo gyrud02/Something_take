@@ -22,30 +22,9 @@ public class CartServiceImpl implements CartService{
 	@Override
 	public void addCart(MemberVO mvo) throws Exception {
 		System.out.println("-- ServiceImpl : addCart() 실행");
-		cdao.addCart(mvo);
+		cdao.create(mvo);
 		System.out.println("-- ServiceImpl : addCart() 실행 완료");
 	} // addCart()
-
-	///////////////////////////////////////////////////////////////////////
-
-	/* 카트 번호 조회 메서드 */
-	@Override
-	public int getCartNum(CartVO cvo) throws Exception {
-		System.out.println("-- ServiceImpl : getCartNum() 실행");
-		int num = cdao.getCartNum(cvo);
-		System.out.println("-- ServiceImpl : getCartNum() 실행 완료");
-		return num;
-	} // getCartNum()
-	
-	///////////////////////////////////////////////////////////////////////
-	
-	/* 카트 삭제 메서드 */
-	@Override
-	public void delCart(CartVO cvo) throws Exception {
-		System.out.println("-- ServiceImpl : delCart() 실행");
-		cdao.delCart(cvo);
-		System.out.println("-- ServiceImpl : delCart() 실행 완료");
-	} // delCart()
 
 	///////////////////////////////////////////////////////////////////////
 	
@@ -60,24 +39,22 @@ public class CartServiceImpl implements CartService{
 
 	///////////////////////////////////////////////////////////////////////
 
-	/* 총 갯수 조회 메서드 */
+	/* 전체 상품 조회 메서드 */
 	@Override
-	public int totalNum(String cart_email) throws Exception {
-		System.out.println("-- ServiceImpl : totalNum() 실행");
-		int total = 0;
-		total = cdao.totalNum(cart_email);
-		System.out.println("-- ServiceImpl : totalNum() 실행 완료");
-		return total;
-	} // totalNum()
+	public List<CartVO> getProducts() throws Exception {
+		System.out.println("-- ServiceImpl : getProducts() 실행");
+		List<CartVO> productList = cdao.productList();
+		return productList;
+	} // getProducts()
 
 	///////////////////////////////////////////////////////////////////////
 
-	/* 카트 초기화 메서드 */
+	/* 회원 탈퇴 시 카트 삭제 메서드 */
 	@Override
-	public void cartInit(String cart_email) throws Exception {
-		System.out.println("-- ServiceImpl : cartInit() 실행");
-		cdao.initialize(cart_email);
-	} // cartInit()
+	public void deleteCart(MemberVO mvo) throws Exception {
+		System.out.println("-- ServiceImpl : deleteCart() 실행");
+		cdao.delete(mvo);
+	} // deleteCart();
 
 	///////////////////////////////////////////////////////////////////////
 	
