@@ -20,10 +20,11 @@
 	function writing(){
 		var ing = confirm("게시판 목록으로 돌아가시겠습니까? (작성중인 글은 저장되지않습니다.)");
 		$("#list_btn").click(function(){
-			if(false){
+			if(ing == false){
+				return false;
 			}else if(true){
-				location.href="Board.bd";
 				alert("글 작성이 취소되었습니다.");
+				location.href="board.bd";
 			}
 		}); // click()
 	}; // writing()
@@ -69,14 +70,17 @@
 
 											height: 110,
 				                		    removePlugins: 'resize',
+				                		//  dialogDefinition.removeContents('Link');
+				                		//  dialogDefinition.removeContents('advanced');
 					                			
-					                		filebrowserBrowseUrl: '${pageContext.request.contextPath}/ckfinder/ckfinder.html',
-					                		filebrowserFlashBrowseUrl: '${pageContext.request.contextPath}/ckfinder/ckfinder.html?type=Flash',
-					                		filebrowserUploadUrl: '${pageContext.request.contextPath}/ckfinder/core/connector/java/connctor.java?command=QuickUpload&type=Files',
-					                		filebrowserImageUploadUrl: '${pageContext.request.contextPath}/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Images',
-					                		filebrowserFlashUploadUrl: '${pageContext.request.contextPath}/ckfinder/core/connector/java/connector.java?command=QuickUpload&type=Flash'
+					                		filebrowserUploadUrl: '${pageContext.request.contextPath}/board/imgUpload?type=image',
+					                	//	filebrowserUploadUrl: '${pageContext.request.contextPath}/board/imgUpload',
+					                	//	filebrowserImageUploadUrl: '/upload.do?type=Images',
 										});
 
+										var data = CKEDITOR.dialog;
+										alert(data);
+									//	window.parent.CKEDITOR.tools.callFunction(1, "${url}", "전송완료");
 										</script>
 <%------------------------------------ [ ck에디터 api ] ----------------------------------------%>									
 									
@@ -88,7 +92,7 @@
 									</div>
 		
 								<input type="submit" class="btn btn-primary" id="reg_btn" value="등록">
-								<button type="button" class="btn btn-primary" id="list_btn" onclick="writing()">목록</button>
+								<button type="button" class="btn btn-primary" id="list_btn" onclick="return writing();">목록</button>
 
 							</form>
 						</div>
