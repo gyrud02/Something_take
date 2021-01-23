@@ -4,19 +4,23 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.UUID;
 
 import javax.inject.Inject;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -45,8 +49,7 @@ public class BoardController {
 	public String writePOST(BoardVO bvo, Model model,
 							MultipartHttpServletRequest multi,
 							HttpServletRequest request,
-							HttpServletResponse response,
-							@RequestParam MultipartFile upload) throws Exception {
+							HttpServletResponse response) throws Exception {
 		logger.info("-- 글 등록 버튼 실행");
 		model.addAttribute("title", bvo.getTitle());
 		model.addAttribute("content", bvo.getContent());
@@ -54,41 +57,79 @@ public class BoardController {
 		model.addAttribute("storedFileName", multi.getAttribute(bvo.getStoredFileName()));
 		model.addAttribute("originalFileName", multi.getAttribute(bvo.getOriginalFileName()));
 		
-		
 		response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html; charset=utf-8");
  
-        String fileName = upload.getOriginalFilename(); // 업로드한 파일 이름
-        byte[] bytes = upload.getBytes(); // 파일을 바이트 배열로 변환
- 
-        // 이미지를 업로드 할 디렉토리(배포 디렉토리로 설정)
-        String uploadPath = "D:\\workspace\\spring-tool_suite\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp1\\wtpwebapps\\HK_Project\\WEB-INF\\views\\boardFiles\\";
-        
-		// 프로젝트는 개발 디렉토리에 저장이 되는데 이미지를 업로드할 디렉토리를 개발 디렉토리로 설정하면 일일이 새로고침을 해주어야되서
-		// 불편하기 때문에 이미지를 업로드할 디렉토리를 배포 디렉토리로 설정한다.    
-        OutputStream out = new FileOutputStream(new File(uploadPath + fileName));
- 
-        // 서버로 업로드 write메소드의 매개값으로 파일의 총 바이트를 매개값으로 준다.
-        // 지정된 바이트를 출력 스트립에 쓴다 (출력하기 위해서)
-        out.write(bytes);
- 
-        // 클라이언트에 결과 표시
-        String callback = request.getParameter("CKEditorFuncNum");
- 
-        // 서버 => 클라이언트로 텍스트 전송(자바스크립트 실행)
-        PrintWriter pw = response.getWriter();
-//      String fileUrl = request.getContextPath() + "/images/" + fileName;
-        String fileUrl = request.getContextPath() + "" + fileName;
-        pw.println("<script>window.parent.CKEDITOR.tools.callFunction(" 
-        		+ callback + ",'" + fileUrl
-                + "','이미지가 업로드되었습니다.')" + "</script>");
-        pw.flush();
-		
         bservice.insert(bvo);
 		logger.info("-- 글 등록 버튼 실행 완료");
 		return "redirect:../Board.bd";
 	} // writePOST()
 
+	/////////////////////////////////////////////////////////
+
+	/* 이미지 업로드 메서드 */
+	@RequestMapping(value = "imgUpload", method = RequestMethod.POST)
+	@ResponseBody
+	public String imageFileUpload(HttpServletRequest req,
+								  HttpServletResponse resp,
+								  MultipartHttpServletRequest multiFile) throws Exception{
+		logger.info("-- 이미지 업로드 실행");
+		
+		JSONObject json = new JSONObject();
+		OutputStream out = null;
+		PrintWriter printWriter = null;
+		ServletContext context = req.getSession().getServletContext();
+		MultipartFile file = multiFile.getFile("upload");
+		logger.info("@@ file : " + file);
+		
+		if(file != null) { 
+			if(file.getSize() > 0){
+				if(file.getContentType().toLowerCase().startsWith("image/")) {
+					try {					
+						String fileName = file.getName(); // 업로드한 파일 이름
+				        byte[] bytes = file.getBytes(); // 파일을 바이트 배열로 변환
+				        String uploadPath = context.getRealPath("/img");
+//				        String uploadPath = context.getRealPath("WEB-INF/views/board/boardFiles");
+				        File uploadFile = new File(uploadPath);
+				        logger.info("@@ file : " + file + "/ filename : " + fileName + "/ uploadPath : " + uploadPath);
+	
+				        if(!uploadFile.exists()) {
+				        	uploadFile.mkdirs();
+				        } // if
+				        
+				        fileName = UUID.randomUUID().toString();
+				        uploadPath = uploadPath + "/" + fileName;
+				        
+				        out = new FileOutputStream(new File(uploadPath));
+				        out.write(bytes);
+				        logger.info("@@ file : " + file + "/ filename : " + fileName + "/ uploadPath : " + uploadPath);
+				        
+				        printWriter = resp.getWriter();
+				        resp.setContentType("text/html"); 
+				        
+//				        String fileUrl = req.getContextPath() + "/webapp/WEB-INF/views/board/boardFiles/" + fileName;
+				        String fileUrl = req.getContextPath() + "/img/" + fileName; 
+//				        String fileUrl = context.getRealPath("WEB-INF/views/board/boardFiles/") + fileName; 
+				        logger.info("@@ file : " + file + "/ filename : " + fileName + "/ uploadPath : " + uploadPath + "/ fileUrl : " + fileUrl);
+				  
+						json.append("uploaded", 1); 
+						json.append("filename", fileName);
+						json.append("url", fileUrl);
+						printWriter.println(json); 
+				  
+					  } catch (Exception e) {
+						  e.printStackTrace(); 
+					  } finally { 
+						  if( out != null ) { out.close(); }
+						  if( printWriter != null ) { printWriter.close(); } 
+					  } // try
+			  
+				} // if
+			} // if 
+		} // if
+		return null;
+	} // imageFileUpload()
+	
 	/////////////////////////////////////////////////////////
 	
 	/* 글 수정 메서드 */
@@ -122,18 +163,6 @@ public class BoardController {
 		
 	/////////////////////////////////////////////////////////
 
-	/* 글 작성 시 이미지 업로드 메서드 */
-	@RequestMapping(value = "imageUpload.do", method = RequestMethod.POST)
-    public void imageUpload(HttpServletRequest request, // 이미지를 저장하고, 불러오고, 업로드하기위해 매개변수를 선언
-    						HttpServletResponse response, 
-    						@RequestParam MultipartFile upload) throws Exception{
-    	
-		// MultipartFile 타입은 ckeditor에서 upload란 이름으로 저장하게 된다
-        
-	} // imageUpload()
-
-	/////////////////////////////////////////////////////////
-	
 	/* 댓글 등록 메서드 */
 	@RequestMapping(value = "reply.get", method = RequestMethod.GET)
 	public String replyAJAX(Model model, ReplyVO revo,
