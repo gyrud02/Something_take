@@ -62,13 +62,13 @@
 										<div class="box-footer text-right">
 											<button type="button" class="btn btn-primary" id="revBtn" onclick="location.href='Modify.bd?bno=${readList.bno}'">수정</button>
 											<button type="button" class="btn btn-primary" id="delBtn" onclick="btnClick()">삭제</button>
-											<button type="button" class="btn btn-primary" onclick="location.href='Board.bd'">목록</button>
+											<button type="button" class="btn btn-primary" onclick="location.href='board.bd'">목록</button>
 										</div>
 									</c:when>
 									
 									<c:otherwise>
 										<div class="box-footer text-right">
-											<button type="button" class="btn btn-primary" onclick="location.href='Board.bd'">목록</button>
+											<button type="button" class="btn btn-primary" onclick="location.href='board.bd'">목록</button>
 										</div>
 									</c:otherwise>
 								</c:choose>

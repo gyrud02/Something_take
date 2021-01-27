@@ -8,7 +8,6 @@
 <!----------- [jquery Cookie 관련 링크 ] ----------->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"></script>
 <!----------- [jquery Cookie 관련 링크 ] ----------->
-
 <script type="text/javascript">
 
 	/* 쿠키 (아이디 가져오기) */
@@ -49,9 +48,9 @@
 	}); // login_chk()
 
 </script>
-<body>
+<body class="lightbg">
 
-	<br><br><br><br>
+	<br><br><br><br><br>
 
 	<div class="container">
 		<div class="row">
@@ -64,41 +63,13 @@
 
 				<div class="head_title_1 text-left">
 	
-				<br>
+				<br><br>
 				
 <!-------------------------------------------- [form태그 시작] -------------------------------------------------------->
 
 			     <form class="sign_upClass" action="member/signIn.post" method="post" id="login" onsubmit="login_chk()">
-
-				      
-<!-------------------------------------------- 네이버 아이디로 로그인 버튼 노출 영역  --------------------------------------------------------> 
-				 <div class="text-center">
-						<div id="naverIdLogin"></div>
-				 </div><br>
-				 
-<!-------------------------------------------- 네이버 아이디로 로그인 버튼 노출 영역  -------------------------------------------------------->
-  
-  
-<!-------------------------------------------- 네이버 아이디로 로그인 초기화 Script  -------------------------------------------->
-				  <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
-				  
-				  <script type="text/javascript">
-					var naverLogin = new naver.LoginWithNaverId(
-						{
-							clientId: "rU2ooEzY2CNR72wYidQf",
-							callbackUrl: "http://192.168.6.222:8080/0Mangro_TeamProject-0.01/O_member/naverLoginCallBack.jsp",
-							isPopup: false, /* 팝업을 통한 연동처리 여부 */
-							loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
-						}
-					);
-					
-					naverLogin.init();
-					
-				  </script>
-<!-------------------------------------------- 네이버 아이디로 로그인 초기화 Script  -------------------------------------------->
-
     
-<!-------------------------------------------- [이름, 이메일, 비밀번호 입력창] -------------------------------------------->
+<!-------------------------------------------- [이메일, 비밀번호 입력창] -------------------------------------------->
 
 				      <div class="js-form-message form-group">
 					        <label class="form-label" for="email">이메일</label>
@@ -124,7 +95,7 @@
 					               data-error-class="form-error"
 					               data-success-class="form-success">
 				      </div>
-					
+<!-------------------------------------------- [이메일, 비밀번호 입력창] -------------------------------------------->
 					
 				    	  <div class="row align-items-center mb-4">
 					          <div class="custom-control custom-checkbox d-flex align-items-mb-5 text-muted">
