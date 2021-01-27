@@ -22,7 +22,7 @@
 	function orderCheck(){
 		var question = confirm("주문하시겠습니까?");
 		if(question == true){
-			var name = document.getElementById('').value;
+			var total = document.getElementById('').value;
 			var amount = document.getElementById('').value;
 			var email = document.getElementById('session').value;
 			
