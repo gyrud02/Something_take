@@ -1,21 +1,4 @@
-/*
-Copyright (C) NAVER corp.  
-
-This library is free software; you can redistribute it and/or  
-modify it under the terms of the GNU Lesser General Public  
-License as published by the Free Software Foundation; either  
-version 2.1 of the License, or (at your option) any later version.  
-
-This library is distributed in the hope that it will be useful,  
-but WITHOUT ANY WARRANTY; without even the implied warranty of  
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU  
-Lesser General Public License for more details.  
-
-You should have received a copy of the GNU Lesser General Public  
-License along with this library; if not, write to the Free Software  
-Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA  
-*/
-if(typeof window.nhn=='undefined') window.nhn = {};
+﻿if(typeof window.nhn=='undefined') window.nhn = {};
 if (!nhn.husky) nhn.husky = {};
 
 /**
@@ -36,13 +19,13 @@ nhn.husky.EZCreator = new (function(){
 			var htParams = htOptions.htParams || null;
 		}else{
 			// for backward compatibility only
-			oAppRef = arguments[0];
-			elPlaceHolder = arguments[1];
-			sSkinURI = arguments[2];
-			fCreator = arguments[3];
-			fOnAppLoad = arguments[4];
-			bUseBlocker = arguments[5];
-			htParams = arguments[6];
+			var oAppRef = arguments[0];
+			var elPlaceHolder = arguments[1];
+			var sSkinURI = arguments[2];
+			var fCreator = arguments[3];
+			var fOnAppLoad = arguments[4];
+			var bUseBlocker = arguments[5];
+			var htParams = arguments[6];
 		}
 
 		if(bUseBlocker) nhn.husky.EZCreator.showBlocker();
@@ -63,7 +46,8 @@ nhn.husky.EZCreator = new (function(){
 		if(typeof(elPlaceHolder) != "object")
 			elPlaceHolder = document.getElementById(elPlaceHolder);
 
-		var elIFrame, nEditorHeight;
+		var elIFrame, nEditorWidth, nEditorHeight;
+		 
 
 		try{
 			elIFrame = document.createElement("<IFRAME frameborder=0 scrolling=no>");
@@ -84,6 +68,8 @@ nhn.husky.EZCreator = new (function(){
 //			window.STime = new Date();
 			
 			try{
+			
+				nEditorWidth = elIFrame.contentWindow.document.body.scrollWidth || "500px";
 				nEditorHeight = elIFrame.contentWindow.document.body.scrollHeight + 12;
 				elIFrame.style.width =  "100%";
 				elIFrame.style.height = nEditorHeight+ "px";

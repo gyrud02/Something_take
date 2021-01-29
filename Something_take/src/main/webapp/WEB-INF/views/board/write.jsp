@@ -14,24 +14,18 @@
 		$("#reg_btn").click(function(){
 			if($("#title").val() == ""){ // 제목
 				alert("제목을 입력하세요."); $("#title").focus(); return false; }
-
-//			if($("#content").val() == ""  || $("#content").val() == null || $("#content").val() == '&nbsp;' || $("#content").val() == '<p>&nbsp;</p>')  {
-//	             alert("내용을 입력하세요.");
-//	             oEditors.getById["content"].exec("focus"); return false; }
-//			oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
-
 		}); // click()
 	}); // write_chk()
 
 	/* 작성 중 목록 버튼 */
-	function writing(){
+	function writing(event){
 		var ing = confirm("게시판 목록으로 돌아가시겠습니까? (작성중인 글은 저장되지않습니다.)");
 		$("#list_btn").click(function(){
-			if(ing == false){
-				return false;
-			}else if(true){
+			if(ing == true){
 				alert("글 작성이 취소되었습니다.");
 				location.href="board.bd";
+			}else{
+				return false;
 			}
 		}); // click()
 	}; // writing()
@@ -65,28 +59,6 @@
 	});
 
 /* ------------------------------------ [ 스마트 에디터 api ] ----------------------------------- */
-	
-	/* 게시판 등록 AJAX 
-	function write_AJAX(){
-		var title = document.getElementById('title').value;
-		var content = document.getElementById('content').value;
-		var writer = document.getElementById('writer').value;
-		$.ajax({
-				type:"POST",
-				dataType:"text",
-				data:{ "title":title,
-					   "content":content,
-					   "writer":writer},
-				url:"board/write.post",
-				success:function(textStatus){
-					alert("등록되었습니다.");
-					location.href="board.bd";
-				}, // success
-				error:function(textStatus){
-					alert("게시글 등록 중 오류가 발생하였습니다.");
-				} // error
-		}); // ajax
-	} // write_AJAX() */
 	
 </script>
 	
