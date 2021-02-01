@@ -87,60 +87,7 @@
 			<div class="container">
 				<!-- Start Atribute Navigation -->
 				<div class="attr-nav">
-                     
 					<ul>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-shopping-bag"></i>
-                                    <span class="badge">${total}</span>
-                           	</a>
-                            
-	                    	<c:forEach items="${cartList}" var="cartList">
-							<ul class="dropdown-menu cart-list">
-									<li>
-										<a href="cart" class="photo"><img src="${pageContext.request.contextPath}/resources/images/Me-americano.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="cart">아메리카노</a></h6>
-										<p class="m-top-10"><span class="price">${cartList.cartStock1}<b>개</b></span></p>
-									</li>
-									<li>
-										<a href="cart" class="photo"><img src="${pageContext.request.contextPath}/resources/images/espresso.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="cart">에스프레소</a></h6>
-										<p class="m-top-10"><span class="price">${cartList.cartStock2}<b>개</b></span></p>
-									</li>
-									<li>
-										<a href="cart" class="photo"><img src="${pageContext.request.contextPath}/resources/images/caffelatte.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="cart">카페라떼</a></h6>
-										<p class="m-top-10"><span class="price">${cartList.cartStock3}<b>개</b></span></p>
-									</li>
-									<li>
-										<a href="cart" class="photo"><img src="${pageContext.request.contextPath}/resources/images/cappuccino.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="cart">카푸치노</a></h6>
-										<p class="m-top-10"><span class="price">${cartList.cartStock4}<b>개</b></span></p>
-									</li>
-									<li>
-										<a href="cart" class="photo"><img src="${pageContext.request.contextPath}/resources/images/greentea_latte.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="cart">녹차라떼</a></h6>
-										<p class="m-top-10"><span class="price">${cartList.cartStock5}<b>개</b></span></p>
-									</li>
-									<li>
-										<a href="cart" class="photo"><img src="${pageContext.request.contextPath}/resources/images/lemonade.jpg" class="cart-thumb" alt="" /></a>
-										<h6><a href="cart">레모네이드</a></h6>
-										<p class="m-top-10"><span class="price">${cartList.cartStock6}<b>개</b></span></p>
-									</li>
-							
-								<li class="total">
-									<span class="pull-right"><strong>Total</strong>: ${total}<b>개</b></span>
-								
-								<c:choose>
-									<c:when test="${sessionScope.email != null}">
-										<a href="cart" class="btn btn-cart">주문하기</a>
-									</c:when>
-								</c:choose>	
-								
-								</li>
-							</ul>
-							</c:forEach>
-								
 						<li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
 						<li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
 					</ul>
@@ -154,7 +101,7 @@
                             <span></span>
                             <span></span>
                             <span></span>
-                        </button>
+                    </button>
 
 					<a class="navbar-brand" href="index.do">
                             <img src="${pageContext.request.contextPath}/resources/assets/images/logo.png" class="logo logo-display m-top-10" alt="">
@@ -218,6 +165,7 @@
 						<div class="widget">
 							<h6 class="title">고객 페이지</h6>
 							<ul class="link">
+								<li><a href="product">주문하기</a></li>
 								<li><a href="cart">장바구니</a></li>
 								<li><a href="profile.me">회원정보</a></li>
 								<li><a href="#">주문 내역</a></li>

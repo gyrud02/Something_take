@@ -62,7 +62,7 @@ public class MemberController {
 	public String signUpPOST(MemberVO vo) throws Exception {
 		logger.info("-- 회원가입 버튼 작동 / vo : "+vo);
 		service.insertMem(vo);
-		cservice.addCart(vo);
+		cservice.createCart(vo);
 		logger.info("-- 회원가입 완료 ");
 		return "redirect:../index.do";
 	} // signUpPOST()
@@ -298,6 +298,26 @@ public class MemberController {
 		return null;
 	} // membershipPay()
 
+	/////////////////////////////////////////////////////////
+
+	/* 카트 메뉴 추가 */
+	@RequestMapping(value = "updateCart", method = RequestMethod.GET)
+	public String cart_AJAX(Model model, CartVO cvo, String cart_email,
+							int product_id, String product_name, int product_price, 
+							int product_amount) throws Exception{
+		logger.info("-- 메뉴 추가 버튼 실행"); 
+		cvo.setCart_email(cart_email); cvo.setProduct_amount(product_amount);
+		cvo.setProduct_id(product_id); cvo.setProduct_name(product_name); cvo.setPrice(product_price);
+		model.addAttribute("cart_email", cvo.getCart_email());
+		model.addAttribute("product_id", cvo.getProduct_id());
+		model.addAttribute("product_name", cvo.getProduct_name());
+		model.addAttribute("product_price", cvo.getPrice());
+		model.addAttribute("product_amount", cvo.getProduct_amount());
+//		logger.info("-- vo : " + cvo);
+		cservice.updateCart(cvo);
+		return null;
+	} // cart_AJAX()
+	
 	/////////////////////////////////////////////////////////
 
 }

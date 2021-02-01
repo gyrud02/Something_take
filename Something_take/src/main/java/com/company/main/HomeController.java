@@ -298,45 +298,29 @@ public class HomeController {
 	
 	/////////////////////////////////////////////////////////
 	
-	/* 카트 조회하기 */
-	@RequestMapping(value = "newCart", method = RequestMethod.GET)
-	public String getCart(Model model, HttpSession session) throws Exception{
-		logger.info("-- 장바구니 조회 실행");
-		String cart_email = (String)session.getAttribute("email");
-		List<CartVO> cartList = cservice.getCart(cart_email);
-		List<CartVO> productList = cservice.getProducts();
-		model.addAttribute("cartList", cartList);
-		model.addAttribute("productList", productList);
-		logger.info("@@ cartList : " + cartList + "/ productList : " + productList);
-		return "payment/cart.tiles";
-	} // getCart()
-	
-	/////////////////////////////////////////////////////////
-
 	/* 카트 페이지  */
-	@RequestMapping(value = "cart", method = RequestMethod.GET)
+	@RequestMapping(value = "product", method = RequestMethod.GET)
 	public String cartPage(Model model, HttpSession session) throws Exception{
-		logger.info("-- 장바구니 페이지로 이동");
+		logger.info("-- 상품 페이지로 이동");
 		String cart_email = (String)session.getAttribute("email");
 		List<CartVO> cartList = cservice.getCart(cart_email);
 		List<CartVO> productList = cservice.getProducts();
+		model.addAttribute("email", cart_email);
 		model.addAttribute("cartList", cartList);
 		model.addAttribute("productList", productList);
-		return "payment/cart.tiles";
+		return "payment/product.tiles";
 	} // myCart()
 	
 	/////////////////////////////////////////////////////////
 	
 	/* 결제하기 페이지 */
-	@RequestMapping(value = "cartList", method = RequestMethod.GET)
+	@RequestMapping(value = "cart", method = RequestMethod.GET)
 	public String cartList(Model model, HttpSession session) throws Exception{
-		logger.info("-- 장바구니 리스트 페이지로 이동");
+		logger.info("-- 장바구니 페이지로 이동");
 		String cart_email = (String)session.getAttribute("email");
 		List<CartVO> cartList = cservice.getCart(cart_email);
-		List<CartVO> productList = cservice.getProducts();
 		model.addAttribute("cartList", cartList);
-		model.addAttribute("productList", productList);
-		return "payment/cartList.tiles";
+		return "payment/cart.tiles";
 	} // cartList()
 	
 	/////////////////////////////////////////////////////////

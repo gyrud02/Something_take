@@ -20,7 +20,7 @@ public class CartServiceImpl implements CartService{
 
 	/* 카트 생성 메서드 */
 	@Override
-	public void addCart(MemberVO mvo) throws Exception {
+	public void createCart(MemberVO mvo) throws Exception {
 		System.out.println("-- ServiceImpl : addCart() 실행");
 		cdao.create(mvo);
 		System.out.println("-- ServiceImpl : addCart() 실행 완료");
@@ -57,7 +57,16 @@ public class CartServiceImpl implements CartService{
 	} // deleteCart();
 
 	///////////////////////////////////////////////////////////////////////
-	
+
+	/* 카트 메뉴 추가 메서드 */
+	@Override
+	public void updateCart(CartVO cvo) throws Exception {
+		System.out.println("-- ServiceImpl : insertCart() 실행");
+		System.out.println("@@ vo : " + cvo);
+		cdao.update(cvo);
+	} // insertCart()
+
+	///////////////////////////////////////////////////////////////////////
 	
 	
 	
