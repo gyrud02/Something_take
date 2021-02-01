@@ -56,8 +56,18 @@ public class CartDAOImpl implements CartDAO{
 	@Override
 	public void delete(MemberVO mvo) throws Exception {
 		System.out.println("-- DAOImpl : delete() 실행");
-		sqlSession.delete(namespace+".deleteCart", mvo);
+		sqlSession.delete(namespace+".delete", mvo);
 	} // delete()
+
+	///////////////////////////////////////////////////////////////////////
+
+	/* 카트 메뉴 추가 메서드 */
+	@Override
+	public void update(CartVO cvo) throws Exception {
+		System.out.println("-- DAOImpl : update() 실행");
+		System.out.println("@@ vo : " + cvo);
+		sqlSession.update(namespace+".update", cvo);
+	} // update()
 
 	///////////////////////////////////////////////////////////////////////
 

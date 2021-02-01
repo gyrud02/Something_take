@@ -14,11 +14,10 @@ public class CartVO {
 	// table productVO
 	private int product_id; // 메뉴 번호
 	private String product_name; // 상품명
-	private int price; // 메뉴 금액
+	private int product_price; // 메뉴 금액
 	private String picture_url; // 상품 이미지 파일명
 	private int product_amount; // 상품 갯수
 	
-	// getter
 	public int getCart_id() {return cart_id;}
 	public String getCart_email() {return cart_email;}
 	public Timestamp getCart_addDate() {return cart_addDate;}
@@ -26,7 +25,7 @@ public class CartVO {
 	public int getCart_money() {return cart_money;}
 	public int getProduct_id() {return product_id;}
 	public String getProduct_name() {return product_name;}
-	public int getPrice() {return price;}
+	public int getPrice() {return product_price;}
 	public String getPicture_url() {return picture_url;}
 	public int getProduct_amount() {return product_amount;}
 	
@@ -38,7 +37,7 @@ public class CartVO {
 	public void setCart_money(int cart_money) {this.cart_money = cart_money;}
 	public void setProduct_id(int product_id) {this.product_id = product_id;}
 	public void setProduct_name(String product_name) {this.product_name = product_name;}
-	public void setPrice(int price) {this.price = price;}
+	public void setPrice(int price) {this.product_price = price;}
 	public void setPicture_url(String picture_url) {this.picture_url = picture_url;}
 	public void setProduct_amount(int product_amount) {this.product_amount = product_amount;}
 
@@ -47,7 +46,7 @@ public class CartVO {
 	public String toString() {
 		return "CartVO [cart_id=" + cart_id + ", cart_email=" + cart_email + ", cart_addDate=" + cart_addDate
 				+ ", cart_amount=" + cart_amount + ", cart_money=" + cart_money + ", product_id=" + product_id
-				+ ", product_name=" + product_name + ", price=" + price + ", picture_url=" + picture_url
+				+ ", product_name=" + product_name + ", product_price=" + product_price + ", picture_url=" + picture_url
 				+ ", product_amount=" + product_amount + "]";
 	}
 }

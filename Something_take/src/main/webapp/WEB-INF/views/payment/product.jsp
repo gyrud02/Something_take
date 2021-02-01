@@ -18,59 +18,45 @@
 </style>
 <script type="text/javascript">
 
-	/* 주문하기 */
-	function orderCheck(){
-		var question = confirm("주문하시겠습니까?");
+	/* 결제 페이지로 이동 */
+	function cartCheck(){
+		var question = confirm("결제하시겠습니까?");
 		if(question == true){
-			var total = document.getElementById('').value;
-			var amount = document.getElementById('').value;
-			var email = document.getElementById('session').value;
-			
-			IMP.init('imp30100127');
-			IMP.request_pay({
-			    pg : 'inicis', // version 1.1.0부터 지원.
-			    pay_method : 'card',
-			    merchant_uid : 'merchant_' + new Date().getTime(), // 영수증번호
-			    name : '금액 : '+ total,
-			    amount : amount, // 판매 가격
-			    buyer_email : email,
-			    buyer_name : '',
-			    buyer_tel : '',
-			    buyer_addr : '',
-			    buyer_postcode : ''
-			}, function(rsp) {
-			    if ( rsp.success ) {
-			    	payment(event);
-			    } else {
-			        var msg = '결제에 실패하였습니다.';
-			        return false;
-			    }
-			    alert(msg);
-			}); // request_pay
-
-			function payment(){
-				$.ajax({
-						type: "POST",
-						url: "payment/",
-						dataType:"text",
-						data:{ email: email.value,
-							   membership_type: name.value,
-							   membership_pay: amount.value },
-						success:function(textStatus){
-							alert("결제가 완료되었습니다.");
-							location.href="membership.me";
-						}, // success
-						error:function(textStatus){
-							alert("결제 진행 중 오류가 발생하였습니다.");
-							return false;
-						} // error
-				}); // ajax
-			} // payment()
+			alert("결제 페이지로 이동합니다.");
+			location.href="cart";
 		}else{
-			alert("주문이 취소되었습니다.");
+			alert("취소되었습니다.");
 			return false;
-		}
-	} // orderCheck()
+		} // if
+	} // cartCheck()
+	
+	/* 갯수 수정 메서드 */
+	function cart(){
+		var Q = confirm("추가하시겠습니까?");
+		$(".cart_quantity_add").click(function(){
+			if(Q == true){
+				$.ajax({
+					type:"GET",
+					url:"member/updateCart",
+					dataType:"text",
+					data:{ cart_email:$("#session").val(),
+						   product_id:$("#product_id").val(), 
+						   product_name:$("#product_name").val(),
+						   product_price:$("#product_price").val(),
+						   product_amount:$("#product_amount").val() },
+					success:function(textStatus){
+						alert("추가되었습니다.");
+						document.onload();
+					}, // success
+					error:function(textStatus){
+						alert("오류가 발생하였습니다.");
+					} // error
+				}); // ajax
+			}else{
+				return false;
+			}
+		}); // click()
+	} // cart()
 
 </script>
 <body>
@@ -91,7 +77,8 @@
 					<div class="row">
 						<div class="col-md-12 mr-md-auto ml-md-auto">
 							<div class="head_title_1 text-center">
-								<h2>CartList</h2>
+								<h2>Product</h2>
+								<input type="hidden" value="${email}" id="session">
 								<div class="separator_auto"></div>
 							</div>
 		
@@ -99,42 +86,46 @@
 							
 <%-------------------------------------------- [form태그 시작] -------------------------------------------------------%>
 							
-							<form onsubmit="return orderCheck();">
+							<form>
 								<div class="table-responsive form-group text-center">
 									<table class="table table-condensed">
 										<thead>
 											<tr class="cart_menu">
-												<td class="icons"></td>
+												<td class="cart_icons"></td>
 												<td class="numbers"></td>
 												<td class="menu" colspan="2"><b>메뉴</b></td>
 												<td class="price"><b>가격</b></td>
 												<td class="amount"><b>갯수</b></td>
 												<td class="delete"></td>
+												<td class="cart_icons"></td>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach items="${productList}" var="productList">
 											<tr class="text-center">
 												<td class="cart_icons">
-													<a class="cart_quantity" href="#"><i class="tim-icons icon-pin"></i></a>
+													<a class="cart_quantity_add" href="#"><i class="tim-icons icon-pin"></i></a>
 												</td>
 												<td class="cart_product_id">
-													${productList.product_id}
+													<input type="hidden" value="${productList.product_id}" id="product_id"> ${productList.product_id}
 												</td>
 												<td class="cart_product_image">
 													<img src="${pageContext.request.contextPath}/resources/images/${productList.picture_url}">
 												</td>
 												<td class="cart_product_name text-left">
-													<b>${productList.product_name}</b>
+													<input type="hidden" value="${productList.product_name}" id="product_name"><b> ${productList.product_name}</b>
 												</td>
 												<td class="cart_price">
-													<p> ￦ ${productList.price}</p>
+													<input type="hidden" value="${productList.price}" id="product_price"><p> ￦ ${productList.price}</p>
 												</td>
 												<td class="cart_amount amount">
-													<input type="text" value="${productList.product_amount}" class="form-control" readonly="readonly">
+													<input type="number" class="form-control" id="product_amount" value="0">
 												</td>
 												<td class="cart_delete">
 													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-refresh-01"></i></a>
+												</td>
+												<td class="cart_icons">
+													<a class="cart_quantity_add" href="javascript:void(event);" onclick="return cart(event);"><i class="tim-icons icon-cart"></i></a>
 												</td>
 											</tr>
 											</c:forEach>
@@ -142,7 +133,7 @@
 									</table>
 								</div>
 								<div class="col-md-12 text-right">
-									<input type="submit" class="btn btn-primary" value="결제하기">
+									<input type="button" class="btn btn-primary" value="주문하기" onclick="return cartCheck();">
 								</div>
 							</form>
 					
@@ -157,6 +148,6 @@
 	</c:choose>
 		
 	<br><br>
-	
+
 </body>
 </html>

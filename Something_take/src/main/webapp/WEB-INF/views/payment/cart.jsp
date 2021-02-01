@@ -18,21 +18,9 @@
 </style>
 <script type="text/javascript">
 
-	function cartCheck(){
-		var question = confirm("결제하시겠습니까?");
-	/*	if( $(".form-control").val() != 0 ){ */
-			if(question == true){
-				alert("결제 페이지로 이동합니다.");
-				location.href="cartList";
-			}else{
-				alert("취소되었습니다.");
-				return false;
-			} // if
-	/*	}else{
-			alert("주문 내역을 확인하세요.");
-			return false;
-		} */
-	} // cartCheck()
+	/* 갯수 수정 메서드 */
+	$(function numModify(){
+	} // numModify
 
 </script>
 <body>
@@ -51,7 +39,7 @@
 			<section>
 				<div class="container">
 					<div class="row">
-						<div class="col-md-12 mr-md-auto ml-md-auto">
+						<div class="col-md-11 mr-md-auto ml-md-auto">
 							<div class="head_title_1 text-center">
 								<h2>Cart</h2>
 								<div class="separator_auto"></div>
@@ -66,34 +54,31 @@
 									<table class="table table-condensed">
 										<thead>
 											<tr class="cart_menu">
-												<td class="icons"></td>
-												<td class="numbers"></td>
-												<td class="menu" colspan="2"><b>메뉴</b></td>
+												<td class="cart_icons"></td>
+												<td class="cart_product_id"></td>
+												<td class="menu"><b>메뉴</b></td>
 												<td class="price"><b>가격</b></td>
 												<td class="amount"><b>갯수</b></td>
-												<td class="delete"></td>
+												<td class="cart_delete"></td>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${productList}" var="productList">
+											<c:forEach items="${cartList}" var="cartList">
 											<tr class="text-center">
 												<td class="cart_icons">
 													<a class="cart_quantity" href="#"><i class="tim-icons icon-pin"></i></a>
 												</td>
 												<td class="cart_product_id">
-													<p> ${productList.product_id}</p>
-												</td>
-												<td class="cart_product_image">
-													<img src="${pageContext.request.contextPath}/resources/images/${productList.picture_url}">
+													<b> ${cartList.product_id}</b>
 												</td>
 												<td class="cart_product_name text-left">
-													<p> ${productList.product_name}</p>
+													<b> ${cartList.product_name}</b>
 												</td>
 												<td class="cart_price">
-													<p> ￦ ${productList.price}</p>
+													<p> ￦ ${cartList.price}</p>
 												</td>
 												<td class="cart_amount amount">
-													<input type="number" min="0" value="${productList.product_amount}" class="form-control">
+													<p> ${cartList.product_amount}개</p>
 												</td>
 												<td class="cart_delete">
 													<a class="cart_quantity_delete" href="#"><i class="tim-icons icon-refresh-01"></i></a>

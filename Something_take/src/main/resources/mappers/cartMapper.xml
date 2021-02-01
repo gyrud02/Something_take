@@ -17,7 +17,7 @@
 	<select id="getCart" resultType="com.company.domain.CartVO">
 	<![CDATA[
 	SELECT *
-	FROM cart JOIN products
+	FROM cart
 	WHERE cart_email = #{cart_email}
 	]]>
 	</select>
@@ -40,5 +40,15 @@
 	WHERE cart_email = #{email}
 	</delete>
 	<!-- 탈퇴와 동시에 카트 삭제 -->
+	
+	
+	<!-- 카트 메뉴 추가 메서드 -->
+	<update id="update">
+	UPDATE cart
+	SET product_id = #{product_id}, product_name = #{product_name},
+	    product_price = #{product_price}, product_amount = #{product_amount}
+	WHERE cart_email = #{cart_email}
+	</update>
+	<!-- 카트 메뉴 추가 메서드 -->
 	
 </mapper>
