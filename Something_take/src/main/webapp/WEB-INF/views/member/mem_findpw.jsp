@@ -75,7 +75,7 @@
 					      <div class="row align-items-center mb-5">
 					        <div class="col-7 text-left">
 					          <span class="font-subhead text-muted mb-2">기억나셨나요?</span>
-					          	<a href="sign-in.me">로그인</a>
+					          	<a href="sign-in">로그인</a>
 					        </div> 
 					        <div class="col-5 text-right">
 					          <input type="button" class="btn btn-primary" onclick="findMail()" value="전송">

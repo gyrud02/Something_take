@@ -98,7 +98,7 @@ public class BoardController {
 		PrintWriter out = response.getWriter();
 		out.println(check);
 		return null;
-	} // insertAJAX()
+	} // replyAJAX()
 	
 	/////////////////////////////////////////////////////////
 

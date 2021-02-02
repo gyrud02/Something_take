@@ -41,7 +41,7 @@
 			/* 쿠키 (아이디 설정)  */
 			if($("#rememberCk").is(":checked") == true){
 				var email = $("#email").val();
-				$.cookie('emailck', email, {expires: 7, path: 'http://localhost:8081/main/sign-in.me'}); // 7일 동안 기억하기
+				$.cookie('emailck', email, {expires: 7, path: 'http://localhost:8081/main/sign-in'}); // 7일 동안 기억하기
 			}else{ $.removeCookie("emailck"); }
 					
 		}); // click()
@@ -86,7 +86,7 @@
 					        </label>
 					        
 					          <span class="font-subhead text-muted mb-2 go_find_pwd">
-					          	<a href="findPw.me"> (비밀번호를 잊으셨나요?)</a>
+					          	<a href="findPw"> (비밀번호를 잊으셨나요?)</a>
 					          </span>
 					        
 					        <input type="password" class="form-control" name="pwd" id="pwd" placeholder="****************"
@@ -109,7 +109,7 @@
 					      <div class="row align-items-center mb-5">
 					        <div class="col-7">
 					          <span class="font-subhead text-muted mb-2">계정이 없으시다면</span>
-					          	<a href="sign-up.me">회원가입</a>
+					          	<a href="sign-up">회원가입</a>
 					        </div>
 							
 							<div class="row align-items-center" style="float:right;">

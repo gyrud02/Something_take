@@ -353,7 +353,7 @@
 					      <div class="row align-items-center mb-5">
 					        <div class="col-7">
 					          <span class="font-subhead text-muted mb-2">이미 계정이 있다면
-					          	<a href="sign-in.me">로그인</a>
+					          	<a href="sign-in">로그인</a>
 					          </span>	
 					        </div>
 					        

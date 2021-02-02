@@ -64,7 +64,7 @@ public class MemberController {
 		service.insertMem(vo);
 		cservice.createCart(vo);
 		logger.info("-- 회원가입 완료 ");
-		return "redirect:../index.do";
+		return "redirect:../index";
 	} // signUpPOST()
 	
 	/////////////////////////////////////////////////////////
@@ -122,7 +122,7 @@ public class MemberController {
 		}
 		out.println(result);
 		return null;
-	}
+	} // mainCheck()
 
 	/////////////////////////////////////////////////////////
 
@@ -232,7 +232,7 @@ public class MemberController {
 	/* 비밀번호 찾기 이메일 전송 메소드 */
 	@RequestMapping(value = "/findEmail", method = RequestMethod.GET)
 	public String findpwEmail(String email, HttpServletResponse response) throws Exception {
-		logger.info("-- 회원가입 인증 메일 발송");
+		logger.info("-- 비밀번호 찾기 메일 발송");
 		int result = service.duplicate(email);
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
@@ -256,7 +256,7 @@ public class MemberController {
 			out.println(result);
 		} // if
 	    return null;
-	} // sendEmail()
+	} // findpwEmail()
 	
 	/////////////////////////////////////////////////////////
 	

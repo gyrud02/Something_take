@@ -9,7 +9,6 @@
 <script type="text/javascript">
 
 	$(function del_chk(){
-
 		$(".btn-primary").click(function(){
 
 			if($("#pwd").val() == ""){
@@ -25,7 +24,6 @@
 			}
 			
 			var del = confirm("회원 탈퇴를 진행하시겠습니까?");
-
 			if(del == true){
 				$("#dropout").submit();
 			}else{
@@ -34,7 +32,6 @@
 			}
 			return false;
 		}); // click()
-
 	}); // del_chk()
 
 </script>
@@ -46,7 +43,7 @@
 	 <c:when test="${sessionScope.email == null}" >
 	   <script type="text/javascript">
 		 alert("로그인 시 사용 가능한 페이지입니다.");
-		 location.href="sign-in.me";
+		 location.href="sign-in";
 	  </script>
 	 </c:when>
 	 

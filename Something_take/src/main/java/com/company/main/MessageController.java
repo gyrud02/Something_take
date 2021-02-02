@@ -81,7 +81,7 @@ public class MessageController {
 		model.addAttribute("msg_answerContent", msg_answerContent);
 		service.modifyMSG(msg_no, msg_answerContent);
 		return null;
-	} // answerPOST()
+	} // answerAJAX()
 	
 	/////////////////////////////////////////////////////////
 	

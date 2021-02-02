@@ -61,7 +61,7 @@
 										</c:when>
 										
 										<c:otherwise>
-											<a href="sign-in.me"
+											<a href="sign-in"
 											   class="btn btn-primary">로그인하러가기</a>
 										</c:otherwise>
 									</c:choose>
@@ -121,7 +121,7 @@
 									success:function(textStatus){
 										alert(email + membership_type + membership_pay);
 										alert("결제가 완료되었습니다.");
-										location.href="membership.me";
+										location.href="membership";
 									}, // success
 									error:function(textStatus){
 										alert(email + membership_type + membership_pay);
@@ -168,7 +168,7 @@
 										</c:when>
 										
 										<c:otherwise>
-											<a href="sign-in.me"
+											<a href="sign-in"
 											   class="btn btn-primary">로그인하러가기</a>
 										</c:otherwise>
 									</c:choose>
@@ -224,7 +224,7 @@
 										success:function(textStatus){
 											alert(email + membership_type + membership_pay);
 											alert("결제가 완료되었습니다.");
-											location.href="membership.me";
+											location.href="membership";
 										}, // success
 										error:function(textStatus){
 											alert(email + membership_type + membership_pay);
@@ -276,7 +276,7 @@
 										</c:when>
 										
 										<c:otherwise>
-											<a href="sign-in.me"
+											<a href="sign-in"
 											   class="btn btn-primary">로그인하러가기</a>
 										</c:otherwise>
 									</c:choose>
@@ -335,7 +335,7 @@
 										success:function(textStatus){
 											alert(email + membership_type + membership_pay);
 											alert("결제가 완료되었습니다.");
-											location.href="membership.me";
+											location.href="membership";
 										}, // success
 										error:function(textStatus){
 											alert(email + membership_type + membership_pay);
