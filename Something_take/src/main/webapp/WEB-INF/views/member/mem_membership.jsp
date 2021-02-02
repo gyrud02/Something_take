@@ -13,7 +13,7 @@
 		<c:when test="${sessionScope.email == null }">
 			<script type="text/javascript">
 				alert("로그인 시 사용 가능한 페이지입니다.");
-				location.href="sign-in.me";
+				location.href="sign-in";
 			</script>
 		</c:when>
 		
@@ -65,7 +65,7 @@
 									</ul>
 									
 									<div class="pricing_btn text-center m-top-40">
-										<a href="MemberShip.pm" class="btn btn-primary">멤버십 변경하기</a>
+										<a href="MemberShip" class="btn btn-primary">멤버십 변경하기</a>
 										<a href="#" class="btn btn-primary">멤버십 해지하기</a>
 									</div>
 								</div>
@@ -101,7 +101,7 @@
 										<li><i class="fa fa-check-circle text-primary"></i> <span>현재 이용 중인 멤버십이 없습니다.</span> </li>
 									</ul>
 									<div class="pricing_btn text-center m-top-40">
-										<a href="MemberShip.pm" class="btn btn-primary">멤버십 신청하기</a>
+										<a href="MemberShip" class="btn btn-primary">멤버십 신청하기</a>
 									</div>
 								</div>
 	

@@ -50,29 +50,29 @@ public class HomeController {
 	/////////////////////////////////////////////////////////
 	
 	/* 메인 화면 페이지 */
-	@RequestMapping(value = "index.do", method = RequestMethod.GET)
+	@RequestMapping(value = "index", method = RequestMethod.GET)
 	public String main(Locale locale, Model model) {
 		logger.info("-- 썸띵테이크에 오신걸 환영합니다.");
 		return "main.tiles"; // tiles.xml의  <definition name="main" extends="base">을 리턴시킨다
-	}
+	} // main()
 
 	/////////////////////////////////////////////////////////
 
 	/* About 화면 페이지 */
-	@RequestMapping(value = "about.do", method = RequestMethod.GET)
+	@RequestMapping(value = "about", method = RequestMethod.GET)
 	public String about() {
 		logger.info("-- About 페이지로 이동");
 		return "/business/about.tiles";
-	} // aboutUs()
+	} // about()
 	
 	/////////////////////////////////////////////////////////
 
 	/* 회원가입 페이지로 이동하는 메소드 */
-	@RequestMapping(value = "sign-up.me", method = RequestMethod.GET)
+	@RequestMapping(value = "sign-up", method = RequestMethod.GET)
 	public String sign_Up() {
 		logger.info("-- 회원가입 페이지로 이동");
 		return "member/sign_up.tiles";
-	} // Sign_Up()
+	} // sign_Up()
 	
 	/////////////////////////////////////////////////////////
 	
@@ -81,25 +81,25 @@ public class HomeController {
 	public String agreement() {
 		logger.info("-- 회원 약관 동의 페이지로 이동");
 		return "member/terms_of_mem.tiles";
-	} // yackwan()
+	} // agreement()
 		
 	/////////////////////////////////////////////////////////
 
 	/* 로그인 페이지로 이동하는 메소드 */
-	@RequestMapping(value = "sign-in.me", method = RequestMethod.GET)
+	@RequestMapping(value = "sign-in", method = RequestMethod.GET)
 	public String sign_In() {
 		logger.info("-- 로그인 페이지로 이동");
 		return "member/sign_in.tiles";
-	} // signIn()
+	} // sign_In()
 	
 	/////////////////////////////////////////////////////////
 	
 	/* 비밀번호 찾기 페이지로 이동하는 메소드 */
-	@RequestMapping(value = "findPw.me", method = RequestMethod.GET)
+	@RequestMapping(value = "findPw", method = RequestMethod.GET)
 	public String find_Pw() {
 		logger.info("-- 비밀번호 찾기 페이지로 이동");
 		return "member/mem_findpw.tiles";
-	} // findPw()
+	} // find_Pw()
 	
 	/////////////////////////////////////////////////////////
 
@@ -144,7 +144,7 @@ public class HomeController {
 	/////////////////////////////////////////////////////////
 	
 	/* 글 내용 보기 페이지로 이동  */
-	@RequestMapping(value = "content.bd", method = RequestMethod.GET)
+	@RequestMapping(value = "content", method = RequestMethod.GET)
 	public String content(@RequestParam("bno") int bno, 
 							Model model) throws Exception{
 		logger.info("-- 게시판 글 내용 보기 페이지로 이동");
@@ -155,12 +155,12 @@ public class HomeController {
 		model.addAttribute("readList", bvo);
 		model.addAttribute("replyList", repleList);
 		return "board/content.tiles";
-	} // getContent()
+	} // content()
 	
 	/////////////////////////////////////////////////////////
 
 	/* 글 수정 페이지로 이동 */
-	@RequestMapping(value = "modify.bd", method = RequestMethod.GET)
+	@RequestMapping(value = "modify", method = RequestMethod.GET)
 	public String modify(@RequestParam("bno") int bno, Model model) throws Exception{
 		logger.info("-- 게시판 글 수정 페이지로 이동");
 		BoardVO bvo = bservice.read(bno);
@@ -172,16 +172,16 @@ public class HomeController {
 	/////////////////////////////////////////////////////////
 
 	/* 갤러리 게시판 페이지로 이동 */
-	@RequestMapping(value = "interior.bd", method = RequestMethod.GET)
+	@RequestMapping(value = "interior", method = RequestMethod.GET)
 	public String interior() {
 		logger.info("-- 인테리어 게시판 페이지로 이동");
 		return "gallary/interior.tiles";
-	} // gallaryBoard()
+	} // interior()
 
 	/////////////////////////////////////////////////////////
 
 	/* 회원정보 페이지로 이동하는 메소드 */
-	@RequestMapping(value = "/profile.me", method = RequestMethod.GET)
+	@RequestMapping(value = "/profile", method = RequestMethod.GET)
 	public String mem_Profile(HttpServletRequest request, HttpSession session) throws Exception {
 		logger.info("-- 회원정보 페이지로 이동");
 		session = request.getSession();
@@ -189,25 +189,25 @@ public class HomeController {
 		MemberVO name = service.getMem(email);
 		session.setAttribute("MemberVO", name);
 		return "member/mem_modify.tiles";
-	} // profile()
+	} // mem_Profile()
 
 	/////////////////////////////////////////////////////////
 	
 	/* 회원 탈퇴 페이지로 이동하는 메소드 */
-	@RequestMapping(value = "/drop-out.me", method = RequestMethod.GET)
+	@RequestMapping(value = "/drop-out", method = RequestMethod.GET)
 	public String drop_Out() {
 		logger.info("-- 회원탈퇴 페이지로 이동");
 		return "member/mem_delete.tiles";
-	} // dropOut()
+	} // drop_Out()
 
 	/////////////////////////////////////////////////////////
 
 	/* 결제 페이지로 이동하는 메소드 */
-	@RequestMapping(value = "memberShip.pm", method = RequestMethod.GET)
+	@RequestMapping(value = "memberShip", method = RequestMethod.GET)
 	public String memberShip() throws Exception{
 		logger.info("-- 멤버십 페이지로 이동");
 		return "payment/membership.tiles";
-	} // payment()
+	} // memberShip()
 	
 	/////////////////////////////////////////////////////////
 
@@ -285,7 +285,7 @@ public class HomeController {
 		List<BoardVO> boardList = bservice.getBoard();
 		model.addAttribute("boardList", boardList);
 		return "admin/adm_board.tiles";
-	} // admin_Messages()
+	} // admin_Board()
 	
 	/////////////////////////////////////////////////////////
 
@@ -294,33 +294,18 @@ public class HomeController {
 	public String admin_Icons(Model model) throws Exception{
 		logger.info("-- [관리자] 관리 페이지로 이동");
 		return "admin/adm_icons.tiles";
-	} // admin_Messages()
-	
-	/////////////////////////////////////////////////////////
-	
-	/* 카트 페이지  */
-	@RequestMapping(value = "product", method = RequestMethod.GET)
-	public String cartPage(Model model, HttpSession session) throws Exception{
-		logger.info("-- 상품 페이지로 이동");
-		String cart_email = (String)session.getAttribute("email");
-		List<CartVO> cartList = cservice.getCart(cart_email);
-		List<CartVO> productList = cservice.getProducts();
-		model.addAttribute("email", cart_email);
-		model.addAttribute("cartList", cartList);
-		model.addAttribute("productList", productList);
-		return "payment/product.tiles";
-	} // myCart()
+	} // admin_Icons()
 	
 	/////////////////////////////////////////////////////////
 	
 	/* 결제하기 페이지 */
-	@RequestMapping(value = "cart", method = RequestMethod.GET)
+	@RequestMapping(value = "ordered", method = RequestMethod.GET)
 	public String cartList(Model model, HttpSession session) throws Exception{
 		logger.info("-- 장바구니 페이지로 이동");
 		String cart_email = (String)session.getAttribute("email");
 		List<CartVO> cartList = cservice.getCart(cart_email);
 		model.addAttribute("cartList", cartList);
-		return "payment/cart.tiles";
+		return "payment/order.tiles";
 	} // cartList()
 	
 	/////////////////////////////////////////////////////////

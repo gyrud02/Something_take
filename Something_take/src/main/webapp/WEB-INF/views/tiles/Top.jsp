@@ -8,7 +8,6 @@
 	<!----------- [meta] ----------->
 	<meta charset="utf-8">
 	<title>Something take</title>
-	<meta name="description" content="">
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 <!--  
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -49,6 +48,10 @@
 	<!--Theme Responsive css-->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css"/>
 	<!--Theme Responsive css-->
+
+	<!-- Nucleo Icons -->
+	<link href="${pageContext.request.contextPath}/resources/admin/css/nucleo-icons.css" rel="stylesheet" />
+	<!-- Nucleo Icons -->
 
 	<script src="${pageContext.request.contextPath}/resources/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 	
@@ -103,7 +106,7 @@
                             <span></span>
                     </button>
 
-					<a class="navbar-brand" href="index.do">
+					<a class="navbar-brand" href="index">
                             <img src="${pageContext.request.contextPath}/resources/assets/images/logo.png" class="logo logo-display m-top-10" alt="">
                             <img src="${pageContext.request.contextPath}/resources/assets/images/logo.jpg" class="logo logo-scrolled" alt="">
                     </a>
@@ -118,24 +121,24 @@
 					<%-- 로그인 O--%>	
 						<c:when test="${sessionScope.email != null}">
 							<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-								<li><a href="index.do#contact">Contact</a></li>
-								<li><a href="about.do">About</a></li>
+								<li><a href="index#contact">Contact</a></li>
+								<li><a href="about">About</a></li>
 								<li><a href="board.bd">Foundation</a></li>
-								<li><a href="interior.bd">Interior</a></li>
-								<li><a href="memberShip.pm">MemberShip</a></li>
+								<li><a href="interior">Interior</a></li>
+								<li><a href="memberShip">MemberShip</a></li>
 							</ul>
 						</c:when>
 					
 					<%-- 로그인 X --%>	
 						<c:otherwise>
 							<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-								<li><a href="index.do#contact">Contact</a></li>
-								<li><a href="about.do">About</a></li>
-								<li><a href="sign-up.me">Sign-up</a></li>
-								<li><a href="sign-in.me">Sign-in</a></li>
+								<li><a href="index#contact">Contact</a></li>
+								<li><a href="about">About</a></li>
+								<li><a href="sign-up">Sign-up</a></li>
+								<li><a href="sign-in">Sign-in</a></li>
 								<li><a href="board.bd">Foundation</a></li>
-								<li><a href="interior.bd">Interior</a></li>
-								<li><a href="memberShip.pm">MemberShip</a></li>
+								<li><a href="interior">Interior</a></li>
+								<li><a href="memberShip">MemberShip</a></li>
 							</ul>
 						</c:otherwise>
 					</c:choose>
@@ -154,7 +157,7 @@
 					<%-- 로그인 X --%>
 					<c:when test="${sessionScope.email == null}">
 						<div class="widget">
-							<h6 class="title"><a href="sign-in.me">로그인</a> 후 사용 가능합니다.</h6>
+							<h6 class="title"><a href="sign-in">로그인</a> 후 사용 가능합니다.</h6>
 							<ul class="link">
 							</ul>
 						</div>					
@@ -165,13 +168,12 @@
 						<div class="widget">
 							<h6 class="title">고객 페이지</h6>
 							<ul class="link">
-								<li><a href="product">주문하기</a></li>
-								<li><a href="cart">장바구니</a></li>
-								<li><a href="profile.me">회원정보</a></li>
+								<li><a href="ordered">주문하기</a></li>
+								<li><a href="profile">회원정보</a></li>
 								<li><a href="#">주문 내역</a></li>
-								<li><a href="membership.me">멤버십 내역</a></li>
+								<li><a href="membership">멤버십 내역</a></li>
 								<li><a href="member/sign-out.post">로그아웃</a></li>
-								<li><a href="drop-out.me">회원탈퇴</a></li>
+								<li><a href="drop-out">회원탈퇴</a></li>
 							</ul>
 						</div> 
 						<!-- .widget -->

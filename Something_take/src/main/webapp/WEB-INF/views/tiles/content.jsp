@@ -63,14 +63,14 @@
 					<c:choose>
 						<c:when test="${sessionScope.email == null}">
 						<div class="home_btns m-top-40">
-							<a href="product" class="btn btn-primary m-top-20">주문하러가기</a>
-							<a href="sign-up.me" class="btn btn-default m-top-20">회원가입</a>
+							<a href="ordered" class="btn btn-primary m-top-20">주문하러가기</a>
+							<a href="sign-up" class="btn btn-default m-top-20">회원가입</a>
 						</div>
 						</c:when>
 						
 						<c:otherwise>
 						<div class="home_btns m-top-40">
-							<a href="product" class="btn btn-primary m-top-20">주문하러가기</a>
+							<a href="ordered" class="btn btn-primary m-top-20">주문하러가기</a>
 						</div>
 						</c:otherwise>
 					</c:choose>
