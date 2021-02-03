@@ -20,11 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.company.domain.AuthKeyVO;
 import com.company.domain.BoardVO;
-import com.company.domain.CartVO;
 import com.company.domain.MemberVO;
 import com.company.domain.ReplyVO;
 import com.company.service.BoardService;
-import com.company.service.CartService;
 import com.company.service.MemberService;
 import com.company.service.ReplyService;
 
@@ -47,9 +45,6 @@ public class MemberController {
 	private MemberService service;
 	
 	@Inject
-	private CartService cservice; // 카트 관련 서비스
-	
-	@Inject
 	private BoardService bservice; // 게시판 관련 서비스
 	
 	@Inject
@@ -62,7 +57,6 @@ public class MemberController {
 	public String signUpPOST(MemberVO vo) throws Exception {
 		logger.info("-- 회원가입 버튼 작동 / vo : "+vo);
 		service.insertMem(vo);
-		cservice.createCart(vo);
 		logger.info("-- 회원가입 완료 ");
 		return "redirect:../index";
 	} // signUpPOST()
@@ -139,7 +133,7 @@ public class MemberController {
 			session.setAttribute("email", DBvo.getEmail());
 		}
 		logger.info("-- 로그인 버튼 완료");
-		return "redirect:../index.do";
+		return "redirect:../index";
 	} // signInPOST()
 	
 	/////////////////////////////////////////////////////////
@@ -147,18 +141,16 @@ public class MemberController {
 	/* 로그 아웃 메소드 */
 	@RequestMapping(value = "/sign-out.post", method = RequestMethod.GET)
 	public String logOut(HttpServletResponse response,
-						 HttpSession session, CartVO cvo) throws Exception {
+						 HttpSession session) throws Exception {
 		
 		logger.info("-- 로그아웃 메소드 실행");
-		String email = (String)session.getAttribute("email");
-		cvo.setCart_email(email);
 		session.invalidate();
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
 		out.println("alert('로그아웃 되었습니다.');");
-		out.println("location.href='../index.do'");
+		out.println("location.href='../index'");
 		out.println("</script>");
 		out.flush();
 		return null;
@@ -184,7 +176,7 @@ public class MemberController {
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
 		out.println("alert('비밀번호가 수정되었습니다. 다시 로그인 해주세요.');");
-		out.println("location.href='../sign-in.me'");
+		out.println("location.href='../sign-in'");
 		out.println("</script>");
 		out.flush();
 		return null;
@@ -197,13 +189,12 @@ public class MemberController {
 	public String dropOutPOST(MemberVO vo,
 							  HttpServletResponse response, 
 							  HttpSession session, 
-							  Model model, CartVO cvo, BoardVO bvo, ReplyVO rvo) throws Exception{
+							  Model model, BoardVO bvo, ReplyVO rvo) throws Exception{
 		int check = 0;
 		logger.info("-- 회원탈퇴 버튼 동작 ");
 		logger.info("@@@ vo : " + vo);
 		model.addAttribute("email", vo.getEmail());
 		model.addAttribute("pwd", vo.getPwd());
-		cservice.deleteCart(vo);
 		check = service.deleteMem(vo);
 		
 		if(check == 1) {
@@ -212,7 +203,7 @@ public class MemberController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('탈퇴되었습니다. 이용해 주셔서 감사합니다.');");
-			out.println("location.href='../index.do'");
+			out.println("location.href='../index'");
 			out.println("</script>");
 			out.flush();
 		}else{
@@ -220,7 +211,7 @@ public class MemberController {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
 			out.println("alert('비밀번호가 틀립니다. 비밀번호를 확인해주세요.');");
-			out.println("location.href='../drop-out.me'");
+			out.println("location.href='../drop-out'");
 			out.println("</script>");
 			out.flush();
 		}
@@ -298,26 +289,6 @@ public class MemberController {
 		return null;
 	} // membershipPay()
 
-	/////////////////////////////////////////////////////////
-
-	/* 카트 메뉴 추가 */
-	@RequestMapping(value = "updateCart", method = RequestMethod.GET)
-	public String cart_AJAX(Model model, CartVO cvo, String cart_email,
-							int product_id, String product_name, int product_price, 
-							int product_amount) throws Exception{
-		logger.info("-- 메뉴 추가 버튼 실행"); 
-		cvo.setCart_email(cart_email); cvo.setProduct_amount(product_amount);
-		cvo.setProduct_id(product_id); cvo.setProduct_name(product_name); cvo.setPrice(product_price);
-		model.addAttribute("cart_email", cvo.getCart_email());
-		model.addAttribute("product_id", cvo.getProduct_id());
-		model.addAttribute("product_name", cvo.getProduct_name());
-		model.addAttribute("product_price", cvo.getPrice());
-		model.addAttribute("product_amount", cvo.getProduct_amount());
-//		logger.info("-- vo : " + cvo);
-		cservice.updateCart(cvo);
-		return null;
-	} // cart_AJAX()
-	
 	/////////////////////////////////////////////////////////
 
 }

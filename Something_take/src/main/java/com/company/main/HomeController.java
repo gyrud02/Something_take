@@ -16,13 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.company.domain.BoardVO;
-import com.company.domain.CartVO;
 import com.company.domain.Criteria;
 import com.company.domain.MemberVO;
 import com.company.domain.MessageVO;
 import com.company.domain.ReplyVO;
 import com.company.service.BoardService;
-import com.company.service.CartService;
 import com.company.service.MemberService;
 import com.company.service.MessageService;
 import com.company.service.ReplyService;
@@ -43,9 +41,6 @@ public class HomeController {
 	
 	@Inject
 	private ReplyService reservice; // 댓글 관련 서비스
-	
-	@Inject
-	private CartService cservice; // 카트 관련 서비스
 	
 	/////////////////////////////////////////////////////////
 	
@@ -303,9 +298,7 @@ public class HomeController {
 	public String cartList(Model model, HttpSession session) throws Exception{
 		logger.info("-- 장바구니 페이지로 이동");
 		String cart_email = (String)session.getAttribute("email");
-		List<CartVO> cartList = cservice.getCart(cart_email);
-		model.addAttribute("cartList", cartList);
-		return "payment/order.tiles";
+		return "payment/order";
 	} // cartList()
 	
 	/////////////////////////////////////////////////////////
