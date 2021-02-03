@@ -28,24 +28,27 @@
 	});
 
 	/* 유효성 검사 */
-	function formCheck(){
-		$("#next").click(function(){
-
+	$(function formCheck(){
+		$(".btn-next").click(function(){
+			alert( $("#type option:selected").val() );
 			// 메뉴
 			if( $("#menu option:selected").val() == 0 ){
 				$(".menu-class").addClass("has-error");
+				$(".menu-class").attr("class","has-error");
 				return false;
 			}
 			
 			// 타입
 			if( $("#type option:selected").val() == 0 ){
 				$(".type-class").addClass("has-error");
+				$(".type-class").attr("class","has-error");
 				return false;
 			}
 
 			// 갯수
 			if( $("#amount").val() == 0 ){
 				$(".amount-class").addClass("has-error");
+				$(".amount-class").attr("class","has-error");
 				return false;
 			}
 			
@@ -56,7 +59,7 @@
 			}
 			
 		}); // click()
-	} // formCheck()
+	}); // formCheck()
 
 </script>
 <body class="lightbg" data-spy="scroll" data-target=".navbar-collapse">
