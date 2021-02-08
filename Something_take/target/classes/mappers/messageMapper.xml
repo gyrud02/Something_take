@@ -10,7 +10,7 @@
 	INSERT INTO message (msg_name, msg_phone, msg_textarea, msg_answer, msg_send_date)
 	VALUES (#{msg_name}, #{msg_phone}, #{msg_textarea}, #{msg_answer}, now())
 	</insert>
-	<!-- 게시판 글 등록 -->
+	<!-- 메세지 등록 -->
 
 
 	<!-- 전체 메세지 조회 -->

@@ -64,13 +64,12 @@
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<!----------- [i'mport(결제) 관련 링크 ] ----------->
 	
-	
 </head>
 <!-------------------------------------- HEAD [헤드 영역] ------------------------------------------>
 
 
 <!-------------------------------------- BODY [본문 영역] ------------------------------------------>
-<body data-spy="scroll" data-target=".navbar-collapse" class="lightbg">
+<body>
 	<div class="culmn">
 		<!--Home page style-->
 																			<!-- no-background -->	
@@ -169,9 +168,9 @@
 							<h6 class="title">고객 페이지</h6>
 							<ul class="link">
 								<li><a href="ordered">주문하기</a></li>
-								<li><a href="profile">회원정보</a></li>
-								<li><a href="#">주문 내역</a></li>
-								<li><a href="membership">멤버십 내역</a></li>
+								<li><a href="mem_profile">회원정보</a></li>
+								<li><a href="mem_ordered">주문 내역</a></li>
+								<li><a href="mem_membership">멤버십 내역</a></li>
 								<li><a href="member/sign-out.post">로그아웃</a></li>
 								<li><a href="drop-out">회원탈퇴</a></li>
 							</ul>
