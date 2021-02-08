@@ -176,7 +176,7 @@ public class HomeController {
 	/////////////////////////////////////////////////////////
 
 	/* 회원정보 페이지로 이동하는 메소드 */
-	@RequestMapping(value = "/profile", method = RequestMethod.GET)
+	@RequestMapping(value = "/mem_profile", method = RequestMethod.GET)
 	public String mem_Profile(HttpServletRequest request, HttpSession session) throws Exception {
 		logger.info("-- 회원정보 페이지로 이동");
 		session = request.getSession();
@@ -184,6 +184,17 @@ public class HomeController {
 		MemberVO name = service.getMem(email);
 		session.setAttribute("MemberVO", name);
 		return "member/mem_modify.tiles";
+	} // mem_Profile()
+	
+	/////////////////////////////////////////////////////////
+	
+	/* 주문 내역 페이지로 이동하는 메소드 */
+	@RequestMapping(value = "/mem_ordered", method = RequestMethod.GET)
+	public String mem_Ordered(HttpServletRequest request, HttpSession session) throws Exception {
+		logger.info("-- 주문 내역 페이지로 이동");
+		String email = (String)session.getAttribute("email");
+//		MemberVO name = service.getMem(email);
+		return "member/mem_ordered.tiles";
 	} // mem_Profile()
 
 	/////////////////////////////////////////////////////////
@@ -207,9 +218,9 @@ public class HomeController {
 	/////////////////////////////////////////////////////////
 
 	/* 결제 내역 페이지로 이동하는 메소드 */
-	@RequestMapping(value = "membership.me", method = RequestMethod.GET)
+	@RequestMapping(value = "mem_membership", method = RequestMethod.GET)
 	public String membership(HttpServletRequest request, HttpSession session) throws Exception{
-		logger.info("-- 결제 내역 페이지로 이동");
+		logger.info("-- 멤버십 결제 내역 페이지로 이동");
 		session = request.getSession();
 		String email = (String)session.getAttribute("email");
 		logger.info("-- @@@ email : " + email);
@@ -296,7 +307,7 @@ public class HomeController {
 	/* 결제하기 페이지 */
 	@RequestMapping(value = "ordered", method = RequestMethod.GET)
 	public String cartList(Model model, HttpSession session) throws Exception{
-		logger.info("-- 장바구니 페이지로 이동");
+		logger.info("-- 주문 페이지로 이동");
 		String cart_email = (String)session.getAttribute("email");
 		return "payment/order";
 	} // cartList()
