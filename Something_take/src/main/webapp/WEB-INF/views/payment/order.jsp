@@ -69,64 +69,6 @@
 			} // if
 	} // check()
 
-	/* span 태그 적용 
-	function spanAJAX(event){
-		$("#menu").mouseup(function(){
-			$.ajax({
-					type:"GET",
-					dataType:"text",
-					data:{ menu:$("#menu option:selected").val(),
-						   amount:$("#amount").val() },
-					success:function(textStatus){
-						if(menu == "0" || amount == 0){
-							$(".span-price").hide();
-							alert("시작" + menu.value + amount.value);
-						}else{
-							if(menu == "Americano"){
-								alert("시작" + menu.value + amount.value);
-								$(".span-price").val("총 : ￦").css("style", "display:none;");
-								$(".span-price").css("color", "#ff4084");
-								$(".span-price").show();
-							} // 2,000
-	
-							if(menu == "Espresso" && amount != 0){
-								$(".span-price").val("총 : ￦ 1,500").css("style", "display:none;");
-								$(".span-price").css("color", "#ff4084");
-								$(".span-price").show();
-							}
-	
-							if(menu == "Caffelatte" && amount != 0){
-								$(".span-price").val("총 : ￦ 3,000").css("style", "display:none;");
-								$(".span-price").css("color", "#ff4084");
-								$(".span-price").show();
-							}
-	
-							if(menu == "Cappuccino" && amount != 0){
-								$(".span-price").val("총 : ￦ 3,000").css("style", "display:none;");
-								$(".span-price").css("color", "#ff4084");
-								$(".span-price").show();
-							}
-	
-							if(menu == "GreenteaLatte" && amount != 0){
-								$(".span-price").val("총 : ￦ 3,500").css("style", "display:none;");
-								$(".span-price").css("color", "#ff4084");
-								$(".span-price").show();
-							}
-	
-							if(menu == "Lemonade" && amount != 0){
-								$(".span-price").val("총 : ￦ 3,500").css("style", "display:none;");
-								$(".span-price").css("color", "#ff4084");
-								$(".span-price").show();
-							}
-						}
-					}, // success
-					error:function(textStatus){
-						alert("오류가 발생하였습니다.");
-					} // error
-			}); // ajax
-		}); // mouseover()
-	} // spanAJAX
-	*/
 </script>
 <body class="lightbg">
 

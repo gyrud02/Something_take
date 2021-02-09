@@ -392,7 +392,7 @@ ul {
 /*all overlay*/
 
 .overlay {
-	background-color: rgba(51, 51, 51, 0.30);
+/*	background-color: rgba(51, 51, 51, 0.30); */
 	position: absolute;
 	left: 0;
 	top: 0;
@@ -1173,7 +1173,8 @@ Home Section style
 ==================*/
 
 .home {
-	background: url(../images/background/header.jpg) no-repeat bottom center;
+/*	background: url(../images/background/header.jpg) no-repeat bottom center; */
+	background: white no-repeat bottom center;
 	background-size: cover;
 	position: relative;
 }
@@ -1181,7 +1182,7 @@ Home Section style
 .main_home {
 	overflow: hidden;
 	padding-top: 300px;
-	padding-bottom: 230px;
+	padding-bottom: 220px;
 	position: relative;
 	z-index: 1;
 }
@@ -1319,7 +1320,8 @@ Video Section style
 ======================*/
 
 .video {
-	background: url(../images/background/video.jpg) no-repeat center center;
+/*	background: url(../images/background/video.jpg) no-repeat center center; */
+	background: white no-repeat center center;
 	background-size: cover;
 	position: relative;
 }
@@ -1452,7 +1454,8 @@ Impress section style
 ========================*/
 
 .impress {
-	background: url(../images/background/work-together.jpg) no-repeat center center;
+/*	background: url(../images/background/work-together.jpg) no-repeat center center; */
+	background: white no-repeat center center;
 	background-size: cover;
 	position: relative;
 }
@@ -1522,7 +1525,8 @@ Portfolio section style
 	top: 0%;
 	width: 100%;
 	height: 100%;
-	background-color: rgba(0, 0, 0, 0.30);
+/*	background-color: rgba(0, 0, 0, 0.30); */
+	background-color: white;
 	padding-top: 12%;
 	opacity: 0;
 	-webkit-transition: all 0.4s;
@@ -1629,7 +1633,8 @@ Testimonial Section style
 =======================*/
 
 .testimonial {
-	background: url(../images/background/testimonial.jpg) no-repeat center center;
+/*	background: url(../images/background/testimonial.jpg) no-repeat center center; */
+	background: white no-repeat center center;
 	background-size: cover;
 	position: relative;
 }
@@ -1792,7 +1797,8 @@ Subscribe Section style
 =====================*/
 
 .subscribe {
-	background: url(../images/background/subscribe.jpg) no-repeat center center;
+/*	background: url(../images/background/subscribe.jpg) no-repeat center center; */
+	background: white no-repeat center center;
 	background-size: cover;
 	position: relative;
 }

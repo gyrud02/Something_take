@@ -43,7 +43,14 @@
 	}); // contact_chk()
 	
 </script>
-
+<style type="text/css">
+	@media(max-width:897px){
+		.overlay{height:500px; background-color: white;}
+		.main_home{padding-top: 150px; padding-bottom: 10px; }
+		.main_service{padding-top: 10px;}	
+	}
+	.overlay{background-color: white;}
+</style>
 <!-------------------------------------- BODY [본문 영역] ------------------------------------------>
 <body data-spy="scroll" data-target=".navbar-collapse">
 
@@ -83,7 +90,7 @@
 		</section>
 <!-------------------------------- [본문 상단 영역] ---------------------------------->
 
-		<br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br>
 
 <!------------------------------- [슬라이더 영역] ----------------------------------->
 

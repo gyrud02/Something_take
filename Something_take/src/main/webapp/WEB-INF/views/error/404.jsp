@@ -275,7 +275,7 @@
 				          	궁금한 점이 있으시면 <a href="#">고객센터</a>를 통해 문의해 주시기 바랍니다.
 				          	감사합니다.
 				        </p>
-				        <button class="btn btn-primary" onclick="location.href='./index.do'">HOME</button>
+				        <button class="btn btn-primary" onclick="location.href='./index'">HOME</button>
 				      </div>
 				    </div>
 				  </div>

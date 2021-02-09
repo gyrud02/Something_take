@@ -1,5 +1,7 @@
 package com.company.persistence;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -24,7 +26,20 @@ public class PaymentDAOImpl implements PaymentDAO{
 		System.out.println("-- DAOImpl : insert() 실행");
 		sqlSession.insert(namespace+".insert", pvo);
 	} // insert()
+
+	/////////////////////////////////////////////////////////////////////
+
+	/* 전체 내역 가져오기 메서드 */
+	@Override
+	public List<PaymentVO> getList() throws Exception {
+		System.out.println("-- DAOImpl : getList()");
+		List<PaymentVO> pmList = sqlSession.selectList(namespace+".getList");
+		return pmList;
+	} // getList()
 	
 	/////////////////////////////////////////////////////////////////////
+	
+	
+	
 	
 }
