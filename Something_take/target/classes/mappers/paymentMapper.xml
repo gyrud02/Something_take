@@ -14,7 +14,7 @@
 
 
 	<!-- 전체 내역 조회 -->
-	<select id="PMList" resultType="com.company.domain.PaymentVO">
+	<select id="getList" resultType="com.company.domain.PaymentVO">
 	<![CDATA[
 	SELECT *
 	FROM payment

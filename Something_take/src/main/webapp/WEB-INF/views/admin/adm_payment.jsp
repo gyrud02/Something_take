@@ -125,19 +125,25 @@
                     <thead class=" text-primary">
 	                   <tr class="text-center">
 	                      <th id="idx">
-	                      	접수번호
+	                      	결제번호
 	                      </th>
 	                      <th id="name">
-	                      	고객명
+	                      	이메일
 	                      </th>
 	                      <th id="phone">
 	                      	연락처
 	                      </th>
 	                      <th id="name">
-	                      	답변
+	                      	메뉴
+	                      </th>
+	                      <th id="name">
+	                      	ICE/HOT
+	                      </th>
+	                      <th id="name">
+	                      	갯수
 	                      </th>
 	                      <th id="reg_date">
-	                      	수신일자
+	                      	결제일자
 	                      </th>
 					  </tr> 
                     </thead>
@@ -146,19 +152,25 @@
                     <tbody>
                       <tr class="text-center">
                         <td id="idx">
-                          ${msgList.msg_no}
+                          ${pmList.order_id}
                         </td>
                         <td id="name">
-                          ${msgList.msg_name}
+                          ${pmList.email}
                         </td>
                         <td id="phone">
-                          ${msgList.msg_phone}
+                          ${pmList.phone}
+                        </td>
+                        <td id="phone">
+                          ${pmList.menu}
+                        </td>
+                        <td id="phone">
+                          ${pmList.menutype}
                         </td>
                         <td id="name">
-                          ${msgList.msg_answer}
+                          ${pmList.amount}
                         </td>
                         <td id="reg_date">
-                       		<fmt:formatDate value="${msgList.msg_send_date}" pattern="YY-MM-dd hh:mm:ss"/>
+                       		<fmt:formatDate value="${pmList.order_date}" pattern="YY-MM-dd hh:mm:ss"/>
                         </td>
                       </tr>
                   	</tbody>
@@ -175,7 +187,7 @@
           <div class="col-md-12">
             <div class="card  card-plain">
               <div class="card-header">
-                <h4 class="card-title"> 멤버십 테이블</h4>
+                <h4 class="card-title"> 결제 테이블</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -183,7 +195,7 @@
                     <thead class=" text-primary">
 						<tr class="text-center">
 	                      <th id="idx">
-	                      	접수번호
+	                      	결제번호
 	                      </th>
 	                      <th>
 	                      	내용
@@ -191,14 +203,14 @@
 						</tr>   
                     </thead>
 
-				<c:forEach items="${msgList}" var="msgList">	
+				<c:forEach items="${pmList}" var="pmList">	
                     <tbody>
                       <tr class="text-center">
                         <td style="width:80px;">
-                          ${msgList.msg_no}
+                          ${pmList.order_id}
                         </td>
                         <td class="text-left">
-                        	<a href="msg/message?msg_no=${msgList.msg_no}">${msgList.msg_textarea}</a>
+                        	<a href="msg/message?msg_no=${pmList.message}">${pmList.message}</a>
                         </td>
                       </tr>
                     </tbody>

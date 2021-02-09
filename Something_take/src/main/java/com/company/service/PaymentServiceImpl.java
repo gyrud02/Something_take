@@ -1,5 +1,7 @@
 package com.company.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -22,7 +24,19 @@ public class PaymentServiceImpl implements PaymentService{
 		System.out.println("-- ServiceImpl : registerPM() 실행");
 		pdao.insert(pvo);
 	} // registerPM()
+
+	///////////////////////////////////////////////////////////////////////
+
+	/* 전체 내역 가져오기 메서드 */
+	@Override
+	public List<PaymentVO> getPayment() throws Exception {
+		System.out.println("-- ServiceImpl : getPayment()");
+		List<PaymentVO> pmList = pdao.getList();
+		return pmList;
+	} // getPayment()
 	
 	///////////////////////////////////////////////////////////////////////
+
+	
 	
 }

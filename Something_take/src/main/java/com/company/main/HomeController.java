@@ -19,10 +19,12 @@ import com.company.domain.BoardVO;
 import com.company.domain.Criteria;
 import com.company.domain.MemberVO;
 import com.company.domain.MessageVO;
+import com.company.domain.PaymentVO;
 import com.company.domain.ReplyVO;
 import com.company.service.BoardService;
 import com.company.service.MemberService;
 import com.company.service.MessageService;
+import com.company.service.PaymentService;
 import com.company.service.ReplyService;
 
 @Controller
@@ -41,6 +43,9 @@ public class HomeController {
 	
 	@Inject
 	private ReplyService reservice; // 댓글 관련 서비스
+	
+	@Inject
+	private PaymentService pservice; // 결제 관련 서비스
 	
 	/////////////////////////////////////////////////////////
 	
@@ -253,11 +258,11 @@ public class HomeController {
 	
 	/* 관리자 메뉴 - 매출 관리 페이지 */
 	@RequestMapping(value = "ad_pay", method = RequestMethod.GET)
-	public String admin_Payments(Model model) throws Exception{
+	public String admin_Payment(Model model) throws Exception{
 		logger.info("-- [관리자] 매출 관리 페이지로 이동");
-//		List<MessageVO> msgList = mservice.getMSGs();
-//		model.addAttribute("msgList", msgList);
-		return "admin/adm_payments.tiles";
+		List<PaymentVO> pmList = pservice.getPayment();
+		model.addAttribute("pmList", pmList);
+		return "admin/adm_payment.tiles";
 	} // admin_Payments()
 	
 	/////////////////////////////////////////////////////////
@@ -275,11 +280,11 @@ public class HomeController {
 
 	/* 관리자 메뉴 - 문의 관리 페이지 */
 	@RequestMapping(value = "ad_msg", method = RequestMethod.GET)
-	public String admin_Messages(Model model) throws Exception{
+	public String admin_Message(Model model) throws Exception{
 		logger.info("-- [관리자] 문의 관리 페이지로 이동");
 		List<MessageVO> msgList = mservice.getMSGs();
 		model.addAttribute("msgList", msgList);
-		return "admin/adm_messages.tiles";
+		return "admin/adm_message.tiles";
 	} // admin_Messages()
 	
 	/////////////////////////////////////////////////////////
