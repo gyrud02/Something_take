@@ -195,10 +195,11 @@ public class HomeController {
 	
 	/* 주문 내역 페이지로 이동하는 메소드 */
 	@RequestMapping(value = "/mem_ordered", method = RequestMethod.GET)
-	public String mem_Ordered(HttpServletRequest request, HttpSession session) throws Exception {
+	public String mem_Ordered(HttpServletRequest request, HttpSession session, Model model) throws Exception {
 		logger.info("-- 주문 내역 페이지로 이동");
 		String email = (String)session.getAttribute("email");
-//		MemberVO name = service.getMem(email);
+		List<PaymentVO> pmList = pservice.getPay(email);
+		model.addAttribute("pmList", pmList);
 		return "member/mem_ordered.tiles";
 	} // mem_Profile()
 
@@ -271,8 +272,8 @@ public class HomeController {
 	@RequestMapping(value = "ad_order", method = RequestMethod.GET)
 	public String admin_Ordered(Model model) throws Exception{
 		logger.info("-- [관리자] 주문 관리 페이지로 이동");
-//		List<MessageVO> msgList = mservice.getMSGs();
-//		model.addAttribute("msgList", msgList);
+		List<PaymentVO> pmList = pservice.getPayment();
+		model.addAttribute("pmList", pmList);
 		return "admin/adm_ordered.tiles";
 	} // admin_Ordered()
 	

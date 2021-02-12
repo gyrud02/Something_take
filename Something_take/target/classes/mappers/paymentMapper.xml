@@ -22,4 +22,16 @@
 	</select>
 	<!-- 전체 내역 조회 -->
 	
+	
+	<!-- 한명 내역 조회 -->	
+	<select id="selectList" resultType="com.company.domain.PaymentVO">
+	<![CDATA[
+	SELECT *
+	FROM payment
+	WHERE email = #{email}
+	]]>
+	</select>
+	<!-- 한명 내역 조회 -->	
+	
+	
 </mapper>

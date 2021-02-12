@@ -25,7 +25,7 @@
 </head>
 <style>
 	#email{width: 135px;} #idx{width: 45px;} #name{width: 60px;} #reg_date{width: 100px;} #phone{width: 100px;}
-	#membership_type{width: 80px;} #membership_reg_date{width: 100px;} #membership_end_date{width: 100px;}
+	#navbar-menu{padding-left:137px;}
 </style>
 
 <!------------------------------------ [회원 목록 영역] ------------------------------------------->
@@ -148,7 +148,7 @@
 					  </tr> 
                     </thead>
                   
-                  <c:forEach items="${msgList}" var="msgList">
+                  <c:forEach items="${pmList}" var="pmList">
                     <tbody>
                       <tr class="text-center">
                         <td id="idx">
@@ -198,7 +198,19 @@
 	                      	결제번호
 	                      </th>
 	                      <th>
-	                      	내용
+	                      	이메일
+	                      </th>
+	                      <th>
+	                      	메뉴
+	                      </th>
+	                      <th id="name">
+	                      	ICE/HOT
+	                      </th>
+	                      <th id="name">
+	                      	갯수
+	                      </th>
+	                      <th>
+	                      	전달메세지
 	                      </th>
 						</tr>   
                     </thead>
@@ -209,8 +221,20 @@
                         <td style="width:80px;">
                           ${pmList.order_id}
                         </td>
-                        <td class="text-left">
-                        	<a href="msg/message?msg_no=${pmList.message}">${pmList.message}</a>
+                        <td id="name">
+                          ${pmList.email}
+                        </td>
+                        <td id="phone">
+                          ${pmList.menu}
+                        </td>
+                        <td id="phone">
+                          ${pmList.menutype}
+                        </td>
+                        <td id="name">
+                          ${pmList.amount}
+                        </td>
+                        <td class="text-center">
+                        	<a href="#">${pmList.message}</a>
                         </td>
                       </tr>
                     </tbody>
@@ -245,7 +269,7 @@
 	<c:otherwise>
 		<script>
 			alert("관리자 전용 페이지입니다.");
-			location.href="./index.do";
+			location.href="./index";
 		</script>
 	</c:otherwise>
 

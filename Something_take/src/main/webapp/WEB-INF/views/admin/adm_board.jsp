@@ -24,7 +24,7 @@
   <!-- CSS Just for demo purpose, don't include it in your project -->
 </head>
 <style>
-	#email{width: 135px;} #idx{width: 45px;} #name{width: 60px;} #reg_date{width: 100px;}
+	#email{width: 135px;} #idx{width: 45px;} #name{width: 60px;} #reg_date{width: 100px;} #navbar-menu{padding-left:137px;}
 </style>
 
 <!------------------------------------ [회원 목록 영역] ------------------------------------------->
@@ -230,7 +230,7 @@
 	<c:otherwise>
 		<script>
 			alert("관리자 전용 페이지입니다.");
-			location.href="./index.do";
+			location.href="./index";
 		</script>
 	</c:otherwise>
 

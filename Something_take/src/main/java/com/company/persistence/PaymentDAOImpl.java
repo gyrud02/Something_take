@@ -36,10 +36,17 @@ public class PaymentDAOImpl implements PaymentDAO{
 		List<PaymentVO> pmList = sqlSession.selectList(namespace+".getList");
 		return pmList;
 	} // getList()
+
+	/////////////////////////////////////////////////////////////////////
+
+	/* 해당 결제 내역 가져오기 메서드 */
+	@Override
+	public List<PaymentVO> selectList(String email) throws Exception {
+		System.out.println("-- DAOImpl : selectList()");
+		List<PaymentVO> pmList = sqlSession.selectList(namespace+".selectList", email);
+		return pmList;
+	} // selectList()
 	
 	/////////////////////////////////////////////////////////////////////
-	
-	
-	
 	
 }

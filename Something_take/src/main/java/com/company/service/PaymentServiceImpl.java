@@ -34,9 +34,17 @@ public class PaymentServiceImpl implements PaymentService{
 		List<PaymentVO> pmList = pdao.getList();
 		return pmList;
 	} // getPayment()
-	
+
 	///////////////////////////////////////////////////////////////////////
 
+	/* 해당 결제 내역 가져오기 메서드 */
+	@Override
+	public List<PaymentVO> getPay(String email) throws Exception {
+		System.out.println("-- ServiceImpl : getPay()");
+		List<PaymentVO> pmList = pdao.selectList(email);
+		return pmList;
+	} // getPay()
 	
+	///////////////////////////////////////////////////////////////////////
 	
 }
