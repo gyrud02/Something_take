@@ -23,7 +23,9 @@
   <link href="${pageContext.request.contextPath}/resources/admin/demo/demo.css" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
 </head>
-
+<style>
+	#navbar-menu{padding-left:137px;}
+</style>
 <!------------------------------------ [회원 목록 영역] ------------------------------------------->
 <body class=" ">
 
@@ -745,7 +747,7 @@
 	<c:otherwise>
 		<script>
 			alert("관리자 전용 페이지입니다.");
-			location.href="./index.do";
+			location.href="./index";
 		</script>
 	</c:otherwise>
 

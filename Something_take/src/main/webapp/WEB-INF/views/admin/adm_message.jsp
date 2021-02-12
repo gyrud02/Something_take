@@ -23,7 +23,9 @@
   <link href="${pageContext.request.contextPath}/resources/admin/demo/demo.css" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
 </head>
-
+<style>
+	#navbar-menu{padding-left:137px;}
+</style>
 <!------------------------------------ [메세지 목록 영역] ------------------------------------------->
 <body class=" ">
 
@@ -181,6 +183,9 @@
 	                      <th id="idx">
 	                      	접수번호
 	                      </th>
+	                      <th id="phone">
+	                      	연락처
+	                      </th>
 	                      <th>
 	                      	내용
 	                      </th>
@@ -192,6 +197,9 @@
                       <tr class="text-center">
                         <td style="width:80px;" id="msg_no">
                           ${msgList.msg_no}
+                        </td>
+                        <td id="phone">
+                          ${msgList.msg_phone}
                         </td>
                         <td class="text-left">
                         	<a href="" ></a>
@@ -228,7 +236,7 @@
 	<c:otherwise>
 		<script>
 			alert("관리자 전용 페이지입니다.");
-			location.href="./index.do";
+			location.href="./index";
 		</script>
 	</c:otherwise>
 

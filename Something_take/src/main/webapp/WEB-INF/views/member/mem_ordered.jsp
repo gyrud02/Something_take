@@ -9,104 +9,139 @@
 <!------------------------------------ [결제 내역 영역] ------------------------------------------->
 <body>
 
+	<br><br><br><br><br>
+
 	<c:choose>
-		<c:when test="${sessionScope.email == null }">
+		<c:when test="${sessionScope.email == null}">
 			<script type="text/javascript">
 				alert("로그인 시 사용 가능한 페이지입니다.");
 				location.href="sign-in";
 			</script>
 		</c:when>
-		
-		<c:when test="${sessionScope.email != null && membership.membership_type != null}">
-			<section id="pricing" class="pricing lightbg">
-				<div class="container">
-					<div class="row">
-						<div class="main_pricing">
-							<div class="col-md-8 ml-md-auto mr-md-auto">
-								<div class="head_title_1 text-center">
-									<h3>주문 내역</h3>
-									<div class="separator_auto"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<br><br>
-					
-					<div class="row">
-						<div class="col-md-7 col-sm-12 ml-md-auto mr-md-auto">
-							<div class="pricing_item">
-								<div class="pricing_top_border"></div><br>
-								<div class="pricing_head p-top-30 p-bottom-100 text-center">
-									<h3 class="text-uppercase">${membership.membership_type}</h3>
-									<div hidden>
-										<input type="text" readonly="readonly">
-									</div>
-								</div>
-								
-								<div class="pricing_price_border text-center">
-									<div class="pricing_price">
-										<h4 class="text-white">${membership.membership_pay}</h4>
-										<div hidden>
-											<input type="text" readonly="readonly">
-										</div>
-										<p class="text-white">per month</p>
-									</div>
-								</div>
-	
-								<div class="pricing_body bg-white p-top-110 p-bottom-60">
-									<ul class="text-center">
-										<li><i class="fa fa-check-circle text-primary"></i> <span>결제일 : </span> 
-											<fmt:formatDate value="${membership.membership_reg_date}" pattern="yyyy.MM.dd HH:mm:ss"/>
-										</li>
-										<li><i class="fa fa-check-circle text-primary"></i> <span>종료일 : </span> 
-											<fmt:formatDate value="${membership.membership_end_date}" pattern="yyyy.MM.dd HH:mm:ss"/>
-										</li>
-									</ul>
-								</div>
-							</div>
-						</div><!-- End off col-md-4 -->
-					</div>
-				</div>
-			</section>
-		</c:when>
-					
-		<c:otherwise>			
-			<section class="pricing lightbg">
-				<div class="container">
-					<div class="row">
-						<div class="main_pricing">
-							<div class="col-md-8 ml-md-auto mr-md-auto">
-								<div class="head_title_1 text-center">
-									<h3>멤버십 이용 내역</h3>
-									<div class="separator_auto"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					<br><br>
-					
-					<div class="row">
-						<div class="col-md-8 col-sm-12 ml-md-auto mr-md-auto">
-							<div class="pricing_item">
-								<div class="pricing_body bg-white p-top-110 p-bottom-60">
-									<ul class="text-center">
-										<li><i class="fa fa-check-circle text-primary"></i> <span>주문 내역이 없습니다.</span> </li>
-									</ul>
-									<div class="pricing_btn text-center m-top-40">
-										<a href="mem_ordered" class="btn btn-primary">주문하러가기</a>
-									</div>
-								</div>
-	
-							</div>
-						</div><!-- End off col-md-4 -->
-					</div>
-				</div>
-			</section>
-		</c:otherwise>	
 
+		<c:when test="${pmList == null}">
+	      <!-- Hero Area Start-->
+	      <div class="slider-area ">
+	          <div class="single-slider slider-height2 d-flex align-items-center">
+	              <div class="container">
+	                  <div class="row">
+	                      <div class="col-xl-12">
+                            <div class="wizard-header">
+	                    		<div class="head_title_1 text-center">
+								<h2>주문 내역</h2>
+								<div class="separator_auto"></div>
+								</div>
+							</div>
+	                      </div>
+	                  </div>
+	              </div>
+	          </div>
+	      </div>
+		</c:when>
+
+		<c:when test="${pmList != null}">
+			<!-- Hero Area Start-->
+	      <div class="slider-area ">
+	          <div class="single-slider slider-height2 d-flex align-items-center">
+	              <div class="container">
+	                  <div class="row">
+	                      <div class="col-xl-12">
+                            <div class="wizard-header">
+	                    		<div class="head_title_1 text-center">
+								<h2>주문 내역</h2>
+								<div class="separator_auto"></div>
+								</div>
+							</div>
+	                      </div>
+	                  </div>
+	              </div>
+	          </div>
+	      </div>
+	      
+	      <br><br><br>
+	      
+	      <!--================ confirmation part start =================-->
+	      <section class="confirmation_part section_padding">
+	        <div class="container">    
+	          <div class="row">
+                <div class="col-lg-12 form-control">
+	              <div class="order_details_iner">
+	                <h3 class="text-center"> 주문 내역이 없습니다. </h3>
+				  </div>
+				</div>                  
+              </div>
+            </div>
+          </section>
+	          <!-- 
+	          <div class="row">
+	            <div class="col-lg-4 col-lx-4">
+	              <div class="single_confirmation_details" style="border-color: lime;">
+	                <h4>order info</h4>
+	                <ul>
+	                  <li>
+	                    <p>order number<span>: 60235</span></p>
+	                  </li>
+	                  <li>
+	                    <p>data<span>: Oct 03, 2017</span></p>
+	                  </li>
+	                  <li>
+	                    <p>total<span>: USD 2210</span></p>
+	                  </li>
+	                  <li>
+	                    <p>mayment methord<span>: Check payments</span></p>
+	                  </li>
+	                </ul>
+	              </div>
+	            </div>
+	          </div> -->
+	          
+	      <!--================ confirmation part start =================-->
+	      <section class="confirmation_part section_padding">
+	        <div class="container">    
+	          <div class="row">
+                
+                <br><br>
+                
+                <c:forEach items="${pmList}" var="pmList">	
+	            <div class="col-lg-12 form-control">
+	              <div class="order_details_iner">
+	                <h3>${pmList.order_date}</h3>
+	                <table class="table table-borderless">
+	                  <thead>
+	                    <tr>
+	                      <th scope="col" colspan="2">Product</th>
+	                      <th scope="col">Amount</th>
+	                      <th scope="col">Total</th>
+	                    </tr>
+	                  </thead>
+	                  <tbody>
+	                    <tr>
+	                      <th colspan="2"><span>${pmList.menu}</span></th>
+	                      <th>${pmList.amount}</th>
+	                      <th> <span>￦ ${pmList.price}</span></th>
+	                    </tr>
+	                  </tbody>
+	                  <tfoot>
+	                    <tr>
+	                      <th scope="col" colspan="2">Message :</th>
+	                      <th scope="col"> ${pmList.message}</th>
+	                      <th scope="col">Menutype : ￦ ${pmList.menutype}</th>
+	                    </tr>
+	                  </tfoot>
+	                </table>
+	              </div>
+	            </div>
+                </c:forEach>
+                
+	          </div>
+	        </div>
+	      </section>
+	      <!--================ confirmation part end =================-->
+		</c:when>
+		  
 	</c:choose>						
+
+	<br><br>
 
 </body>
 <!------------------------------------ [결제 내역 영역] ------------------------------------------->

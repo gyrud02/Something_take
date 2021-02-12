@@ -10,4 +10,6 @@ public interface PaymentDAO {
 	
 	public List<PaymentVO> getList() throws Exception; // 전체 내역 가져오기 메서드
 	
+	public List<PaymentVO> selectList(String email) throws Exception;// 해당 결제 내역 가져오기 메서드
+	
 }
