@@ -27,7 +27,7 @@
 						<div class="col-md-6">
 							<div class="about_accordion wow fadeIn">
 								<div id="faq_main_content" class="faq_main_content">
-									<h6><i class="fa fa-angle-right"></i> UNIQUE DESIGN </h6>
+									<h6><i class="fa fa-angle-right"></i> Our Mission </h6>
 									<div>
 										<div class="content">
 											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p>
@@ -36,7 +36,7 @@
 									</div>
 									<!-- End off accordion item-1 -->
 
-									<h6><i class="fa fa-angle-right"></i> EXPERIENCE TEAM</h6>
+									<h6><i class="fa fa-angle-right"></i> Our Vision </h6>
 									<div>
 										<div class="content">
 											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p>
@@ -44,7 +44,7 @@
 									</div>
 									<!-- End off accordion item-2 -->
 
-									<h6> <i class="fa fa-angle-right"></i> GREAT SERVICE </h6>
+									<h6> <i class="fa fa-angle-right"></i> Our Service </h6>
 									<div>
 										<div class="content">
 											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p>
@@ -52,7 +52,7 @@
 									</div>
 									<!-- End off accordion item-3 -->
 
-									<h6><i class="fa fa-angle-right"></i> FREE UPDATES </h6>
+									<h6><i class="fa fa-angle-right"></i> Our Clients </h6>
 									<div>
 										<div class="content">
 											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p>

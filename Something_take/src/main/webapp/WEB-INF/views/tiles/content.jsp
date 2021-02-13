@@ -45,11 +45,10 @@
 </script>
 <style type="text/css">
 	@media(max-width:897px){
-		.overlay{height:500px; background-color: white;}
+		.overlay{height:500px; /* background-color: white; */} 
 		.main_home{padding-top: 150px; padding-bottom: 10px; }
 		.main_service{padding-top: 10px;}	
 	}
-	.overlay{background-color: white;}
 </style>
 <!-------------------------------------- BODY [본문 영역] ------------------------------------------>
 <body data-spy="scroll" data-target=".navbar-collapse">
@@ -97,8 +96,8 @@
 		<div class="featured_slider">
 			<div>
 				<div class="featured_img">
-					<img src="${pageContext.request.contextPath}/resources/images/_3.jpg" alt="_3" />
-					<a href="${pageContext.request.contextPath}/resources/images/_3.jpg" class="popup-img"></a>
+					<img src="${pageContext.request.contextPath}/resources/images/center.jpg" alt="_3" />
+					<a href="${pageContext.request.contextPath}/resources/images/center.jpg" class="popup-img"></a>
 				</div>
 			</div>
 			<div>
@@ -186,21 +185,21 @@
 						</div>
 						<div class="col-md-3">
 							<div class="skill_bottom_item">
-								<h2 class="statistic-counter">4638</h2>
+								<h2 class="statistic-counter">7264</h2>
 								<div class="separator_small"></div>
 								<h5><em>Happy Clients</em></h5>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="skill_bottom_item">
-								<h2 class="statistic-counter">3468</h2>
+								<h2 class="statistic-counter">1055</h2>
 								<div class="separator_small"></div>
 								<h5><em>Hs of work</em></h5>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="skill_bottom_item">
-								<h2 class="statistic-counter">3468</h2>
+								<h2 class="statistic-counter">9546</h2>
 								<div class="separator_small"></div>
 								<h5><em>Cup of coffee</em></h5>
 							</div>
@@ -227,7 +226,7 @@
 		<div class="main_maps text-center fix">
 			<div class="overlay"></div>
 			<div class="maps_text">
-				<h3 class="text-white" onclick="showmap()">FIND US ON THE MAP <i class="fa fa-angle-down"></i></h3>
+				<h3 class="text-gray" onclick="showmap()">FIND US ON THE MAP <i class="fa fa-angle-down"></i></h3>
 				<div id="map_canvas" class="mapheight"></div>
 			</div>
 		</div>
