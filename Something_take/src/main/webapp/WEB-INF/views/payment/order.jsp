@@ -98,8 +98,8 @@
 	                    		<div class="head_title_1 text-center">
 								<h2>Ordered</h2>
 								<div class="separator_auto"></div>
-								<p>주문 정보에 필요한 사항을 입력해주세요.<br>
 								<a href="index">메인 페이지로 가기</a></p>
+								<p style="color:#ff6f6f"><b>주문 정보에 필요한 사항을 입력해주세요.</b><br>
 								</div>
 							</div>
 							
