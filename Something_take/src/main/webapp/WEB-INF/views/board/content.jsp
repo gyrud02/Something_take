@@ -15,14 +15,14 @@
 
 <%------------------------------------ [게시판 영역] -------------------------------------------%>
 	<c:choose>
-		<c:when test="${sessionScope.email == null || sessionScope.email != readList.writer || sessionScope.email == 'admin@Something_take.com'}">
+		<c:when test="${sessionScope.email == null || sessionScope.email != readList.writer && sessionScope.email != 'admin@Something_take.com'}">
 			<script type="text/javascript">
 				alert("작성자만 볼 수 있습니다.");
 				window.history.back();
 			</script>
 		</c:when>
 
-		<c:otherwise>
+		<c:when test="${sessionScope.email == readList.writer || sessionScope.email == 'admin@Something_take.com'}">
 			<section>
 		 	  <div class="container">
 				<div class="row">
@@ -132,7 +132,7 @@
 					</div><!--/.col (left) -->
 				</div><!-- /.row -->
 			</section>
-		</c:otherwise>
+		</c:when>
 	</c:choose>
 
 <%------------------------------------ [게시판 영역] -------------------------------------------%>
