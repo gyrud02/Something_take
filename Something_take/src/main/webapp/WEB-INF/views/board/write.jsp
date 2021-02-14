@@ -21,7 +21,7 @@
 	function writing(event){
 		var ing = confirm("게시판 목록으로 돌아가시겠습니까? (작성중인 글은 저장되지않습니다.)");
 		$("#list_btn").click(function(){
-			if(ing == true){
+			if(true){
 				alert("글 작성이 취소되었습니다.");
 				location.href="board.bd";
 			}else{
@@ -31,7 +31,6 @@
 	}; // writing()
 
 /* ------------------------------- [ 스마트 에디터 api ] ---------------------------------------- */
-	
 	$(document).ready(function() {
 		var oEditors = [];
 		    nhn.husky.EZCreator.createInIFrame({
@@ -50,7 +49,7 @@
 			},
 		    fCreator: "createSEditor2"
 		    });
-
+	
 		// 저장버튼 클릭시 form 전송
 	    $("#reg_btn").click(function(){
 	        oEditors.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
@@ -59,7 +58,6 @@
 	});
 
 /* ------------------------------------ [ 스마트 에디터 api ] ----------------------------------- */
-	
 </script>
 	
 	<br><br><br><br>
@@ -93,7 +91,6 @@
 										<label class="form-label" for="content">글내용</label>
 										<textarea name="content" id="content" cols="76" required></textarea>
 									</div>
-									
 									<div class="form-group">
 										<label for="writer">작성자</label> 
 										<input type="text" name="writer" class="form-control" value="${sessionScope.email}" readonly="readonly">

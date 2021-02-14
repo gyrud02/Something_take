@@ -97,9 +97,9 @@
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="https://admin.iamport.kr/users/login" target="_blank">
               <i class="tim-icons icon-world"></i>
-              <p>RTL Support</p>
+              <p>I'mport page</p>
             </a>
           </li>
         </ul>
