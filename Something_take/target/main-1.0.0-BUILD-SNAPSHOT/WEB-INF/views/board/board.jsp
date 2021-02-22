@@ -5,11 +5,9 @@
 <head>
 </head>
 <style>
-
 	#BoardList>th, #bdList{text-align: center;}
 	#idx, #cnt{width: 50px;}
 	#writer{width: 230px;}
-
 </style>
 <body>
 
@@ -44,7 +42,7 @@
 								<c:forEach items="${boardList}" var="boardList">
 								<tr>
 									<td id="bdList">${boardList.bno}</td>
-									<td><a href="Content.bd?bno=${boardList.bno}">${boardList.title}</a></td>
+									<td id="bdList"><a href="content.bd?bno=${boardList.bno}">${boardList.title}</a></td>
 									<td>${boardList.writer}</td>
 									<td id="bdList">${boardList.reg_date}</td>
 									<td id="bdList">${boardList.viewcount}</td>
@@ -57,19 +55,19 @@
 						
 						<!-- 로그인 유무에 따른 버튼 숨김 -->
 						<c:if test="${sessionScope.email != null}">
-							<div class="row align-items-center mb-5" style="float:right;">
-								<div class="col-5 text-right">
-									<button type="button" class="btn btn-primary" onclick="location.href='Write.bd'">글쓰기</button>
-								</div>
-	 				       </div>
+							<div class="col-15 text-right">
+								<button type="button" class="btn btn-primary" onclick="location.href='write'">글쓰기</button>
+							</div>
 						</c:if>
 						<!-- 로그인 유무에 따른 버튼 숨김 -->
 						
-<%---------------------------------- 페이징 처리 ----------------------------------%>				
-					
-						<div class="col-12 text-center">
+						
+<%---------------------------------- 페이징 처리 ----------------------------------%>
+						
+						<div class="row align-items-center">
+							<div class="col-12 text-center">
 							<c:set value="${requestScope.count}" var="total"/>
-<%
+<%							
 	int total = Integer.parseInt(pageContext.getAttribute("total").toString());
 	final int pageSize = 9; // 페이지 블록 크기
 	final int currentPage = 1; // 현재 페이지
@@ -81,23 +79,16 @@
 	int endPage = totalBlock; // 페이지 끝
 	
 	if(prevPage <= 0){ prevPage = 1; } // if
-
-	for(int i=startPage; i<currentPage; i++){
-%>
-						<a href="Board?page=<%=i%>"><%=i%></a>
-<%			
-	} // while
-	
 	for(int i=currentPage; i<=10; i++){
 %>
-						<a href="Board?page=<%=i%>"><%=i%></a>
+								<a class="btn" href="board?page=<%=i%>"><%=i%></a>
 <%		
 	} // for
-
 	if(nextPage > totalBlock){ nextPage = endPage; } // if
 %>				
-							<a href="Board?page=<%=nextPage%>">[다음]</a>
-							<a href="Board?page=<%=endPage%>">[끝]</a>
+								<a class="btn" href="board?page=<%=nextPage%>">[다음]</a>
+								<a class="btn" href="board?page=<%=endPage%>">[끝]</a>
+							</div>
 						</div>
 
 <%---------------------------------- 페이징 처리 ----------------------------------%>				

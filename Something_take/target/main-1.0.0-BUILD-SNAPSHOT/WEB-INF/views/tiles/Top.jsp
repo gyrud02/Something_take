@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
@@ -9,8 +8,11 @@
 	<!----------- [meta] ----------->
 	<meta charset="utf-8">
 	<title>Something take</title>
-	<meta name="description" content="">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+<!--  
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+-->
 	<!----------- [meta] ----------->
 
 	<!----------- [페이지 타이틀 로고] ----------->
@@ -36,16 +38,20 @@
 	<!----------- [CSS 관련 링크 ] ----------->
 
 	<!--For Plugins external css-->
-	<!--<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/plugins.css" />-->
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/plugins.css"/>
+	<!--For Plugins external css-->
 
 	<!--Theme custom css -->
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/style.css">
-	<!--<link rel="stylesheet" href="assets/css/colors/maron.css">-->
 	<!--Theme custom css -->
 
 	<!--Theme Responsive css-->
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/assets/css/responsive.css"/>
 	<!--Theme Responsive css-->
+
+	<!-- Nucleo Icons -->
+	<link href="${pageContext.request.contextPath}/resources/admin/css/nucleo-icons.css" rel="stylesheet" />
+	<!-- Nucleo Icons -->
 
 	<script src="${pageContext.request.contextPath}/resources/assets/js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
 	
@@ -58,13 +64,12 @@
 	<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
 	<!----------- [i'mport(결제) 관련 링크 ] ----------->
 	
-	
 </head>
 <!-------------------------------------- HEAD [헤드 영역] ------------------------------------------>
 
 
 <!-------------------------------------- BODY [본문 영역] ------------------------------------------>
-<body data-spy="scroll" data-target=".navbar-collapse" class="lightbg">
+<body>
 	<div class="culmn">
 		<!--Home page style-->
 																			<!-- no-background -->	
@@ -85,37 +90,10 @@
 				<!-- Start Atribute Navigation -->
 				<div class="attr-nav">
 					<ul>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-shopping-bag"></i>
-                                    <span class="badge">3</span>
-                                </a>
-							<ul class="dropdown-menu cart-list">
-								<li>
-									<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/assets/images/thumb01.jpg" class="cart-thumb" alt="" /></a>
-									<h6><a href="#">Delica omtantur </a></h6>
-									<p class="m-top-10">2x - <span class="price">$99.99</span></p>
-								</li>
-								<li>
-									<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/assets/images/thumb01.jpg" class="cart-thumb" alt="" /></a>
-									<h6><a href="#">Delica omtantur </a></h6>
-									<p class="m-top-10">2x - <span class="price">$99.99</span></p>
-								</li>
-								<li>
-									<a href="#" class="photo"><img src="${pageContext.request.contextPath}/resources/assets/images/thumb01.jpg" class="cart-thumb" alt="" /></a>
-									<h6><a href="#">Delica omtantur </a></h6>
-									<p class="m-top-10">2x - <span class="price">$99.99</span></p>
-								</li>
-								<!---- More List ---->
-								<li class="total">
-									<span class="pull-right"><strong>Total</strong>: $0.00</span>
-									<a href="#" class="btn btn-cart">주문</a>
-								</li>
-							</ul>
-						</li>
 						<li class="search"><a href="#"><i class="fa fa-search"></i></a></li>
 						<li class="side-menu"><a href="#"><i class="fa fa-bars"></i></a></li>
 					</ul>
+					
 				</div>
 				<!-- End Atribute Navigation -->
 
@@ -125,9 +103,9 @@
                             <span></span>
                             <span></span>
                             <span></span>
-                        </button>
+                    </button>
 
-					<a class="navbar-brand" href="index.do">
+					<a class="navbar-brand" href="index">
                             <img src="${pageContext.request.contextPath}/resources/assets/images/logo.png" class="logo logo-display m-top-10" alt="">
                             <img src="${pageContext.request.contextPath}/resources/assets/images/logo.jpg" class="logo logo-scrolled" alt="">
                     </a>
@@ -142,25 +120,24 @@
 					<%-- 로그인 O--%>	
 						<c:when test="${sessionScope.email != null}">
 							<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-								<li><a href="index.do#contact">Contact</a></li>
-								<li><a href="About.do">About</a></li>
-								<li><a href="Sign-up.me">Sign-up</a></li>
-								<li><a href="Board.bd">Foundation</a></li>
-								<li><a href="Interior.bd">Interior</a></li>
-								<li><a href="MemberShip.pm">MemberShip</a></li>
+								<li><a href="index#contact">Contact</a></li>
+								<li><a href="about">About</a></li>
+								<li><a href="board.bd">Foundation</a></li>
+								<li><a href="interior">Interior</a></li>
+								<li><a href="memberShip">MemberShip</a></li>
 							</ul>
 						</c:when>
 					
 					<%-- 로그인 X --%>	
 						<c:otherwise>
 							<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-								<li><a href="index.do#contact">Contact</a></li>
-								<li><a href="About.do">About</a></li>
-								<li><a href="Sign-up.me">Sign-up</a></li>
-								<li><a href="Sign-in.me">Sign-in</a></li>
-								<li><a href="Board.bd">Foundation</a></li>
-								<li><a href="Interior.bd">Interior</a></li>
-								<li><a href="MemberShip.pm">MemberShip</a></li>
+								<li><a href="index#contact">Contact</a></li>
+								<li><a href="about">About</a></li>
+								<li><a href="sign-up">Sign-up</a></li>
+								<li><a href="sign-in">Sign-in</a></li>
+								<li><a href="board.bd">Foundation</a></li>
+								<li><a href="interior">Interior</a></li>
+								<li><a href="memberShip">MemberShip</a></li>
 							</ul>
 						</c:otherwise>
 					</c:choose>
@@ -179,7 +156,7 @@
 					<%-- 로그인 X --%>
 					<c:when test="${sessionScope.email == null}">
 						<div class="widget">
-							<h6 class="title"><a href="Sign-in.me">로그인</a> 후 사용 가능합니다.</h6>
+							<h6 class="title"><a href="sign-in">로그인</a> 후 사용 가능합니다.</h6>
 							<ul class="link">
 							</ul>
 						</div>					
@@ -190,25 +167,22 @@
 						<div class="widget">
 							<h6 class="title">고객 페이지</h6>
 							<ul class="link">
-								<li><a href="Profile.me">회원정보</a></li>
-								<li><a href="#">주문 내역</a></li>
-								<li><a href="membership.me">멤버십 내역</a></li>
+								<li><a href="ordered">주문하기</a></li>
+								<li><a href="mem_profile">회원정보</a></li>
+								<li><a href="mem_ordered">주문 내역</a></li>
+								<li><a href="mem_membership">멤버십 내역</a></li>
 								<li><a href="member/sign-out.post">로그아웃</a></li>
-								<li><a href="Drop-out.me">회원탈퇴</a></li>
+								<li><a href="drop-out">회원탈퇴</a></li>
 							</ul>
-						</div> <!-- .widget -->
+						</div> 
+						<!-- .widget -->
 		
 							<%-- 관리자 페이지 --%>
 							<c:if test="${sessionScope.email == 'admin@Something-take.com'}">
 								<div class="widget">
-								<h6 class="title">관리자 페이지</h6>
-								<ul class="link">
-									<li><a href="mem_manage.mng">회원 관리</a></li>
-									<li><a href="pay_manage.mng">매출 관리</a></li>
-									<li><a href="ord_manage.mng">주문 관리</a></li>
-									<li><a href="msg_manage.mng">문의 관리</a></li>
-								</ul>
-								</div> <!-- .widget -->
+								<h6 class="title"><a href="admin">관리자 페이지</a></h6>
+								</div> 
+								<!-- .widget -->
 							</c:if>
 					</c:when>
 				</c:choose>
@@ -229,19 +203,14 @@
 	<script src="${pageContext.request.contextPath}/resources/assets/js/vendor/popper.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/vendor/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery.magnific-popup.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.1.3.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/slick.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/jquery.collapse.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/bootsnav.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/plugins.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/main.js"></script>
-	
-	<!----------- [ck에디터 관련 링크 ] ----------->
-	<script src="${pageContext.request.contextPath}/resources/ckeditor/ckeditor.js"></script>
-<!--
-	<script src="${pageContext.request.contextPath}/resources/ckfinder/ckfinder.js"></script>
+<!--    
+    <script src="${pageContext.request.contextPath}/resources/assets/js/jquery.easing.1.3.js"></script>
 -->
-	<!----------- [ck에디터 관련 링크 ] ----------->
 
 <!------------------------------- script [스크립트 영역] --------------------------->
 

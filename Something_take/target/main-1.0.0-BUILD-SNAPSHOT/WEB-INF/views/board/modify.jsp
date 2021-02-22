@@ -5,7 +5,7 @@
 <html>
 <head>
 </head>
-<body data-spy="scroll" data-target=".navbar-collapse">
+<body class="lightbg">
 
 	<br><br><br><br>
 
@@ -15,14 +15,14 @@
 		<c:when test="${sessionScope.email == null}">
 			<script type="text/javascript">
 				alert("로그인 시 사용 가능한 페이지입니다.");
-				location.href="Sign-in.me";
+				location.href="sign-in.me";
 			</script>
 		</c:when>
 		
 		<c:when test="${sessionScope.email != readList.writer}">
 			<script type="text/javascript">
 				alert("다른 회원이 작성한 글은 수정할 수 없습니다.");
-				location.href="Board.bd";
+				location.href="board.bd";
 			</script>
 		</c:when>
 	

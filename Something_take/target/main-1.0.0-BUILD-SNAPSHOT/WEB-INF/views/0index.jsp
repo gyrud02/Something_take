@@ -40,9 +40,6 @@
 
 <!------------------------------- 지도 script [API 영역] -------------------------->
 	
-	<script src="http://maps.google.com/maps/api/js?key=AIzaSyD_tAQD36pKp9v4at5AnpGbvBUsLCOSJx8"></script>
-	<script src="${pageContext.request.contextPath}/resources/assets/js/gmaps.min.js"></script>
-
 	<script>
 		function showmap() {
 			var mapOptions = {
@@ -55,7 +52,6 @@
 			$('.mapheight').css('height', '350');
 			$('.maps_text h3').hide();
 		}
-
 	</script>
 	
 <!------------------------------ 지도 script [API 영역] -------------------------->
@@ -64,7 +60,6 @@
 <!------------------------------- bottom [하단 영역] ------------------------------>
 <tiles:insertAttribute name="footer"/>
 <!------------------------------- bottom [하단 영역] ------------------------------>
-
 
 </body>
 <!-------------------------------------- BODY [본문 영역] ------------------------------------------>
