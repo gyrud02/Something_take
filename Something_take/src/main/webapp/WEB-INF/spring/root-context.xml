@@ -37,9 +37,9 @@
 			
 			<!-- 주소 
 			<property name="url" value="jdbc:mysql://localhost:3306/something_take?useSSL=false" />
-			-->
-
 			<property name="url" value="jdbc:mysql://3.23.185.192:3306/something_take?useSSL=false" />
+			-->
+			<property name="url" value="jdbc:mysql://something-take.czwf30dbx2fs.us-east-2.rds.amazonaws.com:3306/something_take?useSSL=false" />
 			
 			<!-- 아이디 
 			<property name="username" value="something_take" />

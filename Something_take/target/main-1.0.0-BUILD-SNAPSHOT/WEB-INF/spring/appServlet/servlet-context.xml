@@ -52,6 +52,7 @@
 	<!-- ck에디터 사용 시 필요한 매핑 
 	* view에 등록된 요소들은 모두 servlet으로 인식되므로 servlet-context에서 리소스 등록을 해야만 링크가된다.	
 	<resources location="/WEB-INF/views/ckeditor/" mapping="/ckeditor/**"></resources>
+	<resources location="webapp/resources/ckeditor/**" mapping="/ckeditor/**"></resources>
 	-->
 	
 </beans:beans>
