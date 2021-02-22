@@ -1,3 +1,4 @@
+C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\domain\AuthKeyVO.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\persistence\BoardDAOImpl.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\domain\Criteria.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\service\MemberService.java
@@ -5,9 +6,12 @@ C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\domain
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\persistence\MessageDAO.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\service\ReplyService.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\service\BoardService.java
+C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\persistence\PaymentDAOImpl.java
+C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\service\PaymentServiceImpl.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\domain\MemberVO.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\persistence\ReplyDAOImpl.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\main\ErrorController.java
+C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\domain\PaymentVO.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\persistence\ReplyDAO.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\main\HomeController.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\main\MessageController.java
@@ -17,6 +21,7 @@ C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\main\B
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\service\ReplyServiceImpl.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\main\MemberController.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\main\PaymentController.java
+C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\persistence\PaymentDAO.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\service\MessageService.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\service\MessageServiceImpl.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\persistence\MemberDAOImpl.java
@@ -24,4 +29,5 @@ C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\servic
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\domain\BoardVO.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\persistence\BoardDAO.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\service\BoardServiceImpl.java
+C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\service\PaymentService.java
 C:\Users\user\git\Something_take\Something_take\src\main\java\com\company\persistence\MessageDAOImpl.java

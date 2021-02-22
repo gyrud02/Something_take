@@ -7,8 +7,8 @@
 
 	<!-- 게시판 글 등록 -->
 	<insert id="insert">
-	INSERT INTO board(title, content, writer, reg_date)
-	VALUES (#{title}, #{content}, #{writer}, now())
+	INSERT INTO board(title, content, writer, reg_date, storedFileName, originalFileName)
+	VALUES (#{title}, #{content}, #{writer}, now(), #{storedFileName}, #{originalFileName})
 	</insert>
 	<!-- 게시판 글 등록 -->
 
@@ -22,12 +22,15 @@
 	ORDER BY bno DESC, reg_date DESC
 	]]>
 	</select>
+	<!-- 전체 글 조회 -->
 	
+	
+	<!-- 전체 글 갯수 조회 -->
 	<select id="getCount" resultType="int">
 	SELECT count(*)
 	FROM board
 	</select>
-	<!-- 전체 글 조회 -->
+	<!-- 전체 글 갯수 조회 -->
 
 
 	<!-- 글 한개 조회 -->
@@ -56,7 +59,8 @@
 	<update id="modify">
 	<![CDATA[
 	UPDATE board
-	SET title = #{title}, content = #{content}
+	SET title = #{title}, content = #{content}, 
+		storedFileName = #{storedFileName}, originalFileName = #{originalFileName}
 	WHERE bno = #{bno}
 	AND writer = #{writer}
 	]]>

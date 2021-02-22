@@ -7,9 +7,7 @@
 <script type="text/javascript">
 
 	$(function contact_chk(){
-
 		var regName = RegExp(/^[가-힣A-Za-z]{2,20}$/); // 이름
-		
 		$("#send_message").click(function(){
 
 			// 고객명
@@ -45,7 +43,13 @@
 	}); // contact_chk()
 	
 </script>
-
+<style type="text/css">
+	@media(max-width:897px){
+		.overlay{height:500px; /* background-color: white; */} 
+		.main_home{padding-top: 150px; padding-bottom: 10px; }
+		.main_service{padding-top: 10px;}	
+	}
+</style>
 <!-------------------------------------- BODY [본문 영역] ------------------------------------------>
 <body data-spy="scroll" data-target=".navbar-collapse">
 
@@ -62,10 +66,21 @@
 							<h1 class="text-white">환영합니다! <br /> Something-take입니다.</h1>
 						</div>
 
+					<c:choose>
+						<c:when test="${sessionScope.email == null}">
 						<div class="home_btns m-top-40">
-							<a href="Menu.pm" class="btn btn-primary m-top-20">주문하러가기</a>
-							<a href="Sign-up.me" class="btn btn-default m-top-20">회원가입</a>
+							<a href="ordered" class="btn btn-primary m-top-20">주문하러가기</a>
+							<a href="sign-up" class="btn btn-default m-top-20">회원가입</a>
 						</div>
+						</c:when>
+						
+						<c:otherwise>
+						<div class="home_btns m-top-40">
+							<a href="ordered" class="btn btn-primary m-top-20">주문하러가기</a>
+						</div>
+						</c:otherwise>
+					</c:choose>
+					
 					</div>
 				</div>
 				<!--End off row-->
@@ -74,15 +89,15 @@
 		</section>
 <!-------------------------------- [본문 상단 영역] ---------------------------------->
 
-		<br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br>
 
 <!------------------------------- [슬라이더 영역] ----------------------------------->
 
 		<div class="featured_slider">
 			<div>
 				<div class="featured_img">
-					<img src="${pageContext.request.contextPath}/resources/images/_3.jpg" alt="_3" />
-					<a href="${pageContext.request.contextPath}/resources/images/_3.jpg" class="popup-img"></a>
+					<img src="${pageContext.request.contextPath}/resources/images/center.jpg" alt="_3" />
+					<a href="${pageContext.request.contextPath}/resources/images/center.jpg" class="popup-img"></a>
 				</div>
 			</div>
 			<div>
@@ -170,21 +185,21 @@
 						</div>
 						<div class="col-md-3">
 							<div class="skill_bottom_item">
-								<h2 class="statistic-counter">4638</h2>
+								<h2 class="statistic-counter">7264</h2>
 								<div class="separator_small"></div>
 								<h5><em>Happy Clients</em></h5>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="skill_bottom_item">
-								<h2 class="statistic-counter">3468</h2>
+								<h2 class="statistic-counter">1055</h2>
 								<div class="separator_small"></div>
 								<h5><em>Hs of work</em></h5>
 							</div>
 						</div>
 						<div class="col-md-3">
 							<div class="skill_bottom_item">
-								<h2 class="statistic-counter">3468</h2>
+								<h2 class="statistic-counter">9546</h2>
 								<div class="separator_small"></div>
 								<h5><em>Cup of coffee</em></h5>
 							</div>
@@ -203,10 +218,15 @@
 
 <!------------------------------- [지도 영역] --------------------------------------->
 
+	<!----------- [지도 관련 링크 ] ----------->
+	<script src="http://maps.google.com/maps/api/js?key=AIzaSyD_tAQD36pKp9v4at5AnpGbvBUsLCOSJx8"></script>
+	<script src="${pageContext.request.contextPath}/resources/assets/js/gmaps.min.js"></script>
+	<!----------- [지도 관련 링크 ] ----------->
+
 		<div class="main_maps text-center fix">
 			<div class="overlay"></div>
 			<div class="maps_text">
-				<h3 class="text-white" onclick="showmap()">FIND US ON THE MAP <i class="fa fa-angle-down"></i></h3>
+				<h3 class="text-gray" onclick="showmap()">FIND US ON THE MAP <i class="fa fa-angle-down"></i></h3>
 				<div id="map_canvas" class="mapheight"></div>
 			</div>
 		</div>
@@ -214,7 +234,7 @@
 <!------------------------------- [지도 영역] -------------------------------------->
 
 
-<!------------------------------- [이메일 발송 영역] --------------------------------->
+<!------------------------------- [메세지 발송 영역] --------------------------------->
 
 		<section id="contact" class="contact bg-mega fix">
 			<div class="container">
@@ -278,7 +298,7 @@
 			<!--End off container -->
 		</section>
 		
-<!------------------------------- [이메일 발송 영역] --------------------------------->
+<!------------------------------- [메세지 발송 영역] --------------------------------->
 
 
 <!------------------------------- Scroll_Up [스크롤업] ---------------------------->

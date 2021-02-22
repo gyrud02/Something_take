@@ -14,26 +14,21 @@
 		var regName = RegExp(/^[가-힣A-Za-z]{2,20}$/); // 이름
 
 		$(".btn-primary").click(function() {
- 			// 이메일
 			if($("#email").val() == "" || !(regMail.test( $("#email").val() )) ){
-				alert("이메일을 올바르게 입력하세요."); $("#email").val(""); $("#email").focus();
-				return false;}
- 			// 비밀번호
-			if($("#pwd").val() == "" || !(regPwd.test( $("#pwd").val() )) ){
-				alert("8~20자 영문 대소문자, 숫자를 입력해 주세요."); $("#pwd").val(""); $("#pwd").focus();
-				return false;}
-			// 이름
+				return false; } // 이메일
+			if($("#quote").val() == ""){
+				return false; } // 인증번호
+			if($("#pwd").val() == "" || !(regPwd.test( $("#pwd").val() )) ){ 
+				return false; } // 비밀번호
 			if($("#name").val() == "" || !(regName.test( $("#name").val() )) ){
-				alert("이름을 올바르게 입력하세요."); $("#name").val(""); $("#name").focus();
-				return false;}
-			// 전화번호
-			if($("#phone").val() == ""){
-				alert("전화번호를 입력하세요."); $("#phone").focus();
-				return false;}
-			// 이용약관 체크박스
-			if(!($("#yackuan-check").is(":checked")) ){
-				alert("이용 약관에 동의해주세요."); $("#yackuan-check").focus();
-				return false;}
+				return false; } // 이름
+			if($("#phone").val() == ""){ 
+				return false; } // 전화번호
+			if(!($("#yackuan-check").is(":checked")) ){ 
+				return false; } // 이용약관 체크박스
+
+			$("#quote").attr("disabled", false)
+			
 		}); // click()	
 	}); // si_up_chk()
 
@@ -41,19 +36,19 @@
 	$(function removeTags(){
 		$(".spanT").hide(); $(".spanF").hide(); $(".spanEmpty").hide();
 		$(".spanPwdT").hide(); $(".spanPwdF").hide(); $(".spanPwd_ckT").hide(); $(".spanPwd_ckF").hide();
+		$(".quoteF").hide(); $(".quoteT").hide(); $(".quote").hide();
 	}); // removeTags()
 	
 	/* 이메일 중복 체크 */
 	function emailCheck(event){
 		var regMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/) // 이메일
-
 		$.ajax({
 			type: "GET",
 			dataType: "text",
 			data: { email:$("#email").val() },
 			url: "member/emailDupl",
 			success:function(check, textStatus){
-					if( !(regMail.test( $("#email").val() ))){
+					if( !(regMail.test( $("#email").val() )) ){
 						$(".spanT").hide();
 						$(".spanF").hide();
 						$(".spanEmpty").val("이메일 형식에 맞게 입력하세요.").css("style", "display:none;");
@@ -62,7 +57,8 @@
 
 						if(email.value.length == 0){
 							$(".spanT").hide(); $(".spanF").hide(); $(".spanEmpty").hide();
-							return false;}
+							return false;
+						} // if
 						return false;
 					}else{
 						if(check == 0){
@@ -72,21 +68,26 @@
 							$(".spanT").css("color", "#ff4084");
 							$(".spanT").show();
 
+							$("#sendBtn").click(function(){ sendMail(); }); // click
+
 							if(email.value.length == 0){
 								$(".spanT").hide(); $(".spanF").hide(); $(".spanEmpty").hide();
-								return false;}
+								return false;
+							} // if
 						}else{
 							$(".spanEmpty").hide();
 							$(".spanT").hide();
 							$(".spanF").val("이미 사용 중인 이메일입니다.").css("style", "display:none;");
 							$(".spanF").css("color", "#ff4084");
 							$(".spanF").show();
-
+							
 							if(email.value.length == 0){
 								$(".spanT").hide(); $(".spanF").hide(); $(".spanEmpty").hide();
-								return false;}
-							return false;}
-					} // 이메일
+								return false;
+							} // if
+							return false;
+						} // if
+					} // if
 			}, // success
 			error:function(textStatus){
 					alert("회원 가입 중 오류가 발생하였습니다.");
@@ -97,7 +98,6 @@
 	/* 비밀번호 체크 */
 	function pwdCheck(event){
 		var regPwd = RegExp(/^[a-zA-Z0-9]{8,20}$/);
-
 		$.ajax({
 			type: "GET",
 			dataType: "text",
@@ -168,6 +168,59 @@
 		}); // ajax
 	} // pwd_chk()
 	
+	/* 인증 메일 발송 시 입력창 생성  */
+	function sendMail(){	
+		if($("#email").val == ""){
+			$(".quote").hide();
+			return false;
+		}else{
+			$("#email").attr("disabled", true);
+			alert("메일을 발송했습니다.\n잠시만 기다리시면 인증번호 입력창이 열립니다.");
+			$.ajax({
+					type:"GET",
+					dataType:"text",
+					data:{ email: $("#email").val() },
+					url: "member/sendMail",
+					success:function(textStatus){
+						$(".quote").show();			
+					}, // success
+					error:function(textStatus){
+						alert("메일 발송 중 오류가 발생했습니다.");
+					} // error
+			}); // ajax
+		} // if	
+	} // sendMail()
+	
+	/* 인증번호 일치 확인 */
+	function quoteCheck(){
+		$("#quoteBtn").on('click', function(){
+			$.ajax({
+					type:"GET",
+					dataType:"text",
+					data:{ quote: $("#quote").val() },
+					url:"member/authCheck",
+					success:function(result, textStatus){
+						if(result == 1){
+							alert("인증되었습니다.");
+							$("#quote").attr("disabled", true);
+						}else{
+							alert("인증번호가 틀립니다.");
+						} // if
+					}, //success
+					error:function(textStatus){
+						alert("오류가 발생하였습니다.");
+					} // error
+			}); // ajax
+		}); // on()
+	} // quoteCheck()
+	
+	/* 약관동의 체크박스 새 창 */
+	function yackuan(){
+		if( $("#yackuan-check").is(":checked") ){
+			window.open('agree.me', '회원가입 약관','width=700, height=700');
+		} // if	
+	} // yackuan()
+	
 </script>
 <body>
 
@@ -180,50 +233,30 @@
 					<div class="head_title_1 text-center">
 						<h2>Sign-up</h2>
 							<div class="separator_auto"></div>
-							<p>아래 입력란에 데이터를 모두 입력해주세요.</p>
+							<p>아래 입력란을 모두 입력해주세요.</p>
 					</div>
 					
 					<br>
 					
 					<div class="head_title_1 text-left">
 						
-      <!-------------------------------------------- [form태그 시작] -------------------------------------------------------->
+<!-------------------------------------------- [form태그 시작] -------------------------------------------------------->
 					
-					<form action="member/signUp.post" class="sign_upClass" method="post" id="join" onsubmit="si_up_chk()">
+					<form action="member/signUp.post" class="sign_upClass" method="post" id="join" onsubmit="return si_up_chk()">
 
-	  
-	  <!-------------------------------------------- 네이버 아이디로 로그인 버튼 노출 영역  --------------------------------------------------------> 
-					<div class="text-center">
-						<div id="naverIdLogin"></div>
-					</div><br>
-	  <!-------------------------------------------- 네이버 아이디로 로그인 버튼 노출 영역  -------------------------------------------------------->
-					
-  
-	  <!-------------------------------------------- 네이버 아이디로 로그인 초기화 Script  -------------------------------------------->
-	  <script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
-	  
-	  <script type="text/javascript">
-		var naverLogin = new naver.LoginWithNaverId(
-			{
-				clientId: "rU2ooEzY2CNR72wYidQf",
-				callbackUrl: "http://localhost:8080/0Mangro_TeamProject-0.01/O_member/naverJoinCallBack.jsp",
-				isPopup: false, /* 팝업을 통한 연동처리 여부 */
-				loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
-			}
-		);
-		
-		/* 설정 정보를 초기화하고 연동을 준비 */
-		naverLogin.init();
-	  </script>
-	  <!-------------------------------------------- 네이버 아이디로 로그인 초기화 Script  -------------------------------------------->
-      			
-      
-      <!-------------------------------------------- [이름, 이메일, 비밀번호 입력창] -------------------------------------------->
+<!-------------------------------------------- [이름, 이메일, 비밀번호 입력창] -------------------------------------------->
 					      <!-- 이메일 -->
 					      <div class="js-form-message form-group">
 					        <label class="form-label" for="email">이메일 </label>
 					        <input type="email" class="form-control" name="email" id="email" 
 					        		placeholder="가입 시 사용할 이메일을 입력하세요." onkeyup="emailCheck(event)" required>
+					        		
+					        <div class="row align-items-center" style="float:right;">
+					        	<div class="col-12 text-right">	
+					       			<input type="button" class="btn btn-primary" value="전송" id="sendBtn">
+						    	</div>
+						    </div>
+					      
 					      </div>
 					      <div class="js-form-message form-group">
 					      		<span class="spanEmpty">&nbsp;이메일 형식에 맞게 입력하세요.</span>
@@ -234,7 +267,30 @@
 					      <div class="js-form-message form-group">
 					      		<span class="spanF">&nbsp;이미 사용 중인 이메일입니다.</span>
 					      </div>
+					      		
 					      					      
+					      <!-- 인증번호 확인 -->
+					      <div class="form-group quote">
+					        <label class="form-label" for="quote">인증번호</label>
+					      	<input type="text" class="form-control" name="quote" id="quote" required>
+					      		
+				      		<div class="row align-items-center" style="float:right;">
+				        		<div class="col-12 text-right">
+					      			<input type="button" class="btn btn-primary" id="quoteBtn" value="인증" onclick="quoteCheck()">  
+					      		</div>
+					      	</div>
+					      	
+					      </div>
+					      
+					      <div class="js-form-message form-group">
+					      		<span class="quoteF">&nbsp;인증번호가 틀립니다.</span>
+					      </div>
+				      		<div class="js-form-message form-group">
+					      		<span class="quoteT">&nbsp;인증되었습니다.</span>
+					      </div>
+					      		
+					      <br>
+					      
 					      <!-- 비밀번호 입력 & 비밀번호 확인 -->
 					      <div class="form-group">
 					        <label class="form-label" for="pwd">비밀번호</label>
@@ -262,12 +318,14 @@
 					      		<span class="spanPwd_ckF">&nbsp;비밀번호가 틀립니다.</span>
 					      </div>
 					      
+					      
 					      <!-- 이름 -->
 					      <div class="form-group">
 					        <label class="form-label" for="name">이름</label>
 					        <input type="text" class="form-control" name="name" id="name" 
 					        		placeholder="이름을 입력하세요." required>
 					      </div>
+					      
 					      
 					      <!-- 전화번호 -->
 					      <div class="form-group">
@@ -277,30 +335,25 @@
 					      </div>
 					               
 					        
-					      <div class="row align-items-center mb-5">
-					        <div class="js-form-message form-group">
-					          <div class="custom-control custom-checkbox d-flex align-items-mb-5 text-muted">
-					            <input type="checkbox" class="" id="yackuan-check" name="termsCheckbox" onclick="checkBox(event)">
+					        <div class="js-form-message form-group text-center">
+					            <input type="checkbox" class="custom-checkbox" id="yackuan-check" name="termsCheckbox" onclick="yackuan(event)">
 					            <label class="font-subhead custom-control-label" for="termsCheckbox">
-					            
 					              <p>
-					                <a class="yackuan" href="javascript:void(window.open('Agree.me', '회원가입 약관','width=700, height=700'))">&nbsp;이용약관</a> 및
-					                <a class="gaein" href="javascript:void(window.open('Agree.me', '회원가입 약관','width=700, height=700'))">개인정보취급방침</a>에 동의합니다.
+					                <a class="yackuan" href="javascript:void(window.open('agree.me', '회원가입 약관','width=700, height=700'))">&nbsp;이용약관</a> 및
+					                <a class="gaein" href="javascript:void(window.open('agree.me', '회원가입 약관','width=700, height=700'))">개인정보취급방침</a>에 동의합니다.
 								  </p>
-																  				              
 					            </label>
-					          </div>
 					        </div>
-						</div>
+<!-------------------------------------------- [이름, 이메일, 비밀번호 입력창] -------------------------------------------->
 
 							<div class="js-form-message form-group">
-						        <p class="text-center">* 본 약관에는 광고성 정보 수신 동의가 포함되어있습니다.</p> <br>
+						        <p class="text-center">* 본 약관에는 광고성 정보 수신 동의가 <br>포함되어있습니다.</p>
 							</div>
 					
 					      <div class="row align-items-center mb-5">
 					        <div class="col-7">
 					          <span class="font-subhead text-muted mb-2">이미 계정이 있다면
-					          	<a href="Sign-in.me">로그인</a>
+					          	<a href="sign-in">로그인</a>
 					          </span>	
 					        </div>
 					        
@@ -313,7 +366,7 @@
 					      </div>
 					      
 				      </form>
-      <!-------------------------------------------- [form태그 끝] -------------------------------------------------------->
+<!-------------------------------------------- [form태그 끝] -------------------------------------------------------->
 					 </div>
 				</div> <!--col -->
 			</div> <!-- row -->
