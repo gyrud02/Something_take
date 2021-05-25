@@ -1,4 +1,4 @@
-# Something_take : <a href="http://something-take.shop"></a>, <a href="http://3.23.185.192:8080/Something_take/index" target="_blank">DNS</a>
+# Something_take : <a href="http://something-take.shop" target="_blank">Domain</a>, <a href="http://3.23.185.192:8080/Something_take/index" target="_blank">DNS</a>
 
 ## JAVA
 - com.company.domain : VO 클래스 패키지
