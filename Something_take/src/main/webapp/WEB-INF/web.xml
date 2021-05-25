@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
 	<!-- The definition of the Root Spring Container shared by all Servlets and Filters -->
+
+	<!-- SSL 인증서 설정하기 -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>my-secure-app</web-resource-name>
+			<url-pattern>/*</url-pattern>
+		</web-resource-collection>
+		
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+			<!-- 
+				NONE : 아무것도 안함
+				INTEGRAL : 데이터를 볼수는 있으나 변조를 못하게 해줌. 무결성
+				CONFDENTIAL : 데이터를 훔쳐보지 못하게함 . 기밀성
+			 -->
+		</user-data-constraint>
+	</security-constraint>
+	<!-- SSL 인증서 설정하기 -->
+
 
 	<!-- Error 페이지 처리 -->
 	<error-page>
@@ -21,6 +40,7 @@
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/spring/root-context.xml</param-value>
+		<param-value>/WEB-INF/spring/application-security.xml</param-value>
 	</context-param>
 	
 	<!-- Creates the Spring Container shared by all Servlets and Filters -->
@@ -78,6 +98,18 @@
 	<filter-mapping>
 		<filter-name>encoding</filter-name>
 		<url-pattern>/*</url-pattern> <!-- /뒤에 나오는 모든 주소에 대한 한글 처리를 하겠다 -->
+	</filter-mapping>
+	<!-- UTF-8 인코딩 처리 -->
+	
+	<!-- Spring Security --> 
+	<filter>
+		<filter-name>springSecurityFilterChain</filter-name>
+		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+	</filter> 
+	
+	<filter-mapping> 
+		<filter-name>springSecurityFilterChain</filter-name>
+		<url-pattern>/*</url-pattern>
 	</filter-mapping>
 
 </web-app>
