@@ -1,4 +1,4 @@
-# Something_take : <a href="http://www.something-take.shop/index" target="_blank">http://www.something-take.shop/index</a>
+# URL : <a href="http://www.something-take.shop/index" target="_blank">http://www.something-take.shop/index</a>
 
 ## JAVA
 - com.company.domain : VO 클래스 패키지
