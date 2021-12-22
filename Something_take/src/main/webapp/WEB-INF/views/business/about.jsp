@@ -17,7 +17,7 @@
 								<h2>ABOUT US</h2>
 								<div class="separator_left"></div>
 
-								<p>Something-take is consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. </p>
+								<p>Something-take 프로젝트는  Spring-tool-suite를 이용하여 제작한 카페 주문 및 결제 사이트 포트폴리오입니다. </p>
 
 								<div class="about_btns m-top-40">
 									<a href="ordered" class="btn btn-primary">주문하러가기</a>
@@ -30,7 +30,7 @@
 									<h6><i class="fa fa-angle-right"></i> Our Mission </h6>
 									<div>
 										<div class="content">
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p>
+											<p>Spring Framework MVC패턴을 이해를 위해 제작하였습니다.</p>
 
 										</div>
 									</div>
@@ -39,7 +39,7 @@
 									<h6><i class="fa fa-angle-right"></i> Our Vision </h6>
 									<div>
 										<div class="content">
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p>
+											<p>Backend-Engineer.</p>
 										</div>
 									</div>
 									<!-- End off accordion item-2 -->
@@ -47,7 +47,7 @@
 									<h6> <i class="fa fa-angle-right"></i> Our Service </h6>
 									<div>
 										<div class="content">
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p>
+											<p>COVID-19를 대비하기 위한 비대면 주문 사이트입니다.</p>
 										</div>
 									</div>
 									<!-- End off accordion item-3 -->
@@ -55,7 +55,7 @@
 									<h6><i class="fa fa-angle-right"></i> Our Clients </h6>
 									<div>
 										<div class="content">
-											<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, </p>
+											<p>스마트폰 이용이 가능한 모든 고객을 위한 사이트입니다.</p>
 										</div>
 									</div>
 									<!-- End off accordion item-4 -->
