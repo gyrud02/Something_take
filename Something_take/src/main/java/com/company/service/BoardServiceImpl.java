@@ -11,7 +11,7 @@ import com.company.domain.Criteria;
 import com.company.domain.MemberVO;
 import com.company.persistence.BoardDAO;
 
-@Service
+@Service("BoardService")
 public class BoardServiceImpl implements BoardService{
 
 	@Inject

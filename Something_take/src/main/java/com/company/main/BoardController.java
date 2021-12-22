@@ -91,12 +91,13 @@ public class BoardController {
 		model.addAttribute("content", revo.getContent());
 		model.addAttribute("writer", revo.getWriter());
 		
-		int check = reservice.reply(revo);
+/*		int check = reservice.reply(revo);
 		logger.info("@@@ check : " + check);
 		
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println(check);
+*/		
 		return null;
 	} // replyAJAX()
 	
