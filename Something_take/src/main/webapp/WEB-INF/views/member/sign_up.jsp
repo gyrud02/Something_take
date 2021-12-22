@@ -34,9 +34,16 @@
 
 	/* span 태그 제거 */
 	$(function removeTags(){
-		$(".spanT").hide(); $(".spanF").hide(); $(".spanEmpty").hide();
-		$(".spanPwdT").hide(); $(".spanPwdF").hide(); $(".spanPwd_ckT").hide(); $(".spanPwd_ckF").hide();
-		$(".quoteF").hide(); $(".quoteT").hide(); $(".quote").hide();
+		$(".spanT").hide(); 
+		$(".spanF").hide(); 
+		$(".spanEmpty").hide();
+		$(".spanPwdT").hide(); 
+		$(".spanPwdF").hide(); 
+		$(".spanPwd_ckT").hide(); 
+		$(".spanPwd_ckF").hide();
+		$(".quoteF").hide(); 
+		$(".quoteT").hide(); 
+		$(".quote").hide();
 	}); // removeTags()
 	
 	/* 이메일 중복 체크 */
@@ -136,36 +143,44 @@
 	} // pwdCheck()
 	
 	/* 비밀번호 동일 체크 */
-	function pwdchk(event){
-		$.ajax({
-			type: "GET",
-			dataType: "text",
-			data: { pwd:$("#pwd").val(),
-					pwd_chk:$("#pwd_chk").val() },
-			success:function(check, textStatus){
-					if(pwd.value == pwd_chk.value){
-						$(".spanPwd_ckF").hide();
-						$(".spanPwd_ckT").val("비밀번호가 일치합니다.").css("style", "display:none;");
-						$(".spanPwd_ckT").css("color", "#ff4084");
-						$(".spanPwd_ckT").show();
-
-						if(pwd.value.length == 0 || pwd_chk.value.length == 0){
-							$(".spanPwd_ckF").hide(); $(".spanPwd_ckT").hide(); return false;}
-					}else{
-						$(".spanPwd_ckT").hide();
-						$(".spanPwd_ckF").val("비밀번호가 틀립니다.").css("style", "display:none;");
-						$(".spanPwd_ckF").css("color", "#ff4084");
-						$(".spanPwd_ckF").show();
-
-						if(pwd.value.length == 0 || pwd_chk.value.length == 0){
-							$(".spanPwd_ckF").hide(); $(".spanPwd_ckT").hide(); return false;}
-						return false;
-					}
-			}, // success
-			error:function(textStatus){
-					alert("회원 가입 중 오류가 발생하였습니다.");
-			} // error
-		}); // ajax
+	function pwdchk(check){
+			$.ajax({
+				type: "GET",
+				dataType: "text",
+				data: { pwd:$("#pwd").val(),
+						pwd_chk:$("#pwd_chk").val() },
+				success:function(check, textStatus){
+						if(pwd.value == pwd_chk.value){
+							$(".spanPwd_ckF").hide();
+							$(".spanPwd_ckT").val("비밀번호가 일치합니다.").css("style", "display:none;");
+							$(".spanPwd_ckT").css("color", "#ff4084");
+							$(".spanPwd_ckT").show();
+	
+							if(pwd.value.length == 0 || pwd_chk.value.length == 0){
+								$(".spanPwd_ckF").hide(); 
+								$(".spanPwd_ckT").hide(); 
+								return false;
+							}
+							
+						}else{
+							$(".spanPwd_ckT").hide();
+							$(".spanPwd_ckF").val("비밀번호가 틀립니다.").css("style", "display:none;");
+							$(".spanPwd_ckF").css("color", "#ff4084");
+							$(".spanPwd_ckF").show();
+	
+							if(pwd.value.length == 0 || pwd_chk.value.length == 0){
+								$(".spanPwd_ckF").hide(); 
+								$(".spanPwd_ckT").hide(); 
+								return false;
+							}
+							
+							return false;
+						} // if
+				}, // success
+				error:function(textStatus){
+						alert("회원 가입 중 오류가 발생하였습니다.");
+				} // error
+			}); // ajax
 	} // pwd_chk()
 	
 	/* 인증 메일 발송 시 입력창 생성  */

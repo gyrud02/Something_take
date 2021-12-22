@@ -44,6 +44,7 @@
 	/* 유효성 검사 */
 	function check(){
 			if( $("#email").val() == "" ){ // 이메일
+				alert("로그인 후 이용 가능합니다.");
 				$(".email-class").addClass("has-error");
 				return false;
 			}else if( $("#phone").val() == "" ){ // 전화번호
@@ -72,6 +73,7 @@
 </script>
 <body class="lightbg">
 
+ <%-- 
  <c:choose>
  
 	<c:when test="${sessionScope.email == null}" >
@@ -82,6 +84,7 @@
 	</c:when>
 	 
 	<c:otherwise>	  
+	  --%>
     <!--   Big container   -->
     <div class="container">
         <div class="row">
@@ -98,7 +101,6 @@
 	                    		<div class="head_title_1 text-center">
 								<h2>Ordered</h2>
 								<div class="separator_auto"></div>
-								<a href="index">메인 페이지로 가기</a></p>
 								<p style="color:#ff6f6f"><b>주문 정보에 필요한 사항을 입력해주세요.</b><br>
 								</div>
 							</div>
@@ -225,6 +227,7 @@
                         	<div class="wizard-footer">
                             	<div class="pull-right">
                                     <input type='button' onclick="return paymentPOST();" class='btn btn-finish btn-fill btn-wd btn-primary' name='finish' value='결제하기'>
+                                    <input type='button' onclick="history.back();" class='btn btn-finish btn-fill btn-wd btn-primary' name='finish' value='돌아가기'>
                                 </div>
                                 <div class="clearfix"></div>
                         	</div>
@@ -329,10 +332,11 @@
 	<!-- script 영역 -->
 	
 	<jsp:include page="../tiles/bottom.jsp"/>
-
+<%-- 
 	</c:otherwise>
 
   </c:choose>
+--%>
   
 </body>
 </html>
