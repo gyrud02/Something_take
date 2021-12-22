@@ -13,7 +13,7 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 		
 	<!-- 1. DB연결 객체 생성 -->
-	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
 	<!-- class="Library명" -->
 	
 	<!--  /////////////////////////////////////////////////////////////////////////////////////  -->
@@ -36,9 +36,9 @@
 			</property>
 			
 			<!-- 주소 
-			<property name="url" value="jdbc:mysql://something-take.czwf30dbx2fs.us-east-2.rds.amazonaws.com:3306/something_take?useSSL=false" />
-			-->	
 			<property name="url" value="jdbc:mysql://localhost:3306/something_take?useSSL=false" />
+			-->	
+			<property name="url" value="jdbc:mysql://something-take.czwf30dbx2fs.us-east-2.rds.amazonaws.com:3306/something_take?useSSL=false" />
 			
 			<!-- 아이디 
 			<property name="username" value="admin" />
@@ -46,9 +46,9 @@
 			<property name="username" value="something_take" />
 			
 			<!-- 비밀번호 
-			<property name="password" value="kimhk0489" />
-			-->
 			<property name="password" value="1234" />
+			-->
+			<property name="password" value="kimhk0489" />
 	</bean>
 			
 	<!-- 3. DataSourceTest.java파일 생성 -->

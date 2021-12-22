@@ -18,8 +18,8 @@
 
 
 <!------------------------------- preload [미리보기 영역] ----------------------------->
-<!-- 
-	<div id="loading">
+
+		<div id="loading">
 		<div id="loading-center">
 			<div id="loading-center-absolute">
 				<div class="object" id="object_one"></div>
@@ -29,7 +29,7 @@
 			</div>
 		</div>
 	</div>
--->
+
 <!------------------------------- preload [미리보기 영역] ----------------------------->
 
 	
