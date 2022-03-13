@@ -117,12 +117,25 @@
 				<div class="collapse navbar-collapse" id="navbar-menu">
 
 					<c:choose>
+					<%-- 관리자 O--%>	
+						<c:when test="${sessionScope.email == 'admin@Something-take.com'}">
+							<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
+								<li><a href="index#contact">Contact</a></li>
+								<li><a href="about">About</a></li>
+								<li><a href="board.bd">Foundation</a></li>
+								<!-- <li><a href="write">Foundation</a></li> -->
+								<li><a href="interior">Interior</a></li>
+								<li><a href="memberShip">MemberShip</a></li>
+							</ul>
+						</c:when>
+					
 					<%-- 로그인 O--%>	
 						<c:when test="${sessionScope.email != null}">
 							<ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 								<li><a href="index#contact">Contact</a></li>
 								<li><a href="about">About</a></li>
-								<li><a href="board.bd">Foundation</a></li>
+								<!-- <li><a href="board.bd">Foundation</a></li> -->
+								<li><a href="write">Foundation</a></li>
 								<li><a href="interior">Interior</a></li>
 								<li><a href="memberShip">MemberShip</a></li>
 							</ul>
@@ -135,7 +148,8 @@
 								<li><a href="about">About</a></li>
 								<li><a href="sign-up">Sign-up</a></li>
 								<li><a href="sign-in">Sign-in</a></li>
-								<li><a href="board.bd">Foundation</a></li>
+								<!-- <li><a href="board.bd">Foundation</a></li> -->
+								<li><a href="write">Foundation</a></li>
 								<li><a href="interior">Interior</a></li>
 								<li><a href="memberShip">MemberShip</a></li>
 							</ul>

@@ -7,13 +7,76 @@
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/demo/js/service/HuskyEZCreator.js" charset="UTF-8"></script>
 </head>
 <body class="lightbg">
+
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script type="text/javascript">
+/* ------------------------------------ [ 리캡챠 api ] ----------------------------------- */
+	function recapCheck(){
+		var v = grecaptcha.getResponse();
+		if(v.length == 0){
+			alert("스팸방지 동의가 필요합니다.");
+			return false;
+		} else if(v.length != 0){
+			// alert("통과");
+			document.captchaForm.submit();
+			return true;
+		}
+
+	} // recaptchaCheck()
+/*
+	$(document).ready(function() {
+	    $("#reg_btn").click(function() {
+	        $.ajax({
+	            url: '/board/VerifyRecaptcha',
+	            type: 'post',
+	            data: {
+	                recaptcha: $("#g-recaptcha-response").val()
+	            },
+	            success: function(data) {
+	                switch (data) {
+	                    case 0:
+	                        alert("자동 가입 방지 봇 통과");
+	                        break;
+	
+	                    case 1:
+	                        alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
+	                        break;
+	
+	                    default:
+	                        alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
+	                        break;
+	                }
+	            }
+	        });
+	    });
+	});
+*/
+/* ------------------------------------ [ 리캡챠 api ] ----------------------------------- */
+</script>
+
 <script type="text/javascript">
 
 	/* 유효성 검사 */
 	$(function write_chk(){
 		$("#reg_btn").click(function(){
 			if($("#title").val() == ""){ // 제목
-				alert("제목을 입력하세요."); $("#title").focus(); return false; }
+				alert("제목을 입력하세요."); 
+				$("#title").focus(); 
+				return false; 
+			}
+		/*
+			if($("#content").val() == ""){ // 내용
+				alert("내용을 입력하세요."); 
+				$("#content").focus(); 
+				return false; 
+			}
+		*/	
+			var recapRes = recapCheck(); // 리캡챠
+			if(!recapRes){
+				alert(recapRes);
+				return false;
+			}
+			
 		}); // click()
 	}); // write_chk()
 
@@ -95,8 +158,16 @@
 										<label for="writer">작성자</label> 
 										<input type="text" name="writer" class="form-control" value="${sessionScope.email}" readonly="readonly">
 									</div>
+									
+									<%-- <c:if test="${sessionScope.email != 'admin@Something-take.com'}">
+									 --%>
+									 <div class="form-group">스팸방지를 위한 동의사항입니다. 확인체크바랍니다.
+										<div class="g-recaptcha" data-sitekey="6LeX4tkeAAAAADIhY2mz10xTKShV-c9V8_e_CqA0">
+										</div>
+									</div>
+									<%-- </c:if> --%>
 		
-								<input type="submit" class="btn btn-primary" id="reg_btn" value="등록">
+								<input type="submit" class="btn btn-primary" id="reg_btn" value="등록"> <!-- onclick="return recapCheck();" --> 
 								<button type="button" class="btn btn-primary" id="list_btn" onclick="return writing();">목록</button>
 
 							</form>

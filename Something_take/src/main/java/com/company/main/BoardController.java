@@ -1,5 +1,6 @@
 package com.company.main;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.inject.Inject;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.company.domain.BoardVO;
@@ -34,6 +36,23 @@ public class BoardController {
 	private ReplyService reservice; // 댓글 관련 서비스
 	
 	/////////////////////////////////////////////////////////
+	
+	@ResponseBody
+    @RequestMapping(value = "VerifyRecaptcha", method = RequestMethod.POST)
+    public int VerifyRecaptcha(HttpServletRequest request) {
+        VerifyRecaptcha.setSecretKey("6LeX4tkeAAAAAJ7DAZ_zjbNzgI5gCk9XhgNu1T5A");
+        String gRecaptchaResponse = request.getParameter("recaptcha");
+        System.out.println(gRecaptchaResponse);
+        //0 = 성공, 1 = 실패, -1 = 오류
+        try {
+            if(VerifyRecaptcha.verify(gRecaptchaResponse))
+                return 0;
+            else return 1;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return -1;
+        }
+    } // VerifyRecaptcha
 	
 	/* 글 등록 메서드 */
 	@RequestMapping(value = "/write.post", method = RequestMethod.POST)
