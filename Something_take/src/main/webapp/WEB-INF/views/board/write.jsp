@@ -4,56 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/demo/js/service/HuskyEZCreator.js" charset="UTF-8"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/demo/js/service/HuskyEZCreator.js" charset="UTF-8"></script>
 </head>
 <body class="lightbg">
-
 <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-<script type="text/javascript">
-/* ------------------------------------ [ 리캡챠 api ] ----------------------------------- */
-	function recapCheck(){
-		var v = grecaptcha.getResponse();
-		if(v.length == 0){
-			alert("스팸방지 동의가 필요합니다.");
-			return false;
-		} else if(v.length != 0){
-			// alert("통과");
-			document.captchaForm.submit();
-			return true;
-		}
-
-	} // recaptchaCheck()
-/*
-	$(document).ready(function() {
-	    $("#reg_btn").click(function() {
-	        $.ajax({
-	            url: '/board/VerifyRecaptcha',
-	            type: 'post',
-	            data: {
-	                recaptcha: $("#g-recaptcha-response").val()
-	            },
-	            success: function(data) {
-	                switch (data) {
-	                    case 0:
-	                        alert("자동 가입 방지 봇 통과");
-	                        break;
-	
-	                    case 1:
-	                        alert("자동 가입 방지 봇을 확인 한뒤 진행 해 주세요.");
-	                        break;
-	
-	                    default:
-	                        alert("자동 가입 방지 봇을 실행 하던 중 오류가 발생 했습니다. [Error bot Code : " + Number(data) + "]");
-	                        break;
-	                }
-	            }
-	        });
-	    });
-	});
-*/
-/* ------------------------------------ [ 리캡챠 api ] ----------------------------------- */
-</script>
-
 <script type="text/javascript">
 
 	/* 유효성 검사 */
@@ -66,32 +20,78 @@
 			}
 		/*
 			if($("#content").val() == ""){ // 내용
+		*/	
+			if($('input[name=content]').val() == "" /* || $('input[name=content]').val() == null */){ // 내용
 				alert("내용을 입력하세요."); 
 				$("#content").focus(); 
 				return false; 
 			}
-		*/	
-			var recapRes = recapCheck(); // 리캡챠
-			if(!recapRes){
-				alert(recapRes);
+
+			var v = grecaptcha.getResponse();
+			if(v.length == 0){
+				alert("스팸방지 동의가 필요합니다.");
 				return false;
-			}
-			
+			}else if(v.length != 0){
+				// alert("통과");
+				$.ajax({
+		            url: 'board/VerifyRecaptcha',
+		            type: 'post',
+		            data: { recaptcha: $("#g-recaptcha-response").val() },
+		            success: function(data) {
+		                switch (data) {
+		                    case 0:
+		                        //alert("자동 가입 방지 봇 통과");
+		                    	break;
+		                    case 1:
+		                        //alert("자동 가입 방지 봇을 확인 한 후 진행해주세요.");
+		                        break;
+		                    default:
+		                        // alert("자동 가입 방지 봇을 실행하던 중 오류가 발생했습니다. [Error bot Code : " + Number(data) + "]");
+								break;
+		                } // switch */
+		            } // success
+				}); // ajax
+			} // if
 		}); // click()
 	}); // write_chk()
 
-	/* 작성 중 목록 버튼 */
-	function writing(event){
-		var ing = confirm("게시판 목록으로 돌아가시겠습니까? (작성중인 글은 저장되지않습니다.)");
+	/* 목록 버튼 */
+	$(function writing(event){
 		$("#list_btn").click(function(){
-			if(true){
-				alert("글 작성이 취소되었습니다.");
-				location.href="board.bd";
-			}else{
-				return false;
-			}
+			location.href="board.bd";
 		}); // click()
-	}; // writing()
+	}); // writing()
+
+/* ------------------------------------ [ 리캡챠 api ] ----------------------------------- */
+	function recapCheck(){
+		var v = grecaptcha.getResponse();
+		if(v.length == 0){
+			alert("스팸방지 동의가 필요합니다.");
+			return false;
+		} else if(v.length != 0){
+			// alert("통과");
+			$.ajax({
+	            url: 'board/VerifyRecaptcha',
+	            type: 'post',
+	            data: { recaptcha: $("#g-recaptcha-response").val() },
+	            success: function(data) {
+	                switch (data) {
+	                    case 0:
+	                        alert("자동 가입 방지 봇 통과");
+	                    	break;
+	                    case 1:
+	                        alert("자동 가입 방지 봇을 확인 한 후 진행해주세요.");
+	                        break;
+	                    default:
+	                        alert("자동 가입 방지 봇을 실행하던 중 오류가 발생했습니다. [Error bot Code : " + Number(data) + "]");
+							break;
+	                } // switch */
+	            } // success
+			}); // ajax
+		} // if
+	}; // recaptchaCheck() 
+
+/* ------------------------------------ [ 리캡챠 api ] ----------------------------------- */
 
 /* ------------------------------- [ 스마트 에디터 api ] ---------------------------------------- */
 	$(document).ready(function() {
@@ -121,6 +121,7 @@
 	});
 
 /* ------------------------------------ [ 스마트 에디터 api ] ----------------------------------- */
+
 </script>
 	
 	<br><br><br><br>
@@ -135,46 +136,45 @@
 		</c:when>
 
 		<c:otherwise>
-			<section>
-			  <div class="container">
-					<div class="row">
-						<div class="col-md-7 mr-md-auto ml-md-auto">
-							<div class="head_title_1 text-center">
-								<h2>Foundation</h2>
-								<div class="separator_auto"></div>
-							</div>
-
-							<form action="board/write.post" method="post" enctype="multipart/form-data" onsubmit="return write_chk()" id="frm">
-				
-									<div class="form-group">
-										<label class="form-label" for="title">글제목</label> 
-										<input type="text" name="title" id="title" class="form-control" required>
-									</div>
-									<div class="form-group">
-										<label class="form-label" for="content">글내용</label>
-										<textarea name="content" id="content" cols="76" required></textarea>
-									</div>
-									<div class="form-group">
-										<label for="writer">작성자</label> 
-										<input type="text" name="writer" class="form-control" value="${sessionScope.email}" readonly="readonly">
-									</div>
-									
-									<%-- <c:if test="${sessionScope.email != 'admin@Something-take.com'}">
-									 --%>
-									 <div class="form-group">스팸방지를 위한 동의사항입니다. 확인체크바랍니다.
-										<div class="g-recaptcha" data-sitekey="6LeX4tkeAAAAADIhY2mz10xTKShV-c9V8_e_CqA0">
-										</div>
-									</div>
-									<%-- </c:if> --%>
-		
-								<input type="submit" class="btn btn-primary" id="reg_btn" value="등록"> <!-- onclick="return recapCheck();" --> 
-								<button type="button" class="btn btn-primary" id="list_btn" onclick="return writing();">목록</button>
-
-							</form>
+		  <div class="container">
+				<div class="row">
+					<div class="col-md-7 mr-md-auto ml-md-auto">
+						<div class="head_title_1 text-center">
+							<h2>Foundation</h2>
+							<div class="separator_auto"></div>
 						</div>
+
+						<form action="board/write.post" method="post" enctype="multipart/form-data" onsubmit="return write_chk()" id="frm">
+			
+							<div class="form-group">
+								<label class="form-label" for="title">글제목</label> 
+								<input type="text" name="title" id="title" class="form-control" required>
+							</div>
+							<div class="form-group">
+								<label class="form-label" for="content">글내용</label>
+								<textarea name="content" id="content" cols="76" required></textarea>
+							</div>
+							<div class="form-group">
+								<label for="writer">작성자</label> 
+								<input type="text" name="writer" class="form-control" value="${sessionScope.email}" readonly="readonly">
+							</div>
+							
+							<c:if test="${sessionScope.email != 'admin@Something-take.com'}">
+								 <div class="form-group">스팸방지를 위한 동의사항입니다. 확인체크바랍니다.
+									<div class="g-recaptcha" data-sitekey="6LeX4tkeAAAAADIhY2mz10xTKShV-c9V8_e_CqA0">
+									</div>
+								</div>
+							</c:if>
+	
+							<input type="submit" class="btn btn-primary" id="reg_btn" value="등록"> <%-- onclick="return recapCheck();" --%> 
+							
+							<c:if test="${sessionScope.email == 'admin@Something-take.com'}">
+								<button type="button" class="btn btn-primary" id="list_btn" onclick="return writing();">목록</button>
+							</c:if>
+						</form>
 					</div>
 				</div>
-			</section>
+			</div>
 	
 		</c:otherwise>
 	</c:choose>

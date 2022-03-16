@@ -22,7 +22,7 @@
 					<div class="head_title_1 text-center">
 						<h2>Foundation</h2>
 							<div class="separator_auto"></div>
-							<p>썸띵테이크 프랜차이즈 창업에 관련된 문의 내용을 남겨주시면 신속한 답변 도와드리겠습니다.</p>
+							<p>프랜차이즈 창업에 관련된 문의 내용을 남겨주시면 신속한 답변 도와드리겠습니다.</p>
 					</div>
 					
 					<br><br>

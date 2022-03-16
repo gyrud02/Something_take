@@ -41,6 +41,7 @@
 			if($("#rememberCk").is(":checked") == true){
 				var email = $("#email").val();
 				$.cookie('emailck', email, {expires: 7, path: 'http://localhost:8081/main/sign-in'}); // 7일 동안 기억하기
+				// $.cookie('emailck', email, {expires: 7, path: 'http://www.something-take.shop/sign-in'}); // 7일 동안 기억하기
 			}else{ $.removeCookie("emailck"); }
 					
 		}); // click()

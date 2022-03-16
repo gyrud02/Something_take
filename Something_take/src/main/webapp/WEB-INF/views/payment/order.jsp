@@ -73,7 +73,6 @@
 </script>
 <body class="lightbg">
 
- <%-- 
  <c:choose>
  
 	<c:when test="${sessionScope.email == null}" >
@@ -83,8 +82,12 @@
 	 </script>
 	</c:when>
 	 
-	<c:otherwise>	  
-	  --%>
+	<c:otherwise>
+	
+	<jsp:include page="../tiles/Top.jsp"/>
+	
+	<br><br><br><br>
+	
     <!--   Big container   -->
     <div class="container">
         <div class="row">
@@ -109,7 +112,9 @@
 							
 							<div style="float:left; width:100%; height:50px;">
 								<ul>
-		                            <li class="form-group"><a href="#details" data-toggle="tab"> 주문 정보 </a></li>
+		                            <li class="form-group">
+		                            	<a href="#details" data-toggle="tab"> 주문 정보 </a>
+		                            </li>
 		                        </ul>
 							</div>
 
@@ -119,32 +124,33 @@
 	                            <div class="tab-pane" id="details">
 	                            	<div class="row">
 	                                	<div class="col-sm-6">
-											<div class="input-group">
+	                                		<div class="form-group label-floating has-error menu-class">
+											<!-- <div class="input-group"> 
 												<span class="input-group-addon">
 													<i class="material-icons">email</i>
-												</span>
+												</span> -->
 												<div class="form-group label-floating has-error email-class">
 		                                          	<label class="control-label">Your Email</label>
 		                                          	<input name="email" type="text" class="form-control" value="${sessionScope.email}" id="email" required readonly>
 		                                        </div>
 											</div>
 											
-											<br>
-											
-											<div class="input-group">
+											<div class="form-group label-floating has-error menu-class">
+											<!-- <div class="input-group"> 
 												<span class="input-group-addon">
-													<i class="material-icons">phone</i>
-												</span>
+													 <i class="material-icons">phone</i>
+												</span> -->
 												<div class="form-group label-floating has-error phone-class">
 		                                          	<label class="control-label">Your Phone</label>
 		                                          	<input name="phone" type="text" class="form-control" id="phone" required>
 		                                        </div>
 											</div>
 											
-											<div class="input-group">
+											<div class="form-group label-floating has-error menu-class">
+											<!-- <div class="input-group"> 
 												<span class="input-group-addon">
 													<i class="material-icons">tag</i>
-												</span>											
+												</span> -->									
 												<div class="form-group label-floating has-error date-class">
 		                                          	<label class="control-label">Date</label>
 		                                          	<input name="order_date" type="date" class="form-control" id="order_date" required>
@@ -187,10 +193,11 @@
 	                                	</div>
 	                                	
 	                                    <div class="col-sm-12">
-	                                    	<div class="input-group">
+	                                    	<div class="form-group label-floating has-error menu-class">
+	                                    	<!-- <div class="input-group"> 
 												<span class="input-group-addon">
 													<i class="material-icons">message</i>
-												</span>
+												</span> -->
 	                                    		<div class="form-group">
 		                                            <label>전달할 메시지를 입력하세요.</label>
 		                                            <textarea class="form-control" rows="3" name="description" id="description" maxlength="200"></textarea>
@@ -332,11 +339,10 @@
 	<!-- script 영역 -->
 	
 	<jsp:include page="../tiles/bottom.jsp"/>
-<%-- 
+
 	</c:otherwise>
 
   </c:choose>
---%>
   
 </body>
 </html>

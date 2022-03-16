@@ -6,6 +6,7 @@
 <head>
 </head>
 <body>
+
 <!------------------------------------ [결제 영역] ------------------------------------------->
 		
 		<section id="pricing" class="pricing lightbg">
@@ -30,8 +31,11 @@
 					<div class="col-md-4 col-sm-12">
 						<div class="pricing_item">
 							<div class="pricing_top_border"></div>
+
+						<form method="get" name="membershipform" action="">
 							<div class="pricing_head p-top-30 p-bottom-100 text-center">
 								<h3 class="text-uppercase">STARTER</h3>
+							
 								<div hidden>
 									<input type="text" id="name_St" value="STARTER" readonly="readonly">
 								</div>
@@ -58,6 +62,8 @@
 										<c:when test="${sessionScope.email != null}">
 											<a href="javascript:void(event)" onclick="inicis_St(event)"
 											   class="btn btn-primary">결제하기</a>
+											<!-- <input type="submit" class="btn btn-primary" value="결제하기"
+												onclick="return inicis();"> -->
 										</c:when>
 										
 										<c:otherwise>
@@ -68,7 +74,9 @@
 									
 								</div>
 							</div>
-
+							
+						</form>
+					
 						</div>
 					</div><!-- End off col-md-4 -->
 					
@@ -80,7 +88,7 @@
 							var amount = document.getElementById('amount_St').value;
 							var email = document.getElementById('session').value;
 							
-							$(".btn-primary").click(function(){
+							// $(".btn-primary").click(function(){
 								IMP.init('imp30100127');
 								IMP.request_pay({
 								    pg : 'inicis', // version 1.1.0부터 지원.
@@ -102,7 +110,7 @@
 								    alert(msg);
 								}); // request_pay
 					
-							}); // click()
+							// }); // click()
 						}; // inicis()
 
 						/* 결제내역 DB에 송신 */
@@ -183,7 +191,7 @@
 								var amount = document.getElementById('amount_Pre').value;
 								var email = document.getElementById('session').value;
 							
-								$(".btn-primary").click(function(){
+								// $(".btn-primary").click(function(){
 									IMP.init('imp30100127');
 									IMP.request_pay({
 									    pg : 'inicis', // version 1.1.0부터 지원.
@@ -205,7 +213,7 @@
 									    alert(msg);
 									});
 							
-								}); // click()
+								// }); // click()
 							}; // inicis()
 
 							/* 결제내역 DB에 송신 */
@@ -294,7 +302,7 @@
 								var amount = document.getElementById('amount_Bus').value;
 								var email = document.getElementById('session').value;
 							
-								$(".btn-primary").click(function(){
+								// $(".btn-primary").click(function(){
 									IMP.init('imp30100127');
 									IMP.request_pay({
 									    pg : 'inicis', // version 1.1.0부터 지원.
@@ -316,7 +324,7 @@
 									    alert(msg);
 									});
 							
-								}); // click()
+								// }); // click()
 							}; // inicis()
 
 							/* 결제내역 DB에 송신 */

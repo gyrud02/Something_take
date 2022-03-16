@@ -40,7 +40,9 @@ public class BoardController {
 	@ResponseBody
     @RequestMapping(value = "VerifyRecaptcha", method = RequestMethod.POST)
     public int VerifyRecaptcha(HttpServletRequest request) {
+		logger.info("-- 리캡챠 메소드 실행");
         VerifyRecaptcha.setSecretKey("6LeX4tkeAAAAAJ7DAZ_zjbNzgI5gCk9XhgNu1T5A");
+//      logger.info("-- 리캡챠 : " + request.getParameter("recaptcha"));
         String gRecaptchaResponse = request.getParameter("recaptcha");
         System.out.println(gRecaptchaResponse);
         //0 = 성공, 1 = 실패, -1 = 오류
@@ -61,12 +63,16 @@ public class BoardController {
 							HttpServletRequest request,
 							HttpServletResponse response) throws Exception {
 		logger.info("-- 글 등록 버튼 실행");
+//		int a = VerifyRecaptcha(request);
+//		System.out.println("******** a : " + a);
+//		logger.info("-- request : " + request.getParameterValues(recaptcha));
 		model.addAttribute("title", bvo.getTitle());
 		model.addAttribute("content", bvo.getContent());
 		model.addAttribute("writer", bvo.getWriter());
         bservice.insert(bvo);
 		logger.info("-- 글 등록 버튼 실행 완료");
-		return "redirect:../board.bd";
+		//return "redirect:../board.bd";
+		return "redirect:../write";
 	} // writePOST()
 
 	/////////////////////////////////////////////////////////
