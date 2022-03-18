@@ -219,7 +219,9 @@
 <!------------------------------- [지도 영역] --------------------------------------->
 
 	<!----------- [지도 관련 링크 ] ----------->
-	<script src="http://maps.google.com/maps/api/js?key=AIzaSyD_tAQD36pKp9v4at5AnpGbvBUsLCOSJx8"></script>
+	<!-- <script src="http://maps.google.com/maps/api/js?key=AIzaSyD_tAQD36pKp9v4at5AnpGbvBUsLCOSJx8"></script>-->
+	<!-- <script src="http://maps.google.com/maps/api/js?key=AIzaSyA-nO6U0dVhyavvd3rupiRq7Pvuop9pKb4&callback=showmap&region=kr" async defer></script>-->	
+	<script src="https://maps.google.com/maps/api/js?key=AIzaSyD_tAQD36pKp9v4at5AnpGbvBUsLCOSJx8&region=kr"></script>
 	<script src="${pageContext.request.contextPath}/resources/assets/js/gmaps.min.js"></script>
 	<!----------- [지도 관련 링크 ] ----------->
 

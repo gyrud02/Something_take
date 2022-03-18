@@ -101,7 +101,7 @@
 										<li><i class="fa fa-check-circle text-primary"></i> <span>현재 이용 중인 멤버십이 없습니다.</span> </li>
 									</ul>
 									<div class="pricing_btn text-center m-top-40">
-										<a href="MemberShip" class="btn btn-primary">멤버십 신청하기</a>
+										<a href="memberShip" class="btn btn-primary">멤버십 신청하기</a>
 									</div>
 								</div>
 	

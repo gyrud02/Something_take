@@ -71,6 +71,12 @@ public class BoardController {
 		model.addAttribute("writer", bvo.getWriter());
         bservice.insert(bvo);
 		logger.info("-- 글 등록 버튼 실행 완료");
+		
+		response.setContentType("text/html; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println("<script>");
+		out.println("alert('등록되었습니다.');");
+		out.println("</script>");
 		//return "redirect:../board.bd";
 		return "redirect:../write";
 	} // writePOST()
