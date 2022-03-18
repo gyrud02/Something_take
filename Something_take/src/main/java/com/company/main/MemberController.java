@@ -58,7 +58,8 @@ public class MemberController {
 		logger.info("-- 회원가입 버튼 작동 / vo : "+vo);
 		service.insertMem(vo);
 		logger.info("-- 회원가입 완료 ");
-		return "redirect:../index";
+		// return "redirect:../index";
+		return "redirect:../sign-in";
 	} // signUpPOST()
 	
 	/////////////////////////////////////////////////////////

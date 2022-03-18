@@ -162,11 +162,11 @@
         </dependency>
  
         <!-- 구글 리캡챠 사용하기 위한 json -->
-        <!-- <dependency>
+        <dependency>
             <groupId>javax.json</groupId>
             <artifactId>javax.json-api</artifactId>
             <version>1.1.2</version>
-        </dependency> -->
+        </dependency>
  
         <dependency>
             <groupId>org.glassfish</groupId>

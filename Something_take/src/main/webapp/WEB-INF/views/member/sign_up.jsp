@@ -5,26 +5,45 @@
 <html>
 <head>
 </head>
+<body>
 <script type="text/javascript">
 
 	/* 회원가입 유효성 체크 */
-	$(function si_up_chk() {
+	$(function sign_up_chk() {
+		
 		var regMail = RegExp(/^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/) // 이메일
 		var regPwd = RegExp(/^[a-zA-Z0-9]{8,20}$/); // 비밀번호
 		var regName = RegExp(/^[가-힣A-Za-z]{2,20}$/); // 이름
 
-		$(".btn-primary").click(function() {
+//		$(".btn-primary").click(function() {
+		$("#signupBtn").click(function() {
 			if($("#email").val() == "" || !(regMail.test( $("#email").val() )) ){
+				alert("이메일을 입력하세요."); 
+				$("#email").focus();
 				return false; } // 이메일
 			if($("#quote").val() == ""){
+				/* alert("인증번호를 입력하세요.");
+				$("#quote").focus(); */
 				return false; } // 인증번호
 			if($("#pwd").val() == "" || !(regPwd.test( $("#pwd").val() )) ){ 
+				alert("비밀번호를 입력하세요."); 
+				$("#pwd").focus();
 				return false; } // 비밀번호
+			if($("#pwd_chk").val() == "" || !(regPwd.test( $("#pwd_chk").val() )) ){ 
+				alert("동일한 비밀번호를 입력하세요."); 
+				$("#pwd_chk").focus();
+				return false; } // 비밀번호 확인
 			if($("#name").val() == "" || !(regName.test( $("#name").val() )) ){
+				alert("이름을 입력하세요."); 
+				$("#name").focus();
 				return false; } // 이름
 			if($("#phone").val() == ""){ 
+				alert("전화번호를 입력하세요."); 
+				$("#phone").focus();
 				return false; } // 전화번호
 			if(!($("#yackuan-check").is(":checked")) ){ 
+				alert("이용약관에 동의를 하셔야 가입이 가능합니다."); 
+				$("#yackuan-check").focus();
 				return false; } // 이용약관 체크박스
 
 			$("#quote").attr("disabled", false)
@@ -189,7 +208,7 @@
 			$(".quote").hide();
 			return false;
 		}else{
-			$("#email").attr("disabled", true);
+			// $("#email").attr("disabled", true);
 			alert("메일을 발송했습니다.\n잠시만 기다리시면 인증번호 입력창이 열립니다.");
 			$.ajax({
 					type:"GET",
@@ -237,7 +256,6 @@
 	} // yackuan()
 	
 </script>
-<body>
 
 	<br><br><br><br>
 
@@ -257,7 +275,7 @@
 						
 <!-------------------------------------------- [form태그 시작] -------------------------------------------------------->
 					
-					<form action="member/signUp.post" class="sign_upClass" method="post" id="join" onsubmit="return si_up_chk()">
+					<form action="member/signUp.post" class="sign_upClass" method="post" id="join" onsubmit="return sign_up_chk()">
 
 <!-------------------------------------------- [이름, 이메일, 비밀번호 입력창] -------------------------------------------->
 					      <!-- 이메일 -->
@@ -291,7 +309,7 @@
 					      		
 				      		<div class="row align-items-center" style="float:right;">
 				        		<div class="col-12 text-right">
-					      			<input type="button" class="btn btn-primary" id="quoteBtn" value="인증" onclick="quoteCheck()">  
+					      			<input type="button" class="btn btn-primary" id="quoteBtn" value="인증" onclick="return quoteCheck()">  
 					      		</div>
 					      	</div>
 					      	
@@ -374,7 +392,7 @@
 					        
 							<div class="row align-items-center" style="float:right;">
 						        <div class="col-12 text-right">
-						          <input type="submit" class="btn btn-primary" value="가입하기">
+						          <input type="submit" class="btn btn-primary" id="signupBtn" value="가입하기">
 						        </div>										   
 							</div>
 					

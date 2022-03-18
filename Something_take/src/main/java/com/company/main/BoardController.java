@@ -75,10 +75,12 @@ public class BoardController {
 		response.setContentType("text/html; charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
-		out.println("alert('등록되었습니다.');");
+		out.println("alert('글이 등록되었습니다.');");
+		out.println("location.href='../write'");
 		out.println("</script>");
 		//return "redirect:../board.bd";
-		return "redirect:../write";
+		//return "redirect:../write";
+		return null;
 	} // writePOST()
 
 	/////////////////////////////////////////////////////////
