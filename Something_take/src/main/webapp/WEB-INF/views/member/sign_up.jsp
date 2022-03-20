@@ -22,8 +22,8 @@
 				$("#email").focus();
 				return false; } // 이메일
 			if($("#quote").val() == ""){
-				/* alert("인증번호를 입력하세요.");
-				$("#quote").focus(); */
+				alert("인증번호를 입력하세요.");
+				$("#quote").focus();
 				return false; } // 인증번호
 			if($("#pwd").val() == "" || !(regPwd.test( $("#pwd").val() )) ){ 
 				alert("비밀번호를 입력하세요."); 
@@ -226,7 +226,7 @@
 	} // sendMail()
 	
 	/* 인증번호 일치 확인 */
-	function quoteCheck(){
+	$(function quoteCheck(){
 		$("#quoteBtn").on('click', function(){
 			$.ajax({
 					type:"GET",
@@ -246,7 +246,7 @@
 					} // error
 			}); // ajax
 		}); // on()
-	} // quoteCheck()
+	}); // quoteCheck()
 	
 	/* 약관동의 체크박스 새 창 */
 	function yackuan(){

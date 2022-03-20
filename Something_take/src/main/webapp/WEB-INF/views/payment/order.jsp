@@ -45,24 +45,36 @@
 	function check(){
 			if( $("#email").val() == "" ){ // 이메일
 				alert("로그인 후 이용 가능합니다.");
-				$(".email-class").addClass("has-error");
+				//$(".email-class").addClass("has-error");
 				return false;
 			}else if( $("#phone").val() == "" ){ // 전화번호
-				$(".phone-class").addClass("has-error");
+				alert("전화번호를 입력하세요.");
+				$("#phone").focus();
+				//$(".phone-class").focus();
+				//$(".phone-class").addClass("has-error");
 				return false;
-			}else if( $("#date").val() == "" ){ // 주문일자
-				$(".date-class").addClass("has-error");
+			}
+			/* else if( $("#date").val() == "" ){ // 주문일자
+				alert("주문일자를 선택하세요.");
+				//$(".date-class").addClass("has-error");
 				return false;
-			}else if( $("#menu option:selected").val() == 0 ){ // 메뉴
-				$(".menu-class").addClass("has-error");
+			}*/ else if( $("#menu option:selected").val() == 0 ){ // 메뉴
+				alert("메뉴를 선택하세요.");
+				$("#menu option:selected").focus();
+				//$(".menu-class").addClass("has-error");
 				return false;
 			}else if( $("#menutype option:selected").val() == 0 ){ // 타입
-				$(".type-class").addClass("has-error");
+				alert("HOT/ICE를 선택하세요.");
+				$("#menutype option:selected").focus();
+				//$(".type-class").addClass("has-error");
 				return false;
 			}else if( $("#amount").val() <= 0 ){ // 갯수
-				$(".amount-class").addClass("has-error");
+				alert("갯수를 선택하세요.");
+				$("#amount").focus();
+				//$(".amount-class").addClass("has-error");
 				return false;
 			}else if( !($('input:checkbox[id="optionsCheckboxes"]').is(":checked")) ){ // 체크박스
+				alert("입력하신 정보로 주문하시겠습니까? 주문 후에는 수정하실 수 없습니다.");
 				$(".checkbox").attr("style", "color:red;");
 				return false;
 			}else{
@@ -234,7 +246,7 @@
                         	<div class="wizard-footer">
                             	<div class="pull-right">
                                     <input type='button' onclick="return paymentPOST();" class='btn btn-finish btn-fill btn-wd btn-primary' name='finish' value='결제하기'>
-                                    <input type='button' onclick="history.back();" class='btn btn-finish btn-fill btn-wd btn-primary' name='finish' value='돌아가기'>
+                                    <input type='button' onclick="location.href='./index'" class='btn btn-finish btn-fill btn-wd btn-primary' name='finish' value='돌아가기'>
                                 </div>
                                 <div class="clearfix"></div>
                         	</div>
