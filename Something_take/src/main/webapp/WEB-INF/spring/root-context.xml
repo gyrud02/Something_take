@@ -44,7 +44,7 @@
 			
 			<!-- 아이디 
 			<property name="username" value="something_take" />
-			-->
+			-->			
 			<property name="username" value="admin" />
 			
 			<!-- 비밀번호 

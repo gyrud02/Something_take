@@ -46,7 +46,7 @@ public class MessageController {
 		PrintWriter out = response.getWriter();
 		out.println("<script>");
 		out.println("alert('메세지 전송이 완료되었습니다.');");
-		out.println("location.href='../index.do'");
+		out.println("location.href='../index#contact'");
 		out.println("</script>");
 		
 		logger.info("-- 메세지 전송 버튼 작동 완료");
