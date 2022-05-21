@@ -26,7 +26,7 @@
 				$("#content").focus(); 
 				return false; 
 			}
-
+		/*
 			var v = grecaptcha.getResponse();
 			if(v.length == 0){
 				alert("스팸방지 동의가 필요합니다.");
@@ -48,10 +48,10 @@
 		                    default:
 		                        // alert("자동 가입 방지 봇을 실행하던 중 오류가 발생했습니다. [Error bot Code : " + Number(data) + "]");
 								break;
-		                } // switch */
+		                } // switch 
 		            } // success
 				}); // ajax
-			} // if
+			} */ // if
 		}); // click()
 	}); // write_chk()
 
@@ -159,12 +159,12 @@
 								<input type="text" name="writer" class="form-control" value="${sessionScope.email}" readonly="readonly">
 							</div>
 							
-							<c:if test="${sessionScope.email != 'admin@Something-take.com'}">
+							<%-- <c:if test="${sessionScope.email != 'admin@Something-take.com'}">
 								 <div class="form-group">스팸방지를 위한 동의사항입니다. 확인체크바랍니다.
 									<div class="g-recaptcha" data-sitekey="6LeX4tkeAAAAADIhY2mz10xTKShV-c9V8_e_CqA0">
 									</div>
 								</div>
-							</c:if>
+							</c:if> --%>
 	
 							<input type="submit" class="btn btn-primary" id="reg_btn" value="등록"> <%-- onclick="return recapCheck();" --%> 
 							
